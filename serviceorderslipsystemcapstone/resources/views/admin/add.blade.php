@@ -7,7 +7,7 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg" style="background-color:red">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                    <h6>Errors Encountered</h6>
                     @if($errors)
@@ -17,53 +17,71 @@
                     @endforeach
                          </ul>
                     @endif
-                <form method = "POST" action="{{ route('student-store') }}">
+                <form method = "POST">
                         @csrf
-                       <div class="flex-items-center"><label for="ID Number">ID Number</label>
+                       <div class="flex-items-center"><label for="First Name">First Name</label>
                     <div>
-                        <input type="text" name="xidNo" value="{{old('xidNo')}}"/>
+                        <input type="text" name="xfirstName" value="{{old('xfirstName')}}"/>
                     </div>
                 </div>
-                    <div class="flex-items-center"><label for="First Name">First Name</label>
-                    <div>
-                    <input type="text" name="xfirstName" value="{{old('xfirstName')}}"/>
-                    </div>
-</div>
-                       <div class="flex-items-center"><label for="Middle Name">Middle Name</label>
+                    <div class="flex-items-center"><label for="Middle Name">Middle Name</label>
                     <div>
                     <input type="text" name="xmiddleName" value="{{old('xmiddleName')}}"/>
                     </div>
 </div>
-                       <div class="flex-items-center"><label for="Last Name">Last Name</label>
+                       <div class="flex-items-center"><label for="Middle Name">Last Name</label>
                     <div>
                     <input type="text" name="xlastName" value="{{old('xlastName')}}"/>
                     </div>
 </div>
-                       <div class="flex-items-center"><label for="Suffix">Suffix</label>
-                    <div>
-                    <input type="text" name="xsuffix" value="{{old('xsuffix')}}"/>
-                    </div>
-</div>
-                       <div class="flex-items-center"><label for="Course">Course</label>
+<div class="flex-items-center"><label for="Contact Number">Contact Number</label>
                     <div> 
-                    <input type="text" name="xcourse" value="{{old('xcourse')}}"/>
+                    <input type="text" name="xcontactNumber" value="{{old('xcontactNumber')}}"/>
                     </div>
 </div>
-                       <div class="flex-items-center"><label for="Year">Year</label>
-                    <div>
-                    <input type="number" min="1" max="4" name="xyear" value="{{old('xyear')}}"/>
+                 <div class="flex-items-center"><label for="Address">Address</label>
+                    <div> 
+                    <input type="text" name="xaddress" value="{{old('xaddress')}}"/>
                     </div>
 </div>
-                       <div class="flex-items-center"><label for="birthDate"></label>
+               <div class="flex-items-center"><label for="Type Of Service">Type Of Service</label>
                     <div>
-                    <input type="date" name="xbirthDate" value="{{old('xbirthDate')}}"/>
+                    <select name="xtypeofservice">
+                        <option value="Reformatting">Reformatting</option>
+                        <option value="Replacement">Replacement</option>
+                        <option value="Virus Removal">Virus Removal</option>
+                        <option value="Computer Network Troubleshooting">Computer Network Troubleshooting</option>
+                        <option value="Upgrade Hardware">Upgrade Hardware</option>
+</select>
                     </div>
 </div>
-                       <div class="flex-items-center"><label for="gender"></label>
+<div class="flex-items-center"><label for="Maintenance Required">Maintenance Required</label>
                     <div>
-                    <select name="xgender">
-                        <option value="Male">Male</option>
-                        <option value="Female">Female</option>
+                    <select name="xmaintenancerequired">
+                        <option value="Scheduled Maintenance">Scheduled Maintenance</option>
+                        <option value="Preventive Maintenance">Preventive Maintenance</option>
+                        <option value="Full Maintenance">Full Maintenance</option>
+    
+</select>
+                    </div>
+</div>
+             <div class="flex-items-center"><label for="Problem Encountered">Problem Encountered</label>
+                    <div>
+                    <input type="text" name="xproblemencountered" value="{{old('xproblemencountered')}}"/>
+                    </div>
+</div>
+<div class="flex-items-center"><label for="Customer Password">Customer Password</label>
+                    <div>
+                    <input type="text" name="xcustomerpassword" value="{{old('xcustomerpassword')}}"/>
+                    </div>
+</div>
+<div class="flex-items-center"><label for="Assigned Staff">Assigned Staff</label>
+                    <div>
+                    <select name="xassignedstaff">
+                        <option value="Scheduled Maintenance">Scheduled Maintenance</option>
+                        <option value="Preventive Maintenance">Preventive Maintenance</option>
+                        <option value="Full Maintenance">Full Maintenance</option>
+    
 </select>
                     </div>
 </div>

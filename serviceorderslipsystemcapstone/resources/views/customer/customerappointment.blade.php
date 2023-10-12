@@ -17,13 +17,8 @@
                     @endforeach
                          </ul>
                     @endif
-                <form method = "POST" action="{{ route('student-store') }}">
+                <form method = "POST" action="{{ route('customerappointment-store') }}">
                         @csrf
-                       <div class="flex-items-center"><label for="ID Number">ID Number</label>
-                    <div>
-                        <input type="text" name="xidNo" value="{{old('xidNo')}}"/>
-                    </div>
-                </div>
                     <div class="flex-items-center"><label for="First Name">First Name</label>
                     <div>
                     <input type="text" name="xfirstName" value="{{old('xfirstName')}}"/>
@@ -39,34 +34,17 @@
                     <input type="text" name="xlastName" value="{{old('xlastName')}}"/>
                     </div>
 </div>
-                       <div class="flex-items-center"><label for="Suffix">Suffix</label>
+                       <div class="flex-items-center"><label for="Appointment Purpose">Appointment Purpose</label>
                     <div>
-                    <input type="text" name="xsuffix" value="{{old('xsuffix')}}"/>
+                    <input type="text" name="xappointmentpurpose" value="{{old('xappointmentpurpose')}}"/>
                     </div>
 </div>
-                       <div class="flex-items-center"><label for="Course">Course</label>
+                       <div class="flex-items-center"><label for="Appointment Type">Appointment Type</label>
                     <div> 
-                    <input type="text" name="xcourse" value="{{old('xcourse')}}"/>
+                    <input type="text" name="xappointmenttype" value="{{old('xappointmenttype')}}"/>
                     </div>
 </div>
-                       <div class="flex-items-center"><label for="Year">Year</label>
-                    <div>
-                    <input type="number" min="1" max="4" name="xyear" value="{{old('xyear')}}"/>
-                    </div>
-</div>
-                       <div class="flex-items-center"><label for="birthDate"></label>
-                    <div>
-                    <input type="date" name="xbirthDate" value="{{old('xbirthDate')}}"/>
-                    </div>
-</div>
-                       <div class="flex-items-center"><label for="gender"></label>
-                    <div>
-                    <select name="xgender">
-                        <option value="Male">Male</option>
-                        <option value="Female">Female</option>
-</select>
-                    </div>
-</div>
+                                   
              <button type ="submit"> Submit Info </button>
                    </form>
                 </div>

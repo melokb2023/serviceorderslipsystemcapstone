@@ -9,10 +9,10 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg" style="background-color:grey;text-align:center">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
-                    
+                <link rel="stylesheet" href="index.css">
                
                     <h6>List of Students</h6>
-                    <table>
+                    <table style="border: 5px solid black;width: 100%">
                         <th>Service Number</th>
                         <th>Service Number</th>
                         <th>Service Number</th>

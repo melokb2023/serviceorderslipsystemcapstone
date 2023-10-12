@@ -1,4 +1,4 @@
-<nav x-data="{ open: false }" class="bg-white border-b border-gray-100">
+<nav x-data="{ open: false }" class="bg-grey border-b border-gray-50" style="background-color:grey">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
@@ -11,12 +11,23 @@
                 </div>
 
                 <!-- Navigation Links -->
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
+                <div style="border: 1px solid #008B8B;background-color:grey;font-weight:bold">
+                    <a class="nav-link" style="border: 1px solid #008B8B;background-color:grey" href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
-                    </x-nav-link>
+</a>
+                    <a class="nav-link" style="border: 1px solid #008B8B;background-color:grey" href="{{ route('startservice') }}" :active="request()->routeIs('startservice')">
+                        {{ __('Start Service') }}
+</a>
+                    <a class="nav-link" style="border: 1px solid #008B8B;background-color:grey" href="{{ route('servicelist') }}" :active="request()->routeIs('servicelist')">
+                        {{ __('Service List') }}
+</a>
+                    <a class="nav-link" style="border: 1px solid #008B8B;background-color:grey" href="{{ route('servicedata') }}" :active="request()->routeIs('servicedata')">
+                        {{ __('Service Data') }}
+</a>
                 </div>
             </div>
+
+
 
             <div class="hidden sm:flex sm:items-center sm:ml-6">
                 <!-- Teams Dropdown -->

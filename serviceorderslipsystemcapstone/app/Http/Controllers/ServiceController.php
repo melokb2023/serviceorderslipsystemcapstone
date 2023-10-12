@@ -29,7 +29,7 @@ class ServiceController extends Controller
 //
        //echo "Grades data successfully saved in the database";
 
-      $student = Service:: all();
+      $servicedata = Service:: all();
       return view('student.index', compact('student'));
 
      
@@ -49,29 +49,29 @@ class ServiceController extends Controller
     public function store(Request $request)
     {
         $validateData =$request->validate([
-            'xidNo' => ['required', 'max:8'],
             'xfirstName' =>['required', 'max:20'],
             'xmiddleName'=>['max:20'],
             'xlastName' =>['required', 'max:20'],
-            'xsuffix' =>['max:5'],
-            'xcourse' =>['required','max:15'],
-            'xyear' =>['required'],
-            'xbirthDate' =>['required','date'],
-            'xgender' =>['required']
+            'xcontactNumber' =>['required', 'max:11'],
+            'xaddress' =>['required','max:15'],
+            'xtypeofservice' =>['required'],
+            'xmaintenancerequired' =>['required'],
+            'xproblemencountered' =>['required','max:30'],
+            'xassignedstaff' =>['required'],
         ]);
         
-        $student = new Service();
-        $student ->idNo=$request->xidNo;
-        $student ->firstName=$request->xfirstName;
-        $student ->middleName=$request->xmiddleName;
-        $student ->lastName=$request->xlastName;
-        $student ->suffix=$request->xsuffix;
-        $student ->course=$request->xcourse;
-        $student ->year=$request->xyear;
-        $student ->birthDate=$request->xbirthDate;
-        $student ->gender=$request->xgender;
-        $student ->save();
-        return redirect()->route('student');
+        $servicedata = new Service();
+        $servicedata ->firstName=$request->xfirstName;
+        $servicedata ->middleName=$request->xmiddleName;
+        $servicedata ->lastName=$request->xlastName;
+        $servicedata ->contactNumber=$request->xcontactNumber;
+        $servicedata ->address=$request->xaddress;
+        $servicedata ->typeofservice=$request->xtypeofservice;
+        $servicedata ->maintenancerequired=$request->xmaintenancerequired;
+        $servicedata ->customerpassword=$request->xcustomerpassword;
+        $servicedata ->assignedstaff=$request->xassignedstaff;
+        $servicedata ->save();
+        return redirect()->route('servicedata');
     }
 
     /**
@@ -79,8 +79,8 @@ class ServiceController extends Controller
      */
     public function show(string $id)
     {
-        $student = Service::where('sno', $id)->get();
-        return view('student.show', compact('student'));
+        $servicedata = Service::where('serviceno', $id)->get();
+        return view('service.show', compact('servicenumber'));
     }
 
     /**
@@ -88,8 +88,8 @@ class ServiceController extends Controller
      */
     public function edit(string $id)
     {
-        $student = Service::where('sno', $id)->get();
-        return view('student.edit', compact('student'));
+        $servicedata = Service::where('serviceno', $id)->get();
+        return view('service.edit', compact('servicedata'));
     }
 
     /**
@@ -98,30 +98,31 @@ class ServiceController extends Controller
     public function update(Request $request, string $id)
     {
         $validateData =$request->validate([
-            'xidNo' => ['required', 'max:8'],
             'xfirstName' =>['required', 'max:20'],
-            'xmiddleName'=>['max:15'],
+            'xmiddleName'=>['max:20'],
             'xlastName' =>['required', 'max:20'],
-            'xsuffix' =>['max:5'],
-            'xcourse' =>['required','max:15'],
-            'xyear' =>['required'],
-            'xbirthDate' =>['required','date'],
-            'xgender' =>['required']
+            'xcontactNumber' =>['required', 'max:11'],
+            'xaddress' =>['required','max:15'],
+            'xtypeofservice' =>['required'],
+            'xmaintenancerequired' =>['required'],
+            'xproblemencountered' =>['required','max:30'],
+            'xassignedstaff' =>['required'],
         ]);
 
-        $student= Service::where('sno', $id)
+        $servicedata= Service::where('sno', $id)
         ->update(
-             ['idNo' => $request->xidNo,
+             [
              'firstName'=> $request->xfirstName,
              'middleName'=> $request->xmiddleName,
              'lastName'=> $request->xlastName,
-             'suffix'=> $request->xsuffix,
-             'course'=> $request->xcourse,
-             'year'=>$request->xyear,
-             'birthDate'=> $request->xbirthDate,
-             'gender'=> $request->xgender,
+             'contactnumber'=> $request->xcontactnumber,
+             'address'=> $request->xaddress,
+             'xtypeofservice'=>$request->xtypeofservice,
+             'maintenancerequired'=> $request->xmaintenancerequired,
+             'problemencountered'=> $request->xproblemencountered,
+             'assignedstaff'=> $request->xassignedstaff,
              ]);
-        return redirect()->route('student');
+        return redirect()->route('servicedata');
     }
 
     /**

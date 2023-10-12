@@ -5,3 +5,7 @@
 [x-cloak] {
     display: none;
 }
+
+table, th, tr,td {
+    border: 5px solid;
+  }

@@ -28,9 +28,17 @@ Route::get('/servicelist', function () {
     return view('admin.servicelist');
 })->name('servicelist');
 
+Route::get('/adminadd', function () {
+    return view('admin.add');
+})->name('adminadd');
+
 Route::get('/servicedata', function () {
     return view('admin.servicedata');
 })->name('servicedata');
+
+Route::get('/staffdatabase', function () {
+    return view('staff.staffdatabase');
+})->name('staffdatabase');
 
 //Route::post('/service/add',[StudentController::class, 'store'] )
 //->middleware(['auth', 'verified'])

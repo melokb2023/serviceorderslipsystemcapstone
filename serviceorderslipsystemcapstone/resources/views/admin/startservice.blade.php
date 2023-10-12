@@ -11,6 +11,8 @@
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     
                
-                    <h6>Start Service</h6>
+                <a href="{{ route('adminadd') }}">
+                        Start Service
+                    </a>
                   
 </x-app-layout>

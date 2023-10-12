@@ -17,56 +17,59 @@
                     @endforeach
                          </ul>
                     @endif
-                    @foreach($student as $stuinfo)
-                <form method = "POST" action="{{ route('student-update',['stuno' => $stuinfo->sno]) }}">
+                    @foreach($service as $serviceinfo)
+                <form method = "POST" action="{{ route('service-update',['serviceno' => $serviceinfo->serviceno]) }}">
                         @csrf
                         @method('patch')
-                       <div class="flex-items-center"><label for="ID Number">ID Number</label>
-                    <div>
-                        <input type="text" name="xidNo" value="{{$stuinfo->idNo}}"/>
-                    </div>
-                </div>
                     <div class="flex-items-center"><label for="First Name">First Name</label>
                     <div>
-                    <input type="text" name="xfirstName" value="{{$stuinfo->firstName}}"/>
+                    <input type="text" name="xfirstName" value="{{$serviceinfo->firstName}}"/>
                     </div>
 </div>
                        <div class="flex-items-center"><label for="Middle Name">Middle Name</label>
                     <div>
-                    <input type="text" name="xmiddleName" value="{{$stuinfo->middleName}}"/>
+                    <input type="text" name="xmiddleName" value="{{$serviceinfo->middleName}}"/>
                     </div>
 </div>
                        <div class="flex-items-center"><label for="Last Name">Last Name</label>
                     <div>
-                    <input type="text" name="xlastName" value="{{$stuinfo->lastName}}"/>
+                    <input type="text" name="xlastName" value="{{$serviceinfo->lastName}}"/>
                     </div>
 </div>
-                       <div class="flex-items-center"><label for="Suffix">Suffix</label>
+                       <div class="flex-items-center"><label for="Contact Number">Contact Number</label>
                     <div>
-                    <input type="text" name="xsuffix" value="{{$stuinfo->suffix}}"/>
+                    <input type="text" name="xcontactNumber" value="{{$serviceinfo->contactNumber}}"/>
                     </div>
 </div>
-                       <div class="flex-items-center"><label for="Course">Course</label>
+                       <div class="flex-items-center"><label for="Address">Address</label>
                     <div> 
-                    <input type="text" name="xcourse" value="{{$stuinfo->course}}"/>
+                    <input type="text" name="xaddress" value="{{$serviceinfo->address}}"/>
                     </div>
 </div>
-                       <div class="flex-items-center"><label for="Year">Year</label>
+           <div class="flex-items-center"><label for="Type Of Service">Type Of Service</label>
                     <div>
-                    <input type="number" min="1" max="4" name="xyear" value="{{$stuinfo->year}}"/>
-                    </div>
-</div>
-                       <div class="flex-items-center"><label for="birthDate"></label>
-                    <div>
-                    <input type="date" name="xbirthDate" value="{{$stuinfo->birthDate}}"/>
-                    </div>
-</div>
-                       <div class="flex-items-center"><label for="gender"></label>
-                    <div>
-                    <select name="xgender">
-                        <option value="Male">Male</option>
-                        <option value="Female">Female</option>
+                    <select name="xtypeofservice">
+                        <option value="Reformatting">Reformatting</option>
+                        <option value="Replacement">Replacement</option>
+                        <option value="Virus Removal">Virus Removal</option>
+                        <option value="Computer Network Troubleshooting">Computer Network Troubleshooting</option>
+                        <option value="Upgrade Hardware">Upgrade Hardware</option>
 </select>
+                    </div>
+</div>
+<div class="flex-items-center"><label for="Maintenance Required">Maintenance Required</label>
+                    <div>
+                    <select name="xtypeofservice">
+                        <option value="Scheduled Maintenance">Scheduled Maintenance</option>
+                        <option value="Preventive Maintenance">Preventive Maintenance</option>
+                        <option value="Full Maintenance">Full Maintenance</option>
+    
+</select>
+                    </div>
+</div>
+          <div class="flex-items-center"><label for="Customer Password">Customer Password</label>
+                    <div>
+                    <input type="text" name="xcustomerpassword" value="{{$serviceinfo->customerpassword}}"/>
                     </div>
 </div>
              <button type ="submit"> Submit Info </button>
