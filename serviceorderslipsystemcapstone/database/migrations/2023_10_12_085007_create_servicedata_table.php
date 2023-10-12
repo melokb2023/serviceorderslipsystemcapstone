@@ -18,10 +18,10 @@ return new class extends Migration
             $table->string('lastName',20);
             $table->string('contactNumber',11);
             $table->string('address',15);
-            $table->string('typeofservice');
-            $table->string('maintenancerequired');
-            $table->string('problemencountered');
-            $table->string('assignedstaff');
+            $table->string('typeofservice',50);
+            $table->string('maintenancerequired',20);
+            $table->string('problemencountered',20);
+            $table->string('assignedstaff',25);
             $table->timestamps();
         });
     }
