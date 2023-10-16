@@ -27,7 +27,7 @@ class StaffDatabaseController extends Controller
        //echo "Grades data successfully saved in the database";
 
       $student = StaffDatabase:: all();
-      return view('student.index', compact('student'));
+      return view('staff.staffdatabase', compact('student'));
 
      
     }
@@ -37,7 +37,7 @@ class StaffDatabaseController extends Controller
      */
     public function create()
     {
-        //
+       
     }
 
     /**
@@ -45,30 +45,7 @@ class StaffDatabaseController extends Controller
      */
     public function store(Request $request)
     {
-        $validateData =$request->validate([
-            'xidNo' => ['required', 'max:8'],
-            'xfirstName' =>['required', 'max:20'],
-            'xmiddleName'=>['max:20'],
-            'xlastName' =>['required', 'max:20'],
-            'xsuffix' =>['max:5'],
-            'xcourse' =>['required','max:15'],
-            'xyear' =>['required'],
-            'xbirthDate' =>['required','date'],
-            'xgender' =>['required']
-        ]);
-        
-        $student = new StaffDatabase();
-        $student ->idNo=$request->xidNo;
-        $student ->firstName=$request->xfirstName;
-        $student ->middleName=$request->xmiddleName;
-        $student ->lastName=$request->xlastName;
-        $student ->suffix=$request->xsuffix;
-        $student ->course=$request->xcourse;
-        $student ->year=$request->xyear;
-        $student ->birthDate=$request->xbirthDate;
-        $student ->gender=$request->xgender;
-        $student ->save();
-        return redirect()->route('student');
+       
     }
 
     /**
@@ -85,8 +62,8 @@ class StaffDatabaseController extends Controller
      */
     public function edit(string $id)
     {
-        $student = StaffDatabase::where('sno', $id)->get();
-        return view('student.edit', compact('student'));
+        $staffdatabase = StaffDatabase::where('staffno', $id)->get();
+        return view('staffdatabase.edit', compact('staffdatabase'));
     }
 
     /**
@@ -95,30 +72,18 @@ class StaffDatabaseController extends Controller
     public function update(Request $request, string $id)
     {
         $validateData =$request->validate([
-            'xidNo' => ['required', 'max:8'],
-            'xfirstName' =>['required', 'max:20'],
-            'xmiddleName'=>['max:15'],
-            'xlastName' =>['required', 'max:20'],
-            'xsuffix' =>['max:5'],
-            'xcourse' =>['required','max:15'],
-            'xyear' =>['required'],
-            'xbirthDate' =>['required','date'],
-            'xgender' =>['required']
+            'xviewtasks' => ['required', 'max:50'],
+            'xactionstaken' =>['required', 'max:70'],
+            'xworkprogress'=>['max:30'],
         ]);
 
-        $student= StaffDatabase::where('sno', $id)
+        $staffdatabase= StaffDatabase::where('sno', $id)
         ->update(
-             ['idNo' => $request->xidNo,
-             'firstName'=> $request->xfirstName,
-             'middleName'=> $request->xmiddleName,
-             'lastName'=> $request->xlastName,
-             'suffix'=> $request->xsuffix,
-             'course'=> $request->xcourse,
-             'year'=>$request->xyear,
-             'birthDate'=> $request->xbirthDate,
-             'gender'=> $request->xgender,
+             ['viewtasks' => $request->xviewtasks,
+             'actionstaken'=> $request->xactionstaken,
+             'workprogress'=> $request->xworkprogress,
              ]);
-        return redirect()->route('student');
+        return redirect()->route('staffdatabase');
     }
 
     /**
@@ -126,8 +91,6 @@ class StaffDatabaseController extends Controller
      */
     public function destroy(string $id)
     {
-        $student= StaffDatabase::where('sno', $id);
-        $student->delete();
-        return redirect()->route('student');
+  
     }
 }
