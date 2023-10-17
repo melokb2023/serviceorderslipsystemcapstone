@@ -13,8 +13,6 @@ return new class extends Migration
     {
         Schema::create('staffdatabase', function (Blueprint $table) {
             $table->id('staffnumber');
-            $table->id('customernumber');
-            $table->id('servicenumber');
             $table->string('listofproblems',50);
             $table->string('typeofservice',50);
             $table->string('maintenance',50);

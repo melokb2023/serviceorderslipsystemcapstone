@@ -13,7 +13,6 @@ return new class extends Migration
     {
         Schema::create('serviceprogress', function (Blueprint $table) {
             $table->id('servicenumber');
-            $table->dateTime('created_at', $precision = 0);
             $table->string('serviceprogress')->default('Ongoing');
             $table->timestamps();
         });
