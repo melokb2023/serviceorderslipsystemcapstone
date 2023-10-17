@@ -28,7 +28,7 @@ class ServiceProgressController extends Controller
      */
     public function store(Request $request)
     {
-        //
+       
     }
 
     /**
