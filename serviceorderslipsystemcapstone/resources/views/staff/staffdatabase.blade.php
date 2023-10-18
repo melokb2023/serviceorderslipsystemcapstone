@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Service Information') }}
+            {{ __('Staff Database Information') }}
         </h2>
     </x-slot>
 
@@ -24,6 +24,18 @@
                         <th>Actions Taken</th>
                         <th>Work Progress</th>
 </tr>      
+<tr>
+                        <td>2</td>
+                        <td>Kyle Bryant M. Melo</td>
+                        <td>4</td>
+                        <td>List of Problems</td>
+                        <td>System Failed to Start Up</td>
+                        <td>Full Maintenance</td>
+                        <td>AX500 Power Supply</td>
+                        <td>Clean Up Files and Restart</td>
+                        <td>Reformat,Upgrade Hardware Laptop</td>
+                        <td>Ongoing</td>
+</tr>
                     </table>
 </div>
 </div>
