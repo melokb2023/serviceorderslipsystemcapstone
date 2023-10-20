@@ -1,4 +1,4 @@
-<nav x-data="{ open: false }" class="bg-grey border-b border-gray-50" style="background-color:grey">
+<nav x-data="{ open: false }" class="bg-grey border-b border-gray-50" style="background-color:red;border: 3px solid black">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
@@ -11,17 +11,17 @@
                 </div>
 
                 <!-- Navigation Links -->
-                <div style="border: 1px solid #008B8B;background-color:grey;font-weight:bold">
-                    <a class="nav-link" style="border: 1px solid #008B8B;background-color:grey" href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
+                <div style="border: 3px solid red;background-color:red;font-weight:bold;padding-bottom: 39px;"> 
+                  <a class="nav-link" style="border: 3px solid black;background-color:red;padding-bottom: 39px;padding-top:3px" href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
-</a>
-                    <a class="nav-link" style="border: 1px solid #008B8B;background-color:grey" href="{{ route('startservice') }}" :active="request()->routeIs('startservice')">
+</a>          
+                    <a class="nav-link" style="border: 3px solid black;background-color:red;padding-bottom: 39px;padding-top:3px" href="{{ route('startservice') }}" :active="request()->routeIs('startservice')">
                         {{ __('Start Service') }}
 </a>
-                    <a class="nav-link" style="border: 1px solid #008B8B;background-color:grey" href="{{ route('servicelist') }}" :active="request()->routeIs('servicelist')">
+                    <a class="nav-link" style="border: 3px solid black;background-color:red;padding-bottom: 39px;padding-top:3px" href="{{ route('servicelist') }}" :active="request()->routeIs('servicelist')">
                         {{ __('Service List') }}
 </a>
-                    <a class="nav-link" style="border: 1px solid #008B8B;background-color:grey" href="{{ route('servicedata') }}" :active="request()->routeIs('servicedata')">
+                    <a class="nav-link" style="border: 3px solid black;background-color:red;padding-bottom: 39px;padding-top:3px" href="{{ route('servicedata') }}" :active="request()->routeIs('servicedata')">
                         {{ __('Service Data') }}
 </a>
                 </div>
