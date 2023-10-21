@@ -1,12 +1,14 @@
-<nav x-data="{ open: false }" class="bg-grey border-b border-gray-50" style="background-color:red;border: 3px solid black">
+<nav x-data="{ open: false }" class="bg-grey border-b border-gray-50" style="background-color:red;border: 3px solid black;">
     <!-- Primary Navigation Menu -->
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between h-16">
-            <div class="flex">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" style="background-color:red;">
+        <div class="flex justify-between h-16" style="background-color:red;">
+            <div class="flex" style="background-color:red;">
                 <!-- Logo -->
+                <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
                 <div class="shrink-0 flex items-center">
                     <a href="{{ route('dashboard') }}">
-                        <x-application-mark class="block h-9 w-auto" />
+                    <i class="fa fa-home" style="font-size: 32px;"></i>
                     </a>
                 </div>
 
@@ -29,7 +31,7 @@
 
 
 
-            <div class="hidden sm:flex sm:items-center sm:ml-6">
+            <div class="hidden sm:flex sm:items-center sm:ml-6" style="background-color:red;">
                 <!-- Teams Dropdown -->
                 @if (Laravel\Jetstream\Jetstream::hasTeamFeatures())
                     <div class="ml-3 relative">

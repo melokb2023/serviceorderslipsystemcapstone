@@ -1,17 +1,13 @@
 <x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Students Information') }}
-        </h2>
-    </x-slot>
+   
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg" style="background-color:grey">
-                <div class="p-6 text-gray-900 dark:text-gray-100">
+    <div class="py-12" style="background-color:red">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8" style="background-color:red">
+            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg" style="background-color:red">
+                <div class="p-6 text-gray-900 dark:text-gray-100" style="background-color:red">
                     
                
-                    <h6 style="text-align:center;font-weight:bold;">List of Services Done By The Company</h6>
+                    <h6 style="text-align:center;font-weight:bold;background-color:red">List of Services Done By The Company</h6>
                     <table style="border: 5px solid black;width: 100%;text-align:center">
                         <tr style="border: 5px solid black;width: 100%">
                             <td>Motherboard Readjustment</td>
@@ -76,4 +72,15 @@
                         </tr>
                        
                     </table>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
 </x-app-layout>

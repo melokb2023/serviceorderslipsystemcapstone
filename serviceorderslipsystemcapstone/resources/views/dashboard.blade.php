@@ -1,14 +1,10 @@
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-red-800 leading-tight">
-            {{ __('Dashboard') }}
-        </h2>
-    </x-slot>
+<x-app-layout style="background-color:red;width:50px;">
+    
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-red overflow-hidden shadow-xl sm:rounded-lg">
-                <x-welcome />
+    <div class="py-12" style="background-color:red;">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8" style="background-color:red;">
+            <div class="bg-red overflow-hidden  sm:rounded-lg" style="background-color:red;padding-bottom: 39px;">
+                <x-welcome  />
             </div>
         </div>
     </div>

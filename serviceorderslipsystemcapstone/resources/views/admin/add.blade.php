@@ -1,14 +1,9 @@
 <x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Pre-Service Listing') }}
-        </h2>
-    </x-slot>
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+    <div class="py-12" style="background-color:red;">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8" style="background-color:red;">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg" style="background-color:red;text-align:center">
-                <div class="p-6 text-gray-900 dark:text-gray-100">
+                <div class="p-6 text-gray-900 dark:text-gray-100" style="background-color:#C0C0C0;">
                    <h6>Errors Encountered</h6>
                     @if($errors)
                        <ul>
@@ -87,6 +82,15 @@
 </div>
              <button type ="submit"> Submit Info </button>
                    </form>
+                   <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
                 </div>
             </div>
         </div>
