@@ -80,7 +80,7 @@
 </select>
                     </div>
 </div>
-             <button type ="submit"> Submit Info </button>
+             <button type ="submit" style="text-align:center;background-color:black"> Submit Info </button>
                    </form>
                    <br>
     <br>

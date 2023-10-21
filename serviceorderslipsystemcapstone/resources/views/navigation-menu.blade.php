@@ -34,11 +34,11 @@
             <div class="hidden sm:flex sm:items-center sm:ml-6" style="background-color:red;">
                 <!-- Teams Dropdown -->
                 @if (Laravel\Jetstream\Jetstream::hasTeamFeatures())
-                    <div class="ml-3 relative">
-                        <x-dropdown align="right" width="60">
-                            <x-slot name="trigger">
-                                <span class="inline-flex rounded-md">
-                                    <button type="button" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none focus:bg-gray-50 active:bg-gray-50 transition ease-in-out duration-150">
+                    <div class="ml-3 relative" style="border: 3px solid black;background-color:red;">
+                        <x-dropdown align="right" width="60" style="border: 3px solid black;background-color:red;">
+                            <x-slot name="trigger" style="border: 3px solid black;background-color:red;">
+                                <span class="inline-flex rounded-md" style="border: 3px solid black;background-color:red;">
+                                    <button type="button" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none focus:bg-gray-50 active:bg-gray-50 transition ease-in-out duration-150" style="border: 3px solid black;background-color:red;">
                                         {{ Auth::user()->currentTeam->name }}
 
                                         <svg class="ml-2 -mr-0.5 h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
@@ -105,9 +105,9 @@
                             @endif
                         </x-slot>
 
-                        <x-slot name="content">
+                        <x-slot name="content" style="border: 3px solid black;background-color:red;">
                             <!-- Account Management -->
-                            <div class="block px-4 py-2 text-xs text-gray-400">
+                            <div class="block px-4 py-2 text-xs text-red-400">
                                 {{ __('Manage Account') }}
                             </div>
 
@@ -172,9 +172,9 @@
                 </div>
             </div>
 
-            <div class="mt-3 space-y-1">
+            <div class="mt-3 space-y-1" style="border: 3px solid black;background-color:red;">
                 <!-- Account Management -->
-                <x-responsive-nav-link href="{{ route('profile.show') }}" :active="request()->routeIs('profile.show')">
+                <x-responsive-nav-link href="{{ route('profile.show') }}" :active="request()->routeIs('profile.show')" style="border: 3px solid black;background-color:red;">
                     {{ __('Profile') }}
                 </x-responsive-nav-link>
 

@@ -31,7 +31,18 @@
                <br>
                <br>
                <br>
-                <a type="button" style="text-align:center;background-color:red" href="{{ route('adminadd') }}">
+               <style>
+.button {
+  border: none;
+  color: white;
+  text-decoration: none;
+  display: inline-block;
+  padding: 15px 32px;
+  background-color:black;
+}
+
+</style>
+                <a class="button" href="{{ route('adminadd') }}">
                         Start Service
 </a>
                   
