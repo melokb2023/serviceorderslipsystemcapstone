@@ -30,17 +30,17 @@ class CustomerAppointmentController extends Controller
     public function store(Request $request)
     {
         $validateData =$request->validate([
-            'xfirstName' =>['required', 'max:20'],
-            'xmiddleName'=>['required','max:20'],
-            'xlastName' =>['required', 'max:20'],
+            'xfirstname' =>['required', 'max:20'],
+            'xmiddlename'=>['required','max:20'],
+            'xlastname' =>['required', 'max:20'],
             'xappointmentpurpose' =>['required', 'max:50'],
             'xappointmenttype' =>['required', 'max:70'],
         ]);
         
         $customerappointment = new CustomerAppointment();
-        $customerappointment ->firstName=$request->xfirstName;
-        $customerappointment ->middleName=$request->xmiddleName;
-        $customerappointment ->lastName=$request->xlastName;
+        $customerappointment ->firstname=$request->xfirstname;
+        $customerappointment ->middlename=$request->xmiddlename;
+        $customerappointment ->lastname=$request->xlastname;
         $customerappointment ->appointmentpurpose=$request->xappointmentpurpose;
         $customerappointment ->appointmenttype=$request->xappointmenttype;
         $customerappointment ->save();
@@ -71,9 +71,9 @@ class CustomerAppointmentController extends Controller
     public function update(Request $request, string $id)
     {
         $validateData =$request->validate([
-            'xfirstName' =>['required', 'max:60'],
-            'xmiddleName'=>['required','max:50'],
-            'xlastName' =>['required', 'max:20'],
+            'xfirstname' =>['required', 'max:60'],
+            'xmiddlename'=>['required','max:50'],
+            'xlastname' =>['required', 'max:20'],
             'xappointmentpurpose' =>['required', 'max:70'],
             'xappointmenttype' =>['required','max:50'],
         ]);
@@ -81,9 +81,9 @@ class CustomerAppointmentController extends Controller
         $customerappointment= CustomerAppointment::where('customernumber', $id)
         ->update(
              [
-             'firstName'=> $request->xfirstName,
-             'middleName'=> $request->xmiddleName,
-             'lastName'=> $request->xlastName,
+             'firstname'=> $request->xfirstname,
+             'middlename'=> $request->xmiddlename,
+             'lastname'=> $request->xlastname,
              'appointmentpurpose'=> $request->xappointmentpurpose,
              'appointmenttype'=> $request->xappointmenttype,
              ]);

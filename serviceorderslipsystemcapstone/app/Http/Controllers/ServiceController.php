@@ -49,10 +49,10 @@ class ServiceController extends Controller
     public function store(Request $request)
     {
         $validateData =$request->validate([
-            'xfirstName' =>['required', 'max:20'],
-            'xmiddleName'=>['max:20'],
-            'xlastName' =>['required', 'max:20'],
-            'xcontactNumber' =>['required', 'max:11'],
+            'xfirstname' =>['required', 'max:20'],
+            'xmiddlename'=>['max:20'],
+            'xlastname' =>['required', 'max:20'],
+            'xcontactnumber' =>['required', 'max:11'],
             'xaddress' =>['required','max:15'],
             'xtypeofservice' =>['required'],
             'xmaintenancerequired' =>['required'],
@@ -61,10 +61,10 @@ class ServiceController extends Controller
         ]);
         
         $servicedata = new Service();
-        $servicedata ->firstName=$request->xfirstName;
-        $servicedata ->middleName=$request->xmiddleName;
-        $servicedata ->lastName=$request->xlastName;
-        $servicedata ->contactNumber=$request->xcontactNumber;
+        $servicedata ->firstname=$request->xfirstname;
+        $servicedata ->middlename=$request->xmiddlename;
+        $servicedata ->lastname=$request->xlastname;
+        $servicedata ->contactnumber=$request->xcontactnumber;
         $servicedata ->address=$request->xaddress;
         $servicedata ->typeofservice=$request->xtypeofservice;
         $servicedata ->maintenancerequired=$request->xmaintenancerequired;
@@ -98,10 +98,10 @@ class ServiceController extends Controller
     public function update(Request $request, string $id)
     {
         $validateData =$request->validate([
-            'xfirstName' =>['required', 'max:20'],
-            'xmiddleName'=>['max:20'],
-            'xlastName' =>['required', 'max:20'],
-            'xcontactNumber' =>['required', 'max:11'],
+            'xfirstname' =>['required', 'max:20'],
+            'xmiddlename'=>['max:20'],
+            'xlastname' =>['required', 'max:20'],
+            'xcontactnumber' =>['required', 'max:11'],
             'xaddress' =>['required','max:15'],
             'xtypeofservice' =>['required'],
             'xmaintenancerequired' =>['required'],
@@ -112,9 +112,9 @@ class ServiceController extends Controller
         $servicedata= Service::where('sno', $id)
         ->update(
              [
-             'firstName'=> $request->xfirstName,
-             'middleName'=> $request->xmiddleName,
-             'lastName'=> $request->xlastName,
+             'firstname'=> $request->xfirstname,
+             'middlename'=> $request->xmiddlename,
+             'lastname'=> $request->xlastname,
              'contactnumber'=> $request->xcontactnumber,
              'address'=> $request->xaddress,
              'xtypeofservice'=>$request->xtypeofservice,

@@ -50,6 +50,10 @@ Route::get('/staffdatabase', function () {
     return view('staff.staffdatabase');
 })->name('staffdatabase');
 
+Route::get('/customer', function () {
+   return view('customer.customerappointment');
+})->name('customer');
+
 Route::get('/student/add', function () {
     return view('student.add');
 })->middleware(['auth', 'verified'])->name('add-student');

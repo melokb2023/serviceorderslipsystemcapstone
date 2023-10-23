@@ -23,7 +23,7 @@
                         <th>Options</th>
 </tr>
 <tr>
-    @foreach($service as $serviceno)
+
     <td>1</td>
 <td>1</td>
 <td>John Doe</td>
@@ -35,16 +35,12 @@
 <td>kylemelo2023</td>
 <td>AX500 Power Supply</td>
 <td>John M. Kennedy</td>
-<td>
 
-                            <a class="mt-4 bg-yellow-200 text-black font-bold py-2 px-4 rounded" href= "{{route('service-show', ['serviceno' => $servicenumber->snumber]) }}" >View</a>
-                            <a class="mt-4 bg-pink-200 text-black font-bold py-2 px-4 rounded" href= "{{route('service-edit', ['serviceno' => $servicenumber->snumber]) }}" >Edit</a>
-                            <form method="POST" action = "{{ route('student-delete', ['serviceno' => $service->snumber ])  }}" onclick="return confirm('Are you sure you want to delete this record?')">
-                           @csrf
-                           @method('delete')
-                           <button class="mt-4 bg-red-200 text-black font-bold py-2 px-4 rounded" type="submit" >Delete</a>
-                        </form>
-                        <td>
+</tr>
+
+<tr>
+
+
 </tr>
                     </table>
                     <br>

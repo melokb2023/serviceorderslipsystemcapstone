@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('servicedata', function (Blueprint $table) {
             $table->id('serviceno');
-            $table->string('firstName',20);
-            $table->string('middleName',20)->nullable();
-            $table->string('lastName',20);
-            $table->string('contactNumber',11);
+            $table->string('firstname',20);
+            $table->string('middlename',20)->nullable();
+            $table->string('lastname',20);
+            $table->string('contactnumber',11);
             $table->string('address',15);
             $table->string('typeofservice',50);
             $table->string('maintenancerequired',20);
