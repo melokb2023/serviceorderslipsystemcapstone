@@ -12,7 +12,7 @@
                     @endforeach
                          </ul>
                     @endif
-                <form style="align-items:center" method = "POST">
+                <form style="align-items:center" method = "POST" action="{{ route('service-store') }}">
                         @csrf
                        <div class="flex-items-center"><label for="First Name">First Name</label>                 
                     <div>

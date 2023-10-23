@@ -11,6 +11,13 @@
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     
                
-                    <h6>List of Students</h6>
+                    <h6>List of Customers</h6>
+                    <table>
+                        <tr>
+                            <th>Complete Name</th>
+                            <th>Contact Number</th>
+                            <th>Purpose of Appointment</th>
+                        </tr>
+                    </table>
                   
 </x-app-layout>
