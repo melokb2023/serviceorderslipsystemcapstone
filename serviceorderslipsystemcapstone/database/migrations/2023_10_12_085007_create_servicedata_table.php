@@ -13,15 +13,16 @@ return new class extends Migration
     {
         Schema::create('servicedata', function (Blueprint $table) {
             $table->id('serviceno');
-            $table->string('firstname',20);
-            $table->string('middlename',20)->nullable();
-            $table->string('lastname',20);
+            $table->string('firstname',100);
+            $table->string('middlename',100)->nullable();
+            $table->string('lastname',100);
             $table->string('contactnumber',11);
-            $table->string('address',15);
-            $table->string('typeofservice',50);
-            $table->string('maintenancerequired',20);
-            $table->string('problemencountered',20);
-            $table->string('assignedstaff',25);
+            $table->string('address',100);
+            $table->string('typeofservice',100);
+            $table->string('maintenancerequired',100);
+            $table->string('problemencountered',100);
+            $table->string('customerpassword',100);
+            $table->string('assignedstaff',100);
             $table->timestamps();
         });
     }

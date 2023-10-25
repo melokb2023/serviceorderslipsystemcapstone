@@ -17,28 +17,28 @@
                     @endforeach
                          </ul>
                     @endif
-                    @foreach($service as $serviceinfo)
-                <form method = "POST" action="{{ route('service-update',['serviceno' => $serviceinfo->serviceno]) }}">
+                    @foreach($servicedata as $serviceinfo)
+                <form method = "POST" action="{{ route('service-update',['serno' => $serviceinfo->serviceno]) }}">
                         @csrf
                         @method('patch')
                     <div class="flex-items-center"><label for="First Name">First Name</label>
                     <div>
-                    <input type="text" name="xfirstName" value="{{$serviceinfo->firstName}}"/>
+                    <input type="text" name="xfirstname" value="{{$serviceinfo->firstname}}"/>
                     </div>
 </div>
                        <div class="flex-items-center"><label for="Middle Name">Middle Name</label>
                     <div>
-                    <input type="text" name="xmiddleName" value="{{$serviceinfo->middleName}}"/>
+                    <input type="text" name="xmiddlename" value="{{$serviceinfo->middlename}}"/>
                     </div>
 </div>
                        <div class="flex-items-center"><label for="Last Name">Last Name</label>
                     <div>
-                    <input type="text" name="xlastName" value="{{$serviceinfo->lastName}}"/>
+                    <input type="text" name="xlastname" value="{{$serviceinfo->lastname}}"/>
                     </div>
 </div>
                        <div class="flex-items-center"><label for="Contact Number">Contact Number</label>
                     <div>
-                    <input type="text" name="xcontactNumber" value="{{$serviceinfo->contactNumber}}"/>
+                    <input type="text" name="xcontactnumber" value="{{$serviceinfo->contactnumber}}"/>
                     </div>
 </div>
                        <div class="flex-items-center"><label for="Address">Address</label>
@@ -59,7 +59,7 @@
 </div>
 <div class="flex-items-center"><label for="Maintenance Required">Maintenance Required</label>
                     <div>
-                    <select name="xtypeofservice">
+                    <select name="xmaintenancerequired">
                         <option value="Scheduled Maintenance">Scheduled Maintenance</option>
                         <option value="Preventive Maintenance">Preventive Maintenance</option>
                         <option value="Full Maintenance">Full Maintenance</option>
@@ -67,11 +67,27 @@
 </select>
                     </div>
 </div>
-          <div class="flex-items-center"><label for="Customer Password">Customer Password</label>
+          <div class="flex-items-center"><label for="Problem Encountered">Problem Encountered</label>
+                    <div>
+                    <input type="text" name="xproblemencountered" value="{{$serviceinfo->problemencountered}}"/>
+                    </div>
+</div>
+        <div class="flex-items-center"><label for="Customer Password">Customer Password</label>
                     <div>
                     <input type="text" name="xcustomerpassword" value="{{$serviceinfo->customerpassword}}"/>
                     </div>
 </div>
+<div class="flex-items-center"><label for="Assigned Staff">Assigned Staff</label>
+                    <div>
+                    <select name="xassignedstaff">
+                        <option value="Scheduled Maintenance">Scheduled Maintenance</option>
+                        <option value="Preventive Maintenance">Preventive Maintenance</option>
+                        <option value="Full Maintenance">Full Maintenance</option>
+    
+</select>
+                    </div>
+</div>
+
              <button type ="submit" style="text-align:center;background-color:black"> Submit Info </button>
                    </form>
                    @endforeach

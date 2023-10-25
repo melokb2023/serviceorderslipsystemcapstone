@@ -63,27 +63,27 @@ Route::post('/service/add',[ServiceController::class, 'store'] )
 ->middleware(['auth', 'verified'])
 ->name('service-store');
 
-//- Get All Data From the Student Info Table
 Route::get('/service', [ServiceController::class, 'index']) 
    ->middleware(['auth', 'verified'])
-   ->name('service');
+   ->name('servicedata');
+
 
 //View Student Info
-Route::get('/service/{serviceno}', [ServiceController::class, 'show']) 
+Route::get('/service/{serno}', [ServiceController::class, 'show']) 
    ->middleware(['auth', 'verified'])
    ->name('service-show');
 
-Route::delete('/service/delete/{serviceno}', [ServiceController::class, 'destroy']) 
+Route::delete('/service/delete/{serno}', [ServiceController::class, 'destroy']) 
    ->middleware(['auth', 'verified'])
    ->name('service-delete');
 
 //Transfer Record to Edit Form
-Route::get('/service/edit/{serviceno}', [ServiceController::class, 'edit']) 
+Route::get('/service/edit/{serno}', [ServiceController::class, 'edit']) 
    ->middleware(['auth', 'verified'])
-   ->name('student-edit');
+   ->name('service-edit');
 
 //Save The Updated Data
-Route::patch('/service/update/{serviceno}', [ServiceController::class, 'update']) 
+Route::patch('/service/update/{serno}', [ServiceController::class, 'update']) 
    ->middleware(['auth', 'verified'])
    ->name('service-update');
 

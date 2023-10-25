@@ -13,7 +13,7 @@
                     <h6>List of Students</h6>
                     <table class="border-separate border-spacing-5">
                       <tr>
-                      <th>Service Number</th>
+                        <th>Service Number</th>
                         <th>Appointment Number</th>
                         <th>Customer Name</th>
                         <th>Contact Number</th>
@@ -27,26 +27,26 @@
                         <th>Options</th>
 </tr>
                     <tbody>
-                    @foreach($service as $serviceno)
+                    @foreach($servicedata as $serviceinfo)
                        <tr>
-                       <td>{{$serviceno->servicenumber}}</td>
-                        <td>{{$serviceno->appointmentnumber}}</td>
-                        <td>{{$serviceno->customername}}</td>
-                        <td>{{$serviceno->contactnumber}}</td>
-                        <td>{{$serviceno->listofproblems}}</td>
-                        <td>{{$serviceno->email}}</td>
-                        <td>{{$serviceno->typeofservice}}</td>
-                        <td>{{$serviceno->maintenance}}</td>
-                        <td>{{$serviceno->customerpassword}}</td>
-                        <td>{{$serviceno->defectiveunits}}</td>
-                        <td>{{$serviceno->assignedstaff}}</td>
-                        <td>{{$serviceno->options}}</td>
+                        <td>{{$serviceinfo->servicenumber}}</td>
+                        <td>{{$serviceinfo->appointmentnumber}}</td>
+                        <td>{{$serviceinfo->customername}}</td>
+                        <td>{{$serviceinfo->contactnumber}}</td>
+                        <td>{{$serviceinfo->listofproblems}}</td>
+                        <td>{{$serviceinfo->email}}</td>
+                        <td>{{$serviceinfo->typeofservice}}</td>
+                        <td>{{$serviceinfo->maintenance}}</td>
+                        <td>{{$serviceinfo->customerpassword}}</td>
+                        <td>{{$serviceinfo->defectiveunits}}</td>
+                        <td>{{$serviceinfo->assignedstaff}}</td>
+                        <td>{{$serviceinfo->options}}</td>
                     </tr>
                         @endforeach
                    </tbody>
 
                     </table>
-                    <a class="mt-4 bg-blue-200 text-black font-bold py-2 px-4 rounded" href="{{route('student')}}"> Back </a>
+                    <a class="mt-4 bg-blue-200 text-black font-bold py-2 px-4 rounded" href="{{route('servicedata')}}"> Back </a>
                     
                 </div>
             </div>

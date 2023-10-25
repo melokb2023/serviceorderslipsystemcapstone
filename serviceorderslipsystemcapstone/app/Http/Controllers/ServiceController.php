@@ -30,7 +30,7 @@ class ServiceController extends Controller
        //echo "Grades data successfully saved in the database";
 
       $servicedata = Service:: all();
-      return view('student.index', compact('student'));
+      return view('admin.servicedata', compact('servicedata'));
 
      
     }
@@ -49,14 +49,15 @@ class ServiceController extends Controller
     public function store(Request $request)
     {
         $validateData =$request->validate([
-            'xfirstname' =>['required', 'max:20'],
-            'xmiddlename'=>['max:20'],
-            'xlastname' =>['required', 'max:20'],
+            'xfirstname' =>['required', 'max:100'],
+            'xmiddlename'=>['max:100'],
+            'xlastname' =>['required', 'max:100'],
             'xcontactnumber' =>['required', 'max:11'],
-            'xaddress' =>['required','max:15'],
+            'xaddress' =>['required','max:100'],
             'xtypeofservice' =>['required'],
             'xmaintenancerequired' =>['required'],
-            'xproblemencountered' =>['required','max:30'],
+            'xproblemencountered' =>['required','max:100'],
+            'xcustomerpassword' =>['required','max:100'],
             'xassignedstaff' =>['required'],
         ]);
         
@@ -68,6 +69,7 @@ class ServiceController extends Controller
         $servicedata ->address=$request->xaddress;
         $servicedata ->typeofservice=$request->xtypeofservice;
         $servicedata ->maintenancerequired=$request->xmaintenancerequired;
+        $servicedata ->problemencountered=$request->xproblemencountered;
         $servicedata ->customerpassword=$request->xcustomerpassword;
         $servicedata ->assignedstaff=$request->xassignedstaff;
         $servicedata ->save();
@@ -80,7 +82,7 @@ class ServiceController extends Controller
     public function show(string $id)
     {
         $servicedata = Service::where('serviceno', $id)->get();
-        return view('service.show', compact('servicenumber'));
+        return view('admin.show', compact('servicedata'));
     }
 
     /**
@@ -89,7 +91,7 @@ class ServiceController extends Controller
     public function edit(string $id)
     {
         $servicedata = Service::where('serviceno', $id)->get();
-        return view('service.edit', compact('servicedata'));
+        return view('admin.edit', compact('servicedata'));
     }
 
     /**
@@ -98,18 +100,19 @@ class ServiceController extends Controller
     public function update(Request $request, string $id)
     {
         $validateData =$request->validate([
-            'xfirstname' =>['required', 'max:20'],
-            'xmiddlename'=>['max:20'],
-            'xlastname' =>['required', 'max:20'],
+            'xfirstname' =>['required', 'max:100'],
+            'xmiddlename'=>['max:100'],
+            'xlastname' =>['required', 'max:100'],
             'xcontactnumber' =>['required', 'max:11'],
-            'xaddress' =>['required','max:15'],
+            'xaddress' =>['required','max:100'],
             'xtypeofservice' =>['required'],
             'xmaintenancerequired' =>['required'],
-            'xproblemencountered' =>['required','max:30'],
+            'xproblemencountered' =>['required','max:100'],
+            'xcustomerpassword' =>['required','max:100'],
             'xassignedstaff' =>['required'],
         ]);
 
-        $servicedata= Service::where('sno', $id)
+        $servicedata= Service::where('serviceno', $id)
         ->update(
              [
              'firstname'=> $request->xfirstname,
@@ -117,9 +120,10 @@ class ServiceController extends Controller
              'lastname'=> $request->xlastname,
              'contactnumber'=> $request->xcontactnumber,
              'address'=> $request->xaddress,
-             'xtypeofservice'=>$request->xtypeofservice,
+             'typeofservice'=>$request->xtypeofservice,
              'maintenancerequired'=> $request->xmaintenancerequired,
              'problemencountered'=> $request->xproblemencountered,
+             'customerpassword'=> $request->xcustomerpassword,
              'assignedstaff'=> $request->xassignedstaff,
              ]);
         return redirect()->route('servicedata');
@@ -130,8 +134,8 @@ class ServiceController extends Controller
      */
     public function destroy(string $id)
     {
-        $student= Service::where('sno', $id);
-        $student->delete();
-        return redirect()->route('student');
+        $servicedata= Service::where('serviceno', $id);
+        $servicedata->delete();
+        return redirect()->route('servicedata');
     }
 }

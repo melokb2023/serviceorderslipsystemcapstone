@@ -22,27 +22,36 @@
                         <th>Assigned Staff</th>
                         <th>Options</th>
 </tr>
-<tr>
 
-    <td>1</td>
-<td>1</td>
-<td>John Doe</td>
-<td>09759090725</td>
-<td>System Failed to Start Up</td>
-<td>kyle.melo@lccdo.edu.ph</td>
-<td>Formatting Service</td>
-<td>Full Maintenance</td>
-<td>kylemelo2023</td>
-<td>AX500 Power Supply</td>
-<td>John M. Kennedy</td>
-
-</tr>
-
-<tr>
-
-
-</tr>
+<tbody>
+                @foreach($servicedata as $serviceinfo)
+                       <tr>
+                        <td>{{$serviceinfo->appointmentnumber}}</td>
+                        <td>{{$serviceinfo->firstname}}</td>
+                        <td>{{$serviceinfo->middlename}}</td>
+                        <td> {{$serviceinfo->lastname}}</td>
+                        <td>{{$serviceinfo->contactnumber}}</td>
+                        <td>{{$serviceinfo->listofproblems}}</td>
+                        <td>{{$serviceinfo->email}}</td>
+                        <td>{{$serviceinfo->typeofservice}}</td>
+                        <td>{{$serviceinfo->maintenance}}</td>
+                        <td>{{$serviceinfo->customerpassword}}</td>
+                        <td>{{$serviceinfo->defectiveunits}}</td>
+                        <td>{{$serviceinfo->assignedstaff}}</td>
+                        <td>
+                            <a class="mt-4 bg-yellow-200 text-black font-bold py-2 px-4 rounded" href= "{{route('service-show', ['serno' => $serviceinfo->serviceno]) }}" >View</a>
+                            <a class="mt-4 bg-pink-200 text-black font-bold py-2 px-4 rounded" href= "{{route('service-edit', ['serno' => $serviceinfo->serviceno]) }}" >Edit</a>
+                            <form method="POST" action = "{{ route('service-delete', ['serno' => $serviceinfo->serviceno ])  }}" onclick="return confirm('Are you sure you want to delete this record?')">
+                           @csrf
+                           @method('delete')
+                           <button class="mt-4 bg-red-200 text-black font-bold py-2 px-4 rounded" type="submit" >Delete</a>
+                        </form>
+</td>
+                       </tr>
+                        @endforeach
+                </tbody>
                     </table>
+
                     <br>
                     <br>
                     <br>
@@ -58,5 +67,14 @@
                     <br>
                     <br>
                     <br>
-                     
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                </div>
+            </div>
+        </div>
+    </div>
 </x-app-layout>
