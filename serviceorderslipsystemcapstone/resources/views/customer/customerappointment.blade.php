@@ -27,7 +27,7 @@
 </div>
                        <div class="flex-items-center"><label for="Last Name">Last Name</label>
                     <div>
-                    <input type="text" name="xlastName" value="{{old('xlastlame')}}"/>
+                    <input type="text" name="xlastname" value="{{old('xlastname')}}"/>
                     </div>
 </div>
                        <div class="flex-items-center"><label for="Appointment Purpose">Appointment Purpose</label>
