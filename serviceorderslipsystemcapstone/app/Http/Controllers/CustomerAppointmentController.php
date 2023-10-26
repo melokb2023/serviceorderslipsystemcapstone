@@ -30,19 +30,11 @@ class CustomerAppointmentController extends Controller
     public function store(Request $request)
     {
         $validateData =$request->validate([
-<<<<<<< HEAD
             'xfirstname' =>['required', 'max:100'],
             'xmiddlename'=>['required','max:100'],
             'xlastname' =>['required', 'max:100'],
             'xappointmentpurpose' =>['required', 'max:100'],
             'xappointmenttype' =>['required', 'max:100'],
-=======
-            'xfirstname' =>['required', 'max:20'],
-            'xmiddlename'=>['required','max:20'],
-            'xlastname' =>['required', 'max:20'],
-            'xappointmentpurpose' =>['required', 'max:50'],
-            'xappointmenttype' =>['required', 'max:70'],
->>>>>>> 22eba2752d6589466b84c4cad753ef1c4c2cd672
         ]);
         
         $customerappointment = new CustomerAppointment();
