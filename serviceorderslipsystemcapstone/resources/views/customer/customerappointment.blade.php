@@ -17,20 +17,12 @@
                         @csrf
                     <div class="flex-items-center"><label for="First Name">First Name</label>
                     <div>
-<<<<<<< HEAD
                     <input type="text" name="xfirstname" value="{{old('xfirstname')}}"/>
-=======
-                    <input type="text" name="xfirstName" value="{{old('xfirstname')}}"/>
->>>>>>> 22eba2752d6589466b84c4cad753ef1c4c2cd672
                     </div>
 </div>
                        <div class="flex-items-center"><label for="Middle Name">Middle Name</label>
                     <div>
-<<<<<<< HEAD
                     <input type="text" name="xmiddlename" value="{{old('xmiddlename')}}"/>
-=======
-                    <input type="text" name="xmiddleName" value="{{old('xmiddlename')}}"/>
->>>>>>> 22eba2752d6589466b84c4cad753ef1c4c2cd672
                     </div>
 </div>
                        <div class="flex-items-center"><label for="Last Name">Last Name</label>
