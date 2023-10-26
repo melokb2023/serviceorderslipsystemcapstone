@@ -13,34 +13,16 @@
                     <h6>List of Students</h6>
                     <table class="border-separate border-spacing-5">
                       <tr>
-                        <th>Service Number</th>
-                        <th>Appointment Number</th>
-                        <th>Customer Name</th>
-                        <th>Contact Number</th>
-                        <th>List Of Problems</th>
-                        <th>Email</th>
-                        <th>Type of Service</th>
-                        <th>Maintenance</th>
-                        <th>Customer Password</th>
-                        <th>Defective Units</th>
-                        <th>Assigned Staff</th>
-                        <th>Options</th>
+                        <th>Complete Name</th>
+                        <th>Appointment Purpose</th>
+                        <th>Appointment Type</th>
 </tr>
                     <tbody>
-                    @foreach($servicedata as $serviceinfo)
+                    @foreach($customerappointment as $customer)
                        <tr>
                         <td>{{$serviceinfo->servicenumber}}</td>
                         <td>{{$serviceinfo->appointmentnumber}}</td>
                         <td>{{$serviceinfo->customername}}</td>
-                        <td>{{$serviceinfo->contactnumber}}</td>
-                        <td>{{$serviceinfo->listofproblems}}</td>
-                        <td>{{$serviceinfo->email}}</td>
-                        <td>{{$serviceinfo->typeofservice}}</td>
-                        <td>{{$serviceinfo->maintenance}}</td>
-                        <td>{{$serviceinfo->customerpassword}}</td>
-                        <td>{{$serviceinfo->defectiveunits}}</td>
-                        <td>{{$serviceinfo->assignedstaff}}</td>
-                        <td>{{$serviceinfo->options}}</td>
                     </tr>
                         @endforeach
                    </tbody>

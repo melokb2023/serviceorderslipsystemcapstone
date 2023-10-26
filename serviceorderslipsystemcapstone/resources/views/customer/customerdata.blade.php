@@ -15,9 +15,18 @@
                     <table>
                         <tr>
                             <th>Complete Name</th>
-                            <th>Contact Number</th>
-                            <th>Purpose of Appointment</th>
+                            <th>Appointment Purpose</th>
+                            <th>Appointment Type</th>
+                            <th>Options</th>
                         </tr>
+                    <tbody>
+                @foreach($customerappointment as $customer)
+                   <tr>
+                        <td>{{$customer->firstname}} {{$customer->middlename}} {{$customer->lastname}}</td>
+                        <td>{{$customer->appointmentpurpose}}</td>
+                        <td>{{$customer->appointmenttype}}</td>
+                    </tr>
+</tbody>
                     </table>
                   
 </x-app-layout>

@@ -12,8 +12,10 @@ class CustomerAppointment extends Model
     protected $table= 'customerappointment';
     
     protected $fillable = [
-         'customernumber',
-         'appointmentnumber',
-         'purposeofappointment',
+         'firstname',
+         'middlename',
+         'lastname',
+         'appointnmentpurpose',
+         'appointnmenttype',
     ];
 }

@@ -16,22 +16,22 @@
                         @csrf
                        <div class="flex-items-center"><label for="First Name">First Name</label>                 
                     <div>
-                    <input type="text" name="xfirstName" value="{{old('xfirstName')}}"/>
+                    <input type="text" name="xfirstname" value="{{old('xfirstname')}}"/>
                     </div>
                 </div>
                     <div class="flex-items-center"><label for="Middle Name">Middle Name</label>
                     <div>
-                    <input type="text" name="xmiddleName" value="{{old('xmiddleName')}}"/>
+                    <input type="text" name="xmiddlename" value="{{old('xmiddlename')}}"/>
                     </div>
 </div>
                        <div class="flex-items-center"><label for="Middle Name">Last Name</label>
                     <div>
-                    <input type="text" name="xlastName" value="{{old('xlastName')}}"/>
+                    <input type="text" name="xlastname" value="{{old('xlastname')}}"/>
                     </div>
 </div>
 <div class="flex-items-center"><label for="Contact Number">Contact Number</label>
                     <div> 
-                    <input type="text" name="xcontactNumber" value="{{old('xcontactNumber')}}"/>
+                    <input type="text" name="xcontactnumber" value="{{old('xcontactnumber')}}"/>
                     </div>
 </div>
                  <div class="flex-items-center"><label for="Address">Address</label>
