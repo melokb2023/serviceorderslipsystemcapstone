@@ -10,7 +10,7 @@
                     <table style="border: 5px solid black;width: 100%">
                     <tr>
                         <th>Service Number</th>
-                        <th>Appointment Number</th>
+                        <th>Customer Appointment Number</th>
                         <th>Customer Name</th>
                         <th>Contact Number</th>
                         <th>List Of Problems</th>
@@ -26,10 +26,9 @@
 <tbody>
                 @foreach($servicedata as $serviceinfo)
                        <tr>
-                        <td>{{$serviceinfo->appointmentnumber}}</td>
-                        <td>{{$serviceinfo->firstname}}</td>
-                        <td>{{$serviceinfo->middlename}}</td>
-                        <td> {{$serviceinfo->lastname}}</td>
+                        <td>{{$serviceinfo->serviceno}}</td>
+                        <td>{{$serviceinfo->customernumber}}</td>
+                        <td>{{$serviceinfo->firstname}} {{$serviceinfo->middlename}} {{$serviceinfo->lastname}}</td>
                         <td>{{$serviceinfo->contactnumber}}</td>
                         <td>{{$serviceinfo->listofproblems}}</td>
                         <td>{{$serviceinfo->email}}</td>

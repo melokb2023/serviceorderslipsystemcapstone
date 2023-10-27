@@ -20,6 +20,7 @@
                     <tbody>
                     @foreach($customerappointment as $customer)
                        <tr>
+                       <td>{{$customer->customernumber}}</td>
                        <td>{{$customer->firstname}} {{$customer->middlename}} {{$customer->lastname}}</td>
                         <td>{{$customer->appointmentpurpose}}</td>
                         <td>{{$customer->appointmenttype}}</td>

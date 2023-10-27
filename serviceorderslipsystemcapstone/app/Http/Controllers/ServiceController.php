@@ -7,6 +7,7 @@ use App\Models\Service;
 use App\Models\CustomerAppointment;
 
 
+
 class ServiceController extends Controller
 {
     /**
@@ -64,6 +65,7 @@ class ServiceController extends Controller
         ]);
         
         $servicedata = new Service();
+        $servicedata ->customernumber=$request->xcustomernumber;
         $servicedata ->firstname=$request->xfirstname;
         $servicedata ->middlename=$request->xmiddlename;
         $servicedata ->lastname=$request->xlastname;
@@ -139,5 +141,9 @@ class ServiceController extends Controller
         $servicedata= Service::where('serviceno', $id);
         $servicedata->delete();
         return redirect()->route('servicedata');
+    }
+    public function getAppointmentInfo(){
+        $servicedata = CustomerAppointment::all();
+        return view('customer.customerappointment', compact('servicedata'));
     }
 }

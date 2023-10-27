@@ -14,21 +14,35 @@
                     @endif
                 <form style="align-items:center" method = "POST" action="{{ route('service-store') }}">
                         @csrf
-                       <div class="flex-items-center"><label for="First Name">First Name</label>                 
-                    <div>
-                    <input type="text" name="xfirstname" value="{{old('xfirstname')}}"/>
-                    </div>
+                        
+                        <div class="flex-items-center" style="text-align:center"><label for="Appointment Number">Appointment Number</label>
+                     <div>  
+                       <select name="xcompletename">
+                            @foreach($customerappointment as $customer)
+                            <option value="{{$customer->customerno}} "> {{$customer->customerno}}</option>
+                            @endforeach
+                        </select>
+                   </div>
+                </div>  
+                        <div class="flex-items-center" style="text-align:center"><label for="Complete Name">Complete Name</label>
+                     <div>  
+                       <select name="xcompletename">
+                            @foreach($servicedata as $serviceinfo)
+                            <option value="{{$serviceinfo->firstname }} {{$serviceinfo->middlename }} {{$serviceinfo->lastname }} ">  {{$serviceinfo->firstname}} {{$serviceinfo->middlename}} {{$serviceinfo->lastname}}</option>
+                            @endforeach
+                        </select>
+                   </div>
+                </div>  
+                        
+                        <div class="flex-items-center" style="text-align:center"><label for="Complete Name">Complete Name</label>
+                     <div>  
+                       <select name="xcompletename">
+                            @foreach($servicedata as $serviceinfo)
+                            <option value="{{$serviceinfo->firstname }} {{$serviceinfo->middlename }} {{$serviceinfo->lastname }} ">  {{$serviceinfo->firstname}} {{$serviceinfo->middlename}} {{$serviceinfo->lastname}}</option>
+                            @endforeach
+                        </select>
+                   </div>
                 </div>
-                    <div class="flex-items-center"><label for="Middle Name">Middle Name</label>
-                    <div>
-                    <input type="text" name="xmiddlename" value="{{old('xmiddlename')}}"/>
-                    </div>
-</div>
-                       <div class="flex-items-center"><label for="Middle Name">Last Name</label>
-                    <div>
-                    <input type="text" name="xlastname" value="{{old('xlastname')}}"/>
-                    </div>
-</div>
 <div class="flex-items-center"><label for="Contact Number">Contact Number</label>
                     <div> 
                     <input type="text" name="xcontactnumber" value="{{old('xcontactnumber')}}"/>

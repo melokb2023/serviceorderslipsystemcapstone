@@ -95,8 +95,8 @@ class CustomerAppointmentController extends Controller
      */
     public function destroy(string $id)
     {
-        $student= CustomerAppointment::where('customernumber', $id);
-        $student->delete();
+        $customerappointment= CustomerAppointment::where('customernumber', $id);
+        $customerappointment->delete();
         return redirect()->route('customerappointment');
     }
 }
