@@ -37,7 +37,10 @@
 </div>
                        <div class="flex-items-center"><label for="Appointment Type">Appointment Type</label>
                     <div> 
-                    <input type="text" name="xappointmenttype" value="{{old('xappointmenttype')}}"/>
+                    <select name="xappointmenttype">
+                        <option value="Direct">Direct</option>
+                        <option value="Scheduled">Scheduled</option>
+</select>
                     </div>
 </div>
                                    

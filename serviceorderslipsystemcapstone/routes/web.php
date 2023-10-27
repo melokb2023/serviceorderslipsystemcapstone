@@ -97,21 +97,21 @@ Route::get('/customerappointment', [CustomerAppointmentController::class, 'index
    ->name('customerappointment');
 
 //View Student Info
-Route::get('/customerappointment/{customernumber}', [CustomerAppointmentController::class, 'show']) 
+Route::get('/customerappointment/{cano}', [CustomerAppointmentController::class, 'show']) 
    ->middleware(['auth', 'verified'])
    ->name('customerappointment-show');
 
-Route::delete('/customerappointment/delete/{customernumber}', [CustomerAppointmentController::class, 'destroy']) 
+Route::delete('/customerappointment/delete/{cano}', [CustomerAppointmentController::class, 'destroy']) 
    ->middleware(['auth', 'verified'])
    ->name('customerappointment-delete');
 
 //Transfer Record to Edit Form
-Route::get('/customerappointment/edit/{customernumber}', [CustomerAppointmentController::class, 'edit']) 
+Route::get('/customerappointment/edit/{cano}', [CustomerAppointmentController::class, 'edit']) 
    ->middleware(['auth', 'verified'])
    ->name('customerappointment-edit');
 
 //Save The Updated Data
-Route::patch('/customerappointment/update/{serviceno}', [CustomerAppointmentController::class, 'update']) 
+Route::patch('/customerappointment/update/{cano}', [CustomerAppointmentController::class, 'update']) 
    ->middleware(['auth', 'verified'])
    ->name('customerappointment-update');
 

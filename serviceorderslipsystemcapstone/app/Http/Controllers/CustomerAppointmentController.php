@@ -44,7 +44,7 @@ class CustomerAppointmentController extends Controller
         $customerappointment ->appointmentpurpose=$request->xappointmentpurpose;
         $customerappointment ->appointmenttype=$request->xappointmenttype;
         $customerappointment ->save();
-        return redirect()->route('customerdata');
+        return redirect()->route('customerappointment');
     }
 
     /**
@@ -71,11 +71,11 @@ class CustomerAppointmentController extends Controller
     public function update(Request $request, string $id)
     {
         $validateData =$request->validate([
-            'xfirstname' =>['required', 'max:60'],
-            'xmiddlename'=>['required','max:50'],
-            'xlastname' =>['required', 'max:20'],
-            'xappointmentpurpose' =>['required', 'max:70'],
-            'xappointmenttype' =>['required','max:50'],
+            'xfirstname' =>['required', 'max:100'],
+            'xmiddlename'=>['required','max:100'],
+            'xlastname' =>['required', 'max:100'],
+            'xappointmentpurpose' =>['required', 'max:100'],
+            'xappointmenttype' =>['required','max:100'],
         ]);
 
         $customerappointment= CustomerAppointment::where('customernumber', $id)

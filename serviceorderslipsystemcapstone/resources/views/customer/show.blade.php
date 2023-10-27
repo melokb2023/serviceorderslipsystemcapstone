@@ -20,15 +20,15 @@
                     <tbody>
                     @foreach($customerappointment as $customer)
                        <tr>
-                        <td>{{$serviceinfo->servicenumber}}</td>
-                        <td>{{$serviceinfo->appointmentnumber}}</td>
-                        <td>{{$serviceinfo->customername}}</td>
+                       <td>{{$customer->firstname}} {{$customer->middlename}} {{$customer->lastname}}</td>
+                        <td>{{$customer->appointmentpurpose}}</td>
+                        <td>{{$customer->appointmenttype}}</td>
                     </tr>
                         @endforeach
                    </tbody>
 
                     </table>
-                    <a class="mt-4 bg-blue-200 text-black font-bold py-2 px-4 rounded" href="{{route('servicedata')}}"> Back </a>
+                    <a class="mt-4 bg-blue-200 text-black font-bold py-2 px-4 rounded" href="{{route('customerappointment')}}"> Back </a>
                     
                 </div>
             </div>

@@ -17,76 +17,41 @@
                     @endforeach
                          </ul>
                     @endif
-                    @foreach($servicedata as $serviceinfo)
-                <form method = "POST" action="{{ route('service-update',['serno' => $serviceinfo->serviceno]) }}">
+                    @foreach($customerappointment as $customer)
+                <form method = "POST" action="{{ route('customerappointment-update',['cano' => $customer->customernumber]) }}">
                         @csrf
                         @method('patch')
                     <div class="flex-items-center"><label for="First Name">First Name</label>
                     <div>
-                    <input type="text" name="xfirstname" value="{{$serviceinfo->firstname}}"/>
+                    <input type="text" name="xfirstname" value="{{$customer->firstname}}"/>
                     </div>
 </div>
                        <div class="flex-items-center"><label for="Middle Name">Middle Name</label>
                     <div>
-                    <input type="text" name="xmiddlename" value="{{$serviceinfo->middlename}}"/>
+                    <input type="text" name="xmiddlename" value="{{$customer->middlename}}"/>
                     </div>
 </div>
                        <div class="flex-items-center"><label for="Last Name">Last Name</label>
                     <div>
-                    <input type="text" name="xlastname" value="{{$serviceinfo->lastname}}"/>
+                    <input type="text" name="xlastname" value="{{$customer->lastname}}"/>
                     </div>
 </div>
-                       <div class="flex-items-center"><label for="Contact Number">Contact Number</label>
+                       <div class="flex-items-center"><label for="Appointment Purpose">Appointment Purpose</label>
                     <div>
-                    <input type="text" name="xcontactnumber" value="{{$serviceinfo->contactnumber}}"/>
+                    <input type="text" name="xappointmentpurpose" value="{{$customer->appointmentpurpose}}"/>
                     </div>
 </div>
-                       <div class="flex-items-center"><label for="Address">Address</label>
-                    <div> 
-                    <input type="text" name="xaddress" value="{{$serviceinfo->address}}"/>
-                    </div>
-</div>
-           <div class="flex-items-center"><label for="Type Of Service">Type Of Service</label>
-                    <div>
-                    <select name="xtypeofservice">
-                        <option value="Reformatting">Reformatting</option>
-                        <option value="Replacement">Replacement</option>
-                        <option value="Virus Removal">Virus Removal</option>
-                        <option value="Computer Network Troubleshooting">Computer Network Troubleshooting</option>
-                        <option value="Upgrade Hardware">Upgrade Hardware</option>
+                       <div class="flex-items-center"><label for="Appointment Type">Appointment Type</label>
+                       <div>
+                       <select name="xappointmenttype">
+                        <option value="Direct">Direct</option>
+                        <option value="Scheduled">Scheduled</option>
 </select>
-                    </div>
 </div>
-<div class="flex-items-center"><label for="Maintenance Required">Maintenance Required</label>
-                    <div>
-                    <select name="xmaintenancerequired">
-                        <option value="Scheduled Maintenance">Scheduled Maintenance</option>
-                        <option value="Preventive Maintenance">Preventive Maintenance</option>
-                        <option value="Full Maintenance">Full Maintenance</option>
+</div>
+      
+
     
-</select>
-                    </div>
-</div>
-          <div class="flex-items-center"><label for="Problem Encountered">Problem Encountered</label>
-                    <div>
-                    <input type="text" name="xproblemencountered" value="{{$serviceinfo->problemencountered}}"/>
-                    </div>
-</div>
-        <div class="flex-items-center"><label for="Customer Password">Customer Password</label>
-                    <div>
-                    <input type="text" name="xcustomerpassword" value="{{$serviceinfo->customerpassword}}"/>
-                    </div>
-</div>
-<div class="flex-items-center"><label for="Assigned Staff">Assigned Staff</label>
-                    <div>
-                    <select name="xassignedstaff">
-                        <option value="Scheduled Maintenance">Scheduled Maintenance</option>
-                        <option value="Preventive Maintenance">Preventive Maintenance</option>
-                        <option value="Full Maintenance">Full Maintenance</option>
-    
-</select>
-                    </div>
-</div>
 
              <button type ="submit" style="text-align:center;background-color:black"> Submit Info </button>
                    </form>
