@@ -19,7 +19,7 @@
                      <div>  
                        <select name="xcompletename">
                             @foreach($customerappointment as $customer)
-                            <option value="{{$customer->customerno}} "> {{$customer->customerno}}</option>
+                            <option value="{{$customer->customernumber}} "> {{$customer->customernumber}}</option>
                             @endforeach
                         </select>
                    </div>

@@ -32,10 +32,12 @@ class ServiceController extends Controller
 //
        //echo "Grades data successfully saved in the database";
 
-      $servicedata = Service:: all();
+      
+      $servicedata = Service:: join('customerappointment', 'servicedata.customernumber', '=', 'customerappointment.customernumber')->get();
+      $servicedata = Service:: join('customerappointment', 'servicedata.firstname', '=', 'customerappointment.customernumber')->get();
+      $servicedata = Service:: join('customerappointment', 'servicedata.middlename', '=', 'customerappointment.customernumber')->get();
+      $servicedata = Service:: join('customerappointment', 'servicedata.lastname', '=', 'customerappointment.customernumber')->get();
       return view('admin.servicedata', compact('servicedata'));
-
-     
     }
 
     /**
@@ -52,9 +54,8 @@ class ServiceController extends Controller
     public function store(Request $request)
     {
         $validateData =$request->validate([
-            'xfirstname' =>['required', 'max:100'],
+            'xcompletename' =>['required'],
             'xmiddlename'=>['max:100'],
-            'xlastname' =>['required', 'max:100'],
             'xcontactnumber' =>['required', 'max:11'],
             'xaddress' =>['required','max:100'],
             'xtypeofservice' =>['required'],
@@ -144,6 +145,6 @@ class ServiceController extends Controller
     }
     public function getAppointmentInfo(){
         $servicedata = CustomerAppointment::all();
-        return view('customer.customerappointment', compact('servicedata'));
+        return view('admin.add', compact('customerappointment'));
     }
 }
