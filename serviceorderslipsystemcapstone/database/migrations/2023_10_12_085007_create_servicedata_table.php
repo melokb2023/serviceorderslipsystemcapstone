@@ -25,7 +25,7 @@ return new class extends Migration
             $table->string('customerpassword',100);
             $table->string('assignedstaff',100);
             $table->timestamps();
-            $table->foreign('customernumber')->references('customernumber')->on('customerappointment');
+
             
         
         });

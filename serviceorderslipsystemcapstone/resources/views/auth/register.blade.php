@@ -1,40 +1,40 @@
-<x-guest-layout>
-    <x-authentication-card>
-        <x-slot name="logo">
-            <x-authentication-card-logo />
+<x-guest-layout style="background-color:red;font-family:Impact;">
+    <x-authentication-card style="background-color:red;">
+        <x-slot name="logo" style="background-color:red;">
+            <x-authentication-card-logo style="background-color:red;" />
         </x-slot>
 
-        <x-validation-errors class="mb-4" />
+        <x-validation-errors style="background-color:red;" class="mb-4" />
 
-        <form method="POST" action="{{ route('register') }}">
+        <form method="POST" action="{{ route('register') }}" style="background-color:red;">
             @csrf
 
-            <div>
-                <x-label for="name" value="{{ __('Name') }}" />
+            <div style="background-color:red;">
+                <x-label for="name" style="background-color:red;" value="{{ __('Name') }}" />
                 <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
-            </div>
+            </div >
 
-            <div class="mt-4">
+            <div style="background-color:red;" class="mt-4">
                 <x-label for="email" value="{{ __('Email') }}" />
                 <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" />
             </div>
 
-            <div class="mt-4">
+            <div style="background-color:red;" class="mt-4">
                 <x-label for="phone" value="{{ __('Phone') }}" />
                 <x-input id="phone" class="block mt-1 w-full" type="text" name="phone" :value="old('phone')" required autocomplete="username" />
             </div>
 
-            <div class="mt-4">
+            <div style="background-color:red;" class="mt-4">
                 <x-label for="address" value="{{ __('Address') }}" />
                 <x-input id="address" class="block mt-1 w-full" type="text" name="address" :value="old('address')" required autocomplete="username" />
             </div>
 
-            <div class="mt-4">
+            <div style="background-color:red;" class="mt-4">
                 <x-label for="password" value="{{ __('Password') }}" />
                 <x-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="new-password" />
             </div>
 
-            <div class="mt-4">
+            <div style="background-color:red;" class="mt-4">
                 <x-label for="password_confirmation" value="{{ __('Confirm Password') }}" />
                 <x-input id="password_confirmation" class="block mt-1 w-full" type="password" name="password_confirmation" required autocomplete="new-password" />
             </div>
