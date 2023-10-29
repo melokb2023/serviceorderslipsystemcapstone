@@ -54,8 +54,10 @@ class ServiceController extends Controller
     public function store(Request $request)
     {
         $validateData =$request->validate([
-            'xcompletename' =>['required'],
-            'xmiddlename'=>['max:100'],
+            'xcustomernumber' =>['required'],
+            'xfirstname' =>['required'],
+            'xmiddlename'=>['required'],
+            'xlastname' =>['required'],
             'xcontactnumber' =>['required', 'max:11'],
             'xaddress' =>['required','max:100'],
             'xtypeofservice' =>['required'],
@@ -104,22 +106,11 @@ class ServiceController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $validateData =$request->validate([
-            'xfirstname' =>['required', 'max:100'],
-            'xmiddlename'=>['max:100'],
-            'xlastname' =>['required', 'max:100'],
-            'xcontactnumber' =>['required', 'max:11'],
-            'xaddress' =>['required','max:100'],
-            'xtypeofservice' =>['required'],
-            'xmaintenancerequired' =>['required'],
-            'xproblemencountered' =>['required','max:100'],
-            'xcustomerpassword' =>['required','max:100'],
-            'xassignedstaff' =>['required'],
-        ]);
-
-        $servicedata= Service::where('serviceno', $id)
+       
+      $servicedata= Service::where('serviceno', $id)
         ->update(
              [
+             'customernumber' => $request->xcustomernumber,
              'firstname'=> $request->xfirstname,
              'middlename'=> $request->xmiddlename,
              'lastname'=> $request->xlastname,
@@ -144,7 +135,7 @@ class ServiceController extends Controller
         return redirect()->route('servicedata');
     }
     public function getAppointmentInfo(){
-        $servicedata = CustomerAppointment::all();
+        $customerappointment = CustomerAppointment::all();
         return view('admin.add', compact('customerappointment'));
     }
 }

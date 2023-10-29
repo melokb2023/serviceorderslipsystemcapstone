@@ -63,10 +63,13 @@ Route::post('/service/add',[ServiceController::class, 'store'] )
 ->middleware(['auth', 'verified'])
 ->name('service-store');
 
+Route::get('/service/add', [ServiceController::class, 'getStudentInfo'])
+   ->middleware(['auth', 'verified'])
+   ->name('add-service');
+
 Route::get('/service', [ServiceController::class, 'index']) 
    ->middleware(['auth', 'verified'])
    ->name('servicedata');
-
 
 //View Student Info
 Route::get('/service/{serno}', [ServiceController::class, 'show']) 
@@ -86,6 +89,9 @@ Route::get('/service/edit/{serno}', [ServiceController::class, 'edit'])
 Route::patch('/service/update/{serno}', [ServiceController::class, 'update']) 
    ->middleware(['auth', 'verified'])
    ->name('service-update');
+
+
+   
 
 Route::post('/customerappointment/add',[CustomerAppointmentController::class, 'store'] )
    ->middleware(['auth', 'verified'])

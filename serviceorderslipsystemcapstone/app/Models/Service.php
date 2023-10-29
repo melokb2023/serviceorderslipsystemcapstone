@@ -12,6 +12,7 @@ class Service extends Model
     protected $table= 'servicedata';
     
     protected $fillable = [
+         'customernumber',
          'firstname',
          'middlename',
          'lastname',

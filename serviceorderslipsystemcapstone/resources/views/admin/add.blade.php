@@ -17,7 +17,7 @@
                         
                         <div class="flex-items-center" style="text-align:center"><label for="Appointment Number">Appointment Number</label>
                      <div>  
-                       <select name="xcompletename">
+                       <select name="xappointmentnumber">
                             @foreach($customerappointment as $customer)
                             <option value="{{$customer->customernumber}} "> {{$customer->customernumber}}</option>
                             @endforeach

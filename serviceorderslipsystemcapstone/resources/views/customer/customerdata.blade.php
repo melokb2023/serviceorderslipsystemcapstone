@@ -14,7 +14,7 @@
                     <h6>List of Customers</h6>
                     <table>
                         <tr>
-                            <th>Customer Number</th>
+                            <th>Appointment Number</th>
                             <th>Complete Name</th>
                             <th>Appointment Purpose</th>
                             <th>Appointment Type</th>
