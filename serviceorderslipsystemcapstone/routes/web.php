@@ -96,6 +96,9 @@ Route::post('/service/add',[ServiceController::class, 'store'] )
 ->middleware(['auth', 'verified'])
 ->name('service-store');
 
+Route::get('/staffdatabase/add', [StaffDatabaseController::class, 'getServiceInfo'])
+   ->middleware(['auth', 'verified'])
+   ->name('add-staffdatabase');
 
 Route::get('/service', [ServiceController::class, 'index']) 
    ->middleware(['auth', 'verified'])

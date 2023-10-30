@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\ServiceProgress;
+use App\Models\Service;
 
 class ServiceProgressController extends Controller
 {
@@ -72,5 +73,10 @@ class ServiceProgressController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+    
+    public function getAppointmentInfo(){
+        $servicedata = Service::all();
+        return view('admin.add', compact('customerappointment'));
     }
 }
