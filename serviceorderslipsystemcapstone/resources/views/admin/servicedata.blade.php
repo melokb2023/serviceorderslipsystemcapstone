@@ -11,10 +11,10 @@
                     <tr>
                         <th>Service Number</th>
                         <th>Customer Appointment Number</th>
-                        <th>Customer Name</th>
                         <th>Contact Number</th>
                         <th>List Of Problems</th>
                         <th>Email</th>
+                        <th>Address</th>
                         <th>Type of Service</th>
                         <th>Maintenance</th>
                         <th>Customer Password</th>
@@ -28,12 +28,12 @@
                        <tr>
                         <td>{{$serviceinfo->serviceno}}</td>
                         <td>{{$serviceinfo->customerappointmentnumber}}</td>
-                        <td>{{$serviceinfo->firstname}} {{$serviceinfo->middlename}} {{$serviceinfo->lastname}}</td>
                         <td>{{$serviceinfo->contactnumber}}</td>
                         <td>{{$serviceinfo->listofproblems}}</td>
                         <td>{{$serviceinfo->email}}</td>
+                        <td>{{$serviceinfo->address}}</td>
                         <td>{{$serviceinfo->typeofservice}}</td>
-                        <td>{{$serviceinfo->maintenance}}</td>
+                        <td>{{$serviceinfo->maintenancerequired}}</td>
                         <td>{{$serviceinfo->customerpassword}}</td>
                         <td>{{$serviceinfo->defectiveunits}}</td>
                         <td>{{$serviceinfo->assignedstaff}}</td>

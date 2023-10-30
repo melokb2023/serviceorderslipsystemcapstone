@@ -54,11 +54,14 @@ class ServiceController extends Controller
         $servicedata = new Service();
         $servicedata ->customerappointmentnumber=$request->xcustomerappointmentnumber;
         $servicedata ->contactnumber=$request->xcontactnumber;
+        $servicedata ->listofproblems=$request->xlistofproblems;
+        $servicedata ->email=$request->xemail;
         $servicedata ->address=$request->xaddress;
         $servicedata ->typeofservice=$request->xtypeofservice;
         $servicedata ->maintenancerequired=$request->xmaintenancerequired;
-        $servicedata ->problemencountered=$request->xproblemencountered;
+        $servicedata ->listofproblems=$request->xlistofproblems;
         $servicedata ->customerpassword=$request->xcustomerpassword;
+        $servicedata ->defectiveunits=$request->xdefectiveunits;
         $servicedata ->assignedstaff=$request->xassignedstaff;
         $servicedata ->save();
         return redirect()->route('servicedata');
@@ -93,11 +96,13 @@ class ServiceController extends Controller
              [
              'customerappointmentnumber' => $request->xcustomerappointmentnumber,
              'contactnumber'=> $request->xcontactnumber,
+             'listofproblems' =>$request->xlistofproblems,
+             'email' =>$request->xemail,
              'address'=> $request->xaddress,
              'typeofservice'=>$request->xtypeofservice,
              'maintenancerequired'=> $request->xmaintenancerequired,
-             'problemencountered'=> $request->xproblemencountered,
              'customerpassword'=> $request->xcustomerpassword,
+             'defectiveunits'=> $request->xdefectiveunits,
              'assignedstaff'=> $request->xassignedstaff,
              ]);
         return redirect()->route('servicedata');

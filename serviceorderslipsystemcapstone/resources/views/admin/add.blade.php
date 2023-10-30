@@ -28,7 +28,17 @@
                     <input type="text" name="xcontactnumber" value="{{old('xcontactnumber')}}"/>
                     </div>
 </div>
-                 <div class="flex-items-center"><label for="Address">Address</label>
+                 <div class="flex-items-center"><label for="List of Problems">List of Problems</label>
+                    <div> 
+                    <input type="text" name="xlistofproblems" value="{{old('xlistofproblems')}}"/>
+                    </div>
+</div>
+               <div class="flex-items-center"><label for="Email">Email</label>
+                    <div> 
+                    <input type="text" name="xemail" value="{{old('xemail')}}"/>
+                    </div>
+</div>
+               <div class="flex-items-center"><label for="Address">Address</label>
                     <div> 
                     <input type="text" name="xaddress" value="{{old('xaddress')}}"/>
                     </div>
@@ -54,16 +64,17 @@
 </select>
                     </div>
 </div>
-             <div class="flex-items-center"><label for="Problem Encountered">Problem Encountered</label>
-                    <div>
-                    <input type="text" name="xproblemencountered" value="{{old('xproblemencountered')}}"/>
-                    </div>
-</div>
-<div class="flex-items-center"><label for="Customer Password">Customer Password</label>
+   <div class="flex-items-center"><label for="Customer Password">Customer Password</label>
                     <div>
                     <input type="text" name="xcustomerpassword" value="{{old('xcustomerpassword')}}"/>
                     </div>
 </div>
+<div class="flex-items-center"><label for="Defective Units">Defective Units</label>
+                    <div>
+                    <input type="text" name="xdefectiveunits" value="{{old('xdefectiveunits')}}"/>
+                    </div>
+</div>
+
 <div class="flex-items-center"><label for="Assigned Staff">Assigned Staff</label>
                     <div>
                     <select name="xassignedstaff">

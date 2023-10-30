@@ -15,11 +15,13 @@ return new class extends Migration
             $table->id('serviceno');
             $table->unsignedBigInteger('customerappointmentnumber');
             $table->string('contactnumber',11);
+            $table->string('listofproblems',100);
+            $table->string('email',100);
             $table->string('address',100);
             $table->string('typeofservice',100);
             $table->string('maintenancerequired',100);
-            $table->string('problemencountered',100);
             $table->string('customerpassword',100);
+            $table->string('defectiveunits',100);
             $table->string('assignedstaff',100);
             $table->timestamps();
             $table->foreign('customerappointmentnumber')->references('customerappointmentnumber')->on('customerappointment');

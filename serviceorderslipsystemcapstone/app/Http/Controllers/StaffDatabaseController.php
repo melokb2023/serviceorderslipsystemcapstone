@@ -63,7 +63,7 @@ class StaffDatabaseController extends Controller
     public function edit(string $id)
     {
         $staffdatabase = StaffDatabase::where('staffno', $id)->get();
-        return view('staffdatabase.edit', compact('staffdatabase'));
+        return view('staff.edit', compact('staffdatabase'));
     }
 
     /**

@@ -21,24 +21,19 @@
                 <form method = "POST" action="{{ route('service-update',['serno' => $serviceinfo->serviceno]) }}">
                         @csrf
                         @method('patch')
-                    <div class="flex-items-center"><label for="First Name">First Name</label>
-                    <div>
-                    <input type="text" name="xfirstname" value="{{$serviceinfo->firstname}}"/>
-                    </div>
-</div>
-                       <div class="flex-items-center"><label for="Middle Name">Middle Name</label>
-                    <div>
-                    <input type="text" name="xmiddlename" value="{{$serviceinfo->middlename}}"/>
-                    </div>
-</div>
-                       <div class="flex-items-center"><label for="Last Name">Last Name</label>
-                    <div>
-                    <input type="text" name="xlastname" value="{{$serviceinfo->lastname}}"/>
-                    </div>
-</div>
                        <div class="flex-items-center"><label for="Contact Number">Contact Number</label>
                     <div>
                     <input type="text" name="xcontactnumber" value="{{$serviceinfo->contactnumber}}"/>
+                    </div>
+</div>
+<div class="flex-items-center"><label for="List of Problems">List of Problems</label>
+                    <div>
+                    <input type="text" name="xlistofproblems" value="{{$serviceinfo->listofproblems}}"/>
+                    </div>
+</div> 
+                <div class="flex-items-center"><label for="Email">Email</label>
+                    <div> 
+                    <input type="text" name="xemail" value="{{$serviceinfo->email}}"/>
                     </div>
 </div>
                        <div class="flex-items-center"><label for="Address">Address</label>
@@ -67,14 +62,15 @@
 </select>
                     </div>
 </div>
-          <div class="flex-items-center"><label for="Problem Encountered">Problem Encountered</label>
-                    <div>
-                    <input type="text" name="xproblemencountered" value="{{$serviceinfo->problemencountered}}"/>
-                    </div>
-</div>
+          
         <div class="flex-items-center"><label for="Customer Password">Customer Password</label>
                     <div>
                     <input type="text" name="xcustomerpassword" value="{{$serviceinfo->customerpassword}}"/>
+                    </div>
+</div>
+<div class="flex-items-center"><label for="Defective Units">Defective Units</label>
+                    <div>
+                    <input type="text" name="xdefectiveunits" value="{{$serviceinfo->defectiveunits}}"/>
                     </div>
 </div>
 <div class="flex-items-center"><label for="Assigned Staff">Assigned Staff</label>
