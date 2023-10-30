@@ -27,7 +27,7 @@
                 @foreach($servicedata as $serviceinfo)
                        <tr>
                         <td>{{$serviceinfo->serviceno}}</td>
-                        <td>{{$serviceinfo->customernumber}}</td>
+                        <td>{{$serviceinfo->customerappointmentnumber}}</td>
                         <td>{{$serviceinfo->firstname}} {{$serviceinfo->middlename}} {{$serviceinfo->lastname}}</td>
                         <td>{{$serviceinfo->contactnumber}}</td>
                         <td>{{$serviceinfo->listofproblems}}</td>

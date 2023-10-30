@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('serviceprogress', function (Blueprint $table) {
-            $table->id('servicenumber');
+            $table->id('serviceprogressno');
             $table->string('serviceprogress')->default('Ongoing');
             $table->timestamps();
         });
@@ -26,3 +26,12 @@ return new class extends Migration
         Schema::dropIfExists('serviceprogress');
     }
 };
+
+
+
+
+
+
+
+
+

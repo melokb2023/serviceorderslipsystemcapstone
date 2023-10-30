@@ -33,10 +33,7 @@ class ServiceController extends Controller
        //echo "Grades data successfully saved in the database";
 
       
-      $servicedata = Service:: join('customerappointment', 'servicedata.customernumber', '=', 'customerappointment.customernumber')->get();
-      $servicedata = Service:: join('customerappointment', 'servicedata.firstname', '=', 'customerappointment.customernumber')->get();
-      $servicedata = Service:: join('customerappointment', 'servicedata.middlename', '=', 'customerappointment.customernumber')->get();
-      $servicedata = Service:: join('customerappointment', 'servicedata.lastname', '=', 'customerappointment.customernumber')->get();
+      $servicedata = Service:: join('customerappointment', 'servicedata.customerappointmentnumber', '=', 'customerappointment.customerappointmentnumber')->get();
       return view('admin.servicedata', compact('servicedata'));
     }
 
@@ -53,25 +50,9 @@ class ServiceController extends Controller
      */
     public function store(Request $request)
     {
-        $validateData =$request->validate([
-            'xcustomernumber' =>['required'],
-            'xfirstname' =>['required'],
-            'xmiddlename'=>['required'],
-            'xlastname' =>['required'],
-            'xcontactnumber' =>['required', 'max:11'],
-            'xaddress' =>['required','max:100'],
-            'xtypeofservice' =>['required'],
-            'xmaintenancerequired' =>['required'],
-            'xproblemencountered' =>['required','max:100'],
-            'xcustomerpassword' =>['required','max:100'],
-            'xassignedstaff' =>['required'],
-        ]);
         
         $servicedata = new Service();
-        $servicedata ->customernumber=$request->xcustomernumber;
-        $servicedata ->firstname=$request->xfirstname;
-        $servicedata ->middlename=$request->xmiddlename;
-        $servicedata ->lastname=$request->xlastname;
+        $servicedata ->customerappointmentnumber=$request->xcustomerappointmentnumber;
         $servicedata ->contactnumber=$request->xcontactnumber;
         $servicedata ->address=$request->xaddress;
         $servicedata ->typeofservice=$request->xtypeofservice;
@@ -110,10 +91,7 @@ class ServiceController extends Controller
       $servicedata= Service::where('serviceno', $id)
         ->update(
              [
-             'customernumber' => $request->xcustomernumber,
-             'firstname'=> $request->xfirstname,
-             'middlename'=> $request->xmiddlename,
-             'lastname'=> $request->xlastname,
+             'customerappointmentnumber' => $request->xcustomerappointmentnumber,
              'contactnumber'=> $request->xcontactnumber,
              'address'=> $request->xaddress,
              'typeofservice'=>$request->xtypeofservice,

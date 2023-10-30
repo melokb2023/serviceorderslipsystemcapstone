@@ -1,3 +1,4 @@
+
 <?php
 
 use Illuminate\Database\Migrations\Migration;
@@ -13,6 +14,7 @@ return new class extends Migration
     {
         Schema::create('staffdatabase', function (Blueprint $table) {
             $table->id('staffnumber');
+            $table->unsignedBigInteger('serviceno');
             $table->string('listofproblems',50);
             $table->string('typeofservice',50);
             $table->string('maintenance',50);
@@ -20,6 +22,8 @@ return new class extends Migration
             $table->string('viewtasks',100);
             $table->string('actionstaken',100);
             $table->string('workprogress')->default('Ongoing');
+            $table->foreign('serviceno')->references('serviceno')->on('servicedata');
+
             $table->timestamps();
         });
     }

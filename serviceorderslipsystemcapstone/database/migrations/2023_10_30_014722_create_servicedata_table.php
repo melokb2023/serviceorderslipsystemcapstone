@@ -13,10 +13,7 @@ return new class extends Migration
     {
         Schema::create('servicedata', function (Blueprint $table) {
             $table->id('serviceno');
-            $table->unsignedBigInteger('customernumber');
-            $table->string('firstname',100);
-            $table->string('middlename',100);
-            $table->string('lastname',100);
+            $table->unsignedBigInteger('customerappointmentnumber');
             $table->string('contactnumber',11);
             $table->string('address',100);
             $table->string('typeofservice',100);
@@ -25,6 +22,8 @@ return new class extends Migration
             $table->string('customerpassword',100);
             $table->string('assignedstaff',100);
             $table->timestamps();
+            $table->foreign('customerappointmentnumber')->references('customerappointmentnumber')->on('customerappointment');
+
 
             
         
@@ -39,3 +38,4 @@ return new class extends Migration
         Schema::dropIfExists('servicedata');
     }
 };
+

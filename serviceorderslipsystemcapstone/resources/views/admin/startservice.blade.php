@@ -42,7 +42,7 @@
 }
 
 </style>
-                <a class="button" href="{{ route('adminadd') }}">
+                <a class="button" href="{{ route('add-service') }}">
                         Start Service
 </a>
                   

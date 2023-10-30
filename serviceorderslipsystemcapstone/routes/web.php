@@ -54,44 +54,6 @@ Route::get('/customer', function () {
    return view('customer.customerappointment');
 })->name('customer');
 
-Route::get('/student/add', function () {
-    return view('student.add');
-})->middleware(['auth', 'verified'])->name('add-student');
-
-//Store Student info to create function under StudentController
-Route::post('/service/add',[ServiceController::class, 'store'] )
-->middleware(['auth', 'verified'])
-->name('service-store');
-
-Route::get('/service/add', [ServiceController::class, 'getStudentInfo'])
-   ->middleware(['auth', 'verified'])
-   ->name('add-service');
-
-Route::get('/service', [ServiceController::class, 'index']) 
-   ->middleware(['auth', 'verified'])
-   ->name('servicedata');
-
-//View Student Info
-Route::get('/service/{serno}', [ServiceController::class, 'show']) 
-   ->middleware(['auth', 'verified'])
-   ->name('service-show');
-
-Route::delete('/service/delete/{serno}', [ServiceController::class, 'destroy']) 
-   ->middleware(['auth', 'verified'])
-   ->name('service-delete');
-
-//Transfer Record to Edit Form
-Route::get('/service/edit/{serno}', [ServiceController::class, 'edit']) 
-   ->middleware(['auth', 'verified'])
-   ->name('service-edit');
-
-//Save The Updated Data
-Route::patch('/service/update/{serno}', [ServiceController::class, 'update']) 
-   ->middleware(['auth', 'verified'])
-   ->name('service-update');
-
-
-   
 
 Route::post('/customerappointment/add',[CustomerAppointmentController::class, 'store'] )
    ->middleware(['auth', 'verified'])
@@ -120,6 +82,48 @@ Route::get('/customerappointment/edit/{cano}', [CustomerAppointmentController::c
 Route::patch('/customerappointment/update/{cano}', [CustomerAppointmentController::class, 'update']) 
    ->middleware(['auth', 'verified'])
    ->name('customerappointment-update');
+
+
+
+
+//Store Student info to create function under StudentController
+
+Route::get('/service/add', [ServiceController::class, 'getAppointmentInfo'])
+   ->middleware(['auth', 'verified'])
+   ->name('add-service');
+
+Route::post('/service/add',[ServiceController::class, 'store'] )
+->middleware(['auth', 'verified'])
+->name('service-store');
+
+
+Route::get('/service', [ServiceController::class, 'index']) 
+   ->middleware(['auth', 'verified'])
+   ->name('servicedata');
+
+//View Student Info
+Route::get('/service/{serno}', [ServiceController::class, 'show']) 
+   ->middleware(['auth', 'verified'])
+   ->name('service-show');
+
+Route::delete('/service/delete/{serno}', [ServiceController::class, 'destroy']) 
+   ->middleware(['auth', 'verified'])
+   ->name('service-delete');
+
+//Transfer Record to Edit Form
+Route::get('/service/edit/{serno}', [ServiceController::class, 'edit']) 
+   ->middleware(['auth', 'verified'])
+   ->name('service-edit');
+
+//Save The Updated Data
+Route::patch('/service/update/{serno}', [ServiceController::class, 'update']) 
+   ->middleware(['auth', 'verified'])
+   ->name('service-update');
+
+
+   
+
+
 
 //Save The Updated Data
 Route::patch('/serviceprogress/update/{servicenumber}', [ServiceProgressController::class, 'update']) 
