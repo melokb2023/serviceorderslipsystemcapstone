@@ -12,15 +12,18 @@ class StaffDatabase extends Model
     protected $table= 'servicedata';
     
     protected $fillable = [
-         'customername',
-         'servicenumber',
-         'customernumber',
-         'appointmentnumber',
-         'contact',
+         'serviceno',
+         'customerappointmentnumber',
+         'contactnumber',
          'email',
+         'address',
          'typeofservice',
-         'maintenance',
+         'maintenancerequired',
          'customerpassword',
          'assignedstaff',
+         'defectiveunits',
+         'viewtasks',
+         'actionstaken',
+         'workprogress',
     ];
 }

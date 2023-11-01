@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Service;
 use App\Models\CustomerAppointment;
+use App\Models\StaffDatabase;
 
 
 
@@ -65,6 +66,7 @@ class ServiceController extends Controller
         $servicedata ->assignedstaff=$request->xassignedstaff;
         $servicedata ->save();
         return redirect()->route('servicedata');
+       
     }
 
     /**
@@ -121,4 +123,13 @@ class ServiceController extends Controller
         $customerappointment = CustomerAppointment::all();
         return view('admin.add', compact('customerappointment'));
     }
+
+    public function getServiceInfo(){
+        $staffdatabase = Service::select('serviceno','customerappointmentnumber','contactnumber','email','address','typeofservice','listofproblems','maintenancerequired','customerpassword','assignedstaff','defectiveunits')->get();
+        return view('staff.staffdatabase', compact('staffdatabase'));
+    }
+    
+
+   
+  
 }

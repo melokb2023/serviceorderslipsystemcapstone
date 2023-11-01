@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\StaffDatabase;
+use App\Models\Service;
 use Illuminate\Http\Request;
 
 class StaffDatabaseController extends Controller
@@ -25,10 +26,9 @@ class StaffDatabaseController extends Controller
        // $student->save();
 //
        //echo "Grades data successfully saved in the database";
-
-      $student = StaffDatabase:: all();
-      return view('staff.staffdatabase', compact('student'));
-
+   
+       $servicedata = StaffDatabase:: join('customerappointment', 'servicedata.customerappointmentnumber', '=', 'customerappointment.customerappointmentnumber')->get();
+       return view('staff.staffdatabase', compact('staffdatabase'));
      
     }
 
@@ -45,7 +45,20 @@ class StaffDatabaseController extends Controller
      */
     public function store(Request $request)
     {
-       
+        $servicedata = new Service();
+        $servicedata ->customerappointmentnumber=$request->xcustomerappointmentnumber;
+        $servicedata ->contactnumber=$request->xcontactnumber;
+        $servicedata ->listofproblems=$request->xlistofproblems;
+        $servicedata ->email=$request->xemail;
+        $servicedata ->address=$request->xaddress;
+        $servicedata ->typeofservice=$request->xtypeofservice;
+        $servicedata ->maintenancerequired=$request->xmaintenancerequired;
+        $servicedata ->listofproblems=$request->xlistofproblems;
+        $servicedata ->customerpassword=$request->xcustomerpassword;
+        $servicedata ->defectiveunits=$request->xdefectiveunits;
+        $servicedata ->assignedstaff=$request->xassignedstaff;
+        $servicedata ->save();
+        return redirect()->route('staffdatabase');
     }
 
     /**
@@ -53,8 +66,8 @@ class StaffDatabaseController extends Controller
      */
     public function show(string $id)
     {
-        $student = StaffDatabase::where('sno', $id)->get();
-        return view('student.show', compact('student'));
+        $staffdatabase = StaffDatabase::where('staffnumber', $id)->get();
+        return view('staff.show', compact('staffdatabase'));
     }
 
     /**
@@ -62,7 +75,7 @@ class StaffDatabaseController extends Controller
      */
     public function edit(string $id)
     {
-        $staffdatabase = StaffDatabase::where('staffno', $id)->get();
+        $staffdatabase = StaffDatabase::where('staffnumber', $id)->get();
         return view('staff.edit', compact('staffdatabase'));
     }
 
@@ -74,10 +87,10 @@ class StaffDatabaseController extends Controller
         $validateData =$request->validate([
             'xviewtasks' => ['required', 'max:50'],
             'xactionstaken' =>['required', 'max:70'],
-            'xworkprogress'=>['max:30'],
+            'xworkprogress'=>['required'],
         ]);
 
-        $staffdatabase= StaffDatabase::where('sno', $id)
+        $staffdatabase= StaffDatabase::where('staffnumber', $id)
         ->update(
              ['viewtasks' => $request->xviewtasks,
              'actionstaken'=> $request->xactionstaken,
@@ -92,5 +105,10 @@ class StaffDatabaseController extends Controller
     public function destroy(string $id)
     {
   
+    }
+
+    public function getServiceInfo(){
+        $staffdatabase = Service::all();
+        return view('staff.staffdatabase', compact('staffdatabase'));
     }
 }

@@ -84,8 +84,6 @@ Route::patch('/customerappointment/update/{cano}', [CustomerAppointmentControlle
    ->name('customerappointment-update');
 
 
-
-
 //Store Student info to create function under StudentController
 
 Route::get('/service/add', [ServiceController::class, 'getAppointmentInfo'])
@@ -96,9 +94,6 @@ Route::post('/service/add',[ServiceController::class, 'store'] )
 ->middleware(['auth', 'verified'])
 ->name('service-store');
 
-Route::get('/staffdatabase/add', [StaffDatabaseController::class, 'getServiceInfo'])
-   ->middleware(['auth', 'verified'])
-   ->name('add-staffdatabase');
 
 Route::get('/service', [ServiceController::class, 'index']) 
    ->middleware(['auth', 'verified'])
@@ -125,9 +120,6 @@ Route::patch('/service/update/{serno}', [ServiceController::class, 'update'])
 
 
    
-
-
-
 //Save The Updated Data
 Route::patch('/serviceprogress/update/{servicenumber}', [ServiceProgressController::class, 'update']) 
    ->middleware(['auth', 'verified'])
@@ -161,6 +153,13 @@ Route::get('/staffdatabase/edit/{serviceno}', [StaffDatabaseController::class, '
 Route::patch('/staffdatabase/update/{serviceno}', [StaffDatabaseController::class, 'update']) 
    ->middleware(['auth', 'verified'])
    ->name('staffdatabase-update');
+
+Route::get('/staffdatabase', [StaffDatabaseController::class, 'getServiceInfo']) 
+   ->middleware(['auth', 'verified'])
+   ->name('staffdatabase');
+
+
+
 
 
 //Route::post('/service/add',[StudentController::class, 'store'] )
