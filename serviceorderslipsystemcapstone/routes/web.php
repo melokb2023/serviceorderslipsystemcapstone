@@ -54,6 +54,11 @@ Route::get('/customer', function () {
    return view('customer.customerappointment');
 })->name('customer');
 
+Route::get('/serviceprogressmenu', function () {
+   return view('admin.serviceprogressmenu');
+})->name('serviceprogressmenu');
+
+
 
 Route::post('/customerappointment/add',[CustomerAppointmentController::class, 'store'] )
    ->middleware(['auth', 'verified'])
@@ -94,7 +99,6 @@ Route::post('/service/add',[ServiceController::class, 'store'] )
 ->middleware(['auth', 'verified'])
 ->name('service-store');
 
-
 Route::get('/service', [ServiceController::class, 'index']) 
    ->middleware(['auth', 'verified'])
    ->name('servicedata');
@@ -119,13 +123,25 @@ Route::patch('/service/update/{serno}', [ServiceController::class, 'update'])
    ->name('service-update');
 
 
-   
-//Save The Updated Data
+//////////////////////SERVICE PROGRESS
+Route::get('/serviceprogress/add', [ServiceProgressController::class, 'getServiceNumber'])
+   ->middleware(['auth', 'verified'])
+   ->name('add-serviceprogress');
+
+Route::post('/serviceprogress/add',[ServiceProgressController::class, 'store'] )
+   ->middleware(['auth', 'verified'])
+   ->name('serviceprogress-store');   
+
+Route::get('/serviceprogress', [ServiceProgressController::class, 'index']) 
+   ->middleware(['auth', 'verified'])
+   ->name('serviceprogress');
+
+   //Save The Updated Data
 Route::patch('/serviceprogress/update/{servicenumber}', [ServiceProgressController::class, 'update']) 
    ->middleware(['auth', 'verified'])
    ->name('serviceprogress-update');
 
-   Route::get('/serviceprogress/{servicenumber}', [ServiceProgressController::class, 'show']) 
+Route::get('/serviceprogress/{servicenumber}', [ServiceProgressController::class, 'show']) 
    ->middleware(['auth', 'verified'])
    ->name('serviceprogress-show');
 
@@ -134,12 +150,14 @@ Route::get('/serviceprogress/edit/{servicenumber}', [ServiceProgressController::
    ->middleware(['auth', 'verified'])
    ->name('serviceprogress-edit');
 
-//Save The Updated Data
-Route::patch('/serviceprogress/update/{servicenumber}', [ServiceProgressController::class, 'update']) 
-   ->middleware(['auth', 'verified'])
-   ->name('serviceprogress-update');
 
-//View Student Info
+
+
+
+//STAFF DATABASE
+
+
+   //View Student Info
 Route::get('/staffdatabase/{serviceno}', [StaffDatabaseController::class, 'show']) 
    ->middleware(['auth', 'verified'])
    ->name('staffdatabase-show');

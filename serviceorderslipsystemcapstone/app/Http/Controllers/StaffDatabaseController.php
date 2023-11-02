@@ -57,6 +57,9 @@ class StaffDatabaseController extends Controller
         $servicedata ->customerpassword=$request->xcustomerpassword;
         $servicedata ->defectiveunits=$request->xdefectiveunits;
         $servicedata ->assignedstaff=$request->xassignedstaff;
+        $servicedata->viewtasks = "None";
+        $servicedata->assignedtasks = "None";
+        $servicedata->workprogress = "Ongoing";
         $servicedata ->save();
         return redirect()->route('staffdatabase');
     }

@@ -12,7 +12,7 @@ class ServiceProgress extends Model
     protected $table= 'serviceprogress';
     
     protected $fillable = [
-         'servicenumber',
+         'serviceno',
          'dateandtime',
          'serviceprogress',
     ];

@@ -13,7 +13,9 @@ return new class extends Migration
     {
         Schema::create('serviceprogress', function (Blueprint $table) {
             $table->id('serviceprogressno');
-            $table->string('serviceprogress')->default('Ongoing');
+            $table->unsignedBigInteger('serviceno');
+            $table->dateTime('dateandtime', $precision = 0);
+            $table->string('serviceprogress');
             $table->timestamps();
         });
     }

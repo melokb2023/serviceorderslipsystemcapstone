@@ -26,6 +26,9 @@
                     <a class="nav-link" style="border: 3px solid black;background-color:red;padding-bottom: 39px;padding-top:3px" href="{{ route('servicedata') }}" :active="request()->routeIs('servicedata')">
                         {{ __('Service Data') }}
 </a>
+                    <a class="nav-link" style="border: 3px solid black;background-color:red;padding-bottom: 39px;padding-top:3px" href="{{ route('serviceprogressmenu') }}" :active="request()->routeIs('serviceprogressmenu')">
+                        {{ __('Service Progress') }}
+</a>
                 </div>
             </div>
 

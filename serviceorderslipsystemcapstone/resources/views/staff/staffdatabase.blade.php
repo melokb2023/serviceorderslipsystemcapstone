@@ -29,7 +29,7 @@
 <tbody>
                 @foreach($staffdatabase as $serviceinfo)
                        <tr>
-                       <td>{{$serviceinfo->staffno}}</td>
+                       <td>{{$serviceinfo->staffnumber}}</td>
                         <td>{{$serviceinfo->serviceno}}</td>
                         <td>{{$serviceinfo->customerappointmentnumber}}</td>
                         <td>{{$serviceinfo->contactnumber}}</td>

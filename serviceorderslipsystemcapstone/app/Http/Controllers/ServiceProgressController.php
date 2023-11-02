@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\ServiceProgress;
 use App\Models\Service;
-
+use App\Models\StaffDatabase;
 class ServiceProgressController extends Controller
 {
     /**
@@ -13,7 +13,8 @@ class ServiceProgressController extends Controller
      */
     public function index()
     {
-        //
+        $serviceprogress = ServiceProgress:: join('servicedata', 'serviceprogress.serviceno', '=', 'servicedata.serviceno')->get();
+        return view('admin.serviceprogress', compact('serviceprogress'));
     }
 
     /**
@@ -29,7 +30,12 @@ class ServiceProgressController extends Controller
      */
     public function store(Request $request)
     {
-       
+        $serviceprogress = new ServiceProgress();
+        $serviceprogress ->serviceno=$request->xserviceno;
+        $serviceprogress ->dateandtime=$request->xdateandtime;
+        $serviceprogress ->serviceprogress=$request->xserviceprogress;
+        $serviceprogress ->save();
+        return redirect()->route('serviceprogress');
     }
 
     /**
@@ -37,8 +43,8 @@ class ServiceProgressController extends Controller
      */
     public function show(string $id)
     {
-        $serviceprogress = ServiceProgress:: all();
-        return view('customer.customerdata', compact('customerappointment'));
+        $serviceprogress = ServiceProgress::where('serviceprogressno', $id)->get();
+        return view('admin.serviceprogress', compact('serviceprogress'));
     }
 
     /**
@@ -46,8 +52,8 @@ class ServiceProgressController extends Controller
      */
     public function edit(string $id)
     {
-        $serviceprogress = ServiceProgress::where('serviceno', $id)->get();
-        return view('serviceprogress.edit', compact('serviceprogress'));
+        $serviceprogress = ServiceProgress::where('serviceprogressno', $id)->get();
+        return view('admin.serviceprogressedit', compact('serviceprogress'));
     }
 
     /**
@@ -55,14 +61,10 @@ class ServiceProgressController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $validateData =$request->validate([
-            'xserviceprogress' =>['required', 'max:20'],
-        ]);
-
-        $serviceprogress= ServiceProgress::where('servicenumber', $id)
+        $serviceprogress= ServiceProgress::where('serviceprogressno', $id)
         ->update(
              [
-             'serviceprogress'=> $request->xserviceprogress,
+             'serviceprogress' =>$request->xserviceprogress,
              ]);
         return redirect()->route('serviceprogress');
     }
@@ -75,8 +77,9 @@ class ServiceProgressController extends Controller
         //
     }
     
-    public function getAppointmentInfo(){
+    public function getServiceNumber(){
         $servicedata = Service::all();
-        return view('admin.add', compact('customerappointment'));
+        return view('admin.serviceprogressadd', compact('servicedata'));
     }
+ 
 }
