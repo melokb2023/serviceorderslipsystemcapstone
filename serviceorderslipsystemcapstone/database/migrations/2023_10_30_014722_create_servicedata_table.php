@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('customerpassword',100);
             $table->string('defectiveunits',100);
             $table->string('assignedstaff',100);
+            $table->string('viewtasks',100);
             $table->timestamps();
             $table->foreign('customerappointmentnumber')->references('customerappointmentnumber')->on('customerappointment');
 

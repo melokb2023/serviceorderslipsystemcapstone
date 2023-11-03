@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('typeofservice',50);
             $table->string('maintenancerequired',50);
             $table->string('defectiveunits',50);
-            $table->string('viewtasks',100)->default('None');
+            $table->string('viewtasks',100);
             $table->string('actionstaken',100)->default('None');
             $table->string('workprogress')->default('Ongoing');
             $table->foreign('customerappointmentnumber')->references('customerappointmentnumber')->on('servicedata');

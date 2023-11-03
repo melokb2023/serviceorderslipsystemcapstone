@@ -41,8 +41,8 @@
                         <td>{{$serviceinfo->customerpassword}}</td>
                         <td>{{$serviceinfo->defectiveunits}}</td>
                         <td>{{$serviceinfo->assignedstaff}}</td>
-                        <td>{{$serviceinfo->viewtasks}}</td>
-                        <td>{{$serviceinfo->actionstaken}}</td>
+                       <td>{{$serviceinfo->actionstaken}}</td>     
+                         <td>{{$serviceinfo->viewtasks}}</td>
                         <td>{{$serviceinfo->workprogress}}</td>
                         <td>
                             <a class="mt-4 bg-yellow-200 text-black font-bold py-2 px-4 rounded" href= "{{route('staffdatabase-show', ['serviceno' => $serviceinfo->serviceno]) }}" >View</a>

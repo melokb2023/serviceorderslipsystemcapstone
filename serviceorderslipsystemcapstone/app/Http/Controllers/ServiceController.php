@@ -64,6 +64,7 @@ class ServiceController extends Controller
         $servicedata ->customerpassword=$request->xcustomerpassword;
         $servicedata ->defectiveunits=$request->xdefectiveunits;
         $servicedata ->assignedstaff=$request->xassignedstaff;
+        $servicedata ->viewtasks=$request->xviewtasks;
         $servicedata ->save();
         return redirect()->route('servicedata');
        
@@ -105,6 +106,7 @@ class ServiceController extends Controller
              'maintenancerequired'=> $request->xmaintenancerequired,
              'customerpassword'=> $request->xcustomerpassword,
              'defectiveunits'=> $request->xdefectiveunits,
+             'viewtasks' =>$request->xviewtasks,
              'assignedstaff'=> $request->xassignedstaff,
              ]);
         return redirect()->route('servicedata');

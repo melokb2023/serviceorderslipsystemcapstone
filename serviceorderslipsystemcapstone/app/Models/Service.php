@@ -21,6 +21,7 @@ class Service extends Model
          'maintenancerequired',
          'customerpassword',
          'defectiveunits',
+         'viewtasks',
          'assignedstaff',
     ];
 }

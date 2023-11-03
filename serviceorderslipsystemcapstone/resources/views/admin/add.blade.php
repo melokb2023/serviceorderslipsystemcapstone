@@ -85,6 +85,11 @@
 </select>
                     </div>
 </div>
+        <div class="flex-items-center"><label for="Assigned Tasks">Assigned Tasks</label>
+                    <div>
+                    <input type="text" name="xviewtasks" value="{{old('xviewtasks')}}"/>
+                    </div>
+</div>
              <button type ="submit" style="text-align:center;background-color:black"> Submit Info </button>
                    </form>
                    <br>
