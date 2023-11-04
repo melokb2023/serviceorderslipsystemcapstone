@@ -41,7 +41,7 @@
                         <td>{{$serviceinfo->customerpassword}}</td>
                         <td>{{$serviceinfo->defectiveunits}}</td>
                         <td>{{$serviceinfo->assignedstaff}}</td>
-                       <td>{{$serviceinfo->actionstaken}}</td>     
+                        <td>{{$serviceinfo->actionstaken}}</td>     
                          <td>{{$serviceinfo->viewtasks}}</td>
                         <td>{{$serviceinfo->workprogress}}</td>
                         <td>
