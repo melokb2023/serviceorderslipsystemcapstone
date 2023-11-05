@@ -6,6 +6,7 @@ use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\ServiceProgressController;
 use App\Http\Controllers\StaffDatabaseController;
 use App\Http\Controllers\CustomerAppointmentController;
+use App\Http\Controllers\RatingsController;
 
 
 /*
@@ -58,9 +59,9 @@ Route::get('/serviceprogressmenu', function () {
    return view('admin.serviceprogressmenu');
 })->name('serviceprogressmenu');
 
-Route::get('/customerrating', function () {
-   return view('customer.customerrating');
-})->name('customerrating');
+Route::get('/customerreviewsandrating', function () {
+   return view('admin.customerreviewsandrating');
+})->name('customerreviewsandrating');
 
 
 Route::post('/customerappointment/add',[CustomerAppointmentController::class, 'store'] )
@@ -180,7 +181,9 @@ Route::get('/staffdatabase', [StaffDatabaseController::class, 'getServiceInfo'])
    ->name('staffdatabase');
 
 
+/////CUSTOMERRATING
 
+Route::get('ratings','RatingsController@ratings');
 
 
 //Route::post('/service/add',[StudentController::class, 'store'] )

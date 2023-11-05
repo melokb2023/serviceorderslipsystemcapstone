@@ -29,8 +29,8 @@
                     <a class="nav-link" style="border: 3px solid black;background-color:red;padding-bottom: 39px;padding-top:3px" href="{{ route('serviceprogressmenu') }}" :active="request()->routeIs('serviceprogressmenu')">
                         {{ __('Service Progress') }}
 </a>
-<a class="nav-link" style="border: 3px solid black;background-color:red;padding-bottom: 39px;padding-top:3px" href="{{ route('customerrating') }}" :active="request()->routeIs('customerrating')">
-                        {{ __('Customer Rating') }}
+<a class="nav-link" style="border: 3px solid black;background-color:red;padding-bottom: 39px;padding-top:3px" href="{{ route('customerreviewsandratings') }}" :active="request()->routeIs('customerreviewsandratings')">
+                        {{ __('Customer Reviews and Ratings') }}
 </a>
                 </div>
             </div>
