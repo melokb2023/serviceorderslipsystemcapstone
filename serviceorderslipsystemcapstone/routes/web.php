@@ -59,9 +59,9 @@ Route::get('/serviceprogressmenu', function () {
    return view('admin.serviceprogressmenu');
 })->name('serviceprogressmenu');
 
-Route::get('/customerreviewsandrating', function () {
-   return view('admin.customerreviewsandrating');
-})->name('customerreviewsandrating');
+Route::get('/customerreviewsandratings', function () {
+   return view('admin.customerreviewsandratings');
+})->name('customerreviewsandratings');
 
 
 Route::post('/customerappointment/add',[CustomerAppointmentController::class, 'store'] )
