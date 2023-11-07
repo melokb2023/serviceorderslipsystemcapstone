@@ -6,29 +6,28 @@
                 <div class="p-6 text-gray-900 dark:text-gray-100" style="background-color:red;width: 100%">
                 <link rel="stylesheet" href="index.css">
                
-                    <h6>Service Information</h6>                
+                    <h6>Ratings from the Customers</h6>                
                     <table style="border: 5px solid black;width: 100%">
                     <tr>
-                        <th>ID</th>
-                        <th>User ID</th>
-                        <th>Product ID</th>
+                        <th>Rating Number</th>
+                        <th>Customer Number</th>
+                        <th>Service Number</th>
                         <th>Review</th>
                         <th>Rating</th>
                         <th>Status</th>
                        
 </tr>
-
 <tbody>
-                @foreach($ratings as $rating)
+                
                        <tr>
-                        <td>{{$rating['id']}}</td>
-                        <td>{{$rating['user_id']}}</td>
-                        <td>{{$rating['product_id']}}</td>
-                        <td>{{$rating['review']}}</td>
-                        <td>{{$rating['rating']}}</td>
-                        <td>{{$rating['status']}}</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
                        </tr>
-                        @endforeach
+                    
                 </tbody>
                     </table>
 
