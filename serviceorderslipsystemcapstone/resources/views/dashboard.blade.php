@@ -1,3 +1,4 @@
+@include('layouts.adminnavigation')
 <x-app-layout style="background-color:red;width:50px;">
     
 

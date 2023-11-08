@@ -1,3 +1,4 @@
+@include('layouts.customernavigation')
 <x-app-layout>
 
 
@@ -43,11 +44,35 @@
 </select>
                     </div>
 </div>
-                                   
+                           
+                             
              <button type ="submit"> Submit Info </button>
                    </form>
+                   <br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
                 </div>
             </div>
         </div>
     </div>
+
+    <br>
 </x-app-layout>

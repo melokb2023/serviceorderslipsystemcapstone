@@ -14,11 +14,23 @@
 
                 <!-- Navigation Links -->
                 <div style="border: 3px solid red;background-color:red;font-weight:bold;padding-bottom: 39px;"> 
-                  <a class="nav-link" style="border: 3px solid black;background-color:red;padding-bottom: 39px;padding-top:3px" href="{{ route('startappointment') }}" :active="request()->routeIs('startappointment')">
-                        {{ __('Start Appointment') }}
+                  <a class="nav-link" style="border: 3px solid black;background-color:red;padding-bottom: 39px;padding-top:3px" href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
+                        {{ __('Dashboard') }}
 </a>          
-                    <a class="nav-link" style="border: 3px solid black;background-color:red;padding-bottom: 39px;padding-top:3px" href="{{ route('staffdatabase') }}" :active="request()->routeIs('staffdatabase')">
-                        {{ __('Staff Database') }}
+                    <a class="nav-link" style="border: 3px solid black;background-color:red;padding-bottom: 39px;padding-top:3px" href="{{ route('startservice') }}" :active="request()->routeIs('startservice')">
+                        {{ __('Start Service') }}
+</a>
+                    <a class="nav-link" style="border: 3px solid black;background-color:red;padding-bottom: 39px;padding-top:3px" href="{{ route('servicelist') }}" :active="request()->routeIs('servicelist')">
+                        {{ __('Service List') }}
+</a>
+                    <a class="nav-link" style="border: 3px solid black;background-color:red;padding-bottom: 39px;padding-top:3px" href="{{ route('servicedata') }}" :active="request()->routeIs('servicedata')">
+                        {{ __('Service Data') }}
+</a>
+                    <a class="nav-link" style="border: 3px solid black;background-color:red;padding-bottom: 39px;padding-top:3px" href="{{ route('serviceprogressmenu') }}" :active="request()->routeIs('serviceprogressmenu')">
+                        {{ __('Service Progress') }}
+</a>
+<a class="nav-link" style="border: 3px solid black;background-color:red;padding-bottom: 39px;padding-top:3px" href="{{ route('customerreviewsandratings') }}" :active="request()->routeIs('customerreviewsandratings')">
+                        {{ __('Customer Reviews and Ratings') }}
 </a>
                 </div>
             </div>

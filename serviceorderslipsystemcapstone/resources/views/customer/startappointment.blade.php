@@ -1,4 +1,4 @@
-@include('layouts.adminnavigation')
+@include('layouts.customernavigation')
 <x-app-layout>
  
 
@@ -43,11 +43,7 @@
 }
 
 </style>
-                <a class="button" href="{{ route('serviceprogress') }}">
-                        Service Progress Data
-</a>
-                <a class="button" href="{{ route('serviceprogressmenu') }}">
-                        Add Service Progress
-</a>
+                <a class="button" href="{{ route('add-service') }}">
+                        Start Appointment
                   
 </x-app-layout>
