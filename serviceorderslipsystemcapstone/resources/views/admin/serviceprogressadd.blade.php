@@ -1,8 +1,8 @@
 @include('layouts.adminnavigation')
 <x-app-layout>
-  <div class="py-12" style="background-color:red;">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8" style="background-color:red;">
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg" style="background-color:red;text-align:center">
+  <div class="py-12" style="background-color:#CD5C5C;">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8" style="background-color:#CD5C5C;">
+            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg" style="background-color:#CD5C5C;text-align:center">
                 <div class="p-6 text-gray-900 dark:text-gray-100" style="background-color:#C0C0C0;">
                    <h6>Errors Encountered</h6>
                     @if($errors)

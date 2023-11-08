@@ -1,8 +1,8 @@
-<nav x-data="{ open: false }" class="bg-grey border-b border-gray-50" style="background-color:red;border: 3px solid black;">
+<nav x-data="{ open: false }" class="bg-grey border-b border-gray-50" style="background-color:#CD5C5C;border: 3px solid black;">
     <!-- Primary Navigation Menu -->
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" style="background-color:red;">
-        <div class="flex justify-between h-16" style="background-color:red;">
-            <div class="flex" style="background-color:red;">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" style="background-color:#CD5C5C;">
+        <div class="flex justify-between h-16" style="background-color:#CD5C5C;">
+            <div class="flex" style="background-color:#CD5C5C;">
                 <!-- Logo -->
                 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -11,28 +11,39 @@
                     <i class="fa fa-home" style="font-size: 32px;"></i>
                     </a>
                 </div>
+<style>
+    .top-nav {
+  background-color: #CD5C5C;
+  border: none;
+  color: black;
+  margin: 4px 2px;
+  opacity: 0.6;
+  transition: 0.3s;
+}
 
+.top-nav:hover {opacity: 1}
+    </style>
                 <!-- Navigation Links -->
-                <div style="border: 3px solid red;background-color:red;font-weight:bold;padding-bottom: 39px;"> 
-                  <a class="nav-link" style="border: 3px solid black;background-color:red;padding-bottom: 39px;padding-top:3px" href="{{ route('servicelist') }}" :active="request()->routeIs('servicelist')">
-                        {{ __('Service List') }}
+                <div style="border: 3px solid #CD5C5C;background-color:#CD5C5C;font-weight:bold;padding-bottom: 39px;overflow:hidden"> 
+                  <a class="top-nav" style="border: 3px solid black;background-color:white;padding-bottom: 39px;padding-top:3px" href="{{ route('servicelist') }}" :active="request()->routeIs('servicelist')">
+                        {{ __('SERVICE LIST') }}
 </a>          
-               <a class="nav-link" style="border: 3px solid black;background-color:red;padding-bottom: 39px;padding-top:3px" href="{{ route('staffdatabase') }}" :active="request()->routeIs('staffdatabase')">
-                        {{ __('Staff Database') }}
+               <a class="top-nav" style="border: 3px solid black;background-color:white;padding-bottom: 39px;padding-top:3px" href="{{ route('staffdatabase') }}" :active="request()->routeIs('staffdatabase')">
+                        {{ __('STAFF DATABASE') }}
 </a>
                 </div>
             </div>
 
 
 
-            <div class="hidden sm:flex sm:items-center sm:ml-6" style="background-color:red;">
+            <div class="hidden sm:flex sm:items-center sm:ml-6" style="background-color:#CD5C5C;">
                 <!-- Teams Dropdown -->
                 @if (Laravel\Jetstream\Jetstream::hasTeamFeatures())
-                    <div class="ml-3 relative" style="border: 3px solid black;background-color:red;">
-                        <x-dropdown align="right" width="60" style="border: 3px solid black;background-color:red;">
-                            <x-slot name="trigger" style="border: 3px solid black;background-color:red;">
-                                <span class="inline-flex rounded-md" style="border: 3px solid black;background-color:red;">
-                                    <button type="button" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none focus:bg-gray-50 active:bg-gray-50 transition ease-in-out duration-150" style="border: 3px solid black;background-color:red;">
+                    <div class="ml-3 relative" style="border: 3px solid black;background-color:#CD5C5C;">
+                        <x-dropdown align="right" width="60" style="border: 3px solid black;background-color:#CD5C5C;">
+                            <x-slot name="trigger" style="border: 3px solid black;background-color:#CD5C5C;">
+                                <span class="inline-flex rounded-md" style="border: 3px solid black;background-color:#CD5C5C;">
+                                    <button type="button" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none focus:bg-gray-50 active:bg-gray-50 transition ease-in-out duration-150" style="border: 3px solid black;background-color:#CD5C5C;">
                                         {{ Auth::user()->currentTeam->name }}
 
                                         <svg class="ml-2 -mr-0.5 h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">

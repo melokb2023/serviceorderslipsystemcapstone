@@ -67,6 +67,10 @@ Route::get('/customerrating', function () {
    return view('customer.customerrating');
 })->name('customerrating');
 
+Route::get('/customerappointment', function () {
+   return view('customer.customerdata');
+})->name('customerappointment');
+
 Route::get('/startappointment', function () {
    return view('customer.startappointment');
 })->name('startappointment');
