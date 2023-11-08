@@ -67,6 +67,10 @@ Route::get('/customerrating', function () {
    return view('customer.customerrating');
 })->name('customerrating');
 
+Route::get('/startappointment', function () {
+   return view('customer.startappointment');
+})->name('startappointment');
+
 Route::post('/customerappointment/add',[CustomerAppointmentController::class, 'store'] )
    ->middleware(['auth', 'verified'])
    ->name('customerappointment-store');

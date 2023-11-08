@@ -24,7 +24,7 @@ class HomeController extends Controller
         
            else
            {
-                return view('admin.home');
+                return view('customer');
         }
     
         

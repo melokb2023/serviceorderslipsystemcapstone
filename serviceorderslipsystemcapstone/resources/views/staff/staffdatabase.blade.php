@@ -1,3 +1,4 @@
+@include('layouts.staffnavigation')
 <x-app-layout>
   
 

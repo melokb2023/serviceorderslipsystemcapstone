@@ -1,3 +1,4 @@
+@include('layouts.adminnavigation')
 <x-app-layout>
  
 

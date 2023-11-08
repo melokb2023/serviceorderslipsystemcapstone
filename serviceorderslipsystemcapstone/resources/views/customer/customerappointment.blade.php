@@ -1,3 +1,4 @@
+@include('layouts.customernavigation')
 <x-app-layout>
 
 

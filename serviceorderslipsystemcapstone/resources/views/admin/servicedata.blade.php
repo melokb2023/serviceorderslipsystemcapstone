@@ -1,3 +1,4 @@
+@include('layouts.adminnavigation')
 <x-app-layout>
 
     <div class="py-12" style="background-color:red;width: 100%">
