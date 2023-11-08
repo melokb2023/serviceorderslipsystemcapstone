@@ -1,8 +1,8 @@
-<nav x-data="{ open: false }" class="bg-grey border-b border-gray-50" style="background-color:red;border: 3px solid black;">
+<nav x-data="{ open: false }" class="bg-grey border-b border-gray-50" style="background-color:#CD5C5C;border: 3px solid black;">
     <!-- Primary Navigation Menu -->
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" style="background-color:red;">
-        <div class="flex justify-between h-16" style="background-color:red;">
-            <div class="flex" style="background-color:red;">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" style="background-color:#CD5C5C;">
+        <div class="flex justify-between h-16" style="background-color:#CD5C5C;">
+            <div class="flex" style="background-color:#CD5C5C;">
                 <!-- Logo -->
                 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -11,26 +11,38 @@
                     <i class="fa fa-home" style="font-size: 32px;"></i>
                     </a>
                 </div>
+                <style>
+.top-nav {
+  background-color: #CD5C5C;
+  border: none;
+  color: black;
+  margin: 4px 2px;
+  opacity: 0.6;
+  transition: 0.3s;
+}
+
+.top-nav:hover {opacity: 1}
+</style>
 
                 <!-- Navigation Links -->
-                <div style="border: 3px solid red;background-color:#CD5C5C;font-weight:bold;padding-bottom: 39px;"> 
-                  <a class="nav-link" style="border: 3px solid black;background-color:red;padding-bottom: 39px;padding-top:3px" href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
+                <div class="top-nav" style="border: 3px solid #CD5C5C ;background-color:#CD5C5C;font-weight:bold;padding-bottom: 39px;overflow: hidden;" > 
+                  <a class="top-nav" style="border: 3px solid black;background-color:white;padding-bottom: 39px;padding-top:3px;" href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
+                        {{ __('DASHBOARD') }}
 </a>          
-                    <a class="nav-link" style="border: 3px solid black;background-color:red;padding-bottom: 39px;padding-top:3px" href="{{ route('startservice') }}" :active="request()->routeIs('startservice')">
-                        {{ __('Start Service') }}
+                    <a class="top-nav"  style="border: 3px solid black;background-color:white;padding-bottom: 39px;padding-top:3px" href="{{ route('startservice') }}" :active="request()->routeIs('startservice')">
+                        {{ __('START SERVICE') }}
 </a>
-                    <a class="nav-link" style="border: 3px solid black;background-color:red;padding-bottom: 39px;padding-top:3px" href="{{ route('servicelist') }}" :active="request()->routeIs('servicelist')">
-                        {{ __('Service List') }}
+                    <a class="top-nav" style="border: 3px solid black;background-color:white;padding-bottom: 39px;padding-top:3px" href="{{ route('servicelist') }}" :active="request()->routeIs('servicelist')">
+                        {{ __('SERVICE LIST') }}
 </a>
-                    <a class="nav-link" style="border: 3px solid black;background-color:red;padding-bottom: 39px;padding-top:3px" href="{{ route('servicedata') }}" :active="request()->routeIs('servicedata')">
-                        {{ __('Service Data') }}
+                    <a class="top-nav" style="border: 3px solid black;background-color:white;padding-bottom: 39px;padding-top:3px" href="{{ route('servicedata') }}" :active="request()->routeIs('servicedata')">
+                        {{ __('SERVICE DATA') }}
 </a>
-                    <a class="nav-link" style="border: 3px solid black;background-color:red;padding-bottom: 39px;padding-top:3px" href="{{ route('serviceprogressmenu') }}" :active="request()->routeIs('serviceprogressmenu')">
-                        {{ __('Service Progress') }}
+                    <a class="top-nav" style="border: 3px solid black;background-color:white;padding-bottom: 39px;padding-top:3px" href="{{ route('serviceprogressmenu') }}" :active="request()->routeIs('serviceprogressmenu')">
+                        {{ __('SERVICE PROGRESS') }}
 </a>
-<a class="nav-link" style="border: 3px solid black;background-color:red;padding-bottom: 39px;padding-top:3px" href="{{ route('customerreviewsandratings') }}" :active="request()->routeIs('customerreviewsandratings')">
-                        {{ __('Customer Reviews and Ratings') }}
+<a class="top-nav" style="border: 3px solid black;background-color:white;padding-bottom: 39px;padding-top:3px" href="{{ route('customerreviewsandratings') }}" :active="request()->routeIs('customerreviewsandratings')">
+                        {{ __('CUSTOMER REVIEWS AND RATINGS') }}
 </a>
                 </div>
             </div>
@@ -111,7 +123,7 @@
                             @endif
                         </x-slot>
 
-                        <x-slot name="content" style="border: 3px solid black;background-color:#CD5C5C;">
+                        <x-slot name="content" style="border: 3px solid black;background-color:red;">
                             <!-- Account Management -->
                             <div class="block px-4 py-2 text-xs text-red-400">
                                 {{ __('Manage Account') }}
@@ -178,9 +190,9 @@
                 </div>
             </div>
 
-            <div class="mt-3 space-y-1" style="border: 3px solid black;background-color:#CD5C5C;">
+            <div class="mt-3 space-y-1" style="border: 3px solid black;background-color:red;">
                 <!-- Account Management -->
-                <x-responsive-nav-link href="{{ route('profile.show') }}" :active="request()->routeIs('profile.show')" style="border: 3px solid black;background-color:#CD5C5C;">
+                <x-responsive-nav-link href="{{ route('profile.show') }}" :active="request()->routeIs('profile.show')" style="border: 3px solid black;background-color:red;">
                     {{ __('Profile') }}
                 </x-responsive-nav-link>
 

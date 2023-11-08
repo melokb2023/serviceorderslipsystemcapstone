@@ -1,10 +1,11 @@
+@include('layouts.staffnavigation')
 <x-app-layout>
   
 
-    <div class="py-12" style="background-color:red">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8" style="background-color:red">
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg" style="background-color:red">
-                <div class="p-6 text-gray-900 dark:text-gray-100" style="background-color:red">
+    <div class="py-12" style="background-color:#CD5C5C">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8" style="background-color:#CD5C5C">
+            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg" style="background-color:#CD5C5C">
+                <div class="p-6 text-gray-900 dark:text-gray-100" style="background-color:#CD5C5C">
 
                     <h6>List of Students</h6>
                     <table class="border-separate border-spacing-5" style="width:100%">
