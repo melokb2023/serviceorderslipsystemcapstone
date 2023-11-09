@@ -43,7 +43,7 @@
 }
 
 </style>
-                <a class="button" href="{{ route('add-service') }}">
+                <a class="button" href="{{ route('add-appointment') }}">
                         Start Appointment
                   
 </x-app-layout>
