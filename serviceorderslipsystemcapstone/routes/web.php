@@ -7,6 +7,7 @@ use App\Http\Controllers\ServiceProgressController;
 use App\Http\Controllers\StaffDatabaseController;
 use App\Http\Controllers\CustomerAppointmentController;
 use App\Http\Controllers\RatingsController;
+use App\Http\Controllers\FinancialandPerformanceDataController;
 
 
 /*
@@ -26,6 +27,13 @@ Route::get('/', function () {
 
 
 Route::get('/home', [HomeController::class,'redirect']);
+Route::get('/financialperformancereport', [FinancialandPerformanceDataController::class, 'LineChart']) 
+   ->middleware(['auth', 'verified'])
+   ->name('financialperformancereport');
+
+Route::get('/financialperformancereport', function () {
+      return view('admin.financialperformancereport');
+  })->name('financialperformancereport');
 
 Route::get('/startservice', function () {
     return view('admin.startservice');
@@ -74,6 +82,14 @@ Route::get('/customerappointment', function () {
 Route::get('/startappointment', function () {
    return view('customer.startappointment');
 })->name('startappointment');
+
+Route::get('/add-appointment', function () {
+   return view('customer.customerappointment');
+})->name('add-appointment');
+
+Route::get('/ratetheservice', function () {
+   return view('customer.customerrating');
+})->name('ratetheservice');
 
 Route::post('/customerappointment/add',[CustomerAppointmentController::class, 'store'] )
    ->middleware(['auth', 'verified'])

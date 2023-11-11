@@ -32,6 +32,9 @@
                     <a class="top-nav" style="border: 3px solid black;background-color:white;padding-bottom: 39px;padding-top:3px" href="{{ route('customerappointment') }}" :active="request()->routeIs('customerappontment')">
                         {{ __('CUSTOMER LIST') }}
 </a>
+<a class="top-nav" style="border: 3px solid black;background-color:white;padding-bottom: 39px;padding-top:3px" href="{{ route('ratetheservice') }}" :active="request()->routeIs('ratetheservice')">
+                        {{ __('RATE THE SERVICE') }}
+</a>
                 </div>
             </div>
 

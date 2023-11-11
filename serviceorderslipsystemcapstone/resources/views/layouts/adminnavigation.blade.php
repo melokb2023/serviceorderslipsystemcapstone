@@ -44,6 +44,9 @@
 <a class="top-nav" style="border: 3px solid black;background-color:white;padding-bottom: 39px;padding-top:3px" href="{{ route('customerreviewsandratings') }}" :active="request()->routeIs('customerreviewsandratings')">
                         {{ __('CUSTOMER REVIEWS AND RATINGS') }}
 </a>
+<a class="top-nav" style="border: 3px solid black;background-color:white;padding-bottom: 39px;padding-top:3px" href="{{ route('financialperformancereport') }}" :active="request()->routeIs('financialperformancereport')">
+                        {{ __('FINANCIAL/PERFORMANCE REPORT') }}
+</a>
                 </div>
             </div>
 
