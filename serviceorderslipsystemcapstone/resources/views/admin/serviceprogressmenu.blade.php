@@ -46,7 +46,7 @@
                 <a class="button" href="{{ route('serviceprogress') }}">
                         Service Progress Data
 </a>
-                <a class="button" href="{{ route('serviceprogressmenu') }}">
+                <a class="button" href="{{ route('add-serviceprogress') }}">
                         Add Service Progress
 </a>
                   

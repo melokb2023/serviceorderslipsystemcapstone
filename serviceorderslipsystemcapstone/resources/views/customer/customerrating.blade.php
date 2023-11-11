@@ -21,50 +21,81 @@
 <br>
 <br>
 <br>
-                    <h6>List of Customers</h6>
+                
    <style>
       /* rating */
-.rating-css div {
-    color: #ffe400;
-    font-size: 30px;
-    font-family: sans-serif;
-    font-weight: 800;
-    text-align: center;
-    text-transform: uppercase;
-    padding: 20px 0;
-  }
-  .rating-css input {
-    display: none;
-  }
-  .rating-css input + label {
-    font-size: 60px;
-    text-shadow: 1px 1px 0 #8f8420;
-    cursor: pointer;
-  }
-  .rating-css input:checked + label ~ label {
-    color: #b4afaf;
-  }
-  .rating-css label:active {
-    transform: scale(0.8);
-    transition: 0.3s ease;
-  }
+/* Import Google font - Poppins */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+body {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(45deg, #ffd195, #ffb283);
+}
+.rating-box {
+  position: relative;
+  background: #fff;
+  padding: 25px 50px 35px;
+  border-radius: 25px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.05);
+}
+.rating-box header {
+  font-size: 22px;
+  color: #dadada;
+  font-weight: 500;
+  margin-bottom: 20px;
+  text-align: center;
+}
+.rating-box .stars {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+.stars i {
+  color: #e6e6e6;
+  font-size: 35px;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+.stars i.active {
+  color: #ff9c1a;
+}
 
 /* End of Star Rating */
       </style>
-                    <div class="rating-css">
-    <div class="star-icon">
-        <input type="radio" value="1" name="product_rating" checked id="rating1">
-        <label for="rating1" class="fa fa-star"></label>
-        <input type="radio" value="2" name="product_rating" id="rating2">
-        <label for="rating2" class="fa fa-star"></label>
-        <input type="radio" value="3" name="product_rating" id="rating3">
-        <label for="rating3" class="fa fa-star"></label>
-        <input type="radio" value="4" name="product_rating" id="rating4">
-        <label for="rating4" class="fa fa-star"></label>
-        <input type="radio" value="5" name="product_rating" id="rating5">
-        <label for="rating5" class="fa fa-star"></label>
+     <!DOCTYPE html>
+<!-- Coding By CodingNepal - codingnepalweb.com -->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-pUA-Compatible" content="ie=edge" />
+    <title>Star Rating in HTML CSS & JavaScript</title>
+    <link rel="stylesheet" href="style.css" />
+    <!-- Fontawesome CDN Link -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
+   <script src="script.js" defer></script>
+  </head>
+  <body>
+    <div class="rating-box">
+      <header>How was your experience?</header>
+      <div class="stars">
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+      </div>
     </div>
-</div>
+  </body>
+</html>>
   <br>                  
    <br>
   <br>

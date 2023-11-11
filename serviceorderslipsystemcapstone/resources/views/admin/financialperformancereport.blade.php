@@ -1,5 +1,14 @@
 @include('layouts.adminnavigation')
-<x-app-layout>
+<x-app-layout >
+<style>
+    *{
+      background-color:#CD5C5C;
+    }
+    head{
+      background-color:#CD5C5C;
+    }
+    
+  </style>
 <html>
   <head>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>

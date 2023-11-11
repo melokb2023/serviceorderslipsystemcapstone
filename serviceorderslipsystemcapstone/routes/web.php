@@ -91,6 +91,10 @@ Route::get('/ratetheservice', function () {
    return view('customer.customerrating');
 })->name('ratetheservice');
 
+Route::get('/add-serviceprogress', function () {
+   return view('admin.serviceprogressadd');
+})->name('add-serviceprogress');
+
 Route::post('/customerappointment/add',[CustomerAppointmentController::class, 'store'] )
    ->middleware(['auth', 'verified'])
    ->name('customerappointment-store');
