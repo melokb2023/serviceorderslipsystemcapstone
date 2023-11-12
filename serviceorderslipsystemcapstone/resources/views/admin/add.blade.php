@@ -4,6 +4,15 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8" style="background-color:#CD5C5C;">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg" style="background-color:#CD5C5C;text-align:center">
                 <div class="p-6 text-gray-900 dark:text-gray-100" style="background-color:#CD5C5C;">
+                        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="resources/css/style.scss" rel="stylesheet" />
                 <style>
 body {font-family: Century;}
 * {box-sizing: border-box;}
@@ -50,6 +59,8 @@ button[type=submit] {
 button[type=submit]:hover {
   background-color: #45a049;
 }
+
+
 
 
 

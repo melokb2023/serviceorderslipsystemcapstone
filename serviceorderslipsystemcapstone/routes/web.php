@@ -59,6 +59,7 @@ Route::get('/staffdatabase', function () {
     return view('staff.staffdatabase');
 })->name('staffdatabase');
 
+
 Route::get('/customer', function () {
    return view('customer.customerappointment');
 })->name('customer');
@@ -94,6 +95,8 @@ Route::get('/ratetheservice', function () {
 Route::get('/add-serviceprogress', function () {
    return view('admin.serviceprogressadd');
 })->name('add-serviceprogress');
+
+
 
 Route::post('/customerappointment/add',[CustomerAppointmentController::class, 'store'] )
    ->middleware(['auth', 'verified'])
@@ -186,9 +189,7 @@ Route::get('/serviceprogress/edit/{servicenumber}', [ServiceProgressController::
    ->name('serviceprogress-edit');
 
 
-
-
-
+  
 //STAFF DATABASE
 
 
@@ -211,11 +212,34 @@ Route::get('/staffdatabase', [StaffDatabaseController::class, 'getServiceInfo'])
    ->middleware(['auth', 'verified'])
    ->name('staffdatabase');
 
+   ///////RATINGS CONTROLLER
 
-/////CUSTOMERRATING
+/////CUSTOMER RATING
+
+Route::get('/customerrating/add', [RatingsController::class, 'getAppointmentInfo'])
+   ->middleware(['auth', 'verified'])
+   ->name('add-customerrating');
+
+Route::get('/customerrating', [RatingsController::class, 'getRatingInfo'])
+   ->middleware(['auth', 'verified'])
+   ->name('customerrating');
+
+Route::post('/customerrating/add',[RatingsController::class, 'store'] )
+->middleware(['auth', 'verified'])
+->name('customerrating-store');
+
+Route::get('/customerrating', [RatingsController::class, 'index']) 
+   ->middleware(['auth', 'verified'])
+   ->name('customerrating');
+
+//View Student Info
+Route::get('/customerrating/{cr}', [RatingsController::class, 'show']) 
+   ->middleware(['auth', 'verified'])
+   ->name('customerrating-show');
+
 
 Route::get('ratings','RatingsController@ratings');
-
+Route::post('review-store', 'BookingController@reviewstore')->name('review.store');
 
 //Route::post('/service/add',[StudentController::class, 'store'] )
 //->middleware(['auth', 'verified'])
@@ -230,3 +254,8 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 });
+
+
+
+
+

@@ -11,14 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('ratings', function (Blueprint $table) {
-            $table->id();
-            $table->integer('user_id');
-            $table->integer('product_id');
-            $table->text('review');
+        Schema::create('customerrating', function (Blueprint $table) {
+            $table->id('ratingno');
+            $table->unsignedBigInteger('customerappointmentnumber');
+            $table->string('review');
             $table->integer('rating');
-            $table->tinyInteger('status');
             $table->timestamps();
+            $table->foreign('customerappointmentnumber')->references('customerappointmentnumber')->on('customerappointment');
         });
     }
 

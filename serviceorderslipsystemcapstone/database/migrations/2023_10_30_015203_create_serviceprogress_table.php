@@ -17,6 +17,7 @@ return new class extends Migration
             $table->dateTime('dateandtime', $precision = 0);
             $table->string('serviceprogress');
             $table->timestamps();
+            $table->foreign('serviceno')->references('serviceno')->on('servicedata');
         });
     }
 

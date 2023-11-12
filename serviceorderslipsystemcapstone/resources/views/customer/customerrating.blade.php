@@ -1,123 +1,143 @@
-@include('layouts.customernavigation')
+@include('layouts.adminnavigation')
 <x-app-layout>
-   
+  <div class="py-12" style="background-color:#CD5C5C;">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8" style="background-color:#CD5C5C;">
+            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg" style="background-color:#CD5C5C;text-align:center">
+                <div class="p-6 text-gray-900 dark:text-gray-100" style="background-color:#CD5C5C;">
+                <style>
+body {font-family: Century;}
+* {box-sizing: border-box;}
 
-    <div class="py-12" style="background-color:red;width: 100%">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8" style="background-color:red;width: 100%">
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg" style="background-color:#ff00cc">
-                <div class="p-6 text-gray-900 dark:text-gray-100">
-                    
-                  <br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-                
-   <style>
-      /* rating */
-/* Import Google font - Poppins */
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
-* {
-  margin: 0;
-  padding: 0;
+input[type=text], select, textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
   box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
+  margin-top: 6px;
+  margin-bottom: 16px;
+  resize: vertical;
 }
-body {
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: linear-gradient(45deg, #ffd195, #ffb283);
-}
-.rating-box {
-  position: relative;
-  background: #fff;
-  padding: 25px 50px 35px;
-  border-radius: 25px;
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.05);
-}
-.rating-box header {
-  font-size: 22px;
-  color: #dadada;
-  font-weight: 500;
-  margin-bottom: 20px;
-  text-align: center;
-}
-.rating-box .stars {
-  display: flex;
-  align-items: center;
-  gap: 25px;
-}
-.stars i {
-  color: #e6e6e6;
-  font-size: 35px;
+
+button[type=submit] {
+  background-color: #04AA6D;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
   cursor: pointer;
-  transition: color 0.2s ease;
-}
-.stars i.active {
-  color: #ff9c1a;
 }
 
-/* End of Star Rating */
-      </style>
-     <!DOCTYPE html>
-<!-- Coding By CodingNepal - codingnepalweb.com -->
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-pUA-Compatible" content="ie=edge" />
-    <title>Star Rating in HTML CSS & JavaScript</title>
-    <link rel="stylesheet" href="style.css" />
-    <!-- Fontawesome CDN Link -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
-   <script src="script.js" defer></script>
-  </head>
-  <body>
-    <div class="rating-box">
-      <header>How was your experience?</header>
-      <div class="stars">
-        <i class="fa-solid fa-star"></i>
-        <i class="fa-solid fa-star"></i>
-        <i class="fa-solid fa-star"></i>
-        <i class="fa-solid fa-star"></i>
-        <i class="fa-solid fa-star"></i>
-      </div>
+button[type=submit]:hover {
+  background-color: #45a049;
+}
+
+.container {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+
+button[type=submit] {
+  background-color: #04AA6D;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button[type=submit]:hover {
+  background-color: #45a049;
+}
+
+.checked {
+  color: orange;
+}
+
+</style>
+                   <h6>Errors Encountered</h6>
+                    @if($errors)
+                       <ul>
+                          @foreach($errors->all() as $error)
+                         <li>{{$error}}</li>
+                    @endforeach
+                         </ul>
+                    @endif
+                <form style="align-items:center" method = "POST" action="{{ route('add-customerrating') }}">
+                        @csrf
+                <div class="flex-items-center" style="text-align:center"><label for="Customer Appointment Number">Appointment Number</label>
+                    <div>  
+                       <select name="xcustomerappointmentnumber">
+                            @foreach($customerappointment as $customerinfo)
+                            <option value="{{$customerinfo->customerappointmentnumber}} "> {{$customerinfo->customerappointmentnumber}}</option>
+                            @endforeach
+                        </select>
+                   </div>
+                </div>  
+                      
+<div class="flex-items-center"><label for="Review">Review</label>
+                    <div> 
+                    <input type="textarea" name="xreview" value="{{old('xreview')}}"/>
+                    </div>
+</div>
+   
+               <div class="flex-items-center"><label for="Rating">Rating</label>
+                    <div>
+                    <select name="xrating">
+                        <option value="1">
+                           <span class="fa fa-checked"></span>
+                           <span class="fa fa-star"></span>
+                           <span class="fa fa-star"></span>
+                           <span class="fa fa-star"></span>
+                           <span class="fa fa-star"></span>
+                        </option>
+                        <option value="2">
+                        <span class="fa fa-checked"></span>
+                        <span class="fa fa-checked"></span>
+                           <span class="fa fa-star"></span>
+                           <span class="fa fa-star"></span>
+                           <span class="fa fa-star"></span>
+                        </option>
+                        <option value="3">
+                        <span class="fa fa-checked"></span>
+                        <span class="fa fa-checked"></span>
+                        <span class="fa fa-checked"></span>
+                           <span class="fa fa-star"></span>
+                           <span class="fa fa-star"></span>
+                        </option>
+                        <option value="4">
+                        <span class="fa fa-checked"></span>
+                        <span class="fa fa-checked"></span>
+                        <span class="fa fa-checked"></span>
+                        <span class="fa fa-checked"></span>
+                           <span class="fa fa-star"></span>
+
+                        </option>
+                        <option value="5">
+                        <span class="fa fa-checked"></span>
+                        <span class="fa fa-checked"></span>
+                        <span class="fa fa-checked"></span>
+                        <span class="fa fa-checked"></span>
+                        <span class="fa fa-checked"></span>
+                        </option>
+</select>
+                    </div>
+</div>
+      
+             <button class="submit" type ="submit" style="text-align:center;background-color:black"> Submit Info </button>
+                   </form>
+                   <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+                </div>
+            </div>
+        </div>
     </div>
-  </body>
-</html>>
-  <br>                  
-   <br>
-  <br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-
-
-
-
-                  
 </x-app-layout>

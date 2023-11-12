@@ -9,13 +9,11 @@ class Rating extends Model
 {
     use HasFactory;
 
-    protected $table= 'ratings';
-
+    protected $table= 'customerrating';
+    
     protected $fillable = [
-        'user_id',
-        'product_id',
-        'review',
-        'rating',
-        'status',
-   ];
+         'customerappointmentnumber',
+         'review',
+         'rating',
+    ];
 }

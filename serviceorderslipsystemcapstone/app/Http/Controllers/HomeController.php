@@ -19,14 +19,12 @@ class HomeController extends Controller
 
             else if(Auth::user()->usertype=='1')
             {
-                return view('staffdatabase');
+                return view('staff.staffdatabasemenu');
             }
-        
-           else
-           {
-                return view('customer');
-        }
-    
+         
+            else{
+                return view('customer.startappointment');
+           }
         
         }
 
