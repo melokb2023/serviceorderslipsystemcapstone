@@ -82,4 +82,5 @@ class ServiceProgressController extends Controller
         return view('admin.serviceprogressadd', compact('servicedata'));
     }
  
+    
 }
