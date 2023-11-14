@@ -16,7 +16,6 @@
                       <tr>
                         <th>Service Number</th>
                         <th>Appointment Number</th>
-                        <th>Customer Name</th>
                         <th>Contact Number</th>
                         <th>List Of Problems</th>
                         <th>Email</th>
@@ -30,14 +29,13 @@
                     <tbody>
                     @foreach($servicedata as $serviceinfo)
                        <tr>
-                        <td>{{$serviceinfo->servicenumber}}</td>
-                        <td>{{$serviceinfo->appointmentnumber}}</td>
-                        <td>{{$serviceinfo->customername}}</td>
+                        <td>{{$serviceinfo->serviceno}}</td>
+                        <td>{{$serviceinfo->customerappointmentnumber}}</td>
                         <td>{{$serviceinfo->contactnumber}}</td>
                         <td>{{$serviceinfo->listofproblems}}</td>
                         <td>{{$serviceinfo->email}}</td>
                         <td>{{$serviceinfo->typeofservice}}</td>
-                        <td>{{$serviceinfo->maintenance}}</td>
+                        <td>{{$serviceinfo->maintenancerequired}}</td>
                         <td>{{$serviceinfo->customerpassword}}</td>
                         <td>{{$serviceinfo->defectiveunits}}</td>
                         <td>{{$serviceinfo->assignedstaff}}</td>

@@ -7,6 +7,7 @@ use App\Http\Controllers\ServiceProgressController;
 use App\Http\Controllers\StaffDatabaseController;
 use App\Http\Controllers\CustomerAppointmentController;
 use App\Http\Controllers\RatingsController;
+use App\Http\Controllers\LineChartController;
 use App\Http\Controllers\FinancialandPerformanceDataController;
 use Illuminate\Support\Facades\Mail;
 
@@ -27,13 +28,7 @@ Route::get('/', function () {
 
 
 Route::get('/home', [HomeController::class,'redirect']);
-Route::get('/financialperformancereport', [FinancialandPerformanceDataController::class, 'LineChart']) 
-   ->middleware(['auth', 'verified'])
-   ->name('financialperformancereport');
 
-Route::get('/financialperformancereport', function () {
-      return view('admin.financialperformancereport');
-  })->name('financialperformancereport');
 
 Route::get('/startservice', function () {
     return view('admin.startservice');
@@ -96,6 +91,9 @@ Route::get('/add-serviceprogress', function () {
    return view('admin.serviceprogressadd');
 })->name('add-serviceprogress');
 
+Route::get('/financialperformancereport', function () {
+   return view('admin.financialperformancereport');
+})->name('financialperformancereport');
 
 
 Route::post('/customerappointment/add',[CustomerAppointmentController::class, 'store'] )
@@ -125,6 +123,7 @@ Route::get('/customerappointment/edit/{cano}', [CustomerAppointmentController::c
 Route::patch('/customerappointment/update/{cano}', [CustomerAppointmentController::class, 'update']) 
    ->middleware(['auth', 'verified'])
    ->name('customerappointment-update');
+
 
 
 //Store Student info to create function under StudentController

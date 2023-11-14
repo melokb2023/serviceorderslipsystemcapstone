@@ -1,39 +1,30 @@
 @include('layouts.adminnavigation')
 <x-app-layout>
 
-    <div class="py-12" style="background-color:#CD5C5C;width: 100%">
-     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8" style="background-color:#CD5C5C;width: 100%">
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg" style="background-color:#CD5C5C;width: 100%">
-                <div class="p-6 text-gray-900 dark:text-gray-100" style="background-color:#CD5C5C;width: 100%">
+    <div class="py-12" style="background-color:#CD5C5C;">
+    
+
+    
                 <link rel="stylesheet" href="style.scss">
                 <style>
-#customers {
-  font-family: "Century Gothic";
-  border-collapse: collapse;
-  width: 100%;
-}
 
-#customers td, #customers th {
-  border: 1px solid #FFFFFF;
-  padding: 8px;
-}
 
-#customers tr:nth-child(even){background-color: #ddd;}
+table,tr {
+  font-family: "Arial";
+  
+  width: 5%;
+  
+ }
 
-#customers tr:hover {background-color: #ddd;}
-
-#customers th {
-  padding-top: 12px;
-  padding-bottom: 12px;
-  text-align: center;
-  background-color: #04AA6D;
-  color: white;
-}
+ td{
+    font-family: "Arial";
+    background-color:grey;
+ }
 </style>
     
                
                     <h6>Service Information</h6>                
-                    <table id="customers" style="border: 5px solid black;width: 100%">
+                    <table id="customers" style="border: 1px solid black;">
                     <tr>
                         <th>Service Number</th>
                         <th>Customer Appointment Number</th>

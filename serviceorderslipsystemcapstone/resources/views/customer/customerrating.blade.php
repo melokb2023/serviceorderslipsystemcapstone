@@ -8,6 +8,8 @@
 body {font-family: Century;}
 * {box-sizing: border-box;}
 
+
+
 input[type=text], select, textarea {
   width: 100%;
   padding: 12px;
@@ -51,9 +53,14 @@ button[type=submit]:hover {
   background-color: #45a049;
 }
 
-.checked {
-  color: orange;
+.star{
+  color:orange;
 }
+
+.description{
+  color:black;
+}
+
 
 </style>
                    <h6>Errors Encountered</h6>
@@ -85,41 +92,20 @@ button[type=submit]:hover {
                <div class="flex-items-center"><label for="Rating">Rating</label>
                     <div>
                     <select name="xrating">
-                        <option value="1">
-                           <span class="fa fa-checked"></span>
-                           <span class="fa fa-star"></span>
-                           <span class="fa fa-star"></span>
-                           <span class="fa fa-star"></span>
-                           <span class="fa fa-star"></span>
+                        <option style="color:orange" value="1">
+                        <h2 class = "star"> *  - <h3 class = "description">Very Poor</h3>
                         </option>
-                        <option value="2">
-                        <span class="fa fa-checked"></span>
-                        <span class="fa fa-checked"></span>
-                           <span class="fa fa-star"></span>
-                           <span class="fa fa-star"></span>
-                           <span class="fa fa-star"></span>
+                        <option style="color:orange" value="2">
+                        <h2 class = "star"> * * </h2> - <h3 class = "description"> Poor</h3>
                         </option>
-                        <option value="3">
-                        <span class="fa fa-checked"></span>
-                        <span class="fa fa-checked"></span>
-                        <span class="fa fa-checked"></span>
-                           <span class="fa fa-star"></span>
-                           <span class="fa fa-star"></span>
+                        <option style="color:orange" value="3">
+                        <h2 class = "star"> * * *</h2> - <h3 class = "description"> Average</h3>
                         </option>
-                        <option value="4">
-                        <span class="fa fa-checked"></span>
-                        <span class="fa fa-checked"></span>
-                        <span class="fa fa-checked"></span>
-                        <span class="fa fa-checked"></span>
-                           <span class="fa fa-star"></span>
-
+                        <option style="color:orange" value="4">
+                        <h2 class = "star"> * * * *</h2> - <h3 class = "description"> Good</h3>
                         </option>
-                        <option value="5">
-                        <span class="fa fa-checked"></span>
-                        <span class="fa fa-checked"></span>
-                        <span class="fa fa-checked"></span>
-                        <span class="fa fa-checked"></span>
-                        <span class="fa fa-checked"></span>
+                        <option style="color:orange" value="5">
+                        <h2 class = "star"> * * * * * </h2> - <h3 class = "description"> Very Good</h3>
                         </option>
 </select>
                     </div>

@@ -37,7 +37,7 @@ class RatingsController extends Controller
         $customerrating ->review=$request->xreview;
         $customerrating ->rating=$request->xrating;
         $customerrating ->save();
-        return redirect()->route('customerrating');
+        return view('customer.startappointment');
     }
 
     /**
