@@ -8,7 +8,7 @@ use App\Http\Controllers\StaffDatabaseController;
 use App\Http\Controllers\CustomerAppointmentController;
 use App\Http\Controllers\RatingsController;
 use App\Http\Controllers\FinancialandPerformanceDataController;
-
+use Illuminate\Support\Facades\Mail;
 
 /*
 |--------------------------------------------------------------------------
@@ -255,7 +255,27 @@ Route::middleware([
     })->name('dashboard');
 });
 
+//Send Notification Both Admin/Customer
+Route::get('send-mail', function () {
 
+   $details = [
+       'title' => 'Mail from Compusource.com',
+       'body' => 'The Service is Complete.'
+   ];
+
+   Mail::to('vanicarmelle18@gmail.com')->send(new \App\Mail\MyMail($details));
+  
+   dd("Email is Sent.");
+
+   $details2 = [
+      'title' => 'Mail from Compusource.com Staff ',
+      'body' => 'The Work is Complete.'
+  ];
+  
+   Mail::to('kyle.melo@lccdo.edu.ph')->send(new \App\Mail\MyMail($details2));
+  
+   dd("Email is Sent.");
+});
 
 
 
