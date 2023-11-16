@@ -27,7 +27,7 @@ class StaffDatabaseController extends Controller
 //
        //echo "Grades data successfully saved in the database";
    
-       $servicedata = StaffDatabase:: join('customerappointment', 'servicedata.customerappointmentnumber', '=', 'customerappointment.customerappointmentnumber')->get();
+       $staffdatabase = StaffDatabase:: join('customerappointment', 'servicedata.customerappointmentnumber', '=', 'customerappointment.customerappointmentnumber')->get();
        return view('staff.staffdatabase', compact('staffdatabase'));
      
     }
@@ -45,23 +45,7 @@ class StaffDatabaseController extends Controller
      */
     public function store(Request $request)
     {
-        $servicedata = new Service();
-        $servicedata ->customerappointmentnumber=$request->xcustomerappointmentnumber;
-        $servicedata ->contactnumber=$request->xcontactnumber;
-        $servicedata ->listofproblems=$request->xlistofproblems;
-        $servicedata ->email=$request->xemail;
-        $servicedata ->address=$request->xaddress;
-        $servicedata ->typeofservice=$request->xtypeofservice;
-        $servicedata ->maintenancerequired=$request->xmaintenancerequired;
-        $servicedata ->listofproblems=$request->xlistofproblems;
-        $servicedata ->customerpassword=$request->xcustomerpassword;
-        $servicedata ->defectiveunits=$request->xdefectiveunits;
-        $servicedata ->assignedstaff=$request->xassignedstaff;
-        $servicedata->viewtasks = "None";
-        $servicedata->assignedtasks = "None";
-        $servicedata->workprogress = "Ongoing";
-        $servicedata ->save();
-        return redirect()->route('staffdatabase');
+      
     }
 
     /**
@@ -88,15 +72,14 @@ class StaffDatabaseController extends Controller
     public function update(Request $request, string $id)
     {
         $validateData =$request->validate([
-            'xviewtasks' => ['required', 'max:50'],
+            
             'xactionstaken' =>['required', 'max:70'],
             'xworkprogress'=>['required'],
         ]);
 
         $staffdatabase= StaffDatabase::where('staffnumber', $id)
         ->update(
-             ['viewtasks' => $request->xviewtasks,
-             'actionstaken'=> $request->xactionstaken,
+             ['actionstaken'=> $request->xactionstaken,
              'workprogress'=> $request->xworkprogress,
              ]);
         return redirect()->route('staffdatabase');

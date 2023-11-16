@@ -37,6 +37,21 @@
                     <input type="text" name="xlastname" value="{{$customer->lastname}}"/>
                     </div>
 </div>
+                <div class="flex-items-center"><label for="Contact Number">Contact Number</label>
+                    <div>
+                    <input type="text" name="xcontactnumber" value="{{$customer->contactnumber}}"/>
+                    </div>
+</div>
+                 <div class="flex-items-center"><label for="Email">Email</label>
+                    <div>
+                    <input type="text" name="xemail" value="{{$customer->email}}"/>
+                    </div>
+</div>
+<div class="flex-items-center"><label for="Address">Address</label>
+                    <div>
+                    <input type="text" name="xaddress" value="{{$customer->address}}"/>
+                    </div>
+</div>
                        <div class="flex-items-center"><label for="Appointment Purpose">Appointment Purpose</label>
                     <div>
                     <input type="text" name="xappointmentpurpose" value="{{$customer->appointmentpurpose}}"/>

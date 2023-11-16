@@ -13,9 +13,6 @@
                         <th>Staff Work Number</th>
                         <th>Service Number</th>
                         <th>Customer Appointment Number</th>
-                        <th>Contact Number</th>
-                        <th>Email</th>
-                        <th>Address</th>
                         <th>Type of Service</th>
                         <th>List of Problems</th>
                         <th>Maintenance Required</th>
@@ -30,20 +27,17 @@
 <tbody>
                 @foreach($staffdatabase as $serviceinfo)
                        <tr>
-                       <td>{{$serviceinfo->staffnumber}}</td>
+                        <td>{{$serviceinfo->staffnumber}}</td>
                         <td>{{$serviceinfo->serviceno}}</td>
                         <td>{{$serviceinfo->customerappointmentnumber}}</td>
-                        <td>{{$serviceinfo->contactnumber}}</td>
                         <td>{{$serviceinfo->listofproblems}}</td>
-                        <td>{{$serviceinfo->email}}</td>
-                        <td>{{$serviceinfo->address}}</td>
                         <td>{{$serviceinfo->typeofservice}}</td>
                         <td>{{$serviceinfo->maintenancerequired}}</td>
                         <td>{{$serviceinfo->customerpassword}}</td>
                         <td>{{$serviceinfo->defectiveunits}}</td>
                         <td>{{$serviceinfo->assignedstaff}}</td>
                         <td>{{$serviceinfo->actionstaken}}</td>     
-                         <td>{{$serviceinfo->viewtasks}}</td>
+                        <td>{{$serviceinfo->viewtasks}}</td>
                         <td>{{$serviceinfo->workprogress}}</td>
                         <td>
                             <a class="mt-4 bg-yellow-200 text-black font-bold py-2 px-4 rounded" href= "{{route('staffdatabase-show', ['serviceno' => $serviceinfo->serviceno]) }}" >View</a>

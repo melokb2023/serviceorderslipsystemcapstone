@@ -15,6 +15,9 @@ class CustomerAppointment extends Model
          'firstname',
          'middlename',
          'lastname',
+         'contactnumber',
+         'email',
+         'address',
          'appointnmentpurpose',
          'appointnmenttype',
     ];

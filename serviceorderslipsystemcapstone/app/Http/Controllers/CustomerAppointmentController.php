@@ -33,6 +33,9 @@ class CustomerAppointmentController extends Controller
             'xfirstname' =>['required', 'max:100'],
             'xmiddlename'=>['required','max:100'],
             'xlastname' =>['required', 'max:100'],
+            'xcontactnumber' =>['required', 'max:100'],
+            'xemail' =>['required', 'max:100'],
+            'xaddress' =>['required', 'max:100'],
             'xappointmentpurpose' =>['required', 'max:100'],
             'xappointmenttype' =>['required', 'max:100'],
         ]);
@@ -41,6 +44,9 @@ class CustomerAppointmentController extends Controller
         $customerappointment ->firstname=$request->xfirstname;
         $customerappointment ->middlename=$request->xmiddlename;
         $customerappointment ->lastname=$request->xlastname;
+        $customerappointment ->contactnumber=$request->xcontactnumber;
+        $customerappointment ->email=$request->xemail;
+        $customerappointment ->address=$request->xaddress;
         $customerappointment ->appointmentpurpose=$request->xappointmentpurpose;
         $customerappointment ->appointmenttype=$request->xappointmenttype;
         $customerappointment ->save();
@@ -74,6 +80,9 @@ class CustomerAppointmentController extends Controller
             'xfirstname' =>['required', 'max:100'],
             'xmiddlename'=>['required','max:100'],
             'xlastname' =>['required', 'max:100'],
+            'xcontactnumber' =>['required', 'max:100'],
+            'xemail' =>['required', 'max:100'],
+            'xaddress' =>['required', 'max:100'],
             'xappointmentpurpose' =>['required', 'max:100'],
             'xappointmenttype' =>['required','max:100'],
         ]);
@@ -84,6 +93,9 @@ class CustomerAppointmentController extends Controller
              'firstname'=> $request->xfirstname,
              'middlename'=> $request->xmiddlename,
              'lastname'=> $request->xlastname,
+             'contactnumber'=> $request->xcontactnumber,
+             'email'=> $request->xemail,
+             'address'=> $request->xaddress,
              'appointmentpurpose'=> $request->xappointmentpurpose,
              'appointmenttype'=> $request->xappointmenttype,
              ]);

@@ -13,11 +13,8 @@ class Service extends Model
     
     protected $fillable = [
          'customerappointmentnumber',
-         'contactnumber',
-         'listofproblems',
-         'email',
-         'address',
          'typeofservice',
+         'listofproblems',
          'maintenancerequired',
          'customerpassword',
          'defectiveunits',

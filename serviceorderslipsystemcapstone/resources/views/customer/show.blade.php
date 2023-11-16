@@ -2,7 +2,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Service Data Information') }}
+            {{ __('Customer Appointment Information') }}
         </h2>
     </x-slot>
 
@@ -14,7 +14,11 @@
                     <h6>List of Students</h6>
                     <table class="border-separate border-spacing-5">
                       <tr>
+                        <th>Customer Number</th>
                         <th>Complete Name</th>
+                        <th>Contact Number</th>
+                        <th>Email</th>
+                        <th>Address</th>
                         <th>Appointment Purpose</th>
                         <th>Appointment Type</th>
 </tr>
@@ -23,8 +27,11 @@
                        <tr>
                        <td>{{$customer->customernumber}}</td>
                        <td>{{$customer->firstname}} {{$customer->middlename}} {{$customer->lastname}}</td>
-                        <td>{{$customer->appointmentpurpose}}</td>
-                        <td>{{$customer->appointmenttype}}</td>
+                       <td>{{$customer->contactnumber}}</td>
+                       <td>{{$customer->email}}</td>
+                       <td>{{$customer->address}}</td>
+                       <td>{{$customer->appointmentpurpose}}</td>
+                       <td>{{$customer->appointmenttype}}</td>
                     </tr>
                         @endforeach
                    </tbody>

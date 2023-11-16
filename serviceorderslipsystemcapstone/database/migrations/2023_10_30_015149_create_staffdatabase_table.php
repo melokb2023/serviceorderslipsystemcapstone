@@ -16,10 +16,11 @@ return new class extends Migration
             $table->id('staffnumber');
             $table->unsignedBigInteger('customerappointmentnumber');
             $table->unsignedBigInteger('serviceno');
-            $table->string('listofproblems',50);
             $table->string('typeofservice',50);
+            $table->string('listofproblems',50);
             $table->string('maintenancerequired',50);
             $table->string('defectiveunits',50);
+            $table->string('customerpassword',100);
             $table->string('viewtasks',100);
             $table->string('actionstaken',100)->default('None');
             $table->string('workprogress')->default('Ongoing');

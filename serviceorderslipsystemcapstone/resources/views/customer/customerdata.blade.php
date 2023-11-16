@@ -25,6 +25,9 @@
                         <tr style="text-align:center">
                             <th>Appointment Number</th>
                             <th>Complete Name</th>
+                            <th>Contact Number</th>
+                            <th>Email</th>
+                            <th>Address</th>
                             <th>Appointment Purpose</th>
                             <th>Appointment Type</th>
                             <th>Options</th>
@@ -34,14 +37,17 @@
                    <tr style="text-align:center">
                         <td>{{$customer->customerappointmentnumber}}</td>
                         <td>{{$customer->firstname}} {{$customer->middlename}} {{$customer->lastname}}</td>
+                        <td>{{$customer->contactnumber}}</td>
+                        <td>{{$customer->email}}</td>
+                        <td>{{$customer->address}}</td>
                         <td>{{$customer->appointmentpurpose}}</td>
                         <td>{{$customer->appointmenttype}}</td>
-                        <td><a class="mt-4 bg-yellow-200 text-black font-bold py-2 px-4 rounded" style="background-color:yellow" href= "{{route('customerappointment-show', ['cano' => $customer->customerappointmentnumber]) }}" >View</a>
-                            <a class="mt-4 bg-green-200 text-black font-bold py-2 px-4 rounded" style="background-color:green" href= "{{route('customerappointment-edit', ['cano' => $customer->customerappointmentnumber]) }}" >Edit</a>
-                            <form method="POST" action = "{{ route('customerappointment-delete', ['cano' => $customer->customerappointmentnumber ])  }}" onclick="return confirm('Are you sure you want to delete this record?')">
+                        <td> <a style="background-color:yellow;width: 100%;display: block;font-weight:bold"  href= "{{route('customerappointment-show', ['cano' => $customer->customerappointmentnumber]) }}" > View</a>
+                             <a style="background-color:green;width: 100%;display: block;font-weight:bold" href= "{{route('customerappointment-edit', ['cano' => $customer->customerappointmentnumber]) }}" >Edit</a>
+                             <form method="POST" action = "{{ route('customerappointment-delete', ['cano' => $customer->customerappointmentnumber ])  }}" onclick="return confirm('Are you sure you want to delete this record?')">
                            @csrf
                            @method('delete')
-                           <button class="mt-4 bg-red-200 text-black font-bold py-2 px-4 rounded" style="background-color:red" type="submit" >Delete</a>
+                           <button style="background-color:red;width: 100%;display: block;font-weight:bold" type="submit" >Delete</a>
 </form>
                         </td>
                     </tr>

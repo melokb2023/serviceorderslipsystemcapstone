@@ -74,87 +74,69 @@ button[type=submit]:hover {
                     @endforeach
                          </ul>
                     @endif
-                <form style="align-items:center" method = "POST" action="{{ route('add-service') }}">
-                        @csrf
-                <div class="flex-items-center" style="text-align:center"><label for="Customer Appointment Number">Appointment Number</label>
-                    <div>  
-                       <select name="xcustomerappointmentnumber">
-                            @foreach($customerappointment as $customerinfo)
-                            <option value="{{$customerinfo->customerappointmentnumber}} "> {{$customerinfo->customerappointmentnumber}}</option>
-                            @endforeach
-                        </select>
-                   </div>
-                </div>  
-                      
-<div class="flex-items-center"><label for="Contact Number">Contact Number</label>
-                    <div> 
-                    <input type="text" name="xcontactnumber" value="{{old('xcontactnumber')}}"/>
-                    </div>
-</div>
-                 <div class="flex-items-center"><label for="List of Problems">List of Problems</label>
-                    <div> 
-                    <input type="text" name="xlistofproblems" value="{{old('xlistofproblems')}}"/>
-                    </div>
-</div>
-               <div class="flex-items-center"><label for="Email">Email</label>
-                    <div> 
-                    <input type="text" name="xemail" value="{{old('xemail')}}"/>
-                    </div>
-</div>
-               <div class="flex-items-center"><label for="Address">Address</label>
-                    <div> 
-                    <input type="text" name="xaddress" value="{{old('xaddress')}}"/>
-                    </div>
-</div>
-               <div class="flex-items-center"><label for="Type Of Service">Type Of Service</label>
-                    <div>
-                    <select name="xtypeofservice">
-                        <option value="Reformatting">Reformatting</option>
-                        <option value="Replacement">Replacement</option>
-                        <option value="Virus Removal">Virus Removal</option>
-                        <option value="Computer Network Troubleshooting">Computer Network Troubleshooting</option>
-                        <option value="Upgrade Hardware">Upgrade Hardware</option>
-</select>
-                    </div>
-</div>
-<div class="flex-items-center"><label for="Maintenance Required">Maintenance Required</label>
-                    <div>
-                    <select name="xmaintenancerequired">
-                        <option value="Scheduled Maintenance">Scheduled Maintenance</option>
-                        <option value="Preventive Maintenance">Preventive Maintenance</option>
-                        <option value="Full Maintenance">Full Maintenance</option>
-    
-</select>
-                    </div>
-</div>
-   <div class="flex-items-center"><label for="Customer Password">Customer Password</label>
-                    <div>
-                    <input type="text" name="xcustomerpassword" value="{{old('xcustomerpassword')}}"/>
-                    </div>
-</div>
-<div class="flex-items-center"><label for="Defective Units">Defective Units</label>
-                    <div>
-                    <input type="text" name="xdefectiveunits" value="{{old('xdefectiveunits')}}"/>
-                    </div>
-</div>
+                    <form style="text-align: center;" method="POST" action="{{ route('add-service') }}">
+    @csrf
 
-<div class="flex-items-center"><label for="Assigned Staff">Assigned Staff</label>
-                    <div>
-                    <select name="xassignedstaff">
-                        <option value="Scheduled Maintenance">Scheduled Maintenance</option>
-                        <option value="Preventive Maintenance">Preventive Maintenance</option>
-                        <option value="Full Maintenance">Full Maintenance</option>
-    
-</select>
-                    </div>
-</div>
-        <div class="flex-items-center"><label for="Assigned Tasks">Assigned Tasks</label>
-                    <div>
-                    <input type="text" name="xviewtasks" value="{{old('xviewtasks')}}"/>
-                    </div>
-</div>
-             <button class="submit" type ="submit" style="text-align:center;background-color:black"> Submit Info </button>
-                   </form>
+    <div class="form-group">
+        <label for="customer-appointment-number">Appointment Number</label>
+        <select name="xcustomerappointmentnumber">
+            @foreach($customerappointment as $customerinfo)
+                <option value="{{ $customerinfo->customerappointmentnumber }}">{{ $customerinfo->customerappointmentnumber }}</option>
+            @endforeach
+        </select>
+    </div>
+
+   <div class="form-group">
+        <label for="list-of-problems">List of Problems</label>
+        <input type="text" name="xlistofproblems" value="{{ old('xlistofproblems') }}" />
+    </div>
+
+<div class="form-group">
+        <label for="type-of-service">Type Of Service</label>
+        <select name="xtypeofservice">
+            <option value="Reformatting">Reformatting</option>
+            <option value="Replacement">Replacement</option>
+            <option value="Virus Removal">Virus Removal</option>
+            <option value="Computer Network Troubleshooting">Computer Network Troubleshooting</option>
+            <option value="Upgrade Hardware">Upgrade Hardware</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="maintenance-required">Maintenance Required</label>
+        <select name="xmaintenancerequired">
+            <option value="Scheduled Maintenance">Scheduled Maintenance</option>
+            <option value="Preventive Maintenance">Preventive Maintenance</option>
+            <option value="Full Maintenance">Full Maintenance</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="customer-password">Customer Password</label>
+        <input type="password" name="xcustomerpassword" value="{{ old('xcustomerpassword') }}" />
+    </div>
+
+    <div class="form-group">
+        <label for="defective-units">Defective Units</label>
+        <input type="text" name="xdefectiveunits" value="{{ old('xdefectiveunits') }}" />
+    </div>
+
+    <div class="form-group">
+        <label for="assigned-staff">Assigned Staff</label>
+        <select name="xassignedstaff">
+            <option value="Scheduled Maintenance">Scheduled Maintenance</option>
+            <option value="Preventive Maintenance">Preventive Maintenance</option>
+            <option value="Full Maintenance">Full Maintenance</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="assigned-tasks">Assigned Tasks</label>
+        <input type="text" name="xviewtasks" value="{{ old('xviewtasks') }}" />
+    </div>
+
+    <button class="submit" type="submit" style="background-color: black; color: white;">Submit Info</button>
+</form>
                    <br>
     <br>
     <br>

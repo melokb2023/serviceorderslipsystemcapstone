@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Service;
 use App\Models\CustomerAppointment;
 use App\Models\StaffDatabase;
+use Illuminate\Support\Facades\Hash;
+
 
 
 
@@ -51,25 +53,19 @@ class ServiceController extends Controller
      */
     public function store(Request $request)
     {
-        
         $servicedata = new Service();
-        $servicedata ->customerappointmentnumber=$request->xcustomerappointmentnumber;
-        $servicedata ->contactnumber=$request->xcontactnumber;
-        $servicedata ->listofproblems=$request->xlistofproblems;
-        $servicedata ->email=$request->xemail;
-        $servicedata ->address=$request->xaddress;
-        $servicedata ->typeofservice=$request->xtypeofservice;
-        $servicedata ->maintenancerequired=$request->xmaintenancerequired;
-        $servicedata ->listofproblems=$request->xlistofproblems;
-        $servicedata ->customerpassword=$request->xcustomerpassword;
-        $servicedata ->defectiveunits=$request->xdefectiveunits;
-        $servicedata ->assignedstaff=$request->xassignedstaff;
-        $servicedata ->viewtasks=$request->xviewtasks;
-        $servicedata ->save();
+        $servicedata->customerappointmentnumber = $request->xcustomerappointmentnumber;
+        $servicedata->listofproblems = $request->xlistofproblems;
+        $servicedata->typeofservice = $request->xtypeofservice;
+        $servicedata->maintenancerequired = $request->xmaintenancerequired;
+         // Hash the password before saving
+        $servicedata->customerpassword = Hash::make($request->xcustomerpassword);
+        $servicedata->defectiveunits = $request->xdefectiveunits;
+        $servicedata->viewtasks = $request->xviewtasks;
+        $servicedata->assignedstaff = $request->xassignedstaff;
+        $servicedata->save();
         return redirect()->route('servicedata');
-       
     }
-
     /**
      * Display the specified resource.
      */
@@ -98,10 +94,7 @@ class ServiceController extends Controller
         ->update(
              [
              'customerappointmentnumber' => $request->xcustomerappointmentnumber,
-             'contactnumber'=> $request->xcontactnumber,
              'listofproblems' =>$request->xlistofproblems,
-             'email' =>$request->xemail,
-             'address'=> $request->xaddress,
              'typeofservice'=>$request->xtypeofservice,
              'maintenancerequired'=> $request->xmaintenancerequired,
              'customerpassword'=> $request->xcustomerpassword,
@@ -130,8 +123,5 @@ class ServiceController extends Controller
         $staffdatabase = Service::select('serviceno','customerappointmentnumber','contactnumber','email','address','typeofservice','listofproblems','maintenancerequired','customerpassword','assignedstaff','defectiveunits')->get();
         return view('staff.staffdatabase', compact('staffdatabase'));
     }
-    
-
-   
   
 }

@@ -9,15 +9,13 @@ class StaffDatabase extends Model
 {
     use HasFactory;
 
-    protected $table= 'servicedata';
+    protected $table= 'staffdatabase';
     
     protected $fillable = [
          'serviceno',
          'customerappointmentnumber',
-         'contactnumber',
-         'email',
-         'address',
          'typeofservice',
+         'listofproblems',
          'maintenancerequired',
          'customerpassword',
          'assignedstaff',

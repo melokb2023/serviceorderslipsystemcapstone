@@ -82,6 +82,21 @@ button[type=submit]:hover {
                     <input type="text" name="xlastname" value="{{old('xlastname')}}"/>
                     </div>
 </div>
+               <div class="flex-items-center"><label for="Contact Number">Contact Number</label>
+                    <div>
+                    <input type="text" name="xcontactnumber" value="{{old('xcontactnumber')}}"/>
+                    </div>
+</div>
+        <div class="flex-items-center"><label for="Email">Email</label>
+                    <div>
+                    <input type="text" name="xemail" value="{{old('xemail')}}"/>
+                    </div>
+</div>
+             <div class="flex-items-center"><label for="Address">Address</label>
+                    <div>
+                    <input type="text" name="xaddress" value="{{old('xaddress')}}"/>
+                    </div>
+</div>
                        <div class="flex-items-center"><label for="Appointment Purpose">Appointment Purpose</label>
                     <div>
                     <input type="text" name="xappointmentpurpose" value="{{old('xappointmentpurpose')}}"/>

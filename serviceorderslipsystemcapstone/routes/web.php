@@ -239,7 +239,10 @@ Route::get('/customerrating/{cr}', [RatingsController::class, 'show'])
 
 Route::get('ratings','RatingsController@ratings');
 Route::post('review-store', 'BookingController@reviewstore')->name('review.store');
-
+Route::get('/financialperformancereport', 'App\Http\Controllers\LineChartController@LineChart');
+Route::get('/financialperformancereport', 'App\Http\Controllers\LineChartController@BarChart');
+Route::get('/financialperformancereport', [LineChartController::class, 'LineChart'])->name('financialperformancereport');
+Route::get('/ratinggraph', [LineChartController::class, 'BarChart'])->name('ratinggraph');
 //Route::post('/service/add',[StudentController::class, 'store'] )
 //->middleware(['auth', 'verified'])
 //-//>name('service-store');
