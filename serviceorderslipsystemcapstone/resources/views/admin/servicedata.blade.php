@@ -1,14 +1,14 @@
 @include('layouts.adminnavigation')
-<x-app-layout>
+<x-app-layout style="background-color:#CD5C5C;">
 
     <div class="py-12" style="background-color:#CD5C5C; display: flex; justify-content: center; align-items: center;">
-
         <link rel="stylesheet" href="style.scss">
         <style>
             table,
             tr {
-                font-family: "Arial";
+                font-family: "Century ";
                 width: 5%;
+                font-weight:bold;
             }
 
             td {
@@ -64,6 +64,17 @@
                 </tbody>
             </table>
 
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
             <br>
             <br>
             <!-- Additional space if needed -->

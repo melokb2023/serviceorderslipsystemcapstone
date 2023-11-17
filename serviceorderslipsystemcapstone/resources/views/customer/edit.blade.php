@@ -19,7 +19,7 @@
                          </ul>
                     @endif
                     @foreach($customerappointment as $customer)
-                <form method = "POST" action="{{ route('customerappointment-update',['cano' => $customer->customernumber]) }}">
+                <form method = "POST" action="{{ route('customerappointment-update',['cano' => $customer->customerappointmentnumber]) }}">
                         @csrf
                         @method('patch')
                     <div class="flex-items-center"><label for="First Name">First Name</label>

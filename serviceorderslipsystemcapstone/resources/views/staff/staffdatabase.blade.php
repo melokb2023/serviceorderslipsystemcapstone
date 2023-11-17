@@ -6,44 +6,40 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8" style="background-color:#CD5C5C">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg" style="background-color:#CD5C5C">
                 <div class="p-6 text-gray-900 dark:text-gray-100" style="background-color:#CD5C5C">
+<style>
+            table,tr {
+  font-family: "Century Gothic";
+  border-collapse: collapse;
+  width: 100%;
+  font-weight:bold;
+ }
 
-                    <h6>List of Students</h6>
+ td{
+    font-family: "Century Gothic";
+    background-color:grey;
+ }
+</style>
+
+               <h6>List of Students</h6>
                     <table class="border-separate border-spacing-5" style="width:100%">
                       <tr>
                         <th>Staff Work Number</th>
                         <th>Service Number</th>
-                        <th>Customer Appointment Number</th>
-                        <th>Type of Service</th>
-                        <th>List of Problems</th>
-                        <th>Maintenance Required</th>
-                        <th>Customer Password</th>
-                        <th>Assigned Staff</th>
-                        <th>Defective Units</th>
                         <th>Actions Taken</th>
-                        <th>View Tasks</th>
                         <th>Work Progress</th>
                         <th>Options</th>
 </tr>
 <tbody>
-                @foreach($staffdatabase as $serviceinfo)
+                @foreach($staffdatabase as $staff)
                        <tr>
-                        <td>{{$serviceinfo->staffnumber}}</td>
-                        <td>{{$serviceinfo->serviceno}}</td>
-                        <td>{{$serviceinfo->customerappointmentnumber}}</td>
-                        <td>{{$serviceinfo->listofproblems}}</td>
-                        <td>{{$serviceinfo->typeofservice}}</td>
-                        <td>{{$serviceinfo->maintenancerequired}}</td>
-                        <td>{{$serviceinfo->customerpassword}}</td>
-                        <td>{{$serviceinfo->defectiveunits}}</td>
-                        <td>{{$serviceinfo->assignedstaff}}</td>
-                        <td>{{$serviceinfo->actionstaken}}</td>     
-                        <td>{{$serviceinfo->viewtasks}}</td>
-                        <td>{{$serviceinfo->workprogress}}</td>
+                        <td>{{$staff->staffnumber}}</td>
+                        <td>{{$staff->serviceno}}</td>
+                        <td>{{$staff->actionstaken}}</td>     
+                        <td>{{$staff->workprogress}}</td>
                         <td>
-                            <a class="mt-4 bg-yellow-200 text-black font-bold py-2 px-4 rounded" href= "{{route('staffdatabase-show', ['serviceno' => $serviceinfo->serviceno]) }}" >View</a>
-                            <a class="mt-4 bg-pink-200 text-black font-bold py-2 px-4 rounded" href= "{{route('staffdatabase-edit', ['serviceno' => $serviceinfo->serviceno]) }}" >Edit</a>
-                     
-</td>
+                            <a class="mt-4 bg-yellow-200 text-black font-bold py-2 px-4 rounded"  href="{{route('staffdatabase-show', ['serviceno' => $staff->serviceno])}}">View Details</a> 
+                            <a class="mt-4 bg-pink-200 text-black font-bold py-2 px-4 rounded" href= "{{route('staffdatabase-edit', ['serviceno' => $staff->staffnumber]) }}" >Edit Data </a>
+                     </td>
                        </tr>
                         @endforeach
                 </tbody>

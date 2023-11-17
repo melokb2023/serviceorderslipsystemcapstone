@@ -55,7 +55,7 @@
                             CompuSource Computer Center
                         </th>
                         <td>
-                            <img src="CompuSource Computer Center.JPG" class="center" alt="CompuSource Computer Center Image">
+                            <img src="Dark Vector.jpg" class="center" alt="CompuSource Computer Center Image">
                         </td>
                     </tr>
                 </table>

@@ -22,27 +22,13 @@
                 <form method = "POST" action="{{ route('service-update',['serno' => $serviceinfo->serviceno]) }}">
                         @csrf
                         @method('patch')
-                       <div class="flex-items-center"><label for="Contact Number">Contact Number</label>
-                    <div>
-                    <input type="text" name="xcontactnumber" value="{{$serviceinfo->contactnumber}}"/>
-                    </div>
-</div>
-<div class="flex-items-center"><label for="List of Problems">List of Problems</label>
+            <div class="flex-items-center"><label for="List of Problems">List of Problems</label>
                     <div>
                     <input type="text" name="xlistofproblems" value="{{$serviceinfo->listofproblems}}"/>
                     </div>
 </div> 
-                <div class="flex-items-center"><label for="Email">Email</label>
-                    <div> 
-                    <input type="text" name="xemail" value="{{$serviceinfo->email}}"/>
-                    </div>
-</div>
-                       <div class="flex-items-center"><label for="Address">Address</label>
-                    <div> 
-                    <input type="text" name="xaddress" value="{{$serviceinfo->address}}"/>
-                    </div>
-</div>
-           <div class="flex-items-center"><label for="Type Of Service">Type Of Service</label>
+              
+        <div class="flex-items-center"><label for="Type Of Service">Type Of Service</label>
                     <div>
                     <select name="xtypeofservice">
                         <option value="Reformatting">Reformatting</option>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\StaffDatabase;
 use App\Models\Service;
+
 use Illuminate\Http\Request;
 
 class StaffDatabaseController extends Controller
@@ -26,8 +27,7 @@ class StaffDatabaseController extends Controller
        // $student->save();
 //
        //echo "Grades data successfully saved in the database";
-   
-       $staffdatabase = StaffDatabase:: join('customerappointment', 'servicedata.customerappointmentnumber', '=', 'customerappointment.customerappointmentnumber')->get();
+       $staffdatabase = StaffDatabase:: join('servicedata', 'staffdatabase.serviceno', '=', 'servicedata.serviceno')->get();
        return view('staff.staffdatabase', compact('staffdatabase'));
      
     }
@@ -45,7 +45,12 @@ class StaffDatabaseController extends Controller
      */
     public function store(Request $request)
     {
-      
+        $staffdatabase = new StaffDatabase();
+        $staffdatabase ->serviceno=$request->xserviceno;
+        $staffdatabase ->actionstaken='None';
+        $staffdatabase ->workprogress='Ongoing';
+        $staffdatabase ->save();
+        return redirect()->route('staffdatabase');
     }
 
     /**
@@ -53,8 +58,8 @@ class StaffDatabaseController extends Controller
      */
     public function show(string $id)
     {
-        $staffdatabase = StaffDatabase::where('staffnumber', $id)->get();
-        return view('staff.show', compact('staffdatabase'));
+        $staffdatabase = Service::where('serviceno', $id)->get();
+        return view('staff.show', compact('servicedata'));
     }
 
     /**
@@ -71,16 +76,12 @@ class StaffDatabaseController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $validateData =$request->validate([
-            
-            'xactionstaken' =>['required', 'max:70'],
-            'xworkprogress'=>['required'],
-        ]);
-
+    
         $staffdatabase= StaffDatabase::where('staffnumber', $id)
         ->update(
-             ['actionstaken'=> $request->xactionstaken,
-             'workprogress'=> $request->xworkprogress,
+             [
+              'actionstaken'=> $request->xactionstaken,
+              'workprogress'=> $request->xworkprogress,
              ]);
         return redirect()->route('staffdatabase');
     }
@@ -93,8 +94,14 @@ class StaffDatabaseController extends Controller
   
     }
 
-    public function getServiceInfo(){
-        $staffdatabase = Service::all();
-        return view('staff.staffdatabase', compact('staffdatabase'));
+    public function getService(){
+        $servicedata= Service::all();
+        return view('staff.add', compact('servicedata'));
     }
+
+    public function getService2(){
+        $servicedata= Service::all();
+        return view('staff.show', compact('servicedata'));
+    }
+
 }

@@ -4,6 +4,15 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8" style="background-color:#CD5C5C;">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg" style="background-color:#CD5C5C;text-align:center">
                 <div class="p-6 text-gray-900 dark:text-gray-100" style="background-color:#CD5C5C;">
+                        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="resources/css/style.scss" rel="stylesheet" />
                 <style>
 body {font-family: Century;}
 * {box-sizing: border-box;}
@@ -51,11 +60,8 @@ button[type=submit]:hover {
   background-color: #45a049;
 }
 
-
-
-
 </style>
-                   <h6 style="font-family: Century">Errors Encountered</h6>
+                   <h6>Errors Encountered</h6>
                     @if($errors)
                        <ul>
                           @foreach($errors->all() as $error)
@@ -63,27 +69,21 @@ button[type=submit]:hover {
                     @endforeach
                          </ul>
                     @endif
-                    @foreach($staffdatabase as $staff)
-                    <form method = "POST" action="{{ route('staffdatabase-update',['serviceno' => $staff->serviceno]) }}">
-                        @csrf
-                        @method('patch')
-              <div class="flex-items-center" style="text-align:center"><label for="Actions Taken">Actions Taken</label>
-                    <div>
-                    <input type="text" name="xactionstaken" value="{{old('xactionstaken')}}"/>
-                    </div>
-</div>
-               <div class="flex-items-center"><label for="Work Progress">Work Progress</label>
-                    <div>
-                    <select name="xworkprogress">
-                        <option value="Ongoing">Ongoing</option>
-                        <option value="Completed">Completed</option>
-</select>
-                    </div>
-</div>
+                    <form style="text-align: center;" method="POST" action="{{ route('add-staffdatabase') }}">
+    @csrf
 
-             <button type ="submit" style="text-align:center;background-color:black"> Submit Info </button>
-                   </form>
-                   @endforeach
+    <div class="flex-items-center" style="text-align:center"><label for="Service Number">Service Number</label>
+                    <div>  
+                       <select name="xserviceno">
+                            @foreach($servicedata as $service)
+                            <option value="{{$service->serviceno}} "> {{$service->serviceno}} </option>
+                            @endforeach
+                        </select>
+                   </div>
+                </div>
+
+    <button class="submit" type="submit" style="background-color: black; color: white;">Submit Info</button>
+</form>
                    <br>
     <br>
     <br>

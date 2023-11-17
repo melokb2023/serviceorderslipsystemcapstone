@@ -46,5 +46,9 @@
                 <a class="button" href="{{ route('staffdatabase') }}">
                         View Staff Database
 </a>
+
+                 <a class="button" href="{{ route('add-staffdatabase') }}">
+                        Add Work Data
+</a>
                   
 </x-app-layout>

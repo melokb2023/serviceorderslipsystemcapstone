@@ -13,14 +13,6 @@ class StaffDatabase extends Model
     
     protected $fillable = [
          'serviceno',
-         'customerappointmentnumber',
-         'typeofservice',
-         'listofproblems',
-         'maintenancerequired',
-         'customerpassword',
-         'assignedstaff',
-         'defectiveunits',
-         'viewtasks',
          'actionstaken',
          'workprogress',
     ];

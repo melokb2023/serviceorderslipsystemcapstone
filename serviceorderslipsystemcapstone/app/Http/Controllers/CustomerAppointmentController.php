@@ -58,7 +58,7 @@ class CustomerAppointmentController extends Controller
      */
     public function show(string $id)
     {
-        $customerappointment = CustomerAppointment::where('customernumber', $id)->get();
+        $customerappointment = CustomerAppointment::where('customerappointmentnumber', $id)->get();
         return view('customer.show', compact('customerappointment'));
     }
 
@@ -67,7 +67,7 @@ class CustomerAppointmentController extends Controller
      */
     public function edit(string $id)
     {
-        $customerappointment = CustomerAppointment::where('customernumber', $id)->get();
+        $customerappointment = CustomerAppointment::where('customerappointmentnumber', $id)->get();
         return view('customer.edit', compact('customerappointment'));
     }
 
@@ -87,7 +87,7 @@ class CustomerAppointmentController extends Controller
             'xappointmenttype' =>['required','max:100'],
         ]);
 
-        $customerappointment= CustomerAppointment::where('customernumber', $id)
+        $customerappointment= CustomerAppointment::where('customerappointmentnumber', $id)
         ->update(
              [
              'firstname'=> $request->xfirstname,
@@ -107,7 +107,7 @@ class CustomerAppointmentController extends Controller
      */
     public function destroy(string $id)
     {
-        $customerappointment= CustomerAppointment::where('customernumber', $id);
+        $customerappointment= CustomerAppointment::where('customerappointmentnumber', $id);
         $customerappointment->delete();
         return redirect()->route('customerappointment');
     }

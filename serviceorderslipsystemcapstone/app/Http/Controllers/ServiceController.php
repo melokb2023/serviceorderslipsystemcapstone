@@ -74,6 +74,13 @@ class ServiceController extends Controller
         $servicedata = Service::where('serviceno', $id)->get();
         return view('admin.show', compact('servicedata'));
     }
+   
+    public function show2(string $id)
+    {
+        $servicedata = Service::where('serviceno', $id)->get();
+        return view('staff.show', compact('servicedata'));
+    }
+
 
     /**
      * Show the form for editing the specified resource.
@@ -93,7 +100,6 @@ class ServiceController extends Controller
       $servicedata= Service::where('serviceno', $id)
         ->update(
              [
-             'customerappointmentnumber' => $request->xcustomerappointmentnumber,
              'listofproblems' =>$request->xlistofproblems,
              'typeofservice'=>$request->xtypeofservice,
              'maintenancerequired'=> $request->xmaintenancerequired,
