@@ -155,6 +155,9 @@
                  <a class="top-nav-link"  href="{{ route('staffdatabase') }}" :active="request()->routeIs('staffdatabase')">
                         {{ __('STAFF DATABASE') }}
 </a>
+                 <a class="top-nav-link"  href="{{ route('stafflogs') }}" :active="request()->routeIs('stafflogs')">
+                        {{ __('LOGS') }}
+                 </a>
                 </div>
             </div>
 </body>

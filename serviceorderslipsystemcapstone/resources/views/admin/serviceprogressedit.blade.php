@@ -18,7 +18,7 @@
                     @endforeach
                          </ul>
                     @endif
-                    @foreach($servicedata as $serviceinfo)
+                    @foreach($serviceprogress as $serviceinfo)
                 <form method = "POST" action="{{ route('serviceprogress-update',['servicenumber' => $serviceinfo->serviceprogressno]) }}">
                         @csrf
                         @method('patch')

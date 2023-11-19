@@ -5,6 +5,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\ServiceProgressController;
 use App\Http\Controllers\StaffDatabaseController;
+use App\Http\Controllers\LogsController;
 use App\Http\Controllers\CustomerAppointmentController;
 use App\Http\Controllers\RatingsController;
 use App\Http\Controllers\LineChartController;
@@ -54,6 +55,9 @@ Route::get('/staffdatabase', function () {
     return view('staff.staffdatabase');
 })->name('staffdatabase');
 
+Route::get('/reportmenu', function () {
+   return view('admin.reportmenu');
+})->name('reportmenu');
 
 Route::get('/customer', function () {
    return view('customer.customerappointment');
@@ -98,6 +102,8 @@ Route::get('/staffdatabasemenu', function () {
 Route::get('/financialperformancereport', function () {
    return view('admin.financialperformancereport');
 })->name('financialperformancereport');
+
+
 
 
 Route::post('/customerappointment/add',[CustomerAppointmentController::class, 'store'] )
@@ -257,6 +263,18 @@ Route::get('/customerrating/{cr}', [RatingsController::class, 'show'])
    ->name('customerrating-show');
 
 
+/////////////////////////////////////LOGS
+
+Route::get('/servicelogs', [LogsController::class, 'ServiceLogs']) 
+   ->middleware(['auth', 'verified'])
+   ->name('servicelogs');
+Route::get('/stafflogs', [LogsController::class, 'StaffLogs']) 
+   ->middleware(['auth', 'verified'])
+   ->name('stafflogs');
+Route::get('/customerlogs', [LogsController::class, 'CustomerLogs']) 
+   ->middleware(['auth', 'verified'])
+   ->name('customerlogs');
+
 Route::get('ratings','RatingsController@ratings');
 Route::post('review-store', 'BookingController@reviewstore')->name('review.store');
 Route::get('/financialperformancereport', 'App\Http\Controllers\LineChartController@LineChart');
@@ -275,28 +293,6 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
-});
-
-//Send Notification Both Admin/Customer
-Route::get('send-mail', function () {
-
-   $details = [
-       'title' => 'Mail from Compusource.com',
-       'body' => 'The Service is Complete.'
-   ];
-
-   Mail::to('vanicarmelle18@gmail.com')->send(new \App\Mail\MyMail($details));
-  
-   dd("Email is Sent.");
-
-   $details2 = [
-      'title' => 'Mail from Compusource.com Staff ',
-      'body' => 'The Work is Complete.'
-  ];
-  
-   Mail::to('kyle.melo@lccdo.edu.ph')->send(new \App\Mail\MyMail($details2));
-  
-   dd("Email is Sent.");
 });
 
 

@@ -21,4 +21,9 @@ class CustomerAppointment extends Model
          'appointnmentpurpose',
          'appointnmenttype',
     ];
+
+    public function serviceprogress()
+{
+    return $this->belongsTo(ServiceProgress::class, 'serviceprogressno');
+}
 }

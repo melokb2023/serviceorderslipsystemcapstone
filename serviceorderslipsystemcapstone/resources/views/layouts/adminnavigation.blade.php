@@ -8,35 +8,37 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <style>
-        * {
-            font-family: 'Montserrat', sans-serif;
-        }
+       * {
+    font-family: 'Montserrat', sans-serif;
+}
 
-        .top-nav {
-            background-color: #CD5C5C;
-            border: 3px solid black;
-            font-weight: bold;
-            overflow: hidden;
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            transition: all 0.3s ease;
-        }
+.top-nav {
+    background-color: #CD5C5C;
+    border: 3px solid black;
+    font-weight: bold;
+    overflow: hidden;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    transition: all 0.3s ease;
+    padding: 20px; /* Adjust the padding to increase the size of the navigation bar */
+    height: auto; /* Set the height to auto to allow it to expand based on content */
+    width: 100%; /* Set the width to 100% to extend the length of the navigation bar */
+}
+.top-nav-link {
+    text-decoration: none;
+    color: black;
+    padding: 5px 5px;
+    border-bottom: 3px solid transparent;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
 
-        .top-nav-link {
-            text-decoration: none;
-            color: black;
-            padding: 5px 5px;
-            border-bottom: 3px solid transparent;
-            transition: all 0.3s ease;
-            white-space: nowrap;
-        }
-
-        .top-nav-link:hover {
-            border-color: #fff;
-            background-color: rgba(255, 255, 255, 0.2);
-            border-radius: 5px;
-        }
+.top-nav-link:hover {
+    border-color: #fff;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+}
     </style>
 </head>
 
@@ -167,8 +169,11 @@
                     <a class="top-nav-link" href="{{ route('customerrating') }}" :active="request()->routeIs('customerrating')">
                         <i class="fa fa-star"></i> {{ __('REVIEWS & RATINGS') }}
                     </a>
-                    <a class="top-nav-link" href="{{ route('financialperformancereport') }}" :active="request()->routeIs('financialperformancereport')">
+                    <a class="top-nav-link" href="{{ route('reportmenu') }}" :active="request()->routeIs('reportmenu')">
                         <i class="fa fa-bar-chart"></i> {{ __('REPORTS') }}
+                    </a>
+                    <a class="top-nav-link" href="{{ route('servicelogs') }}" :active="request()->routeIs('servicelogs')">
+                        <i class="fa fa-bar-chart"></i> {{ __('LOGS') }}
                     </a>
                 </div>
             </div>
