@@ -24,6 +24,7 @@
                 <tr>
                     <th>Service Number</th>
                     <th>Customer Appointment Number</th>
+                    <th>Complete Name </th>
                     <th>Type of Service</th>
                     <th>List Of Problems</th>
                     <th>Maintenance</th>
@@ -39,6 +40,7 @@
                     <tr>
                         <td>{{$serviceinfo->serviceno}}</td>
                         <td>{{$serviceinfo->customerappointmentnumber}}</td>
+                        <td>{{$serviceinfo->firstname }} {{ $serviceinfo->middlename }} {{ $serviceinfo->lastname }}</td>
                         <td>{{$serviceinfo->typeofservice}}</td>
                         <td>{{$serviceinfo->listofproblems}}</td>
                         <td>{{$serviceinfo->maintenancerequired}}</td>

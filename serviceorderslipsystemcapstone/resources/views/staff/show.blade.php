@@ -1,13 +1,13 @@
 @include('layouts.staffnavigation')
 <x-app-layout>
 <div class="py-12" style="background-color:#CD5C5C; display: flex; justify-content: center; align-items: center;">
-
+<div class="max-w-7xl mx-auto sm:px-6 lg:px-8" style="background-color:#CD5C5C;width: 100%">
 <link rel="stylesheet" href="style.scss">
 <style>
     table,
     tr {
         font-family: "Arial";
-        width: 5%;
+        width: 100%;
     }
 
     td {
@@ -17,7 +17,7 @@
 
 </style>
 
-<div class="py-12" >
+<div class="py-12" style="background-color:#CD5C5C;" >
              <h6>List of Students</h6>
                     <table class="border-separate border-spacing-5">
                       <tr>
@@ -52,7 +52,21 @@
                     <a class="mt-4 bg-blue-200 text-black font-bold py-2 px-4 rounded" href="{{route('staffdatabase')}}"> Back </a>
                     
                 </div>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
             </div>
         </div>
     </div>
+</div>
 </x-app-layout>

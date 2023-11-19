@@ -18,6 +18,10 @@
     font-family: "Century Gothic";
     background-color:grey;
  }
+ th{
+    font-family: "Century Gothic";
+    background-color:white;
+ }
              </style> 
     
                
@@ -25,7 +29,7 @@
                     <table  style="border: 5px solid black;width: 100%">
                     <tr>
                         <th>Rating Number</th>
-                        <th>First Name</th>
+                        <th>Complete Name</th>
                         <th>Customer Appointment Number</th>
                         <th>Appointment Purpose</th>
                         <th>Review</th>
@@ -37,7 +41,7 @@
                 @foreach($customerrating as $customer)
                        <tr>
                         <td>{{$customer->ratingno}}</td>
-                        <td>{{$customer->firstname}}</td>
+                        <td>{{$customer->firstname}} {{$customer->middlename}} {{$customer->lastname}}</td>
                         <td>{{$customer->customerappointmentnumber}}</td>
                         <td>{{$customer->appointmentpurpose}}</td>
                         <td>{{$customer->review}}</td>

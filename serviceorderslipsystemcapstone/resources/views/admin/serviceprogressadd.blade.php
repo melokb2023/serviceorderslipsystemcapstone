@@ -69,7 +69,7 @@ button[type=submit]:hover {
                     <div>  
                        <select name="xserviceno">
                             @foreach($servicedata as $service)
-                            <option value="{{$service->serviceno}} "> {{$service->serviceno}}</option>
+                            <option value="{{$service->serviceno}} "> {{$service->serviceno}} - {{$service ->typeofservice }}</option>
                             @endforeach
                         </select>
                    </div>

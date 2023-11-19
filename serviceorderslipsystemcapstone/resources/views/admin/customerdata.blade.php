@@ -1,4 +1,4 @@
-@include('layouts.customernavigation')
+@include('layouts.adminnavigation')
 <x-app-layout>
   
 
@@ -17,6 +17,10 @@
  td{
     font-family: "Century Gothic";
     background-color:grey;
+ }
+ th{
+    font-family: "Century Gothic";
+    background-color:white;
  }
              </style>   
                
@@ -42,9 +46,9 @@
                         <td>{{$customer->address}}</td>
                         <td>{{$customer->appointmentpurpose}}</td>
                         <td>{{$customer->appointmenttype}}</td>
-                        <td> <a style="background-color:yellow;width: 100%;display: block;font-weight:bold"  href= "{{route('customerappointment-show', ['cano' => $customer->customerappointmentnumber]) }}" > View</a>
-                             <a style="background-color:green;width: 100%;display: block;font-weight:bold" href= "{{route('customerappointment-edit', ['cano' => $customer->customerappointmentnumber]) }}" >Edit</a>
-                             <form method="POST" action = "{{ route('customerappointment-delete', ['cano' => $customer->customerappointmentnumber ])  }}" onclick="return confirm('Are you sure you want to delete this record?')">
+                        <td> <a style="background-color:yellow;width: 100%;display: block;font-weight:bold"  href= "{{route('customerlist-show', ['cano' => $customer->customerappointmentnumber]) }}" > View</a>
+                             <a style="background-color:green;width: 100%;display: block;font-weight:bold" href= "{{route('customerlist-edit', ['cano' => $customer->customerappointmentnumber]) }}" >Edit</a>
+                             <form method="POST" action = "{{ route('customerlist-delete', ['cano' => $customer->customerappointmentnumber ])  }}" onclick="return confirm('Are you sure you want to delete this record?')">
                            @csrf
                            @method('delete')
                            <button style="background-color:red;width: 100%;display: block;font-weight:bold" type="submit" >Delete</a>

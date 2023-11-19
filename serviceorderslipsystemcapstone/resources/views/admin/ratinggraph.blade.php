@@ -3,7 +3,7 @@
 <div>
     <h1>Rating Performance Report</h1>
 
-    <canvas id="financialPerformanceChart" width="400" height="400"></canvas>
+    <canvas id="financialPerformanceChart"></canvas>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
@@ -30,6 +30,8 @@
                     }]
                 },
                 options: {
+                   
+                  
                     scales: {
                         y: {
                             beginAtZero: true

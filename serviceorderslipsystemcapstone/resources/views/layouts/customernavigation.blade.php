@@ -154,10 +154,7 @@
                     <a class="top-nav-link" href="{{ route('startappointment') }}" :active="request()->routeIs('startappointment')">
                         <i class="fa fa-home"></i> {{ __('START APPOINTMENT') }}
                     </a>
-                    <a class="top-nav-link" href="{{ route('customerappointment') }}" :active="request()->routeIs('customerappontment')">
-                        <i class="fa fa-play"></i> {{ __('CUSTOMER LIST') }}
-                    </a>
-                    <a class="top-nav-link" href="{{ route('add-customerrating') }}" :active="request()->routeIs('add-customerrating')">
+                   <a class="top-nav-link" href="{{ route('add-customerrating') }}" :active="request()->routeIs('add-customerrating')">
                         <i class="fa fa-list"></i> {{ __('RATE THE SERVICE') }}
                     </a>
                     <a class="top-nav-link" href="{{ route('customerlogs') }}" :active="request()->routeIs('customerlogs')">

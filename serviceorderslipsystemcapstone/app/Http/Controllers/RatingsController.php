@@ -12,11 +12,12 @@ class RatingsController extends Controller
      */
     public function index()
     {
-        $customerrating = Rating:: select('customerrating.ratingno', 'customerappointment.firstname', 'customerrating.customerappointmentnumber', 'customerappointment.appointmentpurpose', 'customerrating.review', 'customerrating.rating')
+        $customerrating = Rating:: select('customerappointment.customerappointmentnumber','customerrating.ratingno', 'customerappointment.firstname', 'customerappointment.middlename', 'customerappointment.lastname', 'customerrating.customerappointmentnumber', 'customerappointment.appointmentpurpose', 'customerrating.review', 'customerrating.rating')
         ->leftJoin('customerappointment', 'customerappointment.customerappointmentnumber', '=', 'customerrating.customerappointmentnumber')
         ->orderBy('customerrating.ratingno')
         ->get();
-        return view('admin.customerreviewsandratings', compact('customerrating'));
+         
+         return view('admin.customerreviewsandratings', compact('customerrating'));
     }
 
     /**

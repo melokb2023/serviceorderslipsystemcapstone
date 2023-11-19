@@ -104,39 +104,41 @@ Route::get('/financialperformancereport', function () {
 })->name('financialperformancereport');
 
 
-
+///////////CUSTOMER APPOINTMENT  /////////////////////////////////////////////////////////////////////
 
 Route::post('/customerappointment/add',[CustomerAppointmentController::class, 'store'] )
    ->middleware(['auth', 'verified'])
    ->name('customerappointment-store');
 
-//- Get All Data From the Student Info Table
-Route::get('/customerappointment', [CustomerAppointmentController::class, 'index']) 
+
+
+//-//////////////////////////////////////////////////////SERVICE CONTROLLER(VIEW, UPDATE AND DELETE)////////////////////////////////
+Route::get('/customerlist', [ServiceController::class, 'CustomerList']) 
    ->middleware(['auth', 'verified'])
-   ->name('customerappointment');
+   ->name('customerlist');
 
 //View Student Info
-Route::get('/customerappointment/{cano}', [CustomerAppointmentController::class, 'show']) 
+Route::get('/customerlist/{cano}', [ServiceController::class, 'ViewCustomer']) 
    ->middleware(['auth', 'verified'])
-   ->name('customerappointment-show');
+   ->name('customerlist-show');
 
-Route::delete('/customerappointment/delete/{cano}', [CustomerAppointmentController::class, 'destroy']) 
+Route::delete('/customerlist/delete/{cano}', [ServiceController::class, 'DeleteCustomer']) 
    ->middleware(['auth', 'verified'])
-   ->name('customerappointment-delete');
+   ->name('customerlist-delete');
 
 //Transfer Record to Edit Form
-Route::get('/customerappointment/edit/{cano}', [CustomerAppointmentController::class, 'edit']) 
+Route::get('/customerlist/edit/{cano}', [ServiceController::class, 'EditCustomer']) 
    ->middleware(['auth', 'verified'])
-   ->name('customerappointment-edit');
+   ->name('customerlist-edit');
 
 //Save The Updated Data
-Route::patch('/customerappointment/update/{cano}', [CustomerAppointmentController::class, 'update']) 
+Route::patch('/customerlist/update/{cano}', [ServiceController::class, 'UpdateCustomer']) 
    ->middleware(['auth', 'verified'])
    ->name('customerappointment-update');
 
 
 
-//Store Student info to create function under StudentController
+////////////////////////////////////////////////////////////SERVICE CONTROLLER  //////////////////////////////////
 
 Route::get('/service/add', [ServiceController::class, 'getAppointmentInfo'])
    ->middleware(['auth', 'verified'])
@@ -149,6 +151,10 @@ Route::post('/service/add',[ServiceController::class, 'store'] )
 Route::get('/service', [ServiceController::class, 'index']) 
    ->middleware(['auth', 'verified'])
    ->name('servicedata');
+
+Route::get('/customerlist', [ServiceController::class, 'CustomerList']) 
+   ->middleware(['auth', 'verified'])
+   ->name('customerlist');
 
 //View Student Info
 Route::get('/service/{serno}', [ServiceController::class, 'show']) 
@@ -169,9 +175,7 @@ Route::get('/service/edit/{serno}', [ServiceController::class, 'edit'])
    ->middleware(['auth', 'verified'])
    ->name('service-edit');
 
-
-
-//////////////////////SERVICE PROGRESS
+//////////////////////SERVICE PROGRESS////////////////////////////////////////////////////////////////
 Route::get('/serviceprogress/add', [ServiceProgressController::class, 'getServiceNumber'])
    ->middleware(['auth', 'verified'])
    ->name('add-serviceprogress');
@@ -204,6 +208,8 @@ Route::get('/serviceprogress/edit/{servicenumber}', [ServiceProgressController::
 
 
    //View Student Info
+
+
 
 Route::get('/staffdatabase/add', [StaffDatabaseController::class, 'getService']) 
    ->middleware(['auth', 'verified'])

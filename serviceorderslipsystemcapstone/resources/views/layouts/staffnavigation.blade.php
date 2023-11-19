@@ -149,8 +149,8 @@
 
                 <!-- Top Navigation Links -->
                 <div class="top-nav">
-                 <a class="top-nav-link"  href="{{ route('servicelist') }}" :active="request()->routeIs('servicelist')">
-                        {{ __('SERVICE LIST') }}
+                 <a class="top-nav-link"  href="{{ route('staffdatabasemenu') }}" :active="request()->routeIs('staffdatabasemenu')">
+                        {{ __('MENU') }}
 </a>          
                  <a class="top-nav-link"  href="{{ route('staffdatabase') }}" :active="request()->routeIs('staffdatabase')">
                         {{ __('STAFF DATABASE') }}

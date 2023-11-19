@@ -81,7 +81,7 @@ button[type=submit]:hover {
         <label for="customer-appointment-number">Appointment Number</label>
         <select name="xcustomerappointmentnumber">
             @foreach($customerappointment as $customerinfo)
-                <option value="{{ $customerinfo->customerappointmentnumber }}">{{ $customerinfo->customerappointmentnumber }}</option>
+                <option value="{{ $customerinfo->customerappointmentnumber }}">{{ $customerinfo->customerappointmentnumber }} - {{ $customerinfo->firstname }} {{ $customerinfo->middlename }} {{ $customerinfo->lastname }}</option>
             @endforeach
         </select>
     </div>

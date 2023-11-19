@@ -6,7 +6,7 @@ use App\Models\StaffDatabase;
 use App\Models\Service;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\MyMail;
-
+use App\Models\CustomerAppointment;
 use Illuminate\Http\Request;
 
 class StaffDatabaseController extends Controller
@@ -16,10 +16,19 @@ class StaffDatabaseController extends Controller
      */
     public function index()
 {
-    $staffdatabase = StaffDatabase::join('servicedata', 'staffdatabase.serviceno', '=', 'servicedata.serviceno')->get();
+    $staffdatabase = StaffDatabase::join('servicedata', 'staffdatabase.serviceno', '=', 'servicedata.serviceno')
+        ->join('customerappointment', 'servicedata.customerappointmentnumber', '=', 'customerappointment.customerappointmentnumber')
+        ->select(
+            'staffdatabase.*',
+            'customerappointment.firstname',
+            'customerappointment.middlename',
+            'customerappointment.lastname',
+            'servicedata.typeofservice' // Include the 'type of service' column
+        )
+        ->get();
+
     return view('staff.staffdatabase', compact('staffdatabase'));
 }
-
        
 
 
@@ -90,7 +99,7 @@ class StaffDatabaseController extends Controller
                 // Customize email content based on the completed service
                 $details = [
                     'title' => 'Work Completion Notification',
-                    'body' => 'The work number with ID ' . $service->staffnumber . ' is marked as completed.',
+                    'body' => 'The work number with ID ' . $service->staffnumber . ' is marked as completed. The admin will be notified of this.',
                 ];
     
                 // Send email to a recipient (replace 'recipient@example.com' with the actual recipient email)
@@ -113,10 +122,6 @@ class StaffDatabaseController extends Controller
         $servicedata= Service::all();
         return view('staff.add', compact('servicedata'));
     }
-
-    public function getService2(){
-        $servicedata= Service::all();
-        return view('staff.show', compact('servicedata'));
-    }
+   
 
 }

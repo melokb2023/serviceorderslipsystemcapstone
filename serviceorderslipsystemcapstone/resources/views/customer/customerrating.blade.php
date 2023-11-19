@@ -73,11 +73,12 @@ button[type=submit]:hover {
                     @endif
                 <form style="align-items:center" method = "POST" action="{{ route('add-customerrating') }}">
                         @csrf
-                <div class="flex-items-center" style="text-align:center"><label for="Customer Appointment Number">Appointment Number</label>
-                    <div>  
+                <div class="flex-items-center" style="text-align:center"><label for="Select Customer">Select Customer</label>
+                    <div> 
+                      <!-----SIMPLIFIED AND EASY VERSION TO RATE THE CUSTOMER THIS TIME WITH NAMES TO AVOID CONFUSION --->
                        <select name="xcustomerappointmentnumber">
                             @foreach($customerappointment as $customerinfo)
-                            <option value="{{$customerinfo->customerappointmentnumber}} "> {{$customerinfo->customerappointmentnumber}}</option>
+                            <option value="{{$customerinfo->customerappointmentnumber}} "> {{$customerinfo->customerappointmentnumber}} - {{$customerinfo->firstname}} {{$customerinfo->middlename}} {{$customerinfo->lastname}}</option>
                             @endforeach
                         </select>
                    </div>
