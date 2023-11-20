@@ -28,7 +28,6 @@
                     <th>Type of Service</th>
                     <th>List Of Problems</th>
                     <th>Maintenance</th>
-                    <th>Customer Password</th>
                     <th>Defective Units</th>
                     <th>Assigned Staff</th>
                     <th>Assigned Tasks</th>
@@ -44,7 +43,6 @@
                         <td>{{$serviceinfo->typeofservice}}</td>
                         <td>{{$serviceinfo->listofproblems}}</td>
                         <td>{{$serviceinfo->maintenancerequired}}</td>
-                        <td>{{$serviceinfo->customerpassword}}</td>
                         <td>{{$serviceinfo->defectiveunits}}</td>
                         <td>{{$serviceinfo->assignedstaff}}</td>
                         <td>{{$serviceinfo->viewtasks}}</td>
