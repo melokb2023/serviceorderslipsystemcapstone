@@ -1,9 +1,11 @@
 @include('layouts.adminnavigation')
 <x-app-layout>
-  <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8" style="background-color:#CD5C5C;">
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg" style="background-color:#CD5C5C;text-align:center">
-                <div class="p-6 text-gray-900 dark:text-gray-100" style="background-color:#CD5C5C;">
+<div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8" style="background-color: #CD5C5C; border: 3px solid black">
+            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg"
+                style="background-color: #CD5C5C; text-align: center">
+                <div class="p-6 text-gray-900 dark:text-gray-100" style="background-color: #CD5C5C;">
+
                         <!-- Favicon-->
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
         <!-- Font Awesome icons (free version)-->
@@ -14,7 +16,9 @@
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="resources/css/style.scss" rel="stylesheet" />
                 <style>
-body {font-family: Century;}
+body {
+    font-family: 'Century Gothic';
+}
 * {box-sizing: border-box;}
 
 input[type=text], select, textarea {
@@ -58,6 +62,26 @@ button[type=submit] {
 
 button[type=submit]:hover {
   background-color: #45a049;
+
+  .animated {
+                            animation: fadeIn 1s;
+                        }
+
+                        @keyframes fadeIn {
+                            from {
+                                opacity: 0;
+                            }
+
+                            to {
+                                opacity: 1;
+                            }
+                        }
+
+                        /* Example hover effect */
+                        button[type=submit]:hover {
+                            background-color: #45a049;
+                            transform: scale(1.1);
+                        }
 }
 
 
@@ -66,7 +90,7 @@ button[type=submit]:hover {
 
 
 </style>
-                   <h6>Errors Encountered</h6>
+                   <h6 style = "font-family:Arial" >Errors Encountered</h6>
                     @if($errors)
                        <ul>
                           @foreach($errors->all() as $error)

@@ -24,7 +24,7 @@
  }
              </style>   
                
-                    <h6>List of Customers</h6>
+                    <h6 style= "font-weight:bold;text-align:center">List of Customers</h6>
                     <table style="text-align:center">
                         <tr style="text-align:center">
                             <th>Appointment Number</th>

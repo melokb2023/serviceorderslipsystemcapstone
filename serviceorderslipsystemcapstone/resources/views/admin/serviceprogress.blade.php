@@ -6,8 +6,23 @@
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg" style="background-color:#CD5C5C;width: 100%">
                 <div class="p-6 text-gray-900 dark:text-gray-100" style="background-color:#CD5C5C;width: 100%">
                 <link rel="stylesheet" href="index.css">
-               
-                    <h6>Service Information</h6>                
+                <style>
+            table,
+            tr {
+                font-family: "Century ";
+                width: 5%;
+                font-weight:bold;
+                background-color:white;
+            }
+
+            td {
+                font-family: "Arial";
+                background-color: grey;
+            }
+
+        </style>
+                    
+                <h6>Service Information</h6>                
                     <table style="border: 5px solid black;width: 100%">
                     <tr>
                         <th>Service Progress Number</th>

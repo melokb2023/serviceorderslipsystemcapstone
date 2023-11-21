@@ -73,18 +73,12 @@ button[type=submit]:hover {
                     @endif
                 <form style="align-items:center" method = "POST" action="{{ route('add-customerrating') }}">
                         @csrf
-                <div class="flex-items-center" style="text-align:center"><label for="Select Customer">Select Customer</label>
+                        <div class="flex-items-center"><label for="Put Your Email">Email</label>
                     <div> 
-                      <!-----SIMPLIFIED AND EASY VERSION TO RATE THE CUSTOMER THIS TIME WITH NAMES TO AVOID CONFUSION --->
-                       <select name="xcustomerappointmentnumber">
-                            @foreach($customerappointment as $customerinfo)
-                            <option value="{{$customerinfo->customerappointmentnumber}} "> {{$customerinfo->customerappointmentnumber}} - {{$customerinfo->firstname}} {{$customerinfo->middlename}} {{$customerinfo->lastname}}</option>
-                            @endforeach
-                        </select>
-                   </div>
-                </div>  
-                      
-<div class="flex-items-center"><label for="Review">Review</label>
+                    <input type="text" name="xrateemail" value="{{old('xrateemail')}}"/>
+                    </div>
+</div>
+                <div class="flex-items-center"><label for="Review">Review</label>
                     <div> 
                     <input type="textarea" name="xreview" value="{{old('xreview')}}"/>
                     </div>

@@ -9,34 +9,65 @@
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <style>
        * {
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Century Gothic', sans-serif;
 }
 
 .top-nav {
-    background-color: #CD5C5C;
+        overflow-x: auto; /* Enable horizontal scrolling */
+        white-space: nowrap; /* Prevent line breaks */
+        border: 2px solid black;
+        font-weight:bold;
+    }
+
+    .top-nav-link {
+        display: inline-block;
+        padding: 10px;
+        text-decoration: none;
+        color: black;
+        border-bottom: 3px solid transparent;
+        transition: all 0.3s ease;
+
+    }
+
+    .top-nav-link:hover {
+        border-color: #fff;
+        background-color: rgba(255, 255, 255, 0.2);
+        border-radius: 5px;
+    }
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #FF7F50;
     border: 3px solid black;
-    font-weight: bold;
-    overflow: hidden;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    transition: all 0.3s ease;
-    padding: 20px; /* Adjust the padding to increase the size of the navigation bar */
-    height: auto; /* Set the height to auto to allow it to expand based on content */
-    width: 100%; /* Set the width to 100% to extend the length of the navigation bar */
-}
-.top-nav-link {
-    text-decoration: none;
-    color: black;
-    padding: 5px 5px;
-    border-bottom: 3px solid transparent;
-    transition: all 0.3s ease;
-    white-space: nowrap;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    animation: fadeIn 0.3s ease-in-out;
 }
 
-.top-nav-link:hover {
-    border-color: #fff;
-    background-color: rgba(255, 255, 255, 0.2);
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Updated styles for the dropdown links */
+.dropdown-content a {
+    color: white;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+/* Hover effect for dropdown links */
+.dropdown-content a:hover {
+    background-color: #45a049;
     border-radius: 5px;
 }
     </style>

@@ -1,7 +1,11 @@
 @include('layouts.adminnavigation')
 <x-app-layout style="background-color:#CD5C5C;">
 
-    <div class="py-12" style="background-color:#CD5C5C; display: flex; justify-content: center; align-items: center;">
+    <div class="py-12" style="display: flex; justify-content: center; align-items: center;">
+    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8" style="background-color: #CD5C5C; border: 3px solid black">
+            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg"
+                style="background-color: #CD5C5C; text-align: center">
+                <div class="p-6 text-gray-900 dark:text-gray-100" style="background-color: #CD5C5C;">
         <link rel="stylesheet" href="style.scss">
         <style>
             table,
@@ -16,6 +20,11 @@
                 background-color: grey;
             }
 
+            th {
+                font-family: "Arial";
+                background-color: white;
+            }
+
         </style>
 
         <div style="text-align: center;">
@@ -28,7 +37,6 @@
                     <th>Type of Service</th>
                     <th>List Of Problems</th>
                     <th>Maintenance</th>
-                    <th>Customer Password</th>
                     <th>Defective Units</th>
                     <th>Assigned Staff</th>
                     <th>Assigned Tasks</th>
@@ -44,7 +52,6 @@
                         <td>{{$serviceinfo->typeofservice}}</td>
                         <td>{{$serviceinfo->listofproblems}}</td>
                         <td>{{$serviceinfo->maintenancerequired}}</td>
-                        <td>{{$serviceinfo->customerpassword}}</td>
                         <td>{{$serviceinfo->defectiveunits}}</td>
                         <td>{{$serviceinfo->assignedstaff}}</td>
                         <td>{{$serviceinfo->viewtasks}}</td>
@@ -82,4 +89,8 @@
             <!-- Additional space if needed -->
         </div>
     </div>
+        </div>
+</div>
+</div>
+</div>        
 </x-app-layout>
