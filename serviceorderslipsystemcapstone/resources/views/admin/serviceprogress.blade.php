@@ -28,7 +28,8 @@
                         <th>Service Progress Number</th>
                         <th>Service Number</th>
                         <th>Date and Time</th>
-                        <th>Work Progress</th>
+                        <th>Service Progress</th>
+                        <th>Options</th>
 </tr>
 
 <tbody>

@@ -21,7 +21,7 @@
 </style>
 
                <h6>Staff Logs</h6>
-                    <table class="border-separate border-spacing-5" style="width:100%">
+                    <table>
                       <tr>
                         <th>Service Number</th>
                         <th>Actions Taken</th>
