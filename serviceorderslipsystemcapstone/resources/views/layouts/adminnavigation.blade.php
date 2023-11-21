@@ -14,7 +14,7 @@
 
 .top-nav {
         overflow-x: auto; /* Enable horizontal scrolling */
-        white-space: nowrap; /* Prevent line breaks */
+      /* Prevent line breaks */
         border: 2px solid black;
         font-weight:bold;
     }
