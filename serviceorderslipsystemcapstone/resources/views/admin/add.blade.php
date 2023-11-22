@@ -118,11 +118,16 @@ button[type=submit]:hover {
 <div class="form-group">
         <label for="type-of-service">Type Of Service</label>
         <select name="xtypeofservice">
-            <option value="Reformatting">Reformatting</option>
-            <option value="Replacement">Replacement</option>
-            <option value="Virus Removal">Virus Removal</option>
-            <option value="Computer Network Troubleshooting">Computer Network Troubleshooting</option>
-            <option value="Upgrade Hardware">Upgrade Hardware</option>
+        <option value="Reformatting">Reformatting</option>
+                        <option value="Replacement">Replacement</option>
+                        <option value="Virus Removal">Virus Removal</option>
+                        <option value="Computer Network Troubleshooting">Computer Network Troubleshooting</option>
+                        <option value="Upgrade Hardware">Upgrade Hardware</option>
+                        <option value="Clean Up Files">Clean Up Files</option>
+                        <option value="Hardware Fixing">Hardware Fixing</option>
+                        <option value="Peripheral Fixing">Peripheral Fixing</option>
+                        <option value="Software Installation">Software Installation</option>
+                        <option value="Reapplication">Reapplication</option>
         </select>
     </div>
 
@@ -148,15 +153,20 @@ button[type=submit]:hover {
     <div class="form-group">
         <label for="assigned-staff">Assigned Staff</label>
         <select name="xassignedstaff">
-            <option value="Scheduled Maintenance">Scheduled Maintenance</option>
-            <option value="Preventive Maintenance">Preventive Maintenance</option>
-            <option value="Full Maintenance">Full Maintenance</option>
+            <option value="Staff 1">Staff 1</option>
+            <option value="Staff 2">Staff 2</option>
+            <option value="Staff 3">Staff 3</option>
         </select>
     </div>
 
     <div class="form-group">
         <label for="assigned-tasks">Assigned Tasks</label>
         <input type="text" name="xviewtasks" value="{{ old('xviewtasks') }}" />
+    </div>
+
+    <div class="form-group">
+        <label for="remarks">Remarks</label>
+        <input type="text" name="xremarks" value="{{ old('xremarks') }}" />
     </div>
 
     <button class="submit" type="submit" style="background-color: black; color: white;">Submit Info</button>

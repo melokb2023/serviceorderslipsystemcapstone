@@ -25,7 +25,7 @@
              </style> 
     
                
-                    <h6 style = "text-align:center;font-weight:bold">Service Information</h6>                
+                    <h6 style = "text-align:center;font-weight:bold">Rating Information</h6>                
                     <table  style="border: 5px solid black;width: 100%">
                     <tr>
                         <th>Rating Number</th>

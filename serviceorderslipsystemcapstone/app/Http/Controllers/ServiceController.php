@@ -122,6 +122,7 @@ class ServiceController extends Controller
         $servicedata->defectiveunits = $request->xdefectiveunits;
         $servicedata->viewtasks = $request->xviewtasks;
         $servicedata->assignedstaff = $request->xassignedstaff;
+        $servicedata->remarks = $request->xremarks;
         $servicedata->save();
         return redirect()->route('servicedata');
     }
@@ -166,6 +167,7 @@ class ServiceController extends Controller
              'defectiveunits'=> $request->xdefectiveunits,
              'viewtasks' =>$request->xviewtasks,
              'assignedstaff'=> $request->xassignedstaff,
+             'remarks'=> $request->xremarks,
              ]);
         return redirect()->route('servicedata');
     }

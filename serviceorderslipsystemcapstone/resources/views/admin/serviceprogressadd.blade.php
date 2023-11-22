@@ -76,15 +76,7 @@ button[type=submit]:hover {
                 </div>  
                 <div class="flex-items-center" style="text-align:center"><label for="Date and Time">Date and Time</label>
                     <div>
-                    <input type="date" name="xdateandtime" value="{{old('xdateandtime')}}"/>
-                    </div>
-</div>
-               <div class="flex-items-center"><label for="Service Progress">Service Progress</label>
-                    <div>
-                    <select name="xserviceprogress">
-                        <option value="Ongoing">Ongoing</option>
-                        <option value="Completed">Completed</option>
-</select>
+                    <input type="datetime-local" name="xdateandtime" value="{{old('xdateandtime')}}"/>
                     </div>
 </div>
 

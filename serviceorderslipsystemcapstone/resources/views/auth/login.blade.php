@@ -27,6 +27,10 @@
             .custom-login-button:hover {
                 background: linear-gradient(to right, #2980b9, #9b59b6);
             }
+            *{
+                text-align:center;
+                align-items:center;
+            }
         </style>
 
         <x-validation-errors class="mb-4" />

@@ -38,7 +38,8 @@ class ServiceProgressController extends Controller
         $serviceprogress = new ServiceProgress();
         $serviceprogress ->serviceno=$request->xserviceno;
         $serviceprogress ->dateandtime=$request->xdateandtime;
-        $serviceprogress ->serviceprogress=$request->xserviceprogress;
+        $serviceprogress->serviceprogress ='Ongoing';
+        $serviceprogress->serviceremarks ='n/a';
         $serviceprogress ->save();
         return redirect()->route('serviceprogress');
     }
@@ -70,6 +71,7 @@ class ServiceProgressController extends Controller
         ServiceProgress::where('serviceprogressno', $id)
             ->update([
                 'serviceprogress' => $request->xserviceprogress,
+                'serviceremarks' => $request->xserviceremarks,
             ]);
     
         // Retrieve the updated service progress record

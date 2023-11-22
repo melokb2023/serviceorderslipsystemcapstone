@@ -24,7 +24,7 @@
                         <th>Customer Password</th>
                         <th>Defective Units</th>
                         <th>Assigned Staff</th>
-                        <th>Options</th>
+                        <th>Remarks</th>
 </tr>
                     <tbody>
                     @foreach($servicedata as $serviceinfo)
@@ -39,7 +39,7 @@
                         <td>{{$serviceinfo->customerpassword}}</td>
                         <td>{{$serviceinfo->defectiveunits}}</td>
                         <td>{{$serviceinfo->assignedstaff}}</td>
-                        <td>{{$serviceinfo->options}}</td>
+                        <td>{{$serviceinfo->remarks}}</td>
                     </tr>
                         @endforeach
                    </tbody>

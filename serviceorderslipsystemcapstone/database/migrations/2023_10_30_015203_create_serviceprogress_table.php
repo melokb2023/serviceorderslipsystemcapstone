@@ -16,6 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('serviceno');
             $table->dateTime('dateandtime', $precision = 0);
             $table->string('serviceprogress');
+            $table->string('serviceremarks',100);
             $table->timestamps();
             $table->foreign('serviceno')->references('serviceno')->on('servicedata');
         });

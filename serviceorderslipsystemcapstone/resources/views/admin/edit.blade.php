@@ -36,6 +36,11 @@
                         <option value="Virus Removal">Virus Removal</option>
                         <option value="Computer Network Troubleshooting">Computer Network Troubleshooting</option>
                         <option value="Upgrade Hardware">Upgrade Hardware</option>
+                        <option value="Clean Up Files">Clean Up Files</option>
+                        <option value="Hardware Fixing">Hardware Fixing</option>
+                        <option value="Peripheral Fixing">Peripheral Fixing</option>
+                        <option value="Software Installation">Software Installation</option>
+                        <option value="Reapplication">Reapplication</option>
 </select>
                     </div>
 </div>
@@ -63,9 +68,9 @@
 <div class="flex-items-center"><label for="Assigned Staff">Assigned Staff</label>
                     <div>
                     <select name="xassignedstaff">
-                        <option value="Scheduled Maintenance">Scheduled Maintenance</option>
-                        <option value="Preventive Maintenance">Preventive Maintenance</option>
-                        <option value="Full Maintenance">Full Maintenance</option>
+                    <option value="Staff 1">Staff 1</option>
+            <option value="Staff 2">Staff 2</option>
+            <option value="Staff 3">Staff 3</option>
     
 </select>
                     </div>
@@ -73,6 +78,11 @@
 <div class="flex-items-center"><label for="Assigned Tasks">Assigned Tasks</label>
                     <div>
                     <input type="text" name="xviewtasks" value="{{$serviceinfo->viewtasks}}"/>
+                    </div>
+</div>
+<div class="flex-items-center"><label for="Remarks">Remarks</label>
+                    <div>
+                    <input type="text" name="xremarks" value="{{$serviceinfo->remarks}}"/>
                     </div>
 </div>
 

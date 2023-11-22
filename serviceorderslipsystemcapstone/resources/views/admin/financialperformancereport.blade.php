@@ -1,7 +1,7 @@
 @include('layouts.adminnavigation')
 <x-app-layout>
 <div>
-    <h1>Service Report</h1>
+    <h1 style = "text-align:center">Service Report</h1>
 
     <canvas id="financialPerformanceChart"></canvas>
 

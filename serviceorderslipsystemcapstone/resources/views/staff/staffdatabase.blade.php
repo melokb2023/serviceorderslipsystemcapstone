@@ -18,6 +18,10 @@
     font-family: "Century Gothic";
     background-color:grey;
  }
+ th{
+    font-family: "Century Gothic";
+    background-color:white;
+ }
 </style>
 
                <h6>List of Students</h6>

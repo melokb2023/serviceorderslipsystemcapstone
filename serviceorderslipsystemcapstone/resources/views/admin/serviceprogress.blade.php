@@ -22,13 +22,14 @@
 
         </style>
                     
-                <h6>Service Information</h6>                
+                <h6 style ="text-align:center" >Service Progress Information</h6>                
                     <table style="border: 5px solid black;width: 100%">
                     <tr>
                         <th>Service Progress Number</th>
                         <th>Service Number</th>
                         <th>Date and Time</th>
                         <th>Service Progress</th>
+                        <th>Service Remarks</th>
                         <th>Options</th>
 </tr>
 
@@ -39,6 +40,7 @@
                         <td>{{$service->serviceno}}</td>
                         <td>{{$service->dateandtime}}</td>
                         <td>{{$service->serviceprogress}}</td>
+                        <td>{{$service->serviceremarks}}</td>
                         <td>
                             <a class="mt-4 bg-yellow-200 text-black font-bold py-2 px-4 rounded" href= "{{route('serviceprogress-show', ['servicenumber' => $service->serviceprogressno]) }}" >View</a>
                             <a class="mt-4 bg-pink-200 text-black font-bold py-2 px-4 rounded" href= "{{route('serviceprogress-edit', ['servicenumber' => $service->serviceprogressno]) }}" >Edit</a>
