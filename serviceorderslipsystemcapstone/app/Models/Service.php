@@ -21,5 +21,6 @@ class Service extends Model
          'viewtasks',
          'assignedstaff',
          'remarks',
+         'dateandtime',
     ];
 }

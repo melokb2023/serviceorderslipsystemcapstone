@@ -23,7 +23,7 @@
         display: inline-block;
         padding: 10px;
         text-decoration: none;
-        color: black;
+        color:white;
         border-bottom: 3px solid transparent;
         transition: all 0.3s ease;
 
@@ -76,10 +76,10 @@
 <body>
 
     <!-- Primary Navigation Menu -->
-    <nav x-data="{ open: false }" class="bg-red-500 border-b border-gray-50" style="background-color:#CD5C5C">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 " style="background-color:#CD5C5C">
-            <div class="flex justify-between h-16" style="background-color:#CD5C5C">
-            <div class="hidden sm:flex sm:items-center sm:ml-6" style="background-color: #CD5C5C;">
+    <nav x-data="{ open: false }" class="bg-red-500 border-b border-gray-50" style="background-color:#FF4433">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 " style="background-color:#FF4433">
+            <div class="flex justify-between h-16" style="background-color:#FF4433">
+            <div class="hidden sm:flex sm:items-center sm:ml-6" style="background-color: #FF4433;">
     <!-- Teams Dropdown -->
     @if (Laravel\Jetstream\Jetstream::hasTeamFeatures())
         <div class="ml-3 relative">
@@ -182,9 +182,6 @@
 
                 <!-- Top Navigation Links -->
                 <div class="top-nav">
-                    <a class="top-nav-link" href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
-                        <i class="fa fa-home"></i> {{ __('DASHBOARD') }}
-                    </a>
                     <a class="top-nav-link" href="{{ route('startservice') }}" :active="request()->routeIs('startservice')">
                         <i class="fa fa-play"></i> {{ __('START SERVICE') }}
                     </a>

@@ -3,12 +3,22 @@
 
 
     <div class="py-12">
-     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8" style="background-color:#CD5C5C;width: 100%;border:3px solid black">
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg" style="background-color:#CD5C5C;width: 100%">
-                <div class="p-6 text-gray-900 dark:text-gray-100" style="background-color:#CD5C5C;width: 100%">
+     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8" style="background-color:#FF4433;width: 100%;border:3px solid black">
+            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg" style="background-color:#FF4433;width: 100%">
+                <div class="p-6 text-gray-900 dark:text-gray-100" style="background-color:#FF4433;width: 100%">
                 <style>
-body {font-family: Century;}
-* {box-sizing: border-box;}
+body {
+  font-family: Century;
+}
+* {
+  box-sizing: border-box;
+  font-weight: bold;
+  text-align:center;
+}
+
+label{
+  font-weight: bold;
+}
 
 input[type=text], select, textarea {
   width: 100%;
@@ -110,27 +120,18 @@ button[type=submit]:hover {
 </select>
                     </div>
 </div>
-                           
+       <div class="flex-items-center" style="text-align:center"><label for="Date and Time">Date and Time</label>
+                    <div>
+                    <input type="datetime-local" name="xdateandtime" value="{{old('xdateandtime')}}"/>
+                    </div>
+</div>
+            <br>
+            <br>
+            <br>               
                              
              <button type ="submit"> Submit Info </button>
                    </form>
                    <br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
 <br>
 <br>
 <br>

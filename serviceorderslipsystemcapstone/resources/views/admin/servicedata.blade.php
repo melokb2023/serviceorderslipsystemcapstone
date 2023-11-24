@@ -1,11 +1,11 @@
 @include('layouts.adminnavigation')
-<x-app-layout style="background-color:#CD5C5C;">
+<x-app-layout style="background-color:#FF4433;">
 
     <div class="py-12" style="display: flex; justify-content: center; align-items: center;">
-    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8" style="background-color: #CD5C5C; border: 3px solid black">
+    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8" style="background-color: #FF4433; border: 3px solid black">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg"
-                style="background-color: #CD5C5C; text-align: center">
-                <div class="p-6 text-gray-900 dark:text-gray-100" style="background-color: #CD5C5C;">
+                style="background-color: #FF4433; text-align: center">
+                <div class="p-6 text-gray-900 dark:text-gray-100" style="background-color: #FF4433;">
         <link rel="stylesheet" href="style.scss">
         <style>
             table,
@@ -17,18 +17,24 @@
 
             td {
                 font-family: "Arial";
-                background-color: grey;
+                background-color: #cbd6e4;
             }
 
             th {
                 font-family: "Arial";
                 background-color: white;
             }
+            h1{
+                font-family:Arial;
+                color:white;
+                font-size:30px;
+                font-weight:bold;
+            }
 
         </style>
 
         <div style="text-align: center;">
-            <h6>Service Information</h6>
+            <h1>Service Information</h1>
             <table id="customers" style="border: 1px solid black; margin: auto;">
                 <tr>
                     <th>Service Number</th>
@@ -41,6 +47,7 @@
                     <th>Assigned Staff</th>
                     <th>Assigned Tasks</th>
                     <th>Remarks</th>
+                    <th>Date and Time</th>
                     <th>Options</th>
                 </tr>
 
@@ -57,6 +64,7 @@
                         <td>{{$serviceinfo->assignedstaff}}</td>
                         <td>{{$serviceinfo->viewtasks}}</td>
                         <td>{{$serviceinfo->remarks}}</td>
+                        <td>{{$serviceinfo->dateandtime}}</td>
                         <td>
                             <a class="mt-4 bg-yellow-200 text-black font-bold py-2 px-4 rounded"
                                 href="{{route('service-show', ['serno' => $serviceinfo->serviceno])}}">View</a>

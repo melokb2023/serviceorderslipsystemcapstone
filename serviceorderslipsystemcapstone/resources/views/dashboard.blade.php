@@ -1,4 +1,4 @@
-@include('layouts.adminnavigation')
+@include('layouts.customernavigation')
 
 <x-app-layout style="background-image: url('/service/serviceorderslipsystemcapstone/serviceorderslipsystemcapstone/Dark_Vector.jpg'); background-size: cover;">
 
@@ -41,14 +41,14 @@
                     }
 
                     th {
-                        background-color: #CD5C5C;
+                        background-color: #E51818;
                         font-family: 'Century Gothic', sans-serif;
                         font-weight: bold;
                         text-align:center;
                     }
 
                     td {
-                        background-color: #CD5C5C;
+                        background-color: #E51818;
                         font-family: 'Century Gothic', sans-serif;
                         text-align:center;
                     }

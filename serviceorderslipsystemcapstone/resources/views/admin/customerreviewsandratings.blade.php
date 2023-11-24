@@ -2,9 +2,9 @@
 <x-app-layout>
 
     <div class="py-12" style="width: 100%">
-     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8" style="background-color:#CD5C5C;width: 100%;border:3px solid black">
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg" style="background-color:#CD5C5C;width: 100%">
-                <div class="p-6 text-gray-900 dark:text-gray-100" style="background-color:#CD5C5C;width: 100%">
+     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8" style="background-color:#FF4433;width: 100%;border:3px solid black">
+            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg" style="background-color:#FF4433;width: 100%">
+                <div class="p-6 text-gray-900 dark:text-gray-100" style="background-color:#FF4433;width: 100%">
                 <link rel="stylesheet" href="style.scss">
                 <style>
                 table,tr {
@@ -17,15 +17,24 @@
  td{
     font-family: "Century Gothic";
     background-color:grey;
+    font-size:15px;
  }
- th{
+ th,tr{
     font-family: "Century Gothic";
     background-color:white;
+    font-size:15px;
  }
-             </style> 
+ h6{
+    font-style:"Century Gothic";
+    text-align:center;
+    font-weight:bold;
+    font-size:30px;
+    color:white;
+ }
+</style> 
     
                
-                    <h6 style = "text-align:center;font-weight:bold">Rating Information</h6>                
+                    <h6>Rating Information</h6>                
                     <table  style="border: 5px solid black;width: 100%">
                     <tr>
                         <th>Rating Number</th>

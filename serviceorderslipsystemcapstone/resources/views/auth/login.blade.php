@@ -5,27 +5,34 @@
         </x-slot>
 
         <style>
+            *{
+                font-style: "Century Gothic";
+                align-items:center;
+            }
+            x-button{
+                align-items:center;
+            }
             .custom-login-button {
                 margin-top: 1.5rem;
                 padding: 0.5rem 1rem;
                 border: none;
                 display: flex;
-                flex-direction: column;
                 border-radius: 0.25rem;
                 color: white;
                 font-weight: bold;
                 cursor: pointer;
                 outline: none;
                 transition: all 0.3s ease-in-out;
-                background: linear-gradient(to right, #3498db, #8e44ad);
+                background-color: blue;
                 box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
                 text-align: center;
                 align-items: center;
                 justify-content: center;
+                font-style: "Century Gothic";
             }
 
             .custom-login-button:hover {
-                background: linear-gradient(to right, #2980b9, #9b59b6);
+                background: black;
             }
             *{
                 text-align:center;
@@ -43,7 +50,7 @@
 
         <form method="POST" action="{{ route('login') }}" class="mt-8">
             @csrf
-            <div>
+            <div style ="font-weight:bold">
                 COMPUSOURCE COMPUTER CENTER
             </div>
 
@@ -57,9 +64,9 @@
                 <x-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="current-password" />
             </div>
 
-            <x-button class="custom-login-button">
-                {{ __('Log in') }}
-            </x-button>
+            <button class="custom-login-button">
+                {{ __('LOG IN') }}
+            </button>
         </form>
     </x-authentication-card>
 </x-guest-layout>

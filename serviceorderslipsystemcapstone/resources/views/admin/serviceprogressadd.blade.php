@@ -1,12 +1,19 @@
 @include('layouts.adminnavigation')
 <x-app-layout>
-  <div class="py-12" style="background-color:#CD5C5C;">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8" style="background-color:#CD5C5C;">
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg" style="background-color:#CD5C5C;text-align:center">
-                <div class="p-6 text-gray-900 dark:text-gray-100" style="background-color:#CD5C5C;">
+  <div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8" style="background-color:#FF4433;border:3px solid black">
+            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg" style="background-color:#FF4433;text-align:center">
+                <div class="p-6 text-gray-900 dark:text-gray-100" style="background-color:#FF4433;">
                 <style>
-body {font-family: Century;}
-* {box-sizing: border-box;}
+body {font-family: "Century Gothic";}
+* {
+  box-sizing: border-box;
+  font-family: "Century Gothic";
+  font-weight:bold;
+}
+label{
+  color:white;
+}
 
 input[type=text], select, textarea {
   width: 100%;
@@ -51,11 +58,17 @@ button[type=submit]:hover {
   background-color: #45a049;
 }
 
+h6{
+  color:white;
+}
+
 
 
 
 </style>
-                   <h6 style="font-family: Century">Errors Encountered</h6>
+                   <h6>Errors Encountered</h6>
+                   <br>
+                   <br>
                     @if($errors)
                        <ul>
                           @foreach($errors->all() as $error)
@@ -79,8 +92,12 @@ button[type=submit]:hover {
                     <input type="datetime-local" name="xdateandtime" value="{{old('xdateandtime')}}"/>
                     </div>
 </div>
+<br>
+<br>
+<br>
+<br>
 
-             <button type ="submit" style="text-align:center;background-color:black"> Submit Info </button>
+             <button type ="submit" style="text-align:center;background-color:green"> Submit Info </button>
                    </form>
                    <br>
     <br>

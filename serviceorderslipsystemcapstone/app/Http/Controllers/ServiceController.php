@@ -123,6 +123,13 @@ class ServiceController extends Controller
         $servicedata->viewtasks = $request->xviewtasks;
         $servicedata->assignedstaff = $request->xassignedstaff;
         $servicedata->remarks = $request->xremarks;
+          // Get dateandtime from CustomerAppointment based on customerappointmentnumber
+         $customerAppointment = CustomerAppointment::where('customerappointmentnumber', $request->xcustomerappointmentnumber)->first();
+
+    // Check if the CustomerAppointment exists
+    if ($customerAppointment) {
+        $servicedata->dateandtime = $customerAppointment->dateandtime;
+    }
         $servicedata->save();
         return redirect()->route('servicedata');
     }
