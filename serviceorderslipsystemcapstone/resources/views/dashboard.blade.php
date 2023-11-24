@@ -1,4 +1,4 @@
-@include('layouts.adminnavigation')
+@include('layouts.customernavigation')
 
 <x-app-layout style="background-image: url('/service/serviceorderslipsystemcapstone/serviceorderslipsystemcapstone/Dark_Vector.jpg'); background-size: cover;">
 

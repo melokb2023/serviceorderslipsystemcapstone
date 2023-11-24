@@ -17,6 +17,7 @@ return new class extends Migration
             $table->unsignedBigInteger('serviceno');
             $table->string('actionstaken',100)->default('None');
             $table->string('workprogress')->default('Ongoing');
+            $table->dateTime('dateandtime', $precision = 0);
             $table->foreign('serviceno')->references('serviceno')->on('servicedata');
             $table->timestamps();
         });

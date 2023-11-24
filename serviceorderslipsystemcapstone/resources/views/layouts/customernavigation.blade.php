@@ -151,7 +151,10 @@
 
   <!-- Top Navigation Links -->
   <div class="top-nav">
-                    <a class="top-nav-link" href="{{ route('startappointment') }}" :active="request()->routeIs('startappointment')">
+                    <a class="top-nav-link" href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
+                        <i class="fa fa-home"></i> {{ __('DASHBOARD') }}
+                    </a>
+                    <a class="top-nav-link" href="{{ route('add-appointment') }}" :active="request()->routeIs('add-appointment')">
                         <i class="fa fa-home"></i> {{ __('START APPOINTMENT') }}
                     </a>
                    <a class="top-nav-link" href="{{ route('add-customerrating') }}" :active="request()->routeIs('add-customerrating')">

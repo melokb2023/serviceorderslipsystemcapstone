@@ -31,65 +31,25 @@
                     <br>
                     <table style="border: 5px solid black;width: 100%;text-align:center">
                         <tr style="border: 5px solid black;width: 100%">
-                            <td>Motherboard Readjustment</td>
-                            <td>Battery Replacement</td>
-                            <td>CMOS Replacement</td>
-                            <td>Application Deletion</td>
-                            <td>Third Party Installation</td>
-                            <td>Sound Readjustment of </td>
-                            <td>Sound Readjustment of </td>
-                            <td>Sound Readjustment of </td>
+                            <td>Reformatting</td>
+                            <td>Replacement</td>
+                            <td>Virus Removal</td>
+                            <td>Computer Network Troubleshooting</td>
+                            <td>Upgrade Hardware</td>
+                            <td>Clean Up Files </td>
+                            <td>Hardware Fixing</td>
+                            <td>Peripheral Fixing </td>
                         </tr>
                         
                         <tr style="border: 5px solid black;width: 100%">
-                            <td>Motherboard Readjustment</td>
-                            <td>Battery Replacement</td>
-                            <td>CMOS Replacement</td>
-                            <td>Application Deletion</td>
-                            <td>Third Party Installation</td>
-                            <td>Sound Readjustment of </td>
-                            <td>Sound Readjustment of </td>
-                            <td>Sound Readjustment of </td>
-                        </tr>
-                        <tr style="border: 5px solid black;width: 100%">
-                            <td>Motherboard Readjustment</td>
-                            <td>Battery Replacement</td>
-                            <td>CMOS Replacement</td>
-                            <td>Application Deletion</td>
-                            <td>Third Party Installation</td>
-                            <td>Sound Readjustment of </td>
-                            <td>Sound Readjustment of </td>
-                            <td>Sound Readjustment of </td>
-                        </tr>
-                        <tr style="border: 5px solid black;width: 100%">
-                            <td>Motherboard Readjustment</td>
-                            <td>Battery Replacement</td>
-                            <td>CMOS Replacement</td>
-                            <td>Application Deletion</td>
-                            <td>Third Party Installation</td>
-                            <td>Sound Readjustment of </td>
-                            <td>Sound Readjustment of </td>
-                            <td>Sound Readjustment of </td>
-                        </tr>
-                        <tr style="border: 5px solid black;width: 100%">
-                            <td>Motherboard Readjustment</td>
-                            <td>Battery Replacement</td>
-                            <td>CMOS Replacement</td>
-                            <td>Application Deletion</td>
-                            <td>Third Party Installation</td>
-                            <td>Sound Readjustment of </td>
-                            <td>Sound Readjustment of </td>
-                            <td>Sound Readjustment of </td>
-                        </tr>
-                        <tr style="border: 5px solid black;width: 100%">
-                            <td>Motherboard Readjustment</td>
-                            <td>Battery Replacement</td>
-                            <td>CMOS Replacement</td>
-                            <td>Application Deletion</td>
-                            <td>Third Party Installation</td>
-                            <td>Sound Readjustment of </td>
-                            <td>Sound Readjustment of </td>
-                            <td>Sound Readjustment of </td>
+                            <td>Software Installation</td>
+                            <td>Reapplication</td>
+                            <td>PC Repair</td>
+                            <td>Network Repair</td>
+                            <td>Laptop Repair</td>
+                            <td>Printer Fixing </td>
+                            <td>System Configuration</td>
+                            <td>Deep Cleanup </td>
                         </tr>
                        
                     </table>

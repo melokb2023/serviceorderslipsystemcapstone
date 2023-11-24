@@ -182,9 +182,6 @@
 
                 <!-- Top Navigation Links -->
                 <div class="top-nav">
-                    <a class="top-nav-link" href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
-                        <i class="fa fa-home"></i> {{ __('DASHBOARD') }}
-                    </a>
                     <a class="top-nav-link" href="{{ route('startservice') }}" :active="request()->routeIs('startservice')">
                         <i class="fa fa-play"></i> {{ __('START SERVICE') }}
                     </a>

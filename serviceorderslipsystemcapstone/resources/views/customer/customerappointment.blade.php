@@ -110,6 +110,11 @@ button[type=submit]:hover {
 </select>
                     </div>
 </div>
+       <div class="flex-items-center" style="text-align:center"><label for="Date and Time">Date and Time</label>
+                    <div>
+                    <input type="datetime-local" name="xdateandtime" value="{{old('xdateandtime')}}"/>
+                    </div>
+</div>
                            
                              
              <button type ="submit"> Submit Info </button>

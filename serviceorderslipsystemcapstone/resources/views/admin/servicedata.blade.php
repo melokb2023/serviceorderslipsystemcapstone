@@ -41,6 +41,7 @@
                     <th>Assigned Staff</th>
                     <th>Assigned Tasks</th>
                     <th>Remarks</th>
+                    <th>Date and Time</th>
                     <th>Options</th>
                 </tr>
 
@@ -57,6 +58,7 @@
                         <td>{{$serviceinfo->assignedstaff}}</td>
                         <td>{{$serviceinfo->viewtasks}}</td>
                         <td>{{$serviceinfo->remarks}}</td>
+                        <td>{{$serviceinfo->dateandtime}}</td>
                         <td>
                             <a class="mt-4 bg-yellow-200 text-black font-bold py-2 px-4 rounded"
                                 href="{{route('service-show', ['serno' => $serviceinfo->serviceno])}}">View</a>

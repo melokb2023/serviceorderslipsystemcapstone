@@ -21,6 +21,7 @@
                         <th>Address</th>
                         <th>Appointment Purpose</th>
                         <th>Appointment Type</th>
+                        <th>Date and Time</th>
 </tr>
                     <tbody>
                     @foreach($customerappointment as $customer)
@@ -32,6 +33,7 @@
                        <td>{{$customer->address}}</td>
                        <td>{{$customer->appointmentpurpose}}</td>
                        <td>{{$customer->appointmenttype}}</td>
+                       <td>{{$customer->dateandtime}}</td>
                     </tr>
                         @endforeach
                    </tbody>
