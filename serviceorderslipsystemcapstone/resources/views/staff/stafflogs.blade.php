@@ -3,21 +3,33 @@
   
 
     <div class="py-12" >
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8" style="background-color:#CD5C5C;border: 3px solid black;">
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg" style="background-color:#CD5C5C">
-                <div class="p-6 text-gray-900 dark:text-gray-100" style="background-color:#CD5C5C">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8" style="background-color:#FF4433;border: 3px solid black;">
+            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg" style="background-color:#FF4433">
+                <div class="p-6 text-gray-900 dark:text-gray-100" style="background-color:#FF4433">
 <style>
-            table,tr {
-  font-family: "Century Gothic";
-  border-collapse: collapse;
-  width: 100%;
-  font-weight:bold;
+         table,
+            tr {
+                font-family: "Century ";
+                width: 5%;
+                font-weight:bold;
+                width:100%;
+                background-color:white;
+            }
+
+            td {
+                font-family: "Arial";
+                background-color: #cbd6e4;
+            }
+
+            h6{
+    font-weight:bold;
+    text-align:center;
+    font-size:30px;
+    font-family:"Century Gothic";
+    color:white;
+
  }
 
- td{
-    font-family: "Century Gothic";
-    background-color:grey;
- }
 </style>
 
                <h6>Staff Logs</h6>

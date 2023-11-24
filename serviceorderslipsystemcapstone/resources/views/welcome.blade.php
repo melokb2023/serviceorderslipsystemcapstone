@@ -1,7 +1,7 @@
-<x-guest-layout style="background-color:#CD5C5C;">
+<x-guest-layout style="background-color:#E51818;">
 
     <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head style="background-color:#CD5C5C;">
+    <head style="background-color:#E51818;">
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Service Order Slip System</title>
@@ -37,7 +37,7 @@
                 justify-content: center;
                 align-items: center;
                 height: 100vh;
-                background-color: #CD5C5C;
+                background-color: #E51818;
             }
 
             .links {
@@ -51,8 +51,8 @@
                 color: #fff;
                 font-weight: bold;
                 font-size: 18px;
-                background-color: red;
-                color: black;
+                background-color: blue;
+                color: white;
                 padding: 12px 20px;
                 border: none;
                 border-radius: 4px;
@@ -64,7 +64,7 @@
                 color: #fff;
                 font-weight: bold;
                 font-size: 18px;
-                background-color: black;
+                background-color: #04AA6D;
                 color: white;
                 padding: 12px 20px;
                 border: none;
@@ -80,7 +80,7 @@
                 justify-content: center;
                 align-items: center;
                 height: 100vh;
-                background-color: #CD5C5C;
+                background-color: #E51818;
             }
 
             .logo {
@@ -93,7 +93,7 @@
                 justify-content: center;
                 align-items: center;
                 padding: 20px;
-                background-color: #CD5C5C;
+                background-color: #E51818;
                 color: black;
                 border-radius: 8px;
                 text-decoration: none;
@@ -115,7 +115,7 @@
 
             <div class="content">
                 
-                        <h2 style = "font-weight:bold">CompuSource Computer Center</h2>
+                        <h2 style = "font-weight:bold;font-size:35px;color:white">CompuSource Computer Center</h2>
                 <div class="mt-16">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
                     @auth

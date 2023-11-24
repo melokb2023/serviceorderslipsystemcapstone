@@ -1,10 +1,10 @@
 @include('layouts.adminnavigation')
 <x-app-layout>
 <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8" style="background-color: #CD5C5C; border: 3px solid black">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8" style="background-color: #FF4433; border: 3px solid black">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg"
-                style="background-color: #CD5C5C; text-align: center">
-                <div class="p-6 text-gray-900 dark:text-gray-100" style="background-color: #CD5C5C;">
+                style="background-color: #FF4433; text-align: center">
+                <div class="p-6 text-gray-900 dark:text-gray-100" style="background-color: #FF4433;">
 
                         <!-- Favicon-->
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
@@ -17,7 +17,10 @@
         <link href="resources/css/style.scss" rel="stylesheet" />
                 <style>
 body {
-    font-family: 'Century Gothic';
+    font-family: 'Century Gothic',sans-serif;
+    font-weight:bold;
+    font-size:17px;
+    color:white;
 }
 * {box-sizing: border-box;}
 
@@ -169,7 +172,7 @@ button[type=submit]:hover {
         <input type="text" name="xremarks" value="{{ old('xremarks') }}" />
     </div>
 
-    <button class="submit" type="submit" style="background-color: black; color: white;">Submit Info</button>
+    <button class="submit" type="submit" style="background-color: green; color: white;">Submit Info</button>
 </form>
                    <br>
     <br>

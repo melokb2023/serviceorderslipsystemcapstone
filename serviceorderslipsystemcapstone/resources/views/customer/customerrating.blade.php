@@ -1,12 +1,16 @@
 @include('layouts.customernavigation')
 <x-app-layout>
   <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8" style="background-color:#CD5C5C;border:3px solid black">
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg" style="background-color:#CD5C5C;text-align:center">
-                <div class="p-6 text-gray-900 dark:text-gray-100" style="background-color:#CD5C5C;">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8" style="background-color:#FF4433;border:3px solid black">
+            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg" style="background-color:#FF4433;text-align:center">
+                <div class="p-6 text-gray-900 dark:text-gray-100" style="background-color:#FF4433;">
                 <style>
-body {font-family: Century;}
-* {box-sizing: border-box;}
+
+* {
+  box-sizing: border-box;
+  font-family:"Century Gothic";
+  font-weight:bold;
+}
 
 
 
@@ -106,17 +110,9 @@ button[type=submit]:hover {
                     </div>
 </div>
       
-             <button class="submit" type ="submit" style="text-align:center;background-color:black"> Submit Info </button>
+             <button class="submit" type ="submit" style="text-align:center;background-color:green"> Submit Info </button>
                    </form>
-                   <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
+        
                 </div>
             </div>
         </div>

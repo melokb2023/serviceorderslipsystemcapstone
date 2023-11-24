@@ -23,7 +23,7 @@
                 cursor: pointer;
                 outline: none;
                 transition: all 0.3s ease-in-out;
-                background-color: red;
+                background-color: blue;
                 box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
                 text-align: center;
                 align-items: center;

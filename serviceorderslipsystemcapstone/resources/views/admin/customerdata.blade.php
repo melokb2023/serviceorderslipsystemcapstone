@@ -3,9 +3,9 @@
   
 
     <div class="py-12" >
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8" style="background-color:#CD5C5C;width: 100%;border: 3px solid black">
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg" style="background-color:#CD5C5C;width: 100%">
-                <div class="p-6 text-gray-900 dark:text-gray-100" style="background-color:#CD5C5C;width: 100%">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8" style="background-color:#FF4433;width: 100%;border: 3px solid black">
+            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg" style="background-color:#FF4433;width: 100%">
+                <div class="p-6 text-gray-900 dark:text-gray-100" style="background-color:#FF4433;width: 100%">
                 <style>
                 table,tr {
   font-family: "Century Gothic";
@@ -16,15 +16,26 @@
 
  td{
     font-family: "Century Gothic";
-    background-color:grey;
+    background-color:#cbd6e4;
  }
  th{
     font-family: "Century Gothic";
     background-color:white;
  }
+
+ h6{
+    font-weight:bold;
+    text-align:center;
+    font-size:30px;
+    font-family:"Century Gothic";
+    color:white;
+
+ }
              </style>   
                
-                    <h6 style= "font-weight:bold;text-align:center">List of Customers</h6>
+                    <h6>List of Customers</h6>
+                    <br>
+                    <br>
                     <table style="text-align:center">
                         <tr style="text-align:center">
                             <th>Appointment Number</th>

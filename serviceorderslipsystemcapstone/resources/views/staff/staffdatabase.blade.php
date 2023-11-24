@@ -3,9 +3,9 @@
   
 
     <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8" style="background-color:#CD5C5C;border: 3px solid black;">
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg" style="background-color:#CD5C5C">
-                <div class="p-6 text-gray-900 dark:text-gray-100" style="background-color:#CD5C5C">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8" style="background-color:#FF4433;border: 3px solid black;">
+            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg" style="background-color:#FF4433">
+                <div class="p-6 text-gray-900 dark:text-gray-100" style="background-color:#FF4433">
 <style>
             table,tr {
   font-family: "Century Gothic";
@@ -22,9 +22,16 @@
     font-family: "Century Gothic";
     background-color:white;
  }
+ h6{
+    font-family: "Century Gothic";
+    font-size:32px;
+    font-weight:bold;
+    text-align:center;
+    color:white;
+ }
 </style>
 
-               <h6>List of Students</h6>
+               <h6>List of Works</h6>
                     <table class="border-separate border-spacing-5" style="width:100%">
                       <tr>
                         <th>Staff Work Number</th>

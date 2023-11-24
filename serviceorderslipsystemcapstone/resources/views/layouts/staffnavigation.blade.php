@@ -7,13 +7,14 @@
     <!-- Include external stylesheets, scripts, or other head elements here -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <style>
         * {
             font-family: 'Montserrat', sans-serif;
         }
 
         .top-nav {
-            background-color: #CD5C5C;
+            background-color: #FF4433;
             border: 3px solid black;
             font-weight: bold;
             overflow: hidden;
@@ -21,11 +22,15 @@
             justify-content: space-around;
             align-items: center;
             transition: all 0.3s ease;
+            color:white;
+            padding: 20px; /* Adjust the padding to increase the size of the navigation bar */
+    height: auto; /* Set the height to auto to allow it to expand based on content */
+    width: 100%; /* Set the width to 100% to extend the length of the navigation bar */
         }
 
         .top-nav-link {
             text-decoration: none;
-            color: black;
+            color:white;
             padding: 5px 5px;
             border-bottom: 3px solid transparent;
             transition: all 0.3s ease;
@@ -43,10 +48,10 @@
 <body>
 
     <!-- Primary Navigation Menu -->
-    <nav x-data="{ open: false }" class="bg-red-500 border-b border-gray-50" style="background-color:#CD5C5C">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 " style="background-color:#CD5C5C">
-            <div class="flex justify-between h-16" style="background-color:#CD5C5C">
-            <div class="hidden sm:flex sm:items-center sm:ml-6" style="background-color: #CD5C5C;">
+    <nav x-data="{ open: false }" class="bg-red-500 border-b border-gray-50" style="background-color:#FF4433">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 " style="background-color:#FF4433">
+            <div class="flex justify-between h-16" style="background-color:#FF4433">
+            <div class="hidden sm:flex sm:items-center sm:ml-6" style="background-color: #FF4433;">
     <!-- Teams Dropdown -->
     @if (Laravel\Jetstream\Jetstream::hasTeamFeatures())
         <div class="ml-3 relative">
@@ -150,13 +155,13 @@
                 <!-- Top Navigation Links -->
                 <div class="top-nav">
                  <a class="top-nav-link"  href="{{ route('staffdatabasemenu') }}" :active="request()->routeIs('staffdatabasemenu')">
-                        {{ __('MENU') }}
+                 <i class="fa fa-home"></i> {{ __('MENU') }}
 </a>          
                  <a class="top-nav-link"  href="{{ route('staffdatabase') }}" :active="request()->routeIs('staffdatabase')">
-                        {{ __('STAFF DATABASE') }}
+                 <i class="fa fa-database"></i>{{ __('STAFF DATABASE') }}
 </a>
                  <a class="top-nav-link"  href="{{ route('stafflogs') }}" :active="request()->routeIs('stafflogs')">
-                        {{ __('LOGS') }}
+                 <i class="fa fa-bar-chart"></i>   {{ __('LOGS') }}
                  </a>
                 </div>
             </div>
