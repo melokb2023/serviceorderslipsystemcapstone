@@ -18,22 +18,22 @@
             }
 
             .button1 {
-  background-color: #04AA6D;
-  color: white;
-  padding: 12px 20px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
+                background-color: #04AA6D;
+                color: white;
+                padding: 12px 20px;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+            }
 
-.button2{
-  background-color: #04AA6D;
-  color: white;
-  padding: 12px 20px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
+            .button2{
+                background-color: #04AA6D;
+                color: white;
+                padding: 12px 20px;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+            }
 
             .container {
                 display: flex;
@@ -77,7 +77,6 @@
                 cursor: pointer;
             }
 
-
             .content {
                 text-align: center;
                 display: flex;
@@ -85,15 +84,9 @@
                 justify-content: center;
                 align-items: center;
                 height: 100vh;
-                padding-top: 50px; /* Adjust the value as needed */
-                padding-left: 100px;
-                padding-right: 40px;
-                padding-bottom: 20px;
                 background-color: #E51818;
                 font-family:"Century Gothic";
-                font-weight: bold;
-                font-size:32px;
-                
+                font-weight: bold;  
             }
 
             .logo {
@@ -123,63 +116,53 @@
 
             
             table {
-        width: 80%;
-        height: 150%; /* Adjust the value as needed */
-        margin: 0 auto; /* Center the table horizontally */
-        border-collapse: collapse; /* Optional: collapse borders between cells */
-    }
+                width: 50%;
+                height: 50%; /* Adjust the value as needed */
+                margin: 0 auto; /* Center the table horizontally */
+                border-collapse: collapse; /* Optional: collapse borders between cells */
+                padding-left: 50px;
+                padding-right: 50px;
+               
+            }
 
-    td {
-        padding-top: 50px; /* Adjust the value as needed */
-        padding-bottom: 20px;
-        padding-left: 30px;
-        padding-right: 30px;
-    }
+            td {
+              
+                padding-left: 50px;
+                padding-right: 50px;
+            }
 
-    td:nth-child(1) {
-        width: 100%;
-    }
 
-    td:nth-child(2) {
-        width: 100%;
-    }
 
-    tr {
-        padding-top: 50px; /* Adjust the value as needed */
-        padding-bottom: 20px;
-        padding-left: 30px;
-        padding-right: 30px;
-        background-color: #cbd6e4;
-        color:black;
-    }
+            tr {
+                padding-left: 50px;
+                padding-right: 50px;
+                background-color: #cbd6e4;
+                color:black;
+            }
 
-    /* Increase the padding */
+            /* Increase the padding */
 
         </style>
     </head>
 
     <body>
-
-            <div class="content">
-                
-                        <h2 style = "font-weight:bold;font-size:35px;color:white">CompuSource Computer Center</h2>
-               
-                        <table>
-            <tr>
-                <td>
-                    Welcome to CompuSource Computer Center! The computer center where service matters the most.
-                    Here we provide the most valuable services to each of the customers.
-                    We are a highly-managed small team.
-                    Start making your appointments and we will help you in the process of making every single service a
-                    much more flexible one.
-                </td>
-                <td>
-                    <img src="https://example.com/your-image.jpg" alt="Description of the image">
-                </td>
-            </tr>
-        </table>
-                    </div>
-            </div>
+        <div class="content">
+            <h2 style="font-weight:bold;font-size:35px;color:white">ABOUT US</h2>
+            <table>
+                <tr>
+                    <td>
+                        <br>
+                        <br>
+                        <img src="https://mapio.net/images-p/23492636.jpg" alt="Description of the image" style="max-width: 100%; height: auto;">
+                        <p>
+                            IF YOU WANT TO CONTACT US, YOU MAY CONTACT US VIA EMAIL OR CONTACT NUMBER, OR YOU MAY HAVE TO GO TO OUR STORE HERE IN CAGAYAN DE ORO CITY, SPECIFICALLY IN PABAYO COR. JR BORJA STREET. YOU MAY APPROACH MR. PEDRO PAILAGAO FOR THIS.
+                        </p>
+                    </td>
+                </tr>
+            </table>
         </div>
+        <br>
+        <br>
+        <br>
     </body>
-    </x-guest-layout>
+</x-guest-layout>

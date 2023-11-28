@@ -19,27 +19,27 @@ class ServiceController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
-       // $student = new Student;
-       // $student->idNo = "C20-0002";
-       // $student->firstName = "Kyle Bryant";
-       // $student->middleName = "Mejares";
-       // $student->lastName= "Melo";
-       // $student->suffix = "";
-       // $student->course = "BSIT";
-       // $student->year = 3;
-       // $student->birthDate = "2001-01-27";
-       // $student->gender = "Male";
-       // $student->save();
-//
-       //echo "Grades data successfully saved in the database";
+    public function index(Request $request)
+{
+    $query = Service::join('customerappointment', 'servicedata.customerappointmentnumber', '=', 'customerappointment.customerappointmentnumber');
 
-      
-      $servicedata = Service:: join('customerappointment', 'servicedata.customerappointmentnumber', '=', 'customerappointment.customerappointmentnumber')->get();
-      return view('admin.servicedata', compact('servicedata'));
+    // Check if there is a filter for Customer Appointment Number
+    if ($request->has('customer_appointment_number_filter')) {
+        $query->where('servicedata.customerappointmentnumber', $request->input('customer_appointment_number_filter'));
     }
 
+    // Check if there is a filter for Type of Service
+    if ($request->has('typeofservice_filter') && $request->input('typeofservice_filter') !== 'All') {
+        $query->where('servicedata.typeofservice', $request->input('typeofservice_filter'));
+    }
+
+    $servicedata = $query->get();
+
+    // Get distinct types of service for the combo box
+    $typesOfService = Service::distinct('typeofservice')->pluck('typeofservice');
+
+    return view('admin.servicedata', compact('servicedata', 'typesOfService'));
+}
     //////VIEW CUSTOMER LIST
     public function CustomerList(){
         $customerappointment = CustomerAppointment:: all();
@@ -193,9 +193,20 @@ class ServiceController extends Controller
         return view('admin.add', compact('customerappointment'));
     }
 
-    public function getServiceInfo(){
-        $staffdatabase = Service::select('serviceno','customerappointmentnumber','contactnumber','email','address','typeofservice','listofproblems','maintenancerequired','customerpassword','assignedstaff','defectiveunits')->get();
-        return view('staff.staffdatabase', compact('staffdatabase'));
+    public function getAvailableCustomerAppointments()
+    {
+        // Get all customer appointments
+        $allCustomerAppointments = CustomerAppointment::all();
+
+        // Get customer appointments that are not listed in service data
+        $listedCustomerAppointments = Service::pluck('customerappointmentnumber')->unique();
+        $availableCustomerAppointments = $allCustomerAppointments->reject(function ($customerAppointment) use ($listedCustomerAppointments) {
+            return $listedCustomerAppointments->contains($customerAppointment->customerappointmentnumber);
+        });
+
+        return $availableCustomerAppointments;
     }
+
+   
   
 }

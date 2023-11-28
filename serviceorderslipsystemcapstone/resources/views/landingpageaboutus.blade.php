@@ -92,7 +92,7 @@
                 background-color: #E51818;
                 font-family:"Century Gothic";
                 font-weight: bold;
-                font-size:32px;
+
                 
             }
 
@@ -165,16 +165,37 @@
                         <h2 style = "font-weight:bold;font-size:35px;color:white">CompuSource Computer Center</h2>
                
                         <table>
-            <tr>
+            <tr> 
                 <td>
-                    Welcome to CompuSource Computer Center! The computer center where service matters the most.
-                    Here we provide the most valuable services to each of the customers.
-                    We are a highly-managed small team.
-                    Start making your appointments and we will help you in the process of making every single service a
-                    much more flexible one.
+                Our Commitment to Excellence
+<br>
+<br>
+We deliver strong and consistent service towards customer where communication is the key for good communication and will be used as a driving point for the purpose of making sure it is complete.
                 </td>
                 <td>
-                    <img src="https://example.com/your-image.jpg" alt="Description of the image">
+                <img src="https://bestdiplomats.org/wp-content/uploads/2023/04/teamwork-power-successful-business-meeting-workplace-concept.jpg" alt="Description of the image">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                Open to Feedback
+                <br>
+                <br>
+Whatever the company has been doing during single services, feedback is required to boost things for improvements such as management of time frame and the execution of the service. We are open to listen to the customers what complaints they had and what should we do to make the process better.
+                </td>
+                <td>
+                    <img src="https://bestdiplomats.org/wp-content/uploads/2023/04/teamwork-power-successful-business-meeting-workplace-concept.jpg" alt="Description of the image">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                Careful Processing of the Service
+                <br>
+                <br>
+During the process of the service, we carefully process it by making sure that the problem is already been validated to avoid damage to the customer's unit through careful observation and proper usage of the tools that we had in fixing a certain problem.
+                </td>
+                <td>
+                <img src="https://bestdiplomats.org/wp-content/uploads/2023/04/teamwork-power-successful-business-meeting-workplace-concept.jpg" alt="Description of the image">
                 </td>
             </tr>
         </table>

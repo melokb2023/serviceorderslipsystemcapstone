@@ -182,14 +182,11 @@
 
                 <!-- Top Navigation Links -->
                 <div class="top-nav">
-                    <a class="top-nav-link" href="{{ route('startservice') }}" :active="request()->routeIs('startservice')">
-                        <i class="fa fa-play"></i> {{ __('START SERVICE') }}
+                   <a class="top-nav-link" href="{{ route('servicedata') }}" :active="request()->routeIs('servicedata')">
+                        <i class="fa fa-database"></i>{{ __('SERVICE DATA') }}
                     </a>
                     <a class="top-nav-link" href="{{ route('servicelist') }}" :active="request()->routeIs('servicelist')">
                         <i class="fa fa-list"></i> {{ __('SERVICE LIST') }}
-                    </a>
-                    <a class="top-nav-link" href="{{ route('servicedata') }}" :active="request()->routeIs('servicedata')">
-                        <i class="fa fa-database"></i>{{ __('SERVICE DATA') }}
                     </a>
                     <a class="top-nav-link" href="{{ route('serviceprogressmenu') }}" :active="request()->routeIs('serviceprogressmenu')">
                         <i class="fa fa-cogs"></i>  {{ __('SERVICE PROGRESS') }}

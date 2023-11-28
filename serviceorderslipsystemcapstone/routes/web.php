@@ -27,6 +27,17 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/landingpagehome', function () {
+   return view('landingpagehome');
+})->name('landingpagehome');
+
+Route::get('/landingpageaboutus', function () {
+   return view('landingpageaboutus');
+})->name('landingpageaboutus');
+
+Route::get('/landingpagecontactus', function () {
+   return view('landingpagecontactus');
+})->name('landingpagecontactus');
 
 Route::get('/home', [HomeController::class,'redirect']);
 
