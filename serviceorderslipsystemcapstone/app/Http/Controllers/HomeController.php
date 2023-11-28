@@ -14,7 +14,7 @@ class HomeController extends Controller
         {
             if(Auth::user()->usertype=='0')
             {
-                return view('dashboard');
+                return view('admin.startservice');
             }
 
             else if(Auth::user()->usertype=='1')
@@ -23,7 +23,7 @@ class HomeController extends Controller
             }
          
             else{
-                return view('customer.startappointment');
+                return view('dashboard');
            }
         
         }

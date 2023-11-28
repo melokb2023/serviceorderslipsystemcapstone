@@ -20,5 +20,7 @@ class Service extends Model
          'defectiveunits',
          'viewtasks',
          'assignedstaff',
+         'remarks',
+         'dateandtime',
     ];
 }

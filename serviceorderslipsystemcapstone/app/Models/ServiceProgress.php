@@ -15,5 +15,6 @@ class ServiceProgress extends Model
          'serviceno',
          'dateandtime',
          'serviceprogress',
+         'serviceremarks',
     ];
 }

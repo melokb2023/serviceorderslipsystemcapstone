@@ -1,10 +1,10 @@
 @include('layouts.staffnavigation')
 
 <x-app-layout>
-    <div class="py-12" style="background-color:#CD5C5C;">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8" style="background-color:#CD5C5C;">
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg" style="background-color:#CD5C5C;text-align:center">
-                <div class="p-6 text-gray-900 dark:text-gray-100" style="background-color:#CD5C5C;">
+    <div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8" style="background-color:#FF4433;border:3px solid black">
+            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg" style="background-color:#FF4433;text-align:center">
+                <div class="p-6 text-gray-900 dark:text-gray-100" style="background-color:#FF4433;">
                     <!-- Favicon-->
                     <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
                     <!-- Font Awesome icons (free version)-->
@@ -16,12 +16,19 @@
                     <link href="resources/css/style.scss" rel="stylesheet" />
 
                     <style>
-                        body {
-                            font-family: Century;
-                        }
+                       
 
                         * {
                             box-sizing: border-box;
+                            font-family: "Century Gothic";
+                            font-weight:bold;
+                        }
+
+                        label{
+                            font-family: "Century Gothic";
+                            color:white;
+                            font-size:15px;
+                            font-weight:bold;
                         }
 
                         input[type=text],
@@ -68,8 +75,20 @@
                         button[type=submit]:hover {
                             background-color: #45a049;
                         }
+                        h6{
+                            font-family:"Century Gothic";
+                            color:white;
+                            font-size:15px;
+                            font-weight:bold;
+                        }
                     </style>
-
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
                     <h6>Errors Encountered</h6>
                     @if($errors)
                     <ul>
@@ -95,7 +114,7 @@
                             </div>
                         </div>
 
-                        <button class="submit" type="submit" style="background-color: black; color: white;">Submit Info</button>
+                        <button class="submit" type="submit" style="background-color: green; color: white;">Submit Info</button>
                     </form>
 
                     <br>

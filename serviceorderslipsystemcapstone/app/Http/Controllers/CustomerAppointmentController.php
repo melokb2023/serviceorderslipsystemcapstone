@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 use App\Models\Rating;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\MyMail;
 use Illuminate\Http\Request;
 use App\Models\CustomerAppointment;
+use App\Models\ServiceProgress;
 
 class CustomerAppointmentController extends Controller
 {
@@ -27,6 +30,7 @@ class CustomerAppointmentController extends Controller
             'xaddress' =>['required', 'max:100'],
             'xappointmentpurpose' =>['required', 'max:100'],
             'xappointmenttype' =>['required', 'max:100'],
+            'xdateandtime' =>['required'],
         ]);
         
         $customerappointment = new CustomerAppointment();
@@ -38,9 +42,21 @@ class CustomerAppointmentController extends Controller
         $customerappointment ->address=$request->xaddress;
         $customerappointment ->appointmentpurpose=$request->xappointmentpurpose;
         $customerappointment ->appointmenttype=$request->xappointmenttype;
+        $customerappointment ->dateandtime=$request->xdateandtime;
+        $customerappointment ->serviceprogress = 'Pending';
         $customerappointment ->save();
+
+        $details = [
+            'title' => 'Appointment',
+            'body' => 'Hi, thanks for contacting us. We have received your appointment data and appreciate you for reaching out ',
+        ];
+
+        // Send email to a recipient (replace 'recipient@example.com' with the actual recipient email)
+        Mail::to($customerappointment ->email)->send(new MyMail($details));
         return view('customer.startappointment');
     }
+
+
 
   
    

@@ -36,11 +36,24 @@ class ServiceProgressController extends Controller
     public function store(Request $request)
     {
         $serviceprogress = new ServiceProgress();
-        $serviceprogress ->serviceno=$request->xserviceno;
-        $serviceprogress ->dateandtime=$request->xdateandtime;
-        $serviceprogress ->serviceprogress=$request->xserviceprogress;
-        $serviceprogress ->save();
-        return redirect()->route('serviceprogress');
+        $serviceprogress->serviceno = $request->xserviceno;
+        $serviceprogress->dateandtime = $request->xdateandtime;
+        $serviceprogress->serviceprogress = 'Ongoing'; // Set to 'Ongoing' by default
+        $serviceprogress->serviceremarks = 'n/a';
+        $serviceprogress->save();
+
+        // Update the serviceprogress in CustomerAppointment to 'Ongoing'
+        $customerAppointment = CustomerAppointment::where('serviceprogress', $request->xcustomerappointmentnumber)
+            ->where('serviceprogress', 'Pending') // Add any other conditions as needed
+            ->first();
+
+        // Check if the CustomerAppointment exists
+        if ($customerAppointment) {
+            // Update serviceprogress to 'Ongoing'
+            $customerAppointment->serviceprogress = 'Ongoing';
+            $customerAppointment->save();
+        }
+            return redirect()->route('serviceprogress');
     }
 
     /**
@@ -70,6 +83,7 @@ class ServiceProgressController extends Controller
         ServiceProgress::where('serviceprogressno', $id)
             ->update([
                 'serviceprogress' => $request->xserviceprogress,
+                'serviceremarks' => $request->xserviceremarks,
             ]);
     
         // Retrieve the updated service progress record

@@ -1,12 +1,16 @@
 @include('layouts.customernavigation')
 <x-app-layout>
   <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8" style="background-color:#CD5C5C;border:3px solid black">
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg" style="background-color:#CD5C5C;text-align:center">
-                <div class="p-6 text-gray-900 dark:text-gray-100" style="background-color:#CD5C5C;">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8" style="background-color:#FF4433;border:3px solid black">
+            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg" style="background-color:#FF4433;text-align:center">
+                <div class="p-6 text-gray-900 dark:text-gray-100" style="background-color:#FF4433;">
                 <style>
-body {font-family: Century;}
-* {box-sizing: border-box;}
+
+* {
+  box-sizing: border-box;
+  font-family:"Century Gothic";
+  font-weight:bold;
+}
 
 
 
@@ -73,18 +77,12 @@ button[type=submit]:hover {
                     @endif
                 <form style="align-items:center" method = "POST" action="{{ route('add-customerrating') }}">
                         @csrf
-                <div class="flex-items-center" style="text-align:center"><label for="Select Customer">Select Customer</label>
+                        <div class="flex-items-center"><label for="Put Your Email">Email</label>
                     <div> 
-                      <!-----SIMPLIFIED AND EASY VERSION TO RATE THE CUSTOMER THIS TIME WITH NAMES TO AVOID CONFUSION --->
-                       <select name="xcustomerappointmentnumber">
-                            @foreach($customerappointment as $customerinfo)
-                            <option value="{{$customerinfo->customerappointmentnumber}} "> {{$customerinfo->customerappointmentnumber}} - {{$customerinfo->firstname}} {{$customerinfo->middlename}} {{$customerinfo->lastname}}</option>
-                            @endforeach
-                        </select>
-                   </div>
-                </div>  
-                      
-<div class="flex-items-center"><label for="Review">Review</label>
+                    <input type="text" name="xrateemail" value="{{old('xrateemail')}}"/>
+                    </div>
+</div>
+                <div class="flex-items-center"><label for="Review">Review</label>
                     <div> 
                     <input type="textarea" name="xreview" value="{{old('xreview')}}"/>
                     </div>
@@ -112,17 +110,9 @@ button[type=submit]:hover {
                     </div>
 </div>
       
-             <button class="submit" type ="submit" style="text-align:center;background-color:black"> Submit Info </button>
+             <button class="submit" type ="submit" style="text-align:center;background-color:green"> Submit Info </button>
                    </form>
-                   <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
+        
                 </div>
             </div>
         </div>

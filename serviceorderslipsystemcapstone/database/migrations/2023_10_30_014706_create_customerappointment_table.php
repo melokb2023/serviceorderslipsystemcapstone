@@ -21,6 +21,8 @@ return new class extends Migration
             $table->string('address',100);
             $table->string('appointmentpurpose',100);
             $table->string('appointmenttype',100);
+            $table->dateTime('dateandtime', $precision = 0);
+            $table->string('serviceprogress');
             $table->timestamps();
         });
     }

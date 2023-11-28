@@ -20,6 +20,8 @@ class CustomerAppointment extends Model
          'address',
          'appointnmentpurpose',
          'appointnmenttype',
+         'dateandtime',
+         'serviceprogress',
     ];
 
     public function serviceprogress()

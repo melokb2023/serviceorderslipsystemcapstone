@@ -11,7 +11,7 @@ class LineChartController extends Controller
 {
     public function LineChart(){
         // Define an array of services for counting
-        $services = ['Reformatting', 'Replacement', 'Virus Removal', 'Computer Network Troubleshooting', 'Upgrade Hardware'];
+        $services = ['Reformatting', 'Replacement', 'Virus Removal', 'Computer Network Troubleshooting', 'Upgrade Hardware','Clean Up Files','Hardware Fixing','Peripheral Fixing','Software Installation','Reapplication'];
         $data = [];
 
         foreach ($services as $service) {
