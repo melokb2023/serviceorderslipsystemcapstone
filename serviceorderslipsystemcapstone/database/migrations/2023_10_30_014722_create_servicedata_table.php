@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('assignedstaff',100);
             $table->string('remarks',100);
             $table->dateTime('dateandtime', $precision = 0);
+            $table->string('orderreferencecode')->nullable();
             $table->timestamps();
             $table->foreign('customerappointmentnumber')->references('customerappointmentnumber')->on('customerappointment');
 

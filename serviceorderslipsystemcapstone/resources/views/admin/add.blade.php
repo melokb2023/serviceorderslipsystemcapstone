@@ -1,9 +1,9 @@
 @include('layouts.adminnavigation')
 <x-app-layout>
     <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8" style="background-color: #FF4433; border: 3px solid black">
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg" style="background-color: #FF4433; text-align: center">
-                <div class="p-6 text-gray-900 dark:text-gray-100" style="background-color: #FF4433;">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8" style="background-color: #d70021; border: 3px solid black">
+            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg" style="background-color: #d70021; text-align: center">
+                <div class="p-6 text-gray-900 dark:text-gray-100" style="background-color: #d70021; font-family: 'Century Gothic', sans-serif; font-weight: bold;">
 
                     <!-- Favicon-->
                     <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
@@ -15,6 +15,8 @@
                     <!-- Core theme CSS (includes Bootstrap)-->
                     <link href="resources/css/style.scss" rel="stylesheet" />
                     <style>
+                        /* Your existing styles */
+
                         body {
                             font-family: 'Century Gothic', sans-serif;
                             font-weight: bold;
@@ -26,9 +28,13 @@
                             box-sizing: border-box;
                         }
 
-                        input[type=text],
+                        
                         select,
-                        textarea {
+                        textarea,
+                        input[type=datetime-local],
+                        input[type=email],
+                        input[type=password],
+                        input[type=checkbox] {
                             width: 100%;
                             padding: 12px;
                             border: 1px solid #ccc;
@@ -37,15 +43,45 @@
                             margin-top: 6px;
                             margin-bottom: 16px;
                             resize: vertical;
+                            font-size: 14px;
                         }
-
+                        .textexpand{
+                            width: 100%;
+                            padding: 12px;
+                            border: 1px solid #ccc;
+                            border-radius: 4px;
+                            box-sizing: border-box;
+                            margin-top: 6px;
+                            margin-bottom: 56px;
+                            resize: vertical;
+                            font-size: 14px;
+                            height:120%;
+                            
+                        }
+                        .textexpand2{
+                            width: 100%;
+                            padding: 12px;
+                            border: 1px solid #ccc;
+                            border-radius: 4px;
+                            box-sizing: border-box;
+                            margin-top: 6px;
+                            margin-bottom: 16px;
+                            resize: vertical;
+                            font-size: 14px;
+                        }
                         button[type=submit] {
+                            width: 100%;
                             background-color: #04AA6D;
                             color: white;
-                            padding: 12px 20px;
+                            padding: 12px;
                             border: none;
                             border-radius: 4px;
                             cursor: pointer;
+                            font-size: 16px;
+                        }
+
+                        .textexpand{
+                            padding: 50px;
                         }
 
                         button[type=submit]:hover {
@@ -58,40 +94,45 @@
                             padding: 20px;
                         }
 
-                        button[type=submit] {
-                            background-color: #04AA6D;
-                            color: white;
-                            padding: 12px 20px;
-                            border: none;
-                            border-radius: 4px;
-                            cursor: pointer;
+                        .animated {
+                            animation: fadeIn 1s;
                         }
 
+                        @keyframes fadeIn {
+                            from {
+                                opacity: 0;
+                            }
+
+                            to {
+                                opacity: 1;
+                            }
+                        }
+
+                        /* Example hover effect */
                         button[type=submit]:hover {
                             background-color: #45a049;
-
-                            .animated {
-                                animation: fadeIn 1s;
-                            }
-
-                            @keyframes fadeIn {
-                                from {
-                                    opacity: 0;
-                                }
-
-                                to {
-                                    opacity: 1;
-                                }
-                            }
-
-                            /* Example hover effect */
-                            button[type=submit]:hover {
-                                background-color: #45a049;
-                                transform: scale(1.1);
-                            }
+                            transform: scale(1.1);
                         }
 
+                        .form-row {
+                            display: flex;
+                            flex-wrap: wrap;
+                            justify-content: space-between;
+                        }
+
+                        .form-group {
+                            width: 48%; /* Adjusted width */
+                        }
+
+                        label {
+                            display: block;
+                            text-align: left;
+                        }
+
+                        
+
                     </style>
+
                     <h6 style="font-family:Arial">Errors Encountered</h6>
                     @if($errors)
                     <ul>
@@ -111,86 +152,95 @@
                     <form style="text-align: center;" method="POST" action="{{ route('add-service') }}">
                         @csrf
 
-                        <div class="form-group">
-                            <label for="customer-appointment-number">Appointment Number</label>
-                            <select name="xcustomerappointmentnumber">
-                                @foreach($availableCustomerAppointments as $customerinfo)
-                                <option value="{{ $customerinfo->customerappointmentnumber }}">{{ $customerinfo->customerappointmentnumber }} - {{ $customerinfo->firstname }} {{ $customerinfo->middlename }} {{ $customerinfo->lastname }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                    
-                        <div class="form-group">
-                            <label for="list-of-problems">List of Problems</label>
-                            <input type="text" name="xlistofproblems" value="{{ old('xlistofproblems') }}" />
+                        <!-- Form row with two columns in one line -->
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="customer-appointment-number">Appointment Number</label>
+                                <select name="xcustomerappointmentnumber">
+                                    @foreach($availableCustomerAppointments as $customerinfo)
+                                    <option value="{{ $customerinfo->customerappointmentnumber }}">{{ $customerinfo->customerappointmentnumber }} - {{ $customerinfo->firstname }} {{ $customerinfo->middlename }} {{ $customerinfo->lastname }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="assigned-tasks">Assigned Tasks</label>
+                                <input class="textexpand2" type="text" name="xviewtasks" value="{{ old('xviewtasks') }}" />
+                            </div>
                         </div>
 
-                        <div class="form-group">
-                            <label for="type-of-service">Type Of Service</label>
-                            <select name="xtypeofservice">
-                                <option value="Reformatting">Reformatting</option>
-                                <option value="Replacement">Replacement</option>
-                                <option value="Virus Removal">Virus Removal</option>
-                                <option value="Computer Network Troubleshooting">Computer Network Troubleshooting</option>
-                                <option value="Upgrade Hardware">Upgrade Hardware</option>
-                                <option value="Clean Up Files">Clean Up Files</option>
-                                <option value="Hardware Fixing">Hardware Fixing</option>
-                                <option value="Peripheral Fixing">Peripheral Fixing</option>
-                                <option value="Software Installation">Software Installation</option>
-                                <option value="Reapplication">Reapplication</option>
-                            </select>
+                        <!-- Form row with three columns in one line -->
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="list-of-problems">List of Problems</label>
+                                <input class="textexpand" type="text" name="xlistofproblems" value="{{ old('xlistofproblems') }}" />
+                            </div>
+                         
+                            <div class="form-group">
+                                <label for="type-of-service">Type Of Service</label>
+                                <select name="xtypeofservice">
+                                    <option value="Reformatting">Reformatting</option>
+                                    <option value="Replacement">Replacement</option>
+                                    <option value="Virus Removal">Virus Removal</option>
+                                    <option value="Computer Network Troubleshooting">Computer Network Troubleshooting</option>
+                                    <option value="Upgrade Hardware">Upgrade Hardware</option>
+                                    <option value="Clean Up Files">Clean Up Files</option>
+                                    <option value="Hardware Fixing">Hardware Fixing</option>
+                                    <option value="Peripheral Fixing">Peripheral Fixing</option>
+                                    <option value="Software Installation">Software Installation</option>
+                                    <option value="Reapplication">Reapplication</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <br>
+                                <br>
+                                <br>
+                                <br>
+                                <label for="maintenance-required">Maintenance Required</label>
+                                <select name="xmaintenancerequired">
+                                    <option value="Scheduled Maintenance">Scheduled Maintenance</option>
+                                    <option value="Preventive Maintenance">Preventive Maintenance</option>
+                                    <option value="Full Maintenance">Full Maintenance</option>
+                                </select>
+                            </div> 
+                                <div class="form-group">
+                                <label for="customer-password">Customer Password</label>
+                                <input type="password" name="xcustomerpassword" value="{{ old('xcustomerpassword') }}" />
+                            </div>
                         </div>
 
-                        <div class="form-group">
-                            <label for="maintenance-required">Maintenance Required</label>
-                            <select name="xmaintenancerequired">
-                                <option value="Scheduled Maintenance">Scheduled Maintenance</option>
-                                <option value="Preventive Maintenance">Preventive Maintenance</option>
-                                <option value="Full Maintenance">Full Maintenance</option>
-                            </select>
+                        <!-- Form row with three columns in one line -->
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="assigned-staff">Assigned Staff</label>
+                                <select name="xassignedstaff">
+                                    <option value="Staff 1">Staff 1</option>
+                                    <option value="Staff 2">Staff 2</option>
+                                    <option value="Staff 3">Staff 3</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="defective-units">Defective Units</label>
+                                <input class="textexpand" type="text" name="xdefectiveunits" value="{{ old('xdefectiveunits') }}" />
+                            </div>
+
+                           
                         </div>
 
-                        <div class="form-group">
-                            <label for="customer-password">Customer Password</label>
-                            <input type="password" name="xcustomerpassword" value="{{ old('xcustomerpassword') }}" />
+                        <!-- Form row with one column in one line -->
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="remarks">Remarks</label>
+                                <input class="textexpand2" type="text" name="xremarks" value="{{ old('xremarks') }}" />
+                            </div>
                         </div>
 
-                        <div class="form-group">
-                            <label for="defective-units">Defective Units</label>
-                            <input type="text" name="xdefectiveunits" value="{{ old('xdefectiveunits') }}" />
-                        </div>
-
-                        <div class="form-group">
-                            <label for="assigned-staff">Assigned Staff</label>
-                            <select name="xassignedstaff">
-                                <option value="Staff 1">Staff 1</option>
-                                <option value="Staff 2">Staff 2</option>
-                                <option value="Staff 3">Staff 3</option>
-                            </select>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="assigned-tasks">Assigned Tasks</label>
-                            <input type="text" name="xviewtasks" value="{{ old('xviewtasks') }}" />
-                        </div>
-
-                        <div class="form-group">
-                            <label for="remarks">Remarks</label>
-                            <input type="text" name="xremarks" value="{{ old('xremarks') }}" />
-                        </div>
-
-                        <button class="submit" type="submit" style="background-color: green; color: white;">Submit Info</button>
+                        <button class="btn btn-primary" type="submit">Submit Info</button>
                     </form>
                     @endif
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
+
+                    <br><br><br><br><br><br><br><br><br><br>
                 </div>
             </div>
         </div>

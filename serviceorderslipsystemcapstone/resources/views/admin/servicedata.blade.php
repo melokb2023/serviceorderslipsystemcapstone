@@ -1,11 +1,11 @@
 @include('layouts.adminnavigation')
-<x-app-layout style="background-color:#FF4433;">
+<x-app-layout style="background-color:#d70021;">
 
     <div class="py-12" style="display: flex; justify-content: center; align-items: center;">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8" style="background-color: #FF4433; border: 3px solid black">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8" style="background-color: #d70021; border: 3px solid black">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg"
-                style="background-color: #FF4433; text-align: center">
-                <div class="p-6 text-gray-900 dark:text-gray-100" style="background-color: #FF4433;">
+                style="background-color: #d70021; text-align: center">
+                <div class="p-6 text-gray-900 dark:text-gray-100" style="background-color: #d70021;">
 
                     <!-- Filter form -->
                     <form action="{{ route('servicedata') }}" method="GET">
@@ -75,6 +75,7 @@
                             <th>Assigned Tasks</th>
                             <th>Remarks</th>
                             <th>Date and Time</th>
+                            <th>Order Reference Code</th>
                             <th>Options</th>
                         </tr>
 
@@ -92,24 +93,31 @@
                                     <td>{{ $serviceinfo->viewtasks }}</td>
                                     <td>{{ $serviceinfo->remarks }}</td>
                                     <td>{{ $serviceinfo->dateandtime }}</td>
+                                    <td>{{ $serviceinfo->orderreferencecode }}</td>
                                     <td>
-                                        <a class="mt-4 bg-yellow-200 text-black font-bold py-2 px-4 rounded"
-                                            href="{{ route('service-show', ['serno' => $serviceinfo->serviceno]) }}">View</a>
-                                        <a class="mt-4 bg-pink-200 text-black font-bold py-2 px-4 rounded"
-                                            href="{{ route('service-edit', ['serno' => $serviceinfo->serviceno]) }}">Edit</a>
+                                        <br>
+                                    <a style="background-color: #f6e05e; height: 0.20rem;"
+                                          class="mt-4 text-black font-bold py-2 px-4 rounded"
+                                          href="{{ route('service-show', ['serno' => $serviceinfo->serviceno]) }}">View</a>
+                                            <br>
+                                            <br>
+                                            <a style="background-color: #3490dc; height: 0.20rem;"
+                                             class="mt-4 text-black font-bold py-2 px-4 rounded"
+                                             href="{{ route('service-edit', ['serno' => $serviceinfo->serviceno]) }}">Edit</a>
                                         <form method="POST"
                                             action="{{ route('service-delete', ['serno' => $serviceinfo->serviceno ]) }}"
                                             onclick="return confirm('Are you sure you want to delete this record?')">
                                             @csrf
                                             @method('delete')
-                                            <button class="mt-4 bg-red-200 text-black font-bold py-2 px-4 rounded"
+                                            <button class="mt-4 bg-red-500  text-black font-bold py-2 px-4 rounded"
                                                 type="submit">Delete</button>
+                                                <br>
                                         </form>
                                     </td>
                                 </tr>
                             @empty
                                 <tr>
-                                    <td colspan="12">No records found.</td>
+                                    <td colspan="13">No records found.</td>
                                 </tr>
                             @endforelse
                         </tbody>
