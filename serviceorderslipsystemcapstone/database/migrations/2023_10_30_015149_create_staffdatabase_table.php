@@ -13,9 +13,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('staffdatabase', function (Blueprint $table) {
-            $table->id('staffnumber');
+            $table->id('worknumber');
             $table->unsignedBigInteger('serviceno');
-            $table->string('actionstaken',100)->default('None');
+            $table->string('typeofservice');
             $table->string('workprogress')->default('Ongoing');
             $table->dateTime('dateandtime', $precision = 0);
             $table->foreign('serviceno')->references('serviceno')->on('servicedata');

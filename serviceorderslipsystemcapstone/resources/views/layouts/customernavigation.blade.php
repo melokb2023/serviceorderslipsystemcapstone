@@ -13,7 +13,7 @@
 }
 
 .top-nav {
-    background-color: #FF4433;
+    background-color: #d70021;
     border: 3px solid black;
     font-weight: bold;
     overflow: hidden;
@@ -48,10 +48,10 @@
 <body>
 
     <!-- Primary Navigation Menu -->
-    <nav x-data="{ open: false }" class="bg-red-500 border-b border-gray-50" style="background-color:#FF4433">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 " style="background-color:#FF4433">
-            <div class="flex justify-between h-16" style="background-color:#FF4433">
-            <div class="hidden sm:flex sm:items-center sm:ml-6" style="background-color: #FF4433;">
+    <nav x-data="{ open: false }" class="bg-red-500 border-b border-gray-50" style="background-color:#d70021">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 " style="background-color:#d70021">
+            <div class="flex justify-between h-16" style="background-color:#d70021">
+            <div class="hidden sm:flex sm:items-center sm:ml-6" style="background-color: #d70021;">
     <!-- Teams Dropdown -->
     @if (Laravel\Jetstream\Jetstream::hasTeamFeatures())
         <div class="ml-3 relative">

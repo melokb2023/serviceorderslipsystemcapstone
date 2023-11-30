@@ -10,6 +10,7 @@ use App\Http\Controllers\CustomerAppointmentController;
 use App\Http\Controllers\RatingsController;
 use App\Http\Controllers\LineChartController;
 use App\Http\Controllers\FinancialandPerformanceDataController;
+use App\Http\Controllers\CheckStatusController;
 use Illuminate\Support\Facades\Mail;
 
 /*
@@ -311,6 +312,10 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 });
+
+
+///////CHECK STATUS
+Route::get('/check-status', [CheckStatusController::class, 'index'])->name('public-check-status');
 
 
 

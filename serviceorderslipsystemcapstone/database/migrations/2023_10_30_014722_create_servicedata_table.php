@@ -21,8 +21,13 @@ return new class extends Migration
             $table->string('defectiveunits',100);
             $table->string('viewtasks',100);
             $table->string('assignedstaff',100);
-            $table->string('remarks',100);
+            $table->string('workprogress',100);
+            $table->string('workremarks',100);
+            $table->string('serviceprogress',100);
+            $table->string('serviceremarks',100);
             $table->dateTime('dateandtime', $precision = 0);
+            $table->dateTime('servicestarted', $precision = 0);
+            $table->string('orderreferencecode')->nullable();
             $table->timestamps();
             $table->foreign('customerappointmentnumber')->references('customerappointmentnumber')->on('customerappointment');
 

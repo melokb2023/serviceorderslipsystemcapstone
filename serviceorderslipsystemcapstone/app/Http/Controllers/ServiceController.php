@@ -123,6 +123,22 @@ class ServiceController extends Controller
         $servicedata->viewtasks = $request->xviewtasks;
         $servicedata->assignedstaff = $request->xassignedstaff;
         $servicedata->remarks = $request->xremarks;
+        $currentYear = date('Y');
+        $lastOrder = Service::max('orderreferencecode');
+        $lastYear = substr($lastOrder, 0, 4);
+    
+        if ($lastYear == $currentYear) {
+            // If orders exist for the current year, increment the last order number
+            $orderNumber = intval(substr($lastOrder, -4)) + 1;
+        } else {
+            // If it's a new year, start with 1
+            $orderNumber = 1;
+        }
+    
+        $orderReferenceCode = $currentYear . '-' .str_pad($orderNumber, 4, '0', STR_PAD_LEFT);
+    
+        $servicedata->orderreferencecode = $orderReferenceCode;
+
           // Get dateandtime from CustomerAppointment based on customerappointmentnumber
          $customerAppointment = CustomerAppointment::where('customerappointmentnumber', $request->xcustomerappointmentnumber)->first();
 
@@ -205,6 +221,12 @@ class ServiceController extends Controller
         });
 
         return $availableCustomerAppointments;
+    }
+
+
+    public function ServiceInfo(){
+        $servicedata = Service::select('serviceno', 'typeofservice', 'workprogress')->get();
+        return view('staff.staffdatabase', compact('servicedata'));
     }
 
    

@@ -22,5 +22,6 @@ class Service extends Model
          'assignedstaff',
          'remarks',
          'dateandtime',
+         'orderreferencecode'
     ];
 }
