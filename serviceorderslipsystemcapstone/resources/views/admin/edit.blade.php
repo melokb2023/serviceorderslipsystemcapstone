@@ -44,18 +44,9 @@
 </select>
                     </div>
 </div>
-<div class="flex-items-center"><label for="Maintenance Required">Maintenance Required</label>
-                    <div>
-                    <select name="xmaintenancerequired">
-                        <option value="Scheduled Maintenance">Scheduled Maintenance</option>
-                        <option value="Preventive Maintenance">Preventive Maintenance</option>
-                        <option value="Full Maintenance">Full Maintenance</option>
-    
-</select>
-                    </div>
-</div>
-          
-        <div class="flex-items-center"><label for="Customer Password">Customer Password</label>
+
+
+       <div class="flex-items-center"><label for="Customer Password">Customer Password</label>
                     <div>
                     <input type="text" name="xcustomerpassword" value="{{$serviceinfo->customerpassword}}"/>
                     </div>
@@ -65,24 +56,24 @@
                     <input type="text" name="xdefectiveunits" value="{{$serviceinfo->defectiveunits}}"/>
                     </div>
 </div>
-<div class="flex-items-center"><label for="Assigned Staff">Assigned Staff</label>
+
+<div class="flex-items-center"><label for="Actions Required">Actions Required</label>
                     <div>
-                    <select name="xassignedstaff">
-                    <option value="Staff 1">Staff 1</option>
-            <option value="Staff 2">Staff 2</option>
-            <option value="Staff 3">Staff 3</option>
-    
+                    <input type="text" name="xactionsrequired" value="{{$serviceinfo->actionsrequired}}"/>
+                    </div>
+</div>
+<div class="flex-items-center"><label for="Service Progress">Service Progress</label>
+                    <div>
+                    <select name="xserviceprogress">
+                        <option value="Ongoing">Ongoing</option>
+                        <option value="Finalizing">Finalizing</option>
+                        <option value="Completed">Completed</option>
 </select>
                     </div>
 </div>
-<div class="flex-items-center"><label for="Assigned Tasks">Assigned Tasks</label>
+<div class="flex-items-center"><label for="Service Remarks">Service Remarks</label>
                     <div>
-                    <input type="text" name="xviewtasks" value="{{$serviceinfo->viewtasks}}"/>
-                    </div>
-</div>
-<div class="flex-items-center"><label for="Remarks">Remarks</label>
-                    <div>
-                    <input type="text" name="xremarks" value="{{$serviceinfo->remarks}}"/>
+                    <input type="text" name="xserviceremarks" value="{{$serviceinfo->serviceremarks}}"/>
                     </div>
 </div>
 

@@ -188,8 +188,8 @@
                     <a class="top-nav-link" href="{{ route('servicelist') }}" :active="request()->routeIs('servicelist')">
                         <i class="fa fa-list"></i> {{ __('SERVICE LIST') }}
                     </a>
-                    <a class="top-nav-link" href="{{ route('serviceprogressmenu') }}" :active="request()->routeIs('serviceprogressmenu')">
-                        <i class="fa fa-cogs"></i>  {{ __('SERVICE PROGRESS') }}
+                    <a class="top-nav-link" href="{{ route('staff') }}" :active="request()->routeIs('staff')">
+                        <i class="fa fa-star"></i> {{ __('STAFF LIST') }}
                     </a>
                     <a class="top-nav-link" href="{{ route('customerrating') }}" :active="request()->routeIs('customerrating')">
                         <i class="fa fa-star"></i> {{ __('REVIEWS & RATINGS') }}

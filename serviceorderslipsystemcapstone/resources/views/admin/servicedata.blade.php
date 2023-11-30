@@ -39,7 +39,6 @@
             table,
             tr {
                 font-family: "Century ";
-                width: 5%;
                 font-weight:bold;
             }
 
@@ -59,6 +58,22 @@
                 font-weight:bold;
             }
 
+            #customers {
+    width: 95%; /* Adjust the width as needed */
+    margin: auto;
+    margin-left: 2%; /* Adjust the left margin as needed */
+}
+
+/* Center the table header text */
+#customers th {
+    text-align: center;
+}
+
+/* Center the table content text */
+#customers td {
+    text-align: center;
+}
+
         </style>
 
                     <h1 style="font-family:Arial; color:white; font-size:30px; font-weight:bold;">Service Information</h1>
@@ -66,15 +81,16 @@
                         <tr>
                             <th>Service Number</th>
                             <th>Customer Appointment Number</th>
-                            <th>Complete Name</th>
+                            <th>Staff Number</th>
                             <th>Type of Service</th>
                             <th>List Of Problems</th>
-                            <th>Maintenance</th>
                             <th>Defective Units</th>
-                            <th>Assigned Staff</th>
-                            <th>Assigned Tasks</th>
-                            <th>Remarks</th>
+                            <th>Actions Required</th>
+                            <th>Work Progress</th>
+                            <th>Service Progress</th>
+                            <th>Service Remarks</th>
                             <th>Date and Time</th>
+                            <th>Service Started</th>
                             <th>Order Reference Code</th>
                             <th>Options</th>
                         </tr>
@@ -84,15 +100,16 @@
                                 <tr>
                                     <td>{{ $serviceinfo->serviceno }}</td>
                                     <td>{{ $serviceinfo->customerappointmentnumber }}</td>
-                                    <td>{{ $serviceinfo->firstname }} {{ $serviceinfo->middlename }} {{ $serviceinfo->lastname }}</td>
+                                    <td>{{ $serviceinfo->staffnumber }} </td>
                                     <td>{{ $serviceinfo->typeofservice }}</td>
                                     <td>{{ $serviceinfo->listofproblems }}</td>
-                                    <td>{{ $serviceinfo->maintenancerequired }}</td>
                                     <td>{{ $serviceinfo->defectiveunits }}</td>
-                                    <td>{{ $serviceinfo->assignedstaff }}</td>
-                                    <td>{{ $serviceinfo->viewtasks }}</td>
-                                    <td>{{ $serviceinfo->remarks }}</td>
+                                    <td>{{ $serviceinfo->actionsrequired }}</td>
+                                    <td>{{ $serviceinfo->workprogress }}</td>
+                                    <td>{{ $serviceinfo->serviceprogress }}</td>
+                                    <td>{{ $serviceinfo->serviceremarks }}</td>
                                     <td>{{ $serviceinfo->dateandtime }}</td>
+                                    <td>{{ $serviceinfo->servicestarted }}</td>
                                     <td>{{ $serviceinfo->orderreferencecode }}</td>
                                     <td>
                                         <br>
@@ -117,7 +134,7 @@
                                 </tr>
                             @empty
                                 <tr>
-                                    <td colspan="13">No records found.</td>
+                                    <td colspan="15">No records found.</td>
                                 </tr>
                             @endforelse
                         </tbody>

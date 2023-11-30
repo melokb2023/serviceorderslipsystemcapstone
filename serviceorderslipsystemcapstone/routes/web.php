@@ -11,6 +11,7 @@ use App\Http\Controllers\RatingsController;
 use App\Http\Controllers\LineChartController;
 use App\Http\Controllers\FinancialandPerformanceDataController;
 use App\Http\Controllers\CheckStatusController;
+use App\Http\Controllers\StaffController;
 use Illuminate\Support\Facades\Mail;
 
 /*
@@ -115,6 +116,10 @@ Route::get('/financialperformancereport', function () {
    return view('admin.financialperformancereport');
 })->name('financialperformancereport');
 
+Route::get('/startlist', function () {
+   return view('admin.staffadd');
+})->name('startlist');
+
 
 ///////////CUSTOMER APPOINTMENT  /////////////////////////////////////////////////////////////////////
 
@@ -153,6 +158,10 @@ Route::patch('/customerlist/update/{cano}', [ServiceController::class, 'UpdateCu
 ////////////////////////////////////////////////////////////SERVICE CONTROLLER  //////////////////////////////////
 
 Route::get('/service/add', [ServiceController::class, 'getAppointmentInfo'])
+   ->middleware(['auth', 'verified'])
+   ->name('add-service');
+
+Route::get('/service/add', [ServiceController::class, 'getStaff'])
    ->middleware(['auth', 'verified'])
    ->name('add-service');
 
@@ -281,7 +290,7 @@ Route::get('/customerrating/{cr}', [RatingsController::class, 'show'])
    ->name('customerrating-show');
 
 
-/////////////////////////////////////LOGS
+/////////////////////////////////////LOGS///////////////////////////////////////////
 
 Route::get('/servicelogs', [LogsController::class, 'ServiceLogs']) 
    ->middleware(['auth', 'verified'])
@@ -318,4 +327,30 @@ Route::middleware([
 Route::get('/check-status', [CheckStatusController::class, 'index'])->name('public-check-status');
 
 
+////////////////////////////////////////////////////////////////STAFF LIST ///////////////////////////////////
 
+
+Route::post('/staff/add',[StaffController::class, 'store'] )
+->middleware(['auth', 'verified'])
+->name('staff-store');
+
+Route::get('/staff', [StaffController::class, 'index']) 
+   ->middleware(['auth', 'verified'])
+   ->name('staff');
+
+Route::get('/staff/{staff}', [StaffController::class, 'show']) 
+   ->middleware(['auth', 'verified'])
+   ->name('staff-show');
+
+Route::delete('/staff/delete/{staff}', [StaffController::class, 'destroy']) 
+   ->middleware(['auth', 'verified'])
+   ->name('staff-delete');
+
+   //Save The Updated Data
+Route::patch('/staff/update/{staff}', [StaffController::class, 'update']) 
+   ->middleware(['auth', 'verified'])
+   ->name('staff-update');
+
+Route::get('/staff/edit/{staff}', [StaffController::class, 'edit']) 
+   ->middleware(['auth', 'verified'])
+   ->name('staff-edit');

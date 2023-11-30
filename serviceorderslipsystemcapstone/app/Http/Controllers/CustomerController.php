@@ -10,4 +10,10 @@ class CustomerController extends Controller
         $customer = Customer::all();
         return view('admin.customerdata', compact('customer'));
     }
+
+    public function storecustomer(Request $request){
+        $customer= new Customer();
+        $customer->customerid = $request->xcustomerid;
+        return redirect()->route('customer');
+    }
 }

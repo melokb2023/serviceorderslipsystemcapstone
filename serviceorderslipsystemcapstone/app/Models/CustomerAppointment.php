@@ -12,20 +12,11 @@ class CustomerAppointment extends Model
     protected $table= 'customerappointment';
     
     protected $fillable = [
-         'firstname',
-         'middlename',
-         'lastname',
-         'contactnumber',
-         'email',
-         'address',
+         'customerno',
          'appointnmentpurpose',
          'appointnmenttype',
          'dateandtime',
-         'serviceprogress',
     ];
 
-    public function serviceprogress()
-{
-    return $this->belongsTo(ServiceProgress::class, 'serviceprogressno');
-}
+  
 }

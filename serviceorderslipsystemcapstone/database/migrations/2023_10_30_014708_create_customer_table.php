@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('customer', function (Blueprint $table) {
             $table->id('customernumber');
-            $table->unsignedBigInteger('customerid');
-            $table->foreign('customerid')->references('userid')->on('users');
+            $table->unsignedBigInteger('customerid'); // Unsigned big integer column
+            $table->foreign('customerid')->references('id')->on('users'); // Foreign key referencing the id column in the users table
             $table->timestamps();
         });
     }

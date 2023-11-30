@@ -92,37 +92,6 @@
 
                     <form method="POST" action="{{ route('customerappointment-store') }}" class="container">
                         @csrf
-
-                        <div class="form-group">
-                            <label for="xfirstname">First Name</label>
-                            <input type="text" name="xfirstname" value="{{old('xfirstname')}}" required>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="xmiddlename">Middle Name</label>
-                            <input type="text" name="xmiddlename" value="{{old('xmiddlename')}}" required>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="xlastname">Last Name</label>
-                            <input type="text" name="xlastname" value="{{old('xlastname')}}" required>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="xcontactnumber">Contact Number</label>
-                            <input type="text" name="xcontactnumber" value="{{old('xcontactnumber')}}" required>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="xemail">Email</label>
-                            <input type="text" name="xemail" value="{{old('xemail')}}" required>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="xaddress">Address</label>
-                            <input type="text" name="xaddress" value="{{old('xaddress')}}" required>
-                        </div>
-
                         <div class="form-group">
                             <label for="xappointmentpurpose">Appointment Purpose</label>
                             <input type="text" name="xappointmentpurpose" value="{{old('xappointmentpurpose')}}" required>

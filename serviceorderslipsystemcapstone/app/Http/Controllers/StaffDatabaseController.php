@@ -51,7 +51,7 @@ class StaffDatabaseController extends Controller
         $staffdatabase ->actionstaken='None';
         $staffdatabase ->workprogress='Ongoing';
         $staffdatabase ->save();
-        return redirect()->route('staffdatabase');
+        return redirect()->route('staff');
     }
 
     /**

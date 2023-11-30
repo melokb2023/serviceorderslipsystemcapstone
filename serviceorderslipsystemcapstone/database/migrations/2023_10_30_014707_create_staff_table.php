@@ -13,8 +13,7 @@ return new class extends Migration
     {
         Schema::create('staff', function (Blueprint $table) {
             $table->id('staffnumber');
-            $table->unsignedBigInteger('staffid');
-            $table->foreign('staffid')->references('userid')->on('users');
+            $table->string('staffname',255); 
             $table->timestamps();
         });
     }

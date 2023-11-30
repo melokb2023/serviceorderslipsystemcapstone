@@ -13,16 +13,10 @@ return new class extends Migration
     {
         Schema::create('customerappointment', function (Blueprint $table) {
             $table->id('customerappointmentnumber');
-            $table->string('firstname',100);
-            $table->string('middlename',100);
-            $table->string('lastname',100);
-            $table->string('contactnumber',11);
-            $table->string('email',100);
-            $table->string('address',100);
-            $table->string('appointmentpurpose',100);
-            $table->string('appointmenttype',100);
+            $table->foreignId('customerno')->constrained('users');
+            $table->string('appointmentpurpose', 100);
+            $table->string('appointmenttype', 100);
             $table->dateTime('dateandtime', $precision = 0);
-            $table->string('serviceprogress');
             $table->timestamps();
         });
     }

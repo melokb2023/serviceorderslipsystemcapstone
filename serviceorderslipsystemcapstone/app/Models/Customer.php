@@ -8,4 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class Customer extends Model
 {
     use HasFactory;
+
+    
+    protected $table = 'customer';
+    
+    protected $fillable = [
+        'customerid', // Include the foreign key
+        // Add other fillable fields here if needed
+    ];
+
 }

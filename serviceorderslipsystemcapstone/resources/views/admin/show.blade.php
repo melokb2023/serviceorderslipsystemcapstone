@@ -14,32 +14,40 @@
                     <h6>List of Students</h6>
                     <table class="border-separate border-spacing-5">
                       <tr>
-                        <th>Service Number</th>
-                        <th>Appointment Number</th>
-                        <th>Contact Number</th>
-                        <th>List Of Problems</th>
-                        <th>Email</th>
-                        <th>Type of Service</th>
-                        <th>Maintenance</th>
-                        <th>Customer Password</th>
-                        <th>Defective Units</th>
-                        <th>Assigned Staff</th>
-                        <th>Remarks</th>
+                      <th>Service Number</th>
+                            <th>Customer Appointment Number</th>
+                            <th>Staff Number</th>
+                            <th>Type of Service</th>
+                            <th>List Of Problems</th>
+                            <th>Defective Units</th>
+                            <th>Actions Required</th>
+                            <th>Work Progress</th>
+                            <th>Work Remarks</th>
+                            <th>Service Progress</th>
+                            <th>Service Remarks</th>
+                            <th>Date and Time</th>
+                            <th>Service Started</th>
+                            <th>Order Reference Code</th>
+                            <th>Options</th>
 </tr>
                     <tbody>
                     @foreach($servicedata as $serviceinfo)
                        <tr>
-                        <td>{{$serviceinfo->serviceno}}</td>
-                        <td>{{$serviceinfo->customerappointmentnumber}}</td>
-                        <td>{{$serviceinfo->contactnumber}}</td>
-                        <td>{{$serviceinfo->listofproblems}}</td>
-                        <td>{{$serviceinfo->email}}</td>
-                        <td>{{$serviceinfo->typeofservice}}</td>
-                        <td>{{$serviceinfo->maintenancerequired}}</td>
-                        <td>{{$serviceinfo->customerpassword}}</td>
-                        <td>{{$serviceinfo->defectiveunits}}</td>
-                        <td>{{$serviceinfo->assignedstaff}}</td>
-                        <td>{{$serviceinfo->remarks}}</td>
+                                    <td>{{ $serviceinfo->serviceno }}</td>
+                                    <td>{{ $serviceinfo->customerappointmentnumber }}</td>
+                                    <td>{{ $serviceinfo->staffnumber }} </td>
+                                    <td>{{ $serviceinfo->typeofservice }}</td>
+                                    <td>{{ $serviceinfo->listofproblems }}</td>
+                                    <td>{{ $serviceinfo->maintenancerequired }}</td>
+                                    <td>{{ $serviceinfo->defectiveunits }}</td>
+                                    <td>{{ $serviceinfo->actionsrequired }}</td>
+                                    <td>{{ $serviceinfo->workprogress }}</td>
+                                    <td>{{ $serviceinfo->workremarks }}</td>
+                                    <td>{{ $serviceinfo->serviceprogress }}</td>
+                                    <td>{{ $serviceinfo->serviceremarks }}</td>
+                                    <td>{{ $serviceinfo->dateandtime }}</td>
+                                    <td>{{ $serviceinfo->servicestarted }}</td>
+                                    <td>{{ $serviceinfo->orderreferencecode }}</td>
                     </tr>
                         @endforeach
                    </tbody>

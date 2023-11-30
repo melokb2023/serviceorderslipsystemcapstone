@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Service;
 use App\Models\CustomerAppointment;
 use App\Models\StaffDatabase;
+use App\Models\Staff;
 use Illuminate\Support\Facades\Hash;
 
 
@@ -21,7 +22,9 @@ class ServiceController extends Controller
      */
     public function index(Request $request)
 {
-    $query = Service::join('customerappointment', 'servicedata.customerappointmentnumber', '=', 'customerappointment.customerappointmentnumber');
+    $query = Service::join('customerappointment', 'servicedata.customerappointmentnumber', '=', 'customerappointment.customerappointmentnumber')
+               ->join('staff', 'servicedata.staffnumber', '=', 'staff.staffnumber')
+               ->select('servicedata.*', 'customerappointment.*', 'staff.*');
 
     // Check if there is a filter for Customer Appointment Number
     if ($request->has('customer_appointment_number_filter')) {
@@ -62,12 +65,6 @@ class ServiceController extends Controller
     public function UpdateCustomer(Request $request, string $id)
     {
         $validateData =$request->validate([
-            'xfirstname' =>['required', 'max:100'],
-            'xmiddlename'=>['required','max:100'],
-            'xlastname' =>['required', 'max:100'],
-            'xcontactnumber' =>['required', 'max:100'],
-            'xemail' =>['required', 'max:100'],
-            'xaddress' =>['required', 'max:100'],
             'xappointmentpurpose' =>['required', 'max:100'],
             'xappointmenttype' =>['required','max:100'],
         ]);
@@ -75,12 +72,7 @@ class ServiceController extends Controller
         $customerappointment= CustomerAppointment::where('customerappointmentnumber', $id)
         ->update(
              [
-             'firstname'=> $request->xfirstname,
-             'middlename'=> $request->xmiddlename,
-             'lastname'=> $request->xlastname,
-             'contactnumber'=> $request->xcontactnumber,
-             'email'=> $request->xemail,
-             'address'=> $request->xaddress,
+             
              'appointmentpurpose'=> $request->xappointmentpurpose,
              'appointmenttype'=> $request->xappointmenttype,
              ]);
@@ -114,15 +106,17 @@ class ServiceController extends Controller
     {
         $servicedata = new Service();
         $servicedata->customerappointmentnumber = $request->xcustomerappointmentnumber;
-        $servicedata->listofproblems = $request->xlistofproblems;
+        $servicedata->staffnumber = $request->xstaffnumber;
         $servicedata->typeofservice = $request->xtypeofservice;
-        $servicedata->maintenancerequired = $request->xmaintenancerequired;
+        $servicedata->listofproblems = $request->xlistofproblems;
          // Hash the password before saving
         $servicedata->customerpassword = Hash::make($request->xcustomerpassword);
         $servicedata->defectiveunits = $request->xdefectiveunits;
-        $servicedata->viewtasks = $request->xviewtasks;
-        $servicedata->assignedstaff = $request->xassignedstaff;
-        $servicedata->remarks = $request->xremarks;
+        $servicedata->actionsrequired = $request->xactionsrequired;
+        $servicedata->workprogress = "Ongoing";
+        $servicedata->workremarks = "";
+        $servicedata->serviceprogress = "Ongoing";
+        $servicedata->serviceremarks = "";
         $currentYear = date('Y');
         $lastOrder = Service::max('orderreferencecode');
         $lastYear = substr($lastOrder, 0, 4);
@@ -146,6 +140,7 @@ class ServiceController extends Controller
     if ($customerAppointment) {
         $servicedata->dateandtime = $customerAppointment->dateandtime;
     }
+        $servicedata->servicestarted = $request->xservicestarted;
         $servicedata->save();
         return redirect()->route('servicedata');
     }
@@ -188,9 +183,9 @@ class ServiceController extends Controller
              'maintenancerequired'=> $request->xmaintenancerequired,
              'customerpassword'=> $request->xcustomerpassword,
              'defectiveunits'=> $request->xdefectiveunits,
-             'viewtasks' =>$request->xviewtasks,
-             'assignedstaff'=> $request->xassignedstaff,
-             'remarks'=> $request->xremarks,
+             'actionsrequired'=> $request->xactionsrequired,
+             'serviceprogress'=> $request->xserviceprogress,
+             'serviceremarks'=> $request->xserviceremarks,
              ]);
         return redirect()->route('servicedata');
     }
@@ -229,6 +224,10 @@ class ServiceController extends Controller
         return view('staff.staffdatabase', compact('servicedata'));
     }
 
+    public function getStaff(){
+        $staff = Staff::all();
+        return view('admin.add', compact('staff'));
+    }
    
   
 }

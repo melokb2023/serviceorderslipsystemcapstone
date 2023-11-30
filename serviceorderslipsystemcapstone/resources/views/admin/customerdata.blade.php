@@ -38,29 +38,21 @@
                     <br>
                     <table style="text-align:center">
                         <tr style="text-align:center">
-                            <th>Appointment Number</th>
-                            <th>Complete Name</th>
-                            <th>Contact Number</th>
-                            <th>Email</th>
-                            <th>Address</th>
+                            <th>Customer Appointment Number</th>
+                            <th>ID</th>
                             <th>Appointment Purpose</th>
                             <th>Appointment Type</th>
                             <th>Date and Time</th>
-                            <th>Service Progress</th>
                             <th>Options</th>
                         </tr>
                     <tbody>
                 @foreach($customerappointment as $customer)
                    <tr style="text-align:center">
                         <td>{{$customer->customerappointmentnumber}}</td>
-                        <td>{{$customer->firstname}} {{$customer->middlename}} {{$customer->lastname}}</td>
-                        <td>{{$customer->contactnumber}}</td>
-                        <td>{{$customer->email}}</td>
-                        <td>{{$customer->address}}</td>
+                        <td>{{$customer->customerno}} </td>
                         <td>{{$customer->appointmentpurpose}}</td>
                         <td>{{$customer->appointmenttype}}</td>
                         <td>{{$customer->dateandtime}}</td>
-                        <td>{{$customer->serviceprogress}}</td>
                         <td> <a style="background-color:yellow;width: 100%;display: block;font-weight:bold"  href= "{{route('customerlist-show', ['cano' => $customer->customerappointmentnumber]) }}" > View</a>
                              <a style="background-color:green;width: 100%;display: block;font-weight:bold" href= "{{route('customerlist-edit', ['cano' => $customer->customerappointmentnumber]) }}" >Edit</a>
                              <form method="POST" action = "{{ route('customerlist-delete', ['cano' => $customer->customerappointmentnumber ])  }}" onclick="return confirm('Are you sure you want to delete this record?')">

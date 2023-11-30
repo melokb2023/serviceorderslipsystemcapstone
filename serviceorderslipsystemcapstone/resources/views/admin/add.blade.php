@@ -17,118 +17,102 @@
                     <style>
                         /* Your existing styles */
 
-                        body {
-                            font-family: 'Century Gothic', sans-serif;
-                            font-weight: bold;
-                            font-size: 17px;
-                            color: white;
-                        }
+                      body {
+    font-family: 'Century Gothic', sans-serif;
+    font-weight: bold;
+    font-size: 16px;
+    color: white;
+    background-color: #d70021;
+}
 
-                        * {
-                            box-sizing: border-box;
-                        }
+label {
+    display: block;
+    text-align: left;
+    margin-bottom: 8px;
+    font-size: 16px;
+}
 
-                        
-                        select,
-                        textarea,
-                        input[type=datetime-local],
-                        input[type=email],
-                        input[type=password],
-                        input[type=checkbox] {
-                            width: 100%;
-                            padding: 12px;
-                            border: 1px solid #ccc;
-                            border-radius: 4px;
-                            box-sizing: border-box;
-                            margin-top: 6px;
-                            margin-bottom: 16px;
-                            resize: vertical;
-                            font-size: 14px;
-                        }
-                        .textexpand{
-                            width: 100%;
-                            padding: 12px;
-                            border: 1px solid #ccc;
-                            border-radius: 4px;
-                            box-sizing: border-box;
-                            margin-top: 6px;
-                            margin-bottom: 56px;
-                            resize: vertical;
-                            font-size: 14px;
-                            height:120%;
-                            
-                        }
-                        .textexpand2{
-                            width: 100%;
-                            padding: 12px;
-                            border: 1px solid #ccc;
-                            border-radius: 4px;
-                            box-sizing: border-box;
-                            margin-top: 6px;
-                            margin-bottom: 16px;
-                            resize: vertical;
-                            font-size: 14px;
-                        }
-                        button[type=submit] {
-                            width: 100%;
-                            background-color: #04AA6D;
-                            color: white;
-                            padding: 12px;
-                            border: none;
-                            border-radius: 4px;
-                            cursor: pointer;
-                            font-size: 16px;
-                        }
+select,
+textarea,
+input[type=datetime-local],
+input[type=email],
+input[type=password],
+input[type=checkbox] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-top: 6px;
+    margin-bottom: 16px;
+    resize: vertical;
+    font-size: 14px;
+}
 
-                        .textexpand{
-                            padding: 50px;
-                        }
+.textexpand {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-top: 6px;
+    margin-bottom: 16px;
+    resize: vertical;
+    font-size: 14px;
+    height: 120%;
+}
 
-                        button[type=submit]:hover {
-                            background-color: #45a049;
-                        }
+.textexpand2 {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-top: 6px;
+    margin-bottom: 16px;
+    resize: vertical;
+    font-size: 14px;
+}
 
-                        .container {
-                            border-radius: 5px;
-                            background-color: #f2f2f2;
-                            padding: 20px;
-                        }
+button[type=submit] {
+    width: 100%;
+    background-color: #04AA6D;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
 
-                        .animated {
-                            animation: fadeIn 1s;
-                        }
+button[type=submit]:hover {
+    background-color: #45a049;
+}
 
-                        @keyframes fadeIn {
-                            from {
-                                opacity: 0;
-                            }
+.container {
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 20px;
+    margin-top: 20px;
+}
 
-                            to {
-                                opacity: 1;
-                            }
-                        }
+.form-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
 
-                        /* Example hover effect */
-                        button[type=submit]:hover {
-                            background-color: #45a049;
-                            transform: scale(1.1);
-                        }
+.form-group {
+    width: 48%;
+}
 
-                        .form-row {
-                            display: flex;
-                            flex-wrap: wrap;
-                            justify-content: space-between;
-                        }
+@media only screen and (max-width: 600px) {
+    body {
+        font-size: 14px;
+    }
+}
 
-                        .form-group {
-                            width: 48%; /* Adjusted width */
-                        }
-
-                        label {
-                            display: block;
-                            text-align: left;
-                        }
-
+/* Ensure table cells are left-aligned */
                         
 
                     </style>
@@ -158,25 +142,23 @@
                                 <label for="customer-appointment-number">Appointment Number</label>
                                 <select name="xcustomerappointmentnumber">
                                     @foreach($availableCustomerAppointments as $customerinfo)
-                                    <option value="{{ $customerinfo->customerappointmentnumber }}">{{ $customerinfo->customerappointmentnumber }} - {{ $customerinfo->firstname }} {{ $customerinfo->middlename }} {{ $customerinfo->lastname }}</option>
+                                    <option value="{{ $customerinfo->customerappointmentnumber }}">{{ $customerinfo->customerappointmentnumber }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="form-row">
+                            <div class="form-group">
+                                <label for="staffnumber">Staff Number</label>
+                                <select name="xstaffnumber">
+                                    @foreach($staff as $staffco)
+                                    <option value="{{ $staffco->staffnumber }}">{{ $staffco->staffnumber }}-{{ $staffco->staffname }}</option>
                                     @endforeach
                                 </select>
                             </div>
 
-                            <div class="form-group">
-                                <label for="assigned-tasks">Assigned Tasks</label>
-                                <input class="textexpand2" type="text" name="xviewtasks" value="{{ old('xviewtasks') }}" />
-                            </div>
+                           
                         </div>
-
-                        <!-- Form row with three columns in one line -->
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="list-of-problems">List of Problems</label>
-                                <input class="textexpand" type="text" name="xlistofproblems" value="{{ old('xlistofproblems') }}" />
-                            </div>
-                         
-                            <div class="form-group">
+                          <div class="form-group">
                                 <label for="type-of-service">Type Of Service</label>
                                 <select name="xtypeofservice">
                                     <option value="Reformatting">Reformatting</option>
@@ -191,51 +173,35 @@
                                     <option value="Reapplication">Reapplication</option>
                                 </select>
                             </div>
+                        <!-- Form row with three columns in one line -->
+                        <div class="form-row">
                             <div class="form-group">
-                                <br>
-                                <br>
-                                <br>
-                                <br>
-                                <label for="maintenance-required">Maintenance Required</label>
-                                <select name="xmaintenancerequired">
-                                    <option value="Scheduled Maintenance">Scheduled Maintenance</option>
-                                    <option value="Preventive Maintenance">Preventive Maintenance</option>
-                                    <option value="Full Maintenance">Full Maintenance</option>
-                                </select>
-                            </div> 
-                                <div class="form-group">
+                                <label for="list-of-problems">List of Problems</label>
+                                <input class="textexpand" type="text" name="xlistofproblems" value="{{ old('xlistofproblems') }}" />
+                            </div>
+                         
+                            <div class="form-group">
                                 <label for="customer-password">Customer Password</label>
                                 <input type="password" name="xcustomerpassword" value="{{ old('xcustomerpassword') }}" />
                             </div>
                         </div>
-
-                        <!-- Form row with three columns in one line -->
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="assigned-staff">Assigned Staff</label>
-                                <select name="xassignedstaff">
-                                    <option value="Staff 1">Staff 1</option>
-                                    <option value="Staff 2">Staff 2</option>
-                                    <option value="Staff 3">Staff 3</option>
-                                </select>
-                            </div>
-
+                          <div class="form-row">
                             <div class="form-group">
                                 <label for="defective-units">Defective Units</label>
                                 <input class="textexpand" type="text" name="xdefectiveunits" value="{{ old('xdefectiveunits') }}" />
                             </div>
-
-                           
+                        </div>   
+                         <div class="form-group">
+                                <label for="actions-required">Actions Required</label>
+                                <input class="textexpand2" type="text" name="xactionsrequired" value="{{ old('xactionsrequired') }}" />
                         </div>
-
-                        <!-- Form row with one column in one line -->
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="remarks">Remarks</label>
-                                <input class="textexpand2" type="text" name="xremarks" value="{{ old('xremarks') }}" />
-                            </div>
+                        <div class="form-group" style="text-align:center">
+                            <label for="servicestarted">Service Started</label>
+                            <input type="datetime-local" name="xservicestarted" value="{{old('xservicestarted')}}" required>
                         </div>
+                       
 
+                       
                         <button class="btn btn-primary" type="submit">Submit Info</button>
                     </form>
                     @endif

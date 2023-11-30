@@ -13,15 +13,18 @@ class Service extends Model
     
     protected $fillable = [
          'customerappointmentnumber',
+         'assignedstaff',
          'typeofservice',
          'listofproblems',
-         'maintenancerequired',
          'customerpassword',
          'defectiveunits',
-         'viewtasks',
-         'assignedstaff',
-         'remarks',
+         'actionsrequired',
+         'workprogress',
+         'workremarks', 
+         'serviceprogress',
+         'serviceremarks',
          'dateandtime',
+         'servicestarted',
          'orderreferencecode'
     ];
 }

@@ -12,12 +12,12 @@ class HomeController extends Controller
 
         if(Auth::id())
         {
-            if(Auth::user()->usertype=='0')
+            if(Auth::user()->usertype=='admin')
             {
                 return view('admin.startservice');
             }
 
-            else if(Auth::user()->usertype=='1')
+            else if(Auth::user()->usertype=='staff')
             {
                 return view('staff.staffdatabasemenu');
             }
