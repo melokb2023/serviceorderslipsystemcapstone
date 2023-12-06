@@ -36,7 +36,9 @@
                       <tr>
                         <th>Staff Work Number</th>
                         <th>Service Number</th>
-                        <th>Actions Taken</th>
+                        <th>Staff Number</th>
+                        <th>Actions Required</th>
+                        <th>Type of Service</th>
                         <th>Work Progress</th>
                         <th>Options</th>
 </tr>
@@ -44,8 +46,10 @@
                 @foreach($staffdatabase as $staff)
                        <tr>
                         <td>{{$staff->staffnumber}}</td>
-                        <td>{{$staff->serviceno}} - {{ $staff->firstname }} {{ $staff->middlename }} {{ $staff->lastname }} - {{ $staff->typeofservice }}</td>
-                        <td>{{$staff->actionstaken}}</td>     
+                        <td>{{$staff->serviceno}}</td>
+                        <td>{{$staff->staffnumber}}</td>
+                        <td>{{$staff->actionsrequired}}</td>  
+                        <td>{{$staff->typeofservice}}</td>       
                         <td>{{$staff->workprogress}}</td>
                         <td>
                             <a class="mt-4 bg-yellow-200 text-black font-bold py-2 px-4 rounded"  href="{{route('staffdatabase-show', ['serviceno' => $staff->serviceno])}}">View Details</a> 

@@ -14,16 +14,16 @@ class HomeController extends Controller
         {
             if(Auth::user()->usertype=='admin')
             {
-                return view('admin.startservice');
+                return redirect()->route('admindashboard');
             }
 
             else if(Auth::user()->usertype=='staff')
             {
-                return view('staff.staffdatabasemenu');
+                return redirect()->route('staffdashboard');
             }
          
             else{
-                return view('dashboard');
+                return redirect()->route('customerdashboard');
            }
         
         }

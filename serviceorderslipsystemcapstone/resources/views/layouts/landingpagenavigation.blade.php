@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<div class="top-nav">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,31 +20,33 @@
         }
 
         .top-nav {
-            overflow-x: auto;
-            /* Enable horizontal scrolling */
-            /* Prevent line breaks */
+            background: #fae8d2;
+            box-shadow: 4px 6px 12px rgba(0, 0, 0, 0.4);
             border: 2px solid rgba(215, 0, 33, 0.5);
-            /* Red-orange border with some transparency */
-            border-radius: 5px; /* Rounded corners */
+            border-radius: 5px;
             font-weight: bold;
-            color: black;
-            background-color: rgba(255, 255, 255, 0.9); /* White background with some transparency */
-            flex: 1; /* Take remaining space */
+            color: #454545;
+            overflow-x: auto;
+            border-radius: 5px;
+            font-weight: bold;
+            color: #454545;
+            background-color: #fae8d2;
+            box-shadow: 4px 6px 12px rgba(0, 0, 0, 0.4);
+            flex: 1;
         }
 
         .top-nav-link {
             display: inline-block;
             padding: 10px;
             text-decoration: none;
-            color: black;
-            border-bottom: 3px solid transparent;
+            color: #454545;
             transition: all 0.3s ease;
         }
 
         .top-nav-link:hover {
-            border-color: #fff;
-            background-color: rgba(215, 0, 33, 0.9); /* Darker red-orange on hover */
-            border-radius: 5px;
+            border-radius: 6px;
+            background: linear-gradient(145deg, #ffe7ca, #f5d7b2);
+            box-shadow: 4px 4px 8px #ddc1a0, -4px -4px 8px #f7e5cc;
         }
 
         .dropdown-content {
@@ -88,7 +90,7 @@
             background-color: white;
             padding: 20px;
             text-align: center;
-            border-top: 2px solid rgba(215, 0, 33, 0.5); /* Red-orange border with some transparency */
+            border-top: 2px solid rgba(215, 0, 33, 0.5);
         }
     </style>
 </head>
@@ -96,36 +98,39 @@
 <body>
 
     <!-- Primary Navigation Menu -->
-    <nav x-data="{ open: false }" style="color:black">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" >
+    <nav x-data="{ open: false }" class="top-nav">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-end h-16">
                 <div class="hidden sm:flex sm:items-center sm:ml-6">
                     <!-- Top Navigation Links -->
-                   
-                        <a class="top-nav-link" href="{{ route('landingpagehome') }}" :active="request()->routeIs('landingpagehome')">
-                            <i class="fa fa-database"></i>{{ __('HOME') }}
-                        </a>
-                        <a class="top-nav-link" href="{{ route('landingpageaboutus') }}" :active="request()->routeIs('landingpageaboutus')">
-                            <i class="fa fa-list"></i> {{ __('ABOUT US') }}
-                        </a>
-                        <a class="top-nav-link" href="{{ route('landingpagecontactus') }}" :active="request()->routeIs('landingpagecontactus')">
-                            <i class="fa fa-cogs"></i> {{ __('CONTACT US') }}
-                        </a>
-                        @auth
-                        <a href="{{ url('/dashboard') }}" class="nav-link">DASHBOARD</a>
-                        @else
-                        <a href="{{ route('login') }}" class="nav-link">LOG IN</a>
-                        @if (Route::has('register'))
-                        <a href="{{ route('register') }}" class="nav-link2">REGISTER</a>
-                        @endif
-                        @endauth
-                    </div>
+
+                    <a class="top-nav-link" href="{{ route('landingpagehome') }}" :active="request()->routeIs('landingpagehome')">
+                        <i class="fa fa-database"></i>{{ __('HOME') }}
+                    </a>
+                    <a class="top-nav-link" href="{{ route('landingpageaboutus') }}" :active="request()->routeIs('landingpageaboutus')">
+                        <i class="fa fa-list"></i> {{ __('ABOUT US') }}
+                    </a>
+                    <a class="top-nav-link" href="{{ route('landingpagecontactus') }}" :active="request()->routeIs('landingpagecontactus')">
+                        <i class="fa fa-cogs"></i> {{ __('CONTACT US') }}
+                    </a>
+                    @auth
+                    <a href="{{ url('/dashboard') }}" class="top-nav-link">DASHBOARD</a>
+                    @else
+                    <a href="{{ route('login') }}" class="top-nav-link">LOG IN</a>
+                    @if (Route::has('register'))
+                    <a href="{{ route('register') }}" class="top-nav-link">REGISTER</a>
+                    @endif
+                    @endauth
                 </div>
             </div>
         </div>
     </nav>
 
-  
+    <!-- Your content goes here -->
+
+    <footer>
+        <!-- Your footer content goes here -->
+    </footer>
 
 </body>
 

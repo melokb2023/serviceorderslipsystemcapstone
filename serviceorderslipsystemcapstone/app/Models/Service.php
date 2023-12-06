@@ -13,7 +13,8 @@ class Service extends Model
     
     protected $fillable = [
          'customerappointmentnumber',
-         'assignedstaff',
+         'staffnumber',
+         'customername',
          'typeofservice',
          'listofproblems',
          'customerpassword',
@@ -27,4 +28,6 @@ class Service extends Model
          'servicestarted',
          'orderreferencecode'
     ];
+
+  
 }

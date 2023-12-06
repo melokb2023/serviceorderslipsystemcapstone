@@ -3,10 +3,11 @@
 namespace App\Http\Controllers;
 use App\Models\Rating;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Auth;
 use App\Mail\MyMail;
 use Illuminate\Http\Request;
 use App\Models\CustomerAppointment;
-use App\Models\ServiceProgress;
+
 
 class CustomerAppointmentController extends Controller
 {
@@ -29,6 +30,7 @@ class CustomerAppointmentController extends Controller
 
     $customerappointment = new CustomerAppointment();
     $customerappointment->customerno = auth()->user()->id;
+    $customerappointment->customername = auth()->user()->name;
     $customerappointment->appointmentpurpose = $request->xappointmentpurpose;
     $customerappointment->appointmenttype = $request->xappointmenttype;
     $customerappointment->dateandtime = $request->xdateandtime;
@@ -43,6 +45,25 @@ class CustomerAppointmentController extends Controller
     Mail::to(auth()->user()->email)->send(new MyMail($details));
 
     return view('customer.startappointment');
+}
+
+public function CustomerSpecificAppointment()
+{
+    // Check if the user is authenticated
+    if (Auth::check()) {
+        // Get the authenticated user
+        $user = Auth::user();
+
+        // Fetch appointments only for Kenneth (assuming Kenneth's user ID is 5)
+        $customerappointment = CustomerAppointment::where('customerno', $user->id)->get();
+
+        // Pass the appointments to the view
+        return view('customer.customerdashboard', compact('customerappointment'));
+    } else {
+        // Handle the case when the user is not authenticated
+        // You might want to redirect them to the login page or show an error message
+        return redirect()->route('login');
+    }
 }
 
 

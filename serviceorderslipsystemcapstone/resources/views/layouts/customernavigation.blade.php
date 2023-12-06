@@ -157,11 +157,17 @@
                     <a class="top-nav-link" href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                         <i class="fa fa-home"></i> {{ __('DASHBOARD') }}
                     </a>
+                    <a class="top-nav-link" href="{{ route('customerdashboard') }}" :active="request()->routeIs('customerdashboard')">
+                        <i class="fa fa-home"></i> {{ __('MY APPOINTMENTS') }}
+                    </a>
                     <a class="top-nav-link" href="{{ route('add-appointment') }}" :active="request()->routeIs('add-appointment')">
                         <i class="fa fa-home"></i> {{ __('START APPOINTMENT') }}
                     </a>
                    <a class="top-nav-link" href="{{ route('add-customerrating') }}" :active="request()->routeIs('add-customerrating')">
                         <i class="fa fa-list"></i> {{ __('RATE THE SERVICE') }}
+                    </a>
+                    <a class="top-nav-link" href="{{ route('checkreferencenumber') }}" :active="request()->routeIs('checkreferencenumber')">
+                        <i class="fa fa-list"></i> {{ __('CHECK REFERENCE NUMBER') }}
                     </a>
                     <a class="top-nav-link" href="{{ route('customerlogs') }}" :active="request()->routeIs('customerlogs')">
                         <i class="fa fa-database"></i>{{ __('LOGS') }}

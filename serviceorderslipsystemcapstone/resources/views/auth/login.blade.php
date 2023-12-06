@@ -1,5 +1,5 @@
 <x-guest-layout>
- 
+
     <x-slot name="logo">
         <!-- You can add a logo here if needed -->
     </x-slot>
@@ -7,8 +7,9 @@
     <style>
         /* Your existing styles */
         * {
-            font-style: "Century Gothic";
+            font-family: "Century Gothic";
             align-items: center;
+            font-weight: bold;
         }
 
         x-button {
@@ -40,7 +41,7 @@
             text-align: center;
             align-items: center;
             justify-content: center;
-            font-style: "Century Gothic";
+            font-family: "Century Gothic";
         }
 
         .custom-login-button:hover {
@@ -69,8 +70,19 @@
         table, tr {
             padding: 50px; /* Adjust the value as needed */
         }
+
+        /* Custom class for Century Gothic placeholder */
+        .century-gothic-placeholder::placeholder {
+            font-family: "Century Gothic";
+            font-weight: bold;
+        }
+
+        body {
+            background-color: #d70021; /* Set the background color */
+        }
     </style>
 
+<body>
     <x-validation-errors class="mb-4" />
 
     @if (session('status'))
@@ -111,13 +123,12 @@
                             </div>
             </td>
         </tr>
-                        </div>
-                    </div>
 
-                    <div class="d-flex flex-column flex-md-row text-center text-md-start justify-content-between py-4 px-4 px-xl-5 bg-primary">
-                        <!-- Copyright and social media links -->
-                        <!-- ... Your social media links ... -->
-                    </div>
-                </section>
-           
-    </x-guest-layout>
+        <div class="d-flex flex-column flex-md-row text-center text-md-start justify-content-between py-4 px-4 px-xl-5 bg-primary">
+            <!-- Copyright and social media links -->
+            <!-- ... Your social media links ... -->
+        </div>
+    </table>
+    </div>
+    </body>
+</x-guest-layout>

@@ -13,10 +13,16 @@ class CustomerAppointment extends Model
     
     protected $fillable = [
          'customerno',
+         'customername',
          'appointnmentpurpose',
          'appointnmenttype',
          'dateandtime',
     ];
+
+    public function customerAppointments()
+    {
+        return $this->hasMany(CustomerAppointment::class, 'customerno');
+    }
 
   
 }

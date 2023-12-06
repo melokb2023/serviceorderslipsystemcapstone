@@ -12,7 +12,8 @@ class Rating extends Model
     protected $table= 'customerrating';
     
     protected $fillable = [
-         'customerappointmentnumber',
+         'reviewerid',
+         'reviewername',
          'review',
          'rating',
     ];

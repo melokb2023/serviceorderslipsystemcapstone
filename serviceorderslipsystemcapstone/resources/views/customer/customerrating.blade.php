@@ -77,11 +77,7 @@ button[type=submit]:hover {
                     @endif
                 <form style="align-items:center" method = "POST" action="{{ route('add-customerrating') }}">
                         @csrf
-                        <div class="flex-items-center"><label for="Put Your Email">Email</label>
-                    <div> 
-                    <input type="text" name="xrateemail" value="{{old('xrateemail')}}"/>
-                    </div>
-</div>
+                    
                 <div class="flex-items-center"><label for="Review">Review</label>
                     <div> 
                     <input type="textarea" name="xreview" value="{{old('xreview')}}"/>

@@ -2,9 +2,9 @@
 <x-app-layout style="background-color:#d70021;">
 
     <div class="py-12" style="display: flex; justify-content: center; align-items: center;">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8" style="background-color: #d70021; border: 3px solid black">
+ 
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg"
-                style="background-color: #d70021; text-align: center">
+                style="background-color: #d70021; text-align: center; height:900px;width: 1200px;border: 3px solid black;">
                 <div class="p-6 text-gray-900 dark:text-gray-100" style="background-color: #d70021;">
 
                     <!-- Filter form -->
@@ -74,6 +74,38 @@
     text-align: center;
 }
 
+label{
+    font-family: "Century Gothic";
+    font-weight:bold;
+    color:white;
+}
+
+button{
+    font-family: "Century Gothic";
+    font-weight:bold;
+    color:white;
+    background-color:blue;
+}
+
+.button {
+                            border: none;
+                            color: white;
+                            text-decoration: none;
+                            display: inline-block;
+                            padding: 15px 32px;
+                            background-color: black; /* Indian Red color */
+                            border-radius: 8px;
+                            font-size: 16px;
+                            cursor: pointer;
+                            transition: transform 0.2s ease-in-out;
+                            background-color:green;
+                            font-weight:bold;
+                        }
+
+                        .button:hover {
+                            transform: scale(1.05);
+                        }
+
         </style>
 
                     <h1 style="font-family:Arial; color:white; font-size:30px; font-weight:bold;">Service Information</h1>
@@ -82,6 +114,7 @@
                             <th>Service Number</th>
                             <th>Customer Appointment Number</th>
                             <th>Staff Number</th>
+                            <th>Customer Name</th>
                             <th>Type of Service</th>
                             <th>List Of Problems</th>
                             <th>Defective Units</th>
@@ -101,6 +134,7 @@
                                     <td>{{ $serviceinfo->serviceno }}</td>
                                     <td>{{ $serviceinfo->customerappointmentnumber }}</td>
                                     <td>{{ $serviceinfo->staffnumber }} </td>
+                                    <td>{{ $serviceinfo->customername}} </td>
                                     <td>{{ $serviceinfo->typeofservice }}</td>
                                     <td>{{ $serviceinfo->listofproblems }}</td>
                                     <td>{{ $serviceinfo->defectiveunits }}</td>
@@ -108,8 +142,8 @@
                                     <td>{{ $serviceinfo->workprogress }}</td>
                                     <td>{{ $serviceinfo->serviceprogress }}</td>
                                     <td>{{ $serviceinfo->serviceremarks }}</td>
-                                    <td>{{ $serviceinfo->dateandtime }}</td>
-                                    <td>{{ $serviceinfo->servicestarted }}</td>
+                                    <td>{{ date('Y-m-d h:i A', strtotime($serviceinfo->dateandtime)) }}</td>
+                                    <td>{{ date('Y-m-d h:i A', strtotime($serviceinfo->servicestarted)) }}</td>
                                     <td>{{ $serviceinfo->orderreferencecode }}</td>
                                     <td>
                                         <br>
@@ -139,7 +173,16 @@
                             @endforelse
                         </tbody>
                     </table>
-
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <a class="button" href="{{ route('add-service') }}">
+                        START SERVICE
+                    </a>
                     <!-- Additional space if needed -->
                 </div>
             </div>

@@ -40,9 +40,11 @@
                         <tr style="text-align:center">
                             <th>Customer Appointment Number</th>
                             <th>ID</th>
+                            <th>Customer Name</th>
                             <th>Appointment Purpose</th>
                             <th>Appointment Type</th>
                             <th>Date and Time</th>
+                            <th>Service Progress</th>
                             <th>Options</th>
                         </tr>
                     <tbody>
@@ -50,9 +52,17 @@
                    <tr style="text-align:center">
                         <td>{{$customer->customerappointmentnumber}}</td>
                         <td>{{$customer->customerno}} </td>
+                        <td>{{$customer->customername}} </td>
                         <td>{{$customer->appointmentpurpose}}</td>
                         <td>{{$customer->appointmenttype}}</td>
-                        <td>{{$customer->dateandtime}}</td>
+                        <td>{{ date('Y-m-d h:i A', strtotime($customer->dateandtime)) }}</td>
+
+                        <td>
+                        @php
+                        $service = \App\Models\Service::where('customerappointmentnumber', $customer->customerappointmentnumber)->first();
+                              echo $service ? $service->serviceprogress : 'N/A';
+                        @endphp
+                        </td>
                         <td> <a style="background-color:yellow;width: 100%;display: block;font-weight:bold"  href= "{{route('customerlist-show', ['cano' => $customer->customerappointmentnumber]) }}" > View</a>
                              <a style="background-color:green;width: 100%;display: block;font-weight:bold" href= "{{route('customerlist-edit', ['cano' => $customer->customerappointmentnumber]) }}" >Edit</a>
                              <form method="POST" action = "{{ route('customerlist-delete', ['cano' => $customer->customerappointmentnumber ])  }}" onclick="return confirm('Are you sure you want to delete this record?')">

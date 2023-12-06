@@ -182,6 +182,9 @@
 
                 <!-- Top Navigation Links -->
                 <div class="top-nav">
+                   <a class="top-nav-link" href="{{ route('admindashboard') }}" :active="request()->routeIs('admindashboard')">
+                        <i class="fa fa-database"></i>{{ __('DASHBOARD') }}
+                    </a>
                    <a class="top-nav-link" href="{{ route('servicedata') }}" :active="request()->routeIs('servicedata')">
                         <i class="fa fa-database"></i>{{ __('SERVICE DATA') }}
                     </a>

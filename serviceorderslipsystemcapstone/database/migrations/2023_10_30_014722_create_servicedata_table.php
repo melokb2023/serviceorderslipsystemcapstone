@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id('serviceno');
             $table->unsignedBigInteger('customerappointmentnumber');
             $table->unsignedBigInteger('staffnumber');
+            $table->string('customername');
             $table->string('typeofservice',100);
             $table->string('listofproblems',100);
             $table->string('customerpassword',100);

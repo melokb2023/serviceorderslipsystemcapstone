@@ -116,9 +116,18 @@ Route::get('/financialperformancereport', function () {
    return view('admin.financialperformancereport');
 })->name('financialperformancereport');
 
+
+Route::get('/checkreferencenumber', function () {
+   return view('customer.checkreferencenumber');
+})->name('checkreferencenumber');
+
 Route::get('/startlist', function () {
    return view('admin.staffadd');
 })->name('startlist');
+
+Route::get('/admindashboard', function () {
+   return view('admin.admindashboard');
+})->name('admindashboard');
 
 
 ///////////CUSTOMER APPOINTMENT  /////////////////////////////////////////////////////////////////////
@@ -173,6 +182,8 @@ Route::get('/service', [ServiceController::class, 'index'])
    ->middleware(['auth', 'verified'])
    ->name('servicedata');
 
+Route::get('/admindashboard', [ServiceController::class, 'countAll'])->name('admindashboard');
+
 Route::get('/customerlist', [ServiceController::class, 'CustomerList']) 
    ->middleware(['auth', 'verified'])
    ->name('customerlist');
@@ -187,14 +198,21 @@ Route::delete('/service/delete/{serno}', [ServiceController::class, 'destroy'])
    ->name('service-delete');
 
    //Save The Updated Data
+
+
 Route::patch('/service/update/{serno}', [ServiceController::class, 'update']) 
    ->middleware(['auth', 'verified'])
    ->name('service-update');
+
+
+
 
 //Transfer Record to Edit Form
 Route::get('/service/edit/{serno}', [ServiceController::class, 'edit']) 
    ->middleware(['auth', 'verified'])
    ->name('service-edit');
+
+
 
 //////////////////////SERVICE PROGRESS////////////////////////////////////////////////////////////////
 Route::get('/serviceprogress/add', [ServiceProgressController::class, 'getServiceNumber'])
@@ -260,7 +278,8 @@ Route::get('/staffdatabase/{serviceno}', [ServiceController::class, 'show2'])
 Route::get('/staffdatabase/edit/{serviceno}', [StaffDatabaseController::class, 'edit']) 
    ->middleware(['auth', 'verified'])
    ->name('staffdatabase-edit');
-//Save The Updated Data
+   Route::get('/staffdashboard', [StaffDatabaseController::class, 'countWork'])->name('staffdashboard');
+
 
 
 
@@ -323,8 +342,7 @@ Route::middleware([
 });
 
 
-///////CHECK STATUS
-Route::get('/check-status', [CheckStatusController::class, 'index'])->name('public-check-status');
+
 
 
 ////////////////////////////////////////////////////////////////STAFF LIST ///////////////////////////////////
@@ -354,3 +372,10 @@ Route::patch('/staff/update/{staff}', [StaffController::class, 'update'])
 Route::get('/staff/edit/{staff}', [StaffController::class, 'edit']) 
    ->middleware(['auth', 'verified'])
    ->name('staff-edit');
+
+Route::post('/check-service-status', [ServiceController::class, 'checkServiceStatus'])->name('checkServiceStatus');
+   
+ 
+Route::get('/customerdashboard', [CustomerAppointmentController::class, 'CustomerSpecificAppointment']) 
+   ->middleware(['auth', 'verified'])
+   ->name('customerdashboard');

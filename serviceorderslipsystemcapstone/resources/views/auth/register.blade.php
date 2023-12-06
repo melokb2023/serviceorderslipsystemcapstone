@@ -4,14 +4,24 @@
     </x-slot>
 
     <style>
-        /* Your existing styles */
+        /* Your existing styles with added font-weight: bold; */
+        * {
+            font-family: "Century Gothic";
+            font-weight: bold;
+        }
+
+        body {
+            background-color: #d70021; /* Set the background color */
+        }
+
         label {
-            font-style: "Century Gothic";
+            font-family: "Century Gothic";
             align-items: center;
             font-weight: bold;
             margin-bottom: 6px;
             display: inline-block;
             width: 150px; /* Set a fixed width for labels */
+            color:white;
         }
 
         x-button {
@@ -43,7 +53,7 @@
             text-align: center;
             align-items: center;
             justify-content: center;
-            font-style: "Century Gothic";
+            font-family: "Century Gothic";
         }
 
         .custom-login-button:hover {
@@ -87,20 +97,35 @@
             resize: vertical;
             font-size: 14px; /* Adjust font size */
         }
+
+        /* Center the layout */
+        .center-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh; /* Ensure full height of the viewport */
+        }
+
+        /* Justify the button to the middle */
+        .flex {
+            display: flex;
+            justify-content: center;
+        }
     </style>
 
-    <table>
-        <tr>
-            <td>
-                <!-- Your existing HTML code -->
-                <section class="vh-100">
-                    <div class="container-fluid h-custom">
-                        <div class="row d-flex justify-content-center align-items-center h-100">
-                            <div class="col-md-9 col-lg-6 col-xl-5">
-                                <img
-                                    src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
-                                    class="img-fluid" alt="Sample image">
-                            </div>
+    <div class="center-container">
+        <table>
+            <tr>
+                <td>
+                    <!-- Your existing HTML code -->
+                    <section class="vh-100">
+                        <div class="container-fluid h-custom">
+                            <div class="row d-flex justify-content-center align-items-center h-100">
+                                <div class="col-md-9 col-lg-6 col-xl-5">
+                                    <img
+                                        src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
+                                        class="img-fluid" alt="Sample image">
+                                </div>
             </td>
             <td>
                 <x-validation-errors class="mb-4" />
@@ -121,7 +146,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="phone">Phone Number</label>
+                        <label for="phone">Contact Number</label>
                         <x-input id="phone" class="block mt-1 w-full" type="text" name="phone"
                             :value="old('phone')" required autocomplete="username" />
                     </div>
@@ -144,37 +169,11 @@
                             name="password_confirmation" required autocomplete="new-password" />
                     </div>
 
-                    @if (Laravel\Jetstream\Jetstream::hasTermsAndPrivacyPolicyFeature())
-                    <div class="form-group">
-                        <label for="terms">
-                            <div class="flex items-center">
-                                <x-checkbox name="terms" id="terms" required />
+                    <!-- Your existing form fields -->
 
-                                <div class="ml-2">
-                                    {!! __('I agree to the :terms_of_service and :privacy_policy', [
-                                    'terms_of_service' => '<a target="_blank" href="' . route('terms.show') . '"
-                                        class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md
-                                        focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">' .
-                                        __('Terms of Service') . '</a>',
-                                    'privacy_policy' => '<a target="_blank" href="' . route('policy.show') . '"
-                                        class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md
-                                        focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">' .
-                                        __('Privacy Policy') . '</a>',
-                                    ]) !!}
-                                </div>
-                            </div>
-                        </label>
-                    </div>
-                    @endif
-
-                    <div class="flex items-center justify-end mt-4">
-                        <a
-                            class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none
-                            focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                            href="{{ route('login') }}">
-                            {{ __('Already registered?') }}
-                        </a>
-
+                    <div class="flex items-center justify-center mt-4">
+                      
+                       
                         <x-button class="custom-login-button ">
                             {{ __('Register') }}
                         </x-button>
@@ -183,4 +182,5 @@
             </td>
         </tr>
     </table>
+    </div>
 </x-guest-layout>

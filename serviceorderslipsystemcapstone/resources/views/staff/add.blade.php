@@ -107,7 +107,7 @@
                                 <select name="xserviceno">
                                     @foreach($servicedata as $service)
                                     <option value="{{ $service->serviceno }}">
-                                       Service Number {{ $service->serviceno }} - {{$service->typeofservice }}
+                                       Service Number {{ $service->serviceno }}
                                     </option>
                                     @endforeach
                                 </select>

@@ -1,9 +1,9 @@
 @include('layouts.landingpagenavigation')
 
-<x-guest-layout style="background-color:#E51818;">
+<x-guest-layout style="background-color:#d70021;">
 
-    <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-        <head style="background-color:#E51818;">
+    <html lang="{{ str_replace('_', '-', app()->getLocale()) }}" style="background-color:#d70021;">
+        <head style="background-color:#d70021;">
             <meta charset="utf-8">
             <meta name="viewport" content="width=device-width, initial-scale=1">
             <title>Service Order Slip System</title>
@@ -44,7 +44,7 @@
                     align-items: center;
                     height: 100vh;
                     font-family: "Century Gothic";
-                    background-color: #E51818;
+                    background-color: #d70021;
                 }
 
                 .links {
@@ -135,6 +135,7 @@
                     padding-bottom: 20px;
                     padding-left: 30px;
                     padding-right: 30px;
+                    
                 }
 
                 td:nth-child(1) {
@@ -170,7 +171,7 @@
 
             <div class="content">
 
-                <h2 style="font-weight:bold;font-size:35px;color:white">CompuSource Computer Center</h2>
+                <h2 style="font-weight:bold;font-size:32px;color:white;font-family:Century Gothic">CompuSource Computer Center</h2>
 
                 <table>
                     <tr>
@@ -179,11 +180,7 @@
                             Here we provide the most valuable services to each of the customers.
                             We are a highly-managed small team.
                             Start making your appointments and we will help you in the process of making every single
-                            service a
-                            much more flexible one.
-                        </td>
-                        <td>
-                            <img src="https://example.com/your-image.jpg" alt="Description of the image">
+                            service a much more flexible one.
                         </td>
                     </tr>
                 </table>

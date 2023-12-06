@@ -10,17 +10,24 @@ class CheckStatusController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(Request $request)
+    public function checkStatus(Request $request)
     {
-        $orderReferenceCode = $request->input('reference_number');
+        // Validate the request data
+        $request->validate([
+            'order_reference_code' => 'required|string|max:255',
+        ]);
 
         // Retrieve the service based on the order reference code
-        $service = Service::where('orderreferencecode', $orderReferenceCode)->first();
+        $service = Service::where('orderreferencecode', $request->input('order_reference_code'))->first();
 
-        // Check if the service exists and return the status
-        $status = $service ? 'Completed' : 'Ongoing';
-
-        return view('public.checkstatus', ['orderReferenceCode' => $orderReferenceCode, 'status' => $status]);
+        // Check if the service exists
+        if ($service) {
+            // Service found
+            return view('checkreferencenumber', ['service' => $service]);
+        } else {
+            // Service not found
+            return view('checkreferencenumber', ['error' => 'Service not found for the provided order reference code.']);
+        }
     }
 
     /**

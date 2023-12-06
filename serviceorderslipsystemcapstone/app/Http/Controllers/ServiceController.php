@@ -7,8 +7,10 @@ use App\Models\Service;
 use App\Models\CustomerAppointment;
 use App\Models\StaffDatabase;
 use App\Models\Staff;
+use App\Models\Rating;
 use Illuminate\Support\Facades\Hash;
-
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redirect;
 
 
 
@@ -139,6 +141,7 @@ class ServiceController extends Controller
     // Check if the CustomerAppointment exists
     if ($customerAppointment) {
         $servicedata->dateandtime = $customerAppointment->dateandtime;
+        $servicedata->customername = $customerAppointment->customername;
     }
         $servicedata->servicestarted = $request->xservicestarted;
         $servicedata->save();
@@ -180,7 +183,6 @@ class ServiceController extends Controller
              [
              'listofproblems' =>$request->xlistofproblems,
              'typeofservice'=>$request->xtypeofservice,
-             'maintenancerequired'=> $request->xmaintenancerequired,
              'customerpassword'=> $request->xcustomerpassword,
              'defectiveunits'=> $request->xdefectiveunits,
              'actionsrequired'=> $request->xactionsrequired,
@@ -189,6 +191,20 @@ class ServiceController extends Controller
              ]);
         return redirect()->route('servicedata');
     }
+
+    public function update2(Request $request, string $id)
+    {
+       
+      $servicedata= Service::where('serviceno', $id)
+        ->update(
+             [
+             
+             'workprogress'=> $request->xworkprogress,
+             
+             ]);
+        return redirect()->route('staffdatabase');
+    }
+
 
     /**
      * Remove the specified resource from storage.
@@ -228,6 +244,41 @@ class ServiceController extends Controller
         $staff = Staff::all();
         return view('admin.add', compact('staff'));
     }
+
+    public function checkServiceStatus(Request $request)
+    {
+        $orderReferenceCode = $request->input('order_reference_code');
+    
+        // Query the service data based on the provided order reference code
+        $serviceStatus = Service::where('orderreferencecode', $orderReferenceCode)->value('serviceprogress');
+
+        return view('customer.checkreferencenumber', compact('serviceStatus'));
+
+        if (!empty($serviceStatus)) {
+            return view('customer.checkreferencenumber', compact('serviceStatus'));
+        } else {
+            // If serviceStatus is empty, redirect back with an error message
+            return Redirect::back()->withInput()->withErrors(['order_reference_code' => 'Invalid Order Reference Code']);
+        }
+    }
+
+    public function countAll()
+{
+    $typesOfServicesCount = Service::select('typeofservice')->distinct()->count();
+
+    $customerAppointmentsCount = CustomerAppointment::count();
+    $serviceDataCount = Service::count();
+    $ratingsCount = Rating::count();
+
+    return view('admin.admindashboard', compact('typesOfServicesCount', 'customerAppointmentsCount', 'serviceDataCount', 'ratingsCount'));
+}
+
+
+
    
-  
+
+
+   
+
+
 }

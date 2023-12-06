@@ -32,34 +32,11 @@ class RatingsController extends Controller
      */
     public function store(Request $request)
     {
-   // Validation rules
-   $rules = [
-    'xrateemail' => 'required|email|ends_with:@gmail.com',
-    'xreview' => 'required',
-    'xrating' => 'required|numeric|min:1|max:5',
-];
+ 
 
-// Custom error messages
-$messages = [
-    'xrateemail.email' => 'The rateemail field must be a valid email address.',
-    'xrateemail.ends_with' => 'The rateemail must be a Gmail address.',
-    'xreview.required' => 'The review field is required.',
-    'xrating.numeric' => 'The rating must be a number.',
-    'xrating.min' => 'The rating must be at least :min.',
-    'xrating.max' => 'The rating must not be greater than :max.',
-];
-
-// Validate the request data
-$validator = Validator::make($request->all(), $rules, $messages);
-
-// Check if the validation fails
-if ($validator->fails()) {
-    return redirect()->back()->withErrors($validator)->withInput();
-}
-
-// If validation passes, save the data
 $customerrating = new Rating();
-$customerrating->rateemail = $request->xrateemail;
+$customerrating->reviewerid = auth()->user()->id;
+$customerrating->reviewername = auth()->user()->name;
 $customerrating->review = $request->xreview;
 $customerrating->rating = $request->xrating;
 $customerrating->save();

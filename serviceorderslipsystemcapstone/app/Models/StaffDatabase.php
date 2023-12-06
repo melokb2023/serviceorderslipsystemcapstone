@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class StaffDatabase extends Model
 {
@@ -13,9 +14,28 @@ class StaffDatabase extends Model
     
     protected $fillable = [
          'serviceno',
-         'actionstaken',
+         'staffnumber',
+         'actionsrequired',
+         'typeofservice',
          'workprogress',
     ];
+
+    public static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($staffDatabase) {
+            $staffDatabase->worknumber = static::generateNextWorkNumber($staffDatabase->serviceno);
+        });
+    }
+
+    public static function generateNextWorkNumber($serviceNo)
+{
+    $lastWorkNumber = DB::table('staffdatabase')->where('serviceno', $serviceNo)->max('worknumber');
+    $newWorkNumber = $lastWorkNumber + 1;
+
+    return $newWorkNumber;
+}
 
     
   
