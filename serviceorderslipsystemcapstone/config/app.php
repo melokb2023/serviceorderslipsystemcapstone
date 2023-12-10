@@ -171,6 +171,7 @@ return [
         App\Providers\FortifyServiceProvider::class,
         App\Providers\JetstreamServiceProvider::class,
         willvincent\Rateable\RateableServiceProvider::class,
+        
     ])->toArray(),
 
     /*

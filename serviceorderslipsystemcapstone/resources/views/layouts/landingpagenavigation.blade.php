@@ -42,6 +42,39 @@
             color: #454545;
             transition: all 0.3s ease;
         }
+        .top-nav-link-login {
+            display: inline-block;
+            padding: 10px;
+            text-decoration: none;
+            background-color: blue;
+            transition: all 0.3s ease;
+            border: none;
+            color: white;
+            text-decoration: none;
+            display: inline-block;
+            padding: 15px 32px;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: transform 0.2s ease-in-out;
+            font-weight:bold;
+        }
+        .top-nav-link-register {
+            display: inline-block;
+            padding: 10px;
+            text-decoration: none;
+            background-color: green;
+            transition: all 0.3s ease;
+            color: white;
+            text-decoration: none;
+            display: inline-block;
+            padding: 15px 32px;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: transform 0.2s ease-in-out;
+            font-weight:bold;
+        }
 
         .top-nav-link:hover {
             border-radius: 6px;
@@ -116,22 +149,14 @@
                     @auth
                     <a href="{{ url('/dashboard') }}" class="top-nav-link">DASHBOARD</a>
                     @else
-                    <a href="{{ route('login') }}" class="top-nav-link">LOG IN</a>
+                    <a href="{{ route('login') }}" class="top-nav-link-login">LOG IN</a>
                     @if (Route::has('register'))
-                    <a href="{{ route('register') }}" class="top-nav-link">REGISTER</a>
+                    <a href="{{ route('register') }}" class="top-nav-link-register">REGISTER</a>
                     @endif
                     @endauth
                 </div>
             </div>
         </div>
     </nav>
-
-    <!-- Your content goes here -->
-
-    <footer>
-        <!-- Your footer content goes here -->
-    </footer>
-
 </body>
-
 </html>

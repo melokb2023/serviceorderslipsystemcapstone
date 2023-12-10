@@ -16,12 +16,12 @@
 
  td{
     font-family: "Century Gothic";
-    background-color:grey;
+    background-color: #cbd6e4;
     font-size:15px;
  }
  th,tr{
     font-family: "Century Gothic";
-    background-color:white;
+    background-color: white;
     font-size:15px;
  }
  h6{
@@ -54,7 +54,13 @@
                         <td>{{$customer->review}}</td>
                         <td>{{$customer->rating}}</td>
                         <td>
-                            <a class="mt-4 bg-yellow-200 text-black font-bold py-2 px-4 rounded" href= "{{route('customerrating-show', ['cr' => $customer->ratingno]) }}" >View</a>
+                        <br>
+                        <br>
+                        <a style="background-color: #f6e05e; height: 0.20rem;"
+                                          class="mt-4 text-black font-bold py-2 px-4 rounded" href= "{{route('customerrating-show', ['cr' => $customer->ratingno]) }}" >View</a>
+                         <br>
+                         <br>
+                         <br>
 </td>
                        </tr>
                         @endforeach

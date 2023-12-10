@@ -54,6 +54,7 @@
 
                     @isset($serviceStatus)
                         <div class="mt-4">
+                            <h4 class="text-xl font-bold text-white">Order Reference Code: {{ $orderReferenceCode }}</h4>
                             <h4 class="text-xl font-bold text-white">Service Status:</h4>
                             <div class="text-white @if($serviceStatus == 'Ongoing') ongoing-container @endif
                                                  @if($serviceStatus == 'Completed') completed-container @endif">

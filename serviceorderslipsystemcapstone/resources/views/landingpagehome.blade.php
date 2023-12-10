@@ -4,6 +4,7 @@
 
     <html lang="{{ str_replace('_', '-', app()->getLocale()) }}" style="background-color:#d70021;">
         <head style="background-color:#d70021;">
+        <body>
             <meta charset="utf-8">
             <meta name="viewport" content="width=device-width, initial-scale=1">
             <title>Service Order Slip System</title>
@@ -17,6 +18,8 @@
                 body {
                     margin: 0;
                     padding: 0;
+                    background-color:#d70021;
+
                 }
 
                 .button1 {
@@ -167,7 +170,7 @@
             </style>
         </head>
 
-        <body>
+       
 
             <div class="content">
 
@@ -191,8 +194,6 @@
             <footer>
                 <p>&copy; 2023 Your Company Name. All rights reserved.</p>
             </footer>
-
-        </body>
-
-    </html>
+    </body>
+</html>
 </x-guest-layout>

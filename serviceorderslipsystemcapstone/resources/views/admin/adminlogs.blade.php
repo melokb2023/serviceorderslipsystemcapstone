@@ -49,7 +49,7 @@
                         <td>{{$serviceinfo->serviceno}}</td>
                         <td>{{$serviceinfo->customerappointmentnumber}}</td>
                         <td>{{$serviceinfo->typeofservice}}</td>
-                        <td>{{$serviceinfo->created_at}}</td>
+                        <td>{{ date('Y-m-d h:i A', strtotime($serviceinfo->created_at)) }}</td>
                     </tr>
                     @endforeach
                 </tbody>

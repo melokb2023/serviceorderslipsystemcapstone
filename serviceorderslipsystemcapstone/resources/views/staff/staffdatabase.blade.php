@@ -16,7 +16,7 @@
 
  td{
     font-family: "Century Gothic";
-    background-color:grey;
+    background-color:#cbd6e4;
  }
  th{
     font-family: "Century Gothic";
@@ -39,6 +39,7 @@
                         <th>Staff Number</th>
                         <th>Actions Required</th>
                         <th>Type of Service</th>
+                        <th>Work Started</th>
                         <th>Work Progress</th>
                         <th>Options</th>
 </tr>
@@ -49,13 +50,18 @@
                         <td>{{$staff->serviceno}}</td>
                         <td>{{$staff->staffnumber}}</td>
                         <td>{{$staff->actionsrequired}}</td>  
-                        <td>{{$staff->typeofservice}}</td>       
+                        <td>{{$staff->typeofservice}}</td>  
+                        <td>{{ date('Y-m-d h:i A', strtotime($staff->workstarted)) }}</td>         
                         <td>{{$staff->workprogress}}</td>
                         <td>
-                            <a class="mt-4 bg-yellow-200 text-black font-bold py-2 px-4 rounded"  href="{{route('staffdatabase-show', ['serviceno' => $staff->serviceno])}}">View Details</a> 
+                        <br>
+                        <br>
+                        <a style="background-color: #f6e05e; height: 0.20rem;" class="mt-4 text-black font-bold py-2 px-4 rounded" href="{{route('staffdatabase-show', ['serviceno' => $staff->serviceno])}}">View Details</a> 
                             <br>
                             <br>
-                            <a class="mt-4 bg-pink-200 text-black font-bold py-2 px-4 rounded" href= "{{route('staffdatabase-edit', ['serviceno' => $staff->staffnumber]) }}" >Edit Data </a>
+                            <a style="background-color: #f6e05e; height: 0.20rem;" class="mt-4 text-black font-bold py-2 px-4 rounded" href= "{{route('staffdatabase-edit', ['serviceno' => $staff->staffnumber]) }}" >Edit Data </a>
+                            <br>
+                            <br>
                      </td>
                        </tr>
                         @endforeach

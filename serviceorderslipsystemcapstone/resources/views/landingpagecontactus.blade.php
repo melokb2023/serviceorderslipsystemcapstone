@@ -161,8 +161,5 @@
                 </tr>
             </table>
         </div>
-        <br>
-        <br>
-        <br>
     </body>
 </x-guest-layout>

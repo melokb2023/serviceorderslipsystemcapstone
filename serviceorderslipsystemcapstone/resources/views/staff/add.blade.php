@@ -16,19 +16,17 @@
                     <link href="resources/css/style.scss" rel="stylesheet" />
 
                     <style>
-                       
-
                         * {
                             box-sizing: border-box;
                             font-family: "Century Gothic";
-                            font-weight:bold;
+                            font-weight: bold;
                         }
 
-                        label{
+                        label {
                             font-family: "Century Gothic";
-                            color:white;
-                            font-size:15px;
-                            font-weight:bold;
+                            color: white;
+                            font-size: 15px;
+                            font-weight: bold;
                         }
 
                         input[type=text],
@@ -75,13 +73,15 @@
                         button[type=submit]:hover {
                             background-color: #45a049;
                         }
-                        h6{
-                            font-family:"Century Gothic";
-                            color:white;
-                            font-size:15px;
-                            font-weight:bold;
+
+                        h6 {
+                            font-family: "Century Gothic";
+                            color: white;
+                            font-size: 15px;
+                            font-weight: bold;
                         }
                     </style>
+
                     <br>
                     <br>
                     <br>
@@ -98,6 +98,13 @@
                     </ul>
                     @endif
 
+                    @php
+                    $availableServiceNumbers = app(\App\Http\Controllers\StaffDatabaseController::class)->getAvailableServiceNumbers();
+                    @endphp
+
+                    @if($availableServiceNumbers->isEmpty())
+                    <p>No available services listed. Please add services first.</p>
+                    @else
                     <form style="text-align: center;" method="POST" action="{{ route('add-staffdatabase') }}">
                         @csrf
 
@@ -105,17 +112,22 @@
                             <label for="Service Number">Service Number</label>
                             <div>
                                 <select name="xserviceno">
-                                    @foreach($servicedata as $service)
+                                    @foreach($availableServiceNumbers as $service)
                                     <option value="{{ $service->serviceno }}">
-                                       Service Number {{ $service->serviceno }}
+                                        Service Number {{ $service->serviceno }}
                                     </option>
                                     @endforeach
                                 </select>
                             </div>
                         </div>
+                        <div class="form-group" style="text-align:center">
+                            <label for="workstarted">Work Started</label>
+                            <input type="datetime-local" name="xworkstarted" value="{{old('xworkstarted')}}" required>
+                        </div>
 
                         <button class="submit" type="submit" style="background-color: green; color: white;">Submit Info</button>
                     </form>
+                    @endif
 
                     <br>
                     <br>

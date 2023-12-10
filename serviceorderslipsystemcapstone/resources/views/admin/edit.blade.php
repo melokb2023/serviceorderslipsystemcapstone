@@ -26,6 +26,7 @@
             text-align: left;
             margin-bottom: 8px;
             font-size: 16px;
+            color:white;
         }
 
         select,
@@ -131,7 +132,7 @@
                             <div class="form-row-group">
                                 <div class="form-group">
                                     <label for="List of Problems">List of Problems</label>
-                                    <input type="text" name="xlistofproblems" value="{{$serviceinfo->listofproblems}}"/>
+                                    <input class="textexpand2" type="text" name="xlistofproblems" value="{{$serviceinfo->listofproblems}}"/>
                                 </div>
 
                                 <div class="form-group">
@@ -155,7 +156,7 @@
                             <div class="form-row-group">
                                 <div class="form-group">
                                     <label for="Customer Password">Customer Password</label>
-                                    <input type="text" name="xcustomerpassword" value="{{$serviceinfo->customerpassword}}"/>
+                                    <input class="textexpand2" type="text" name="xcustomerpassword" value="{{$serviceinfo->customerpassword}}"/>
                                 </div>
 
                                 <div class="form-group">
@@ -172,6 +173,9 @@
                                 </div>
 
                                 <div class="form-group">
+                                    <br>
+                                    <br>
+                                    <br>
                                     <label for="Service Progress">Service Progress</label>
                                     <select name="xserviceprogress">
                                         <option value="Ongoing">Ongoing</option>
@@ -185,7 +189,7 @@
                             <div class="form-row">
                                 <div class="form-group">
                                     <label for="Service Remarks">Service Remarks</label>
-                                    <input type="text" name="xserviceremarks" value="{{$serviceinfo->serviceremarks}}"/>
+                                    <input class="textexpand2" type="text" name="xserviceremarks" value="{{$serviceinfo->serviceremarks}}"/>
                                 </div>
                             </div>
 

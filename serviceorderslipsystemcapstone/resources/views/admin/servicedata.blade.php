@@ -6,30 +6,26 @@
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg"
                 style="background-color: #d70021; text-align: center; height:900px;width: 1200px;border: 3px solid black;">
                 <div class="p-6 text-gray-900 dark:text-gray-100" style="background-color: #d70021;">
-
-                    <!-- Filter form -->
-                    <form action="{{ route('servicedata') }}" method="GET">
-    <label for="customer_appointment_number_filter">Customer Appointment Number:</label>
-    <input type="text" name="customer_appointment_number_filter" value="{{ request('customer_appointment_number_filter') }}">
-    
-    <button type="submit">Search</button>
-    <a href="{{ route('servicedata') }}">Clear</a>
-</form>
-
-<form action="{{ route('servicedata') }}" method="GET">
-     <label for="typeofservice_filter">Type of Service:</label>
-    <select name="typeofservice_filter">
-        <option value="">All</option>
-        @foreach($typesOfService as $typeOfService)
-            <option value="{{ $typeOfService }}" {{ request('typeofservice_filter') == $typeOfService ? 'selected' : '' }}>
-                {{ $typeOfService }}
-            </option>
-        @endforeach
-    </select>
-
-    <button type="submit">Apply Filters</button>
-</form>
-
+                <div class="form-group" style="display: flex; gap: 10px;">
+    <form action="{{ route('servicedata') }}" method="GET" style="display: flex; gap: 10px;">
+        <label for="customer_appointment_number_filter">Customer Appointment Number:</label>
+        <input type="text" name="customer_appointment_number_filter" value="{{ request('customer_appointment_number_filter') }}">
+        <button type="submit" style="background-color: green; color: white;">Search</button>
+        <a href="{{ route('servicedata') }}" style="background-color: red; color: white;">Clear</a>
+    </form>
+    <form action="{{ route('servicedata') }}" method="GET" style="display: flex; gap: 10px;">
+        <label for="typeofservice_filter">Type of Service:</label>
+        <select name="typeofservice_filter">
+            <option value="">All</option>
+            @foreach($typesOfService as $typeOfService)
+                <option value="{{ $typeOfService }}" {{ request('typeofservice_filter') == $typeOfService ? 'selected' : '' }}>
+                    {{ $typeOfService }}
+                </option>
+            @endforeach
+        </select>
+        <button type="submit" style="background-color: blue; color: white;">Apply Filters</button>
+    </form>
+</div>
                     <br>
                     <br>
                     <br>
@@ -93,7 +89,6 @@ button{
                             text-decoration: none;
                             display: inline-block;
                             padding: 15px 32px;
-                            background-color: black; /* Indian Red color */
                             border-radius: 8px;
                             font-size: 16px;
                             cursor: pointer;

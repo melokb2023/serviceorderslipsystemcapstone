@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id('customerappointmentnumber');
             $table->foreignId('customerno')->constrained('users');
             $table->string('customername');
+            $table->string('customeremail');
             $table->string('appointmentpurpose', 100);
             $table->string('appointmenttype', 100);
             $table->dateTime('dateandtime', $precision = 0);

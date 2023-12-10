@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Mail\MyMail;
 use Illuminate\Http\Request;
 use App\Models\CustomerAppointment;
+use App\Notifications\AppointmentReceivedNotification;
 
 
 class CustomerAppointmentController extends Controller
@@ -31,6 +32,7 @@ class CustomerAppointmentController extends Controller
     $customerappointment = new CustomerAppointment();
     $customerappointment->customerno = auth()->user()->id;
     $customerappointment->customername = auth()->user()->name;
+    $customerappointment->customeremail = auth()->user()->email;
     $customerappointment->appointmentpurpose = $request->xappointmentpurpose;
     $customerappointment->appointmenttype = $request->xappointmenttype;
     $customerappointment->dateandtime = $request->xdateandtime;
@@ -43,6 +45,12 @@ class CustomerAppointmentController extends Controller
 
     // Send email to a recipient (replace 'recipient@example.com' with the actual recipient email)
     Mail::to(auth()->user()->email)->send(new MyMail($details));
+
+  
+
+    // Send email notification using the custom notification
+
+
 
     return view('customer.startappointment');
 }

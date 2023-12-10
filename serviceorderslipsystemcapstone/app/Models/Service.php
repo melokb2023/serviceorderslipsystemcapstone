@@ -29,5 +29,8 @@ class Service extends Model
          'orderreferencecode'
     ];
 
-  
+    public function customerAppointment()
+    {
+        return $this->belongsTo(CustomerAppointment::class, 'customerappointmentnumber', 'customerno');
+    }
 }

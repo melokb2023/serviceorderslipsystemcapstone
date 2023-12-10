@@ -27,6 +27,7 @@
 
 label {
     display: block;
+    color:white;
     text-align: left;
     margin-bottom: 8px;
     font-size: 16px;
@@ -146,10 +147,9 @@ button[type=submit]:hover {
                                     @endforeach
                                 </select>
                             </div>
-                            <div class="form-row">
                             <div class="form-group">
                                 <label for="staffnumber">Staff Number</label>
-                                <select name="xstaffnumber">
+                                <select class="textexpand2" name="xstaffnumber">
                                     @foreach($staff as $staffco)
                                     <option value="{{ $staffco->staffnumber }}">{{ $staffco->staffnumber }}-{{ $staffco->staffname }}</option>
                                     @endforeach
@@ -179,16 +179,20 @@ button[type=submit]:hover {
                                 <label for="list-of-problems">List of Problems</label>
                                 <input class="textexpand" type="text" name="xlistofproblems" value="{{ old('xlistofproblems') }}" />
                             </div>
-                         
-                            <div class="form-group">
+                        
+                             <div class="form-group">
                                 <label for="customer-password">Customer Password</label>
                                 <input type="password" name="xcustomerpassword" value="{{ old('xcustomerpassword') }}" />
                             </div>
                         </div>
                           <div class="form-row">
                             <div class="form-group">
+                                <br>
+                                <br>
+                                <br>
+                                <br>
                                 <label for="defective-units">Defective Units</label>
-                                <input class="textexpand" type="text" name="xdefectiveunits" value="{{ old('xdefectiveunits') }}" />
+                                <input class="textexpand2" type="text" name="xdefectiveunits" value="{{ old('xdefectiveunits') }}" />
                             </div>
                         </div>   
                          <div class="form-group">
@@ -206,7 +210,6 @@ button[type=submit]:hover {
                     </form>
                     @endif
 
-                    <br><br><br><br><br><br><br><br><br><br>
                 </div>
             </div>
         </div>

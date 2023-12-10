@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\Service;
 use App\Models\StaffDatabase;
 use App\Models\CustomerAppointment;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 class LogsController extends Controller
@@ -28,8 +29,8 @@ class LogsController extends Controller
         $staffdatabase = StaffDatabase::join('servicedata', 'staffdatabase.serviceno', '=', 'servicedata.serviceno')
         ->select(
             'staffdatabase.serviceno',
-            'staffdatabase.actionstaken',
-            'staffdatabase.created_at'
+            'staffdatabase.actionsrequired',
+            'staffdatabase.workstarted'
             // Add more columns as needed
         )
         ->get();
@@ -39,8 +40,20 @@ class LogsController extends Controller
 
     public function CustomerLogs()
     {
-        $customerappointment = CustomerAppointment:: select('customerappointment.customerappointmentnumber','customerappointment.firstname', 'customerappointment.middlename', 'customerappointment.lastname', 'customerappointment.appointmentpurpose', 'customerappointment.appointmenttype','customerappointment.created_at')
-        ->get();
+      // Check if the user is authenticated
+    if (Auth::check()) {
+        // Get the authenticated user
+        $user = Auth::user();
+
+        // Fetch appointments only for Kenneth (assuming Kenneth's user ID is 5)
+        $customerappointment = CustomerAppointment::where('customerno', $user->id)->get();
+
+        // Pass the appointments to the view
         return view('customer.customerlogs', compact('customerappointment'));
+    } else {
+        // Handle the case when the user is not authenticated
+        // You might want to redirect them to the login page or show an error message
+        return redirect()->route('login');
+    }
     }
 }

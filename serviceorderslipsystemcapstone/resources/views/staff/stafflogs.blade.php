@@ -37,14 +37,14 @@
                       <tr>
                         <th>Service Number</th>
                         <th>Actions Taken</th>
-                        <th>Date and Time</th>
+                        <th>Service Started</th>
 </tr>
 <tbody>
                 @foreach($staffdatabase as $staff)
                        <tr>
                         <td>{{$staff->serviceno}}</td>
-                        <td>{{$staff->actionstaken}}</td>     
-                        <td>{{$staff->created_at}}</td>
+                        <td>{{$staff->actionsrequired}}</td>     
+                        <td>{{$staff->workstarted}}</td>
                        </tr>
                         @endforeach
                 </tbody>

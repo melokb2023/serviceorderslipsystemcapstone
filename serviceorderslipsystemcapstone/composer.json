@@ -13,6 +13,7 @@
         "laravel/sanctum": "^3.2",
         "laravel/tinker": "^2.8",
         "livewire/livewire": "^3.0",
+        "vonage/client": "^4.0",
         "willvincent/laravel-rateable": "^3.2"
     },
     "require-dev": {

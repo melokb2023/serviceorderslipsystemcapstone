@@ -36,19 +36,15 @@
                     <table style="text-align:center">
                         <tr style="text-align:center">
                             <th>Customer Appointment Number</th>
-                            <th>Complete Name</th>
-                            <th>Appointment Purpose</th>
-                            <th>Appointment Type</th>
+                            <th>User ID</th>
                             <th>Date and Time</th>
                         </tr>
                     <tbody>
                 @foreach($customerappointment as $customer)
                    <tr style="text-align:center">
                         <td>{{$customer->customerappointmentnumber}}</td>
-                        <td>{{$customer->firstname}} {{$customer->middlename}} {{$customer->lastname}}</td>
-                        <td>{{$customer->appointmentpurpose}}</td>
-                        <td>{{$customer->appointmenttype}}</td>
-                        <td>{{$customer->created_at}}</td> 
+                        <td>{{$customer->customerno}} </td>
+                        <td>{{$customer->dateandtime}}</td>
                     </tr>
                     @endforeach
 </tbody>

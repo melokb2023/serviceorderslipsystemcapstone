@@ -52,7 +52,9 @@ public function store(Request $request)
 
     // Update or insert into StaffDatabase table
     StaffDatabase::updateOrInsert(
-        ['serviceno' => $request->xserviceno],
+        ['serviceno' => $request->xserviceno,
+         'workstarted' => $request->xworkstarted,
+    ],
         [
             'actionsrequired' => $service ? $service->actionsrequired : null,
             'staffnumber' => $service ? $service->staffnumber : null,
@@ -99,34 +101,33 @@ public function store(Request $request)
      */
     public function update(Request $request, string $id)
 {
-    // Update the workprogress field in the Service model
-    Service::where('serviceno', $id)->update([
-        'workprogress' => $request->xworkprogress,
-    ]);
-
-    // Retrieve the corresponding Service record
-    $service = Service::where('serviceno', $id)->first();
-
-    // Check if the service record is found
-    if ($service) {
-        // Update the workprogress field in the StaffDatabase model
-        StaffDatabase::where('worknumber', $id)->update([
-            'workprogress' => $service->workprogress,
+    // Update the Service record
+    $servicedata = Service::where('serviceno', $id)
+        ->update([
+            'listofproblems' => $request->xlistofproblems,
+            'typeofservice' => $request->xtypeofservice,
+            'customerpassword' => $request->xcustomerpassword,
+            'defectiveunits' => $request->xdefectiveunits,
+            'actionsrequired' => $request->xactionsrequired,
+            'serviceprogress' => $request->xserviceprogress,
+            'serviceremarks' => $request->xserviceremarks,
         ]);
 
-        // If the work progress is set to 'Completed', send an email notification
-        if ($request->xworkprogress == 'Completed') {
-            $details = [
-                'title' => 'Work Completion Notification',
-                'body' => 'The work number with ID ' . $id . ' is marked as completed. The admin will be notified of this.',
-            ];
+    // Retrieve the corresponding CustomerAppointment record
+    $customerappointment = CustomerAppointment::where('customerappointmentnumber', $id)->first();
 
-            // Send email to a recipient (replace 'recipient@example.com' with the actual recipient email)
-            Mail::to('vanicarmelle18@gmail.com')->send(new MyMail($details));
-        }
+    // If the work progress is set to 'Completed', send an email notification
+    if ($request->xworkprogress == 'Completed' && $customerappointment) {
+        $details = [
+            'title' => 'Work Completion Notification',
+            'body' => 'The work number with ID ' . $id . ' is marked as completed. The admin will be notified of this.',
+        ];
+
+        // Send email to a recipient (replace 'recipient@example.com' with the actual recipient email)
+        Mail::to($customerappointment->customeremail)->send(new MyMail($details));
     }
 
-    return redirect()->route('staffdatabase');
+    return redirect()->route('servicedata');
 }
 
     /**
@@ -147,6 +148,19 @@ public function store(Request $request)
     // Assuming you have a StaffDatabase model
     $staffDatabaseCount = StaffDatabase::count();
     return view('staff.staffdashboard', compact('staffDatabaseCount'));
+}
+
+public function getAvailableServiceNumbers(){
+    // Get all service numbers
+    $allServiceNumbers = Service::all();
+
+    // Get service numbers that are not listed in staff database
+    $listedServiceNumbers = StaffDatabase::pluck('serviceno')->unique();
+    $availableServiceNumbers = $allServiceNumbers->reject(function ($servicedata) use ($listedServiceNumbers) {
+        return $listedServiceNumbers->contains($servicedata->serviceno);
+    });
+
+    return $availableServiceNumbers;
 }
    
 

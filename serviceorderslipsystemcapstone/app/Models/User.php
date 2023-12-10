@@ -18,6 +18,7 @@ class User extends Authenticatable
     use HasProfilePhoto;
     use Notifiable;
     use TwoFactorAuthenticatable;
+    
    
 
     /**
@@ -63,5 +64,9 @@ class User extends Authenticatable
         'profile_photo_url',
     ];
 
+    public function customerAppointment()
+    {
+        return $this->hasOne(CustomerAppointment::class, 'customerno', 'id');
+    }
    
 }

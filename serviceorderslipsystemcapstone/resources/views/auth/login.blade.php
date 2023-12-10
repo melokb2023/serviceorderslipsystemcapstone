@@ -59,6 +59,7 @@
             padding-bottom: 20px;
             padding-left: 100px;
             padding-right: 40px;
+            background-color: #cbd6e4;
         }
 
         /* Center the table */

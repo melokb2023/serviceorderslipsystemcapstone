@@ -41,6 +41,7 @@
                             <th>Customer Appointment Number</th>
                             <th>ID</th>
                             <th>Customer Name</th>
+                            <th>Customer Email</th>
                             <th>Appointment Purpose</th>
                             <th>Appointment Type</th>
                             <th>Date and Time</th>
@@ -53,6 +54,7 @@
                         <td>{{$customer->customerappointmentnumber}}</td>
                         <td>{{$customer->customerno}} </td>
                         <td>{{$customer->customername}} </td>
+                        <td>{{$customer->customeremail}} </td>
                         <td>{{$customer->appointmentpurpose}}</td>
                         <td>{{$customer->appointmenttype}}</td>
                         <td>{{ date('Y-m-d h:i A', strtotime($customer->dateandtime)) }}</td>

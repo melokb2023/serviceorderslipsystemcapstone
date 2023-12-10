@@ -2,9 +2,9 @@
 <x-app-layout>
 
     <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8" style="background-color:#FF4433; width: 100%; border:3px solid black">
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg" style="background-color:#FF4433; width: 100%">
-                <div class="p-6 text-gray-900 dark:text-gray-100" style="background-color:#FF4433; width: 100%">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8" style="background-color:#d70021; width: 100%; border:3px solid black">
+            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg" style="background-color:#d70021; width: 100%">
+                <div class="p-6 text-gray-900 dark:text-gray-100" style="background-color:#d70021; width: 100%">
                     <style>
                         body {
                             font-family: 'Century Gothic', sans-serif;
@@ -75,13 +75,13 @@
                         }
 
                         h6 {
-                            color: red;
+                            color: white;
                             font-size: 24px;
                             margin-bottom: 10px;
                         }
                     </style>
 
-                    <h6>Errors Encountered</h6>
+                    
                     @if($errors)
                     <ul>
                         @foreach($errors->all() as $error)

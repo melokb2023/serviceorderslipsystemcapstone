@@ -9,7 +9,9 @@ use App\Models\StaffDatabase;
 use App\Models\Staff;
 use App\Models\Rating;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\MyMail;
+use App\Models\User;
 use Illuminate\Support\Facades\Redirect;
 
 
@@ -175,22 +177,42 @@ class ServiceController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
-    {
-       
-      $servicedata= Service::where('serviceno', $id)
-        ->update(
-             [
-             'listofproblems' =>$request->xlistofproblems,
-             'typeofservice'=>$request->xtypeofservice,
-             'customerpassword'=> $request->xcustomerpassword,
-             'defectiveunits'=> $request->xdefectiveunits,
-             'actionsrequired'=> $request->xactionsrequired,
-             'serviceprogress'=> $request->xserviceprogress,
-             'serviceremarks'=> $request->xserviceremarks,
+    
+
+    
+     
+     public function update(Request $request, string $id)
+     {
+         // Update the Service record
+         Service::where('serviceno', $id)
+             ->update([
+                 'listofproblems' => $request->xlistofproblems,
+                 'typeofservice' => $request->xtypeofservice,
+                 'customerpassword' => $request->xcustomerpassword,
+                 'defectiveunits' => $request->xdefectiveunits,
+                 'actionsrequired' => $request->xactionsrequired,
+                 'serviceprogress' => $request->xserviceprogress,
+                 'serviceremarks' => $request->xserviceremarks,
              ]);
-        return redirect()->route('servicedata');
-    }
+     
+      
+         $customerappointment = CustomerAppointment::where('customerappointmentnumber', $id)->first();
+     
+         if ($request->xserviceprogress == 'Completed') {
+             $details = [
+                 'title' => 'Work Completion Notification',
+                 'body' => 'The work number with ID ' . $id . ' is marked as completed. The admin will be notified of this.',
+             ];
+     
+             // Send email to a recipient (replace 'recipient@example.com' with the actual recipient email)
+             Mail::to($customerappointment->customeremail)->send(new MyMail($details));
+         }
+     
+         return redirect()->route('servicedata');
+     }
+    
+
+
 
     public function update2(Request $request, string $id)
     {
@@ -234,6 +256,20 @@ class ServiceController extends Controller
         return $availableCustomerAppointments;
     }
 
+    public function getAvailableServiceNumbers()
+{
+    // Get all service numbers
+    $allServiceNumbers = Service::all();
+
+    // Get service numbers that are not listed in service data
+    $listedServiceNumbers = Service::pluck('serviceno')->unique();
+    $availableServiceNumbers = $allServiceNumbers->reject(function ($servicedata) use ($listedServiceNumbers) {
+        return $listedServiceNumbers->contains($servicedata->serviceno);
+    });
+
+    return $availableServiceNumbers;
+}
+
 
     public function ServiceInfo(){
         $servicedata = Service::select('serviceno', 'typeofservice', 'workprogress')->get();
@@ -251,17 +287,14 @@ class ServiceController extends Controller
     
         // Query the service data based on the provided order reference code
         $serviceStatus = Service::where('orderreferencecode', $orderReferenceCode)->value('serviceprogress');
-
-        return view('customer.checkreferencenumber', compact('serviceStatus'));
-
+    
         if (!empty($serviceStatus)) {
-            return view('customer.checkreferencenumber', compact('serviceStatus'));
+            return view('customer.checkreferencenumber', compact('serviceStatus', 'orderReferenceCode'));
         } else {
             // If serviceStatus is empty, redirect back with an error message
-            return Redirect::back()->withInput()->withErrors(['order_reference_code' => 'Invalid Order Reference Code']);
+            return redirect()->back()->withInput()->withErrors(['order_reference_code' => 'Invalid Order Reference Code']);
         }
     }
-
     public function countAll()
 {
     $typesOfServicesCount = Service::select('typeofservice')->distinct()->count();
