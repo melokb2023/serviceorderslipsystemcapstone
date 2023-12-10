@@ -46,7 +46,8 @@
                                     <th>Appointment Purpose</th>
                                     <th>Appointment Type</th>
                                     <th>Date and Time</th>
-                                    <th>Order Reference Code</th> <!-- Added this column -->
+                                    <th>Order Reference Code</th> 
+                                    <th>Service Progress</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -63,6 +64,12 @@
                                             echo $service ? $service->orderreferencecode : 'N/A';
                                         @endphp
                                     </td>
+                                    <td>
+                        @php
+                        $service = \App\Models\Service::where('customerappointmentnumber', $customer->customerappointmentnumber)->first();
+                              echo $service ? $service->serviceprogress : 'N/A';
+                        @endphp
+                        </td>
                                 </tr>
                                 @endforeach
                             </tbody>

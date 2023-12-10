@@ -154,9 +154,7 @@
 
                 <!-- Top Navigation Links -->
                 <div class="top-nav">
-                 <a class="top-nav-link"  href="{{ route('staffdatabasemenu') }}" :active="request()->routeIs('staffdatabasemenu')">
-                 <i class="fa fa-home"></i> {{ __('MENU') }}
-</a>         
+                
                 <a class="top-nav-link" href="{{ route('staffdashboard') }}" :active="request()->routeIs('staffdashboard')">
                 <i class="fa fa-database"></i>{{ __('DASHBOARD') }}
         </a> 

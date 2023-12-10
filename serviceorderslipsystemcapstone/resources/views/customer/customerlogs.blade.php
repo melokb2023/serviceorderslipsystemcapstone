@@ -32,7 +32,7 @@
 
              </style>   
                
-                    <h6>List of Customers</h6>
+                    <h6>Your Logs</h6>
                     <table style="text-align:center">
                         <tr style="text-align:center">
                             <th>Customer Appointment Number</th>
@@ -44,7 +44,7 @@
                    <tr style="text-align:center">
                         <td>{{$customer->customerappointmentnumber}}</td>
                         <td>{{$customer->customerno}} </td>
-                        <td>{{$customer->dateandtime}}</td>
+                        <td>{{ date('Y-m-d h:i A', strtotime($customer->dateandtime)) }}</td>
                     </tr>
                     @endforeach
 </tbody>

@@ -52,10 +52,5 @@ h1{
  }
 
 </style>
-                
-
-                 <a class="button" href="{{ route('add-staffdatabase') }}">
-                        Add Work Data
-</a>
-                  
+                                
 </x-app-layout>
