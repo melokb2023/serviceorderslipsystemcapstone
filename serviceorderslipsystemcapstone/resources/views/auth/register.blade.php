@@ -21,7 +21,7 @@
             margin-bottom: 6px;
             display: inline-block;
             width: 150px; /* Set a fixed width for labels */
-            color:white;
+            color:black;
         }
 
         x-button {
@@ -48,7 +48,7 @@
             cursor: pointer;
             outline: none;
             transition: all 0.3s ease-in-out;
-            background-color: blue;
+            background-color: green;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             text-align: center;
             align-items: center;
@@ -72,6 +72,7 @@
             padding-bottom: 20px;
             padding-left: 100px;
             padding-right: 40px;
+            background-color: #cbd6e4;
         }
 
         .form-group {
