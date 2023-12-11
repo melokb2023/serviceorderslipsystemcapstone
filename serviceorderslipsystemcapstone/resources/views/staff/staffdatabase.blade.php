@@ -51,7 +51,7 @@
 </style>
 
                <h6>List of Works</h6>
-                    <table class="border-separate border-spacing-5" style="width:100%">
+                    <table style="width:100%">
                       <tr>
                         <th>Staff Work Number</th>
                         <th>Service Number</th>
@@ -75,12 +75,14 @@
                         <td>
                         <br>
                         <br>
-                        <a style="background-color: #f6e05e; height: 0.20rem;" class="mt-4 text-black font-bold py-2 px-4 rounded" href="{{route('staffdatabase-show', ['serviceno' => $staff->serviceno])}}">View Details</a> 
-                            <br>
-                            <br>
-                            <a style="background-color: #f6e05e; height: 0.20rem;" class="mt-4 text-black font-bold py-2 px-4 rounded" href= "{{route('staffdatabase-edit', ['serviceno' => $staff->staffnumber]) }}" >Edit Data </a>
-                            <br>
-                            <br>
+                        <br>
+                        <br>
+                        <a style="background-color: #f6e05e; height: 0.10rem;" class="mt-4 text-black font-bold py-2 px-4 rounded" href="{{route('staffdatabase-show', ['serviceno' => $staff->serviceno])}}">View</a> 
+                        <br>
+                        <br>
+                        <a style="background-color: blue; height: 0.20rem;" class="mt-4 text-black font-bold py-2 px-4 rounded" href= "{{route('staffdatabase-edit', ['serviceno' => $staff->staffnumber]) }}" >Edit</a>
+                        <br>
+                        <br>
                      </td>
                        </tr>
                         @endforeach
