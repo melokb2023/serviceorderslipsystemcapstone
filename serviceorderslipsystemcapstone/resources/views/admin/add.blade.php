@@ -129,10 +129,12 @@ button[type=submit]:hover {
 
                     @php
                         $availableCustomerAppointments = app(\App\Http\Controllers\ServiceController::class)->getAvailableCustomerAppointments();
+                        $availableStaffNumbers = app(\App\Http\Controllers\ServiceController::class)->getAvailableStaffNumbers();
                     @endphp
 
-                    @if($availableCustomerAppointments->isEmpty())
+                    @if($availableCustomerAppointments->isEmpty() || $availableStaffNumbers->isEmpty())
                     <p>No available customer appointments. Please add customer appointments first.</p>
+                    
                     @else
                     <form style="text-align: center;" method="POST" action="{{ route('add-service') }}">
                         @csrf
@@ -150,7 +152,7 @@ button[type=submit]:hover {
                             <div class="form-group">
                                 <label for="staffnumber">Staff Number</label>
                                 <select class="textexpand2" name="xstaffnumber">
-                                    @foreach($staff as $staffco)
+                                    @foreach($availableStaffNumbers as $staffco)
                                     <option value="{{ $staffco->staffnumber }}">{{ $staffco->staffnumber }}-{{ $staffco->staffname }}</option>
                                     @endforeach
                                 </select>

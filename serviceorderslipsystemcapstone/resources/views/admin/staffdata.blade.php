@@ -35,10 +35,27 @@
     text-align:center;
     color:white;
  }
+ .button {
+                            border: none;
+                            color: white;
+                            text-decoration: none;
+                            display: inline-block;
+                            padding: 15px 32px;
+                            border-radius: 8px;
+                            font-size: 16px;
+                            cursor: pointer;
+                            transition: transform 0.2s ease-in-out;
+                            background-color:green;
+                            font-weight:bold;
+                        }
+
+                        .button:hover {
+                            transform: scale(1.05);
+                        }
 </style>
 
                <h6>List of Staff</h6>
-                    <table class="border-separate border-spacing-5" style="width:100%">
+                    <table style="width:100%">
                       <tr>
                         <th>Staff Number</th>
                         <th>Staff Name</th>
@@ -50,38 +67,33 @@
                         <td>{{$staffco->staffnumber}}</td>
                         <td>{{$staffco->staffname}}</td>     
                         <td>
-                        <a style="background-color: #f6e05e; height: 0.20rem;"
-   class="mt-4 text-black font-bold py-2 px-4 rounded"
+                            
+        <div class="form-group " style="display: flex; justify-content: center; align-items: center;">
+                        <a class="mx-2 bg-yellow-500  text-black font-bold py-2 px-4 rounded"
    href="{{ route('staff-show', ['staff' => $staffco->staffnumber]) }}">View</a>
-<br>
-<br>
-<a style="background-color: #3490dc; height: 0.20rem;"
-   class="mt-4 text-black font-bold py-2 px-4 rounded"
+
+<a class="mx-4 bg-blue-500  text-black font-bold py-2 px-4 rounded"
    href="{{ route('staff-edit', ['staff' => $staffco->staffnumber]) }}">Edit</a>
 <form method="POST"
       action="{{ route('staff-delete', ['staff' => $staffco->staffnumber ]) }}"
       onclick="return confirm('Are you sure you want to delete this record?')">
     @csrf
     @method('delete')
-    <button class="mt-4 bg-red-500  text-black font-bold py-2 px-4 rounded"
+    <button class="mx-4 bg-red-500  text-black font-bold py-2 px-4 rounded"
             type="submit">Delete</button>
     <br>
 </form>
+                    </div>
                      </td>
                        </tr>
                         @endforeach
                 </tbody>
                     </table>
 
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
+                    <a class="button" href="{{ route('startlist') }}">
+                        ADD STAFF
+                    </a>
+
                     <br>
                     <br>
                     <br>

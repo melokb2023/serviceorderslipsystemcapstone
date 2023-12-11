@@ -270,6 +270,20 @@ class ServiceController extends Controller
     return $availableServiceNumbers;
 }
 
+public function getAvailableStaffNumbers()
+{
+    // Get all service numbers
+    $allStaffNumbers = Staff::all();
+
+    // Get service numbers that are not listed in service data
+    $listedStaffNumbers = Service::pluck('staffnumber')->unique();
+    $availableStaffNumbers = $allStaffNumbers->reject(function ($staff) use ($listedStaffNumbers) {
+        return $listedStaffNumbers->contains($staff->staffnumber);
+    });
+
+    return $availableStaffNumbers;
+}
+
 
     public function ServiceInfo(){
         $servicedata = Service::select('serviceno', 'typeofservice', 'workprogress')->get();

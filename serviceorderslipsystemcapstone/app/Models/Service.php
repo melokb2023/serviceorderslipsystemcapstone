@@ -33,4 +33,9 @@ class Service extends Model
     {
         return $this->belongsTo(CustomerAppointment::class, 'customerappointmentnumber', 'customerno');
     }
+
+    public function staff()
+    {
+        return $this->belongsTo(Staff::class, 'staffnumber');
+    }
 }

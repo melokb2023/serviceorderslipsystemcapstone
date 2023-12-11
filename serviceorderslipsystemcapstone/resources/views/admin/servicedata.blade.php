@@ -4,7 +4,7 @@
     <div class="py-12" style="display: flex; justify-content: center; align-items: center;">
  
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg"
-                style="background-color: #d70021; text-align: center; height:900px;width: 1200px;border: 3px solid black;">
+                style="background-color: #d70021; text-align: center; height:900px;width: 1600px;border: 3px solid black;">
                 <div class="p-6 text-gray-900 dark:text-gray-100" style="background-color: #d70021;">
                 <div class="form-group" style="display: flex; gap: 10px;">
     <form action="{{ route('servicedata') }}" method="GET" style="display: flex; gap: 10px;">

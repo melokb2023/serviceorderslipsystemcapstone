@@ -104,13 +104,7 @@ public function store(Request $request)
     // Update the Service record
     $servicedata = Service::where('serviceno', $id)
         ->update([
-            'listofproblems' => $request->xlistofproblems,
-            'typeofservice' => $request->xtypeofservice,
-            'customerpassword' => $request->xcustomerpassword,
-            'defectiveunits' => $request->xdefectiveunits,
-            'actionsrequired' => $request->xactionsrequired,
-            'serviceprogress' => $request->xserviceprogress,
-            'serviceremarks' => $request->xserviceremarks,
+            'workprogress' => $request->xworkprogress,
         ]);
 
     // Retrieve the corresponding CustomerAppointment record
@@ -127,7 +121,7 @@ public function store(Request $request)
         Mail::to($customerappointment->customeremail)->send(new MyMail($details));
     }
 
-    return redirect()->route('servicedata');
+    return redirect()->route('staffdatabase');
 }
 
     /**
