@@ -161,7 +161,7 @@
 
                                 <div class="form-group">
                                     <label for="Defective Units">Defective Units</label>
-                                    <input class="textexpand" type="text" name="xdefectiveunits" value="{{ old('xdefectiveunits') }}" />
+                                    <input class="textexpand" type="text" name="xdefectiveunits" value="{{ $serviceinfo->defectiveunits }}" />
                                 </div>
                             </div>
 
@@ -169,7 +169,7 @@
                             <div class="form-row-group">
                                 <div class="form-group">
                                     <label for="Actions Required">Actions Required</label>
-                                    <input class="textexpand2" type="text" name="xactionsrequired" value="{{ old('xactionsrequired') }}" />
+                                    <input class="textexpand2" type="text" name="xactionsrequired" value="{{$serviceinfo->actionsrequired }}" />
                                 </div>
 
                                 <div class="form-group">

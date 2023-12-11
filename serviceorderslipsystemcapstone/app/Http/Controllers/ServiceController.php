@@ -183,33 +183,40 @@ class ServiceController extends Controller
      
      public function update(Request $request, string $id)
      {
+
+        $servicedata = Service::where('serviceno', $id)->first();
+
+
          // Update the Service record
-         Service::where('serviceno', $id)
-             ->update([
-                 'listofproblems' => $request->xlistofproblems,
-                 'typeofservice' => $request->xtypeofservice,
-                 'customerpassword' => $request->xcustomerpassword,
-                 'defectiveunits' => $request->xdefectiveunits,
-                 'actionsrequired' => $request->xactionsrequired,
-                 'serviceprogress' => $request->xserviceprogress,
-                 'serviceremarks' => $request->xserviceremarks,
-             ]);
-     
-      
-         $customerappointment = CustomerAppointment::where('customerappointmentnumber', $id)->first();
-     
-         if ($request->xserviceprogress == 'Completed') {
-             $details = [
-                 'title' => 'Work Completion Notification',
-                 'body' => 'The work number with ID ' . $id . ' is marked as completed. The admin will be notified of this.',
-             ];
-     
-             // Send email to a recipient (replace 'recipient@example.com' with the actual recipient email)
-             Mail::to($customerappointment->customeremail)->send(new MyMail($details));
-         }
-     
-         return redirect()->route('servicedata');
-     }
+       if ($request->xserviceprogress == 'Completed' && $servicedata->workprogress == "Completed") {
+        // Update the Service record
+        Service::where('serviceno', $id)
+            ->update([
+                'listofproblems' => $request->xlistofproblems,
+                'typeofservice' => $request->xtypeofservice,
+                'customerpassword' => $request->xcustomerpassword,
+                'defectiveunits' => $request->xdefectiveunits,
+                'actionsrequired' => $request->xactionsrequired,
+                'serviceprogress' => $request->xserviceprogress,
+                'serviceremarks' => $request->xserviceremarks,
+            ]);
+
+        $customerappointment = CustomerAppointment::where('customerappointmentnumber', $id)->first();
+
+        $details = [
+            'title' => 'Work Completion Notification',
+            'body' => 'Your service is complete! You may now claim your unit',
+        ];
+
+        // Send email to a recipient (replace 'recipient@example.com' with the actual recipient email)
+        Mail::to($customerappointment->customeremail)->send(new MyMail($details));
+
+        return redirect()->route('servicedata');
+    } 
+    else {
+        return redirect()->route('servicedata')->with('error', 'Service progress cannot be updated unless the service is complete.');
+    }
+ }
     
 
 

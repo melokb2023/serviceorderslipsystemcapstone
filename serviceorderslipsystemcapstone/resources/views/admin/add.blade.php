@@ -118,7 +118,7 @@ button[type=submit]:hover {
 
                     </style>
 
-                    <h6 style="font-family:Arial">Errors Encountered</h6>
+                    
                     @if($errors)
                     <ul>
                         @foreach($errors->all() as $error)
@@ -132,9 +132,21 @@ button[type=submit]:hover {
                         $availableStaffNumbers = app(\App\Http\Controllers\ServiceController::class)->getAvailableStaffNumbers();
                     @endphp
 
-                    @if($availableCustomerAppointments->isEmpty() || $availableStaffNumbers->isEmpty())
-                    <p>No available customer appointments. Please add customer appointments first.</p>
-                    
+                    @if($availableCustomerAppointments->isEmpty())
+                    <p>No available customer appointments</p>
+                    <a class="button" href="{{ route('servicedata') }}">
+                        BACK
+                    </a>
+                    @elseif($availableStaffNumbers->isEmpty())
+                    <p>No available staff</p>
+                    <a class="button" href="{{ route('servicedata') }}">
+                        BACK
+                    </a>
+                    @elseif($availableCustomerAppointments->isEmpty() && $availableStaffNumbers->isEmpty())
+                    <p>Customer appointments and staffs are not available</p>
+                    <a class="button" href="{{ route('servicedata') }}">
+                        BACK
+                    </a>
                     @else
                     <form style="text-align: center;" method="POST" action="{{ route('add-service') }}">
                         @csrf

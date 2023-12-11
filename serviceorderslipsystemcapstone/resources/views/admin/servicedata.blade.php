@@ -100,6 +100,17 @@ button{
                         .button:hover {
                             transform: scale(1.05);
                         }
+                        .ongoing {
+        background-color: #f6e05e; /* Set your desired color for Ongoing */
+    }
+
+    .finalizing {
+        background-color: #3490dc; /* Set your desired color for Finalizing */
+    }
+
+    .completed {
+        background-color: #4caf50; /* Set your desired color for Completed */
+    }
 
         </style>
 
@@ -134,8 +145,14 @@ button{
                                     <td>{{ $serviceinfo->listofproblems }}</td>
                                     <td>{{ $serviceinfo->defectiveunits }}</td>
                                     <td>{{ $serviceinfo->actionsrequired }}</td>
-                                    <td>{{ $serviceinfo->workprogress }}</td>
-                                    <td>{{ $serviceinfo->serviceprogress }}</td>
+                                    <td class="@if($serviceinfo->serviceprogress == 'Ongoing') ongoing
+                       @elseif($serviceinfo->serviceprogress == 'Finalizing') finalizing
+                       @elseif($serviceinfo->serviceprogress == 'Completed') completed
+                       @endif">{{ $serviceinfo->workprogress }}</td>
+                                    <td class="@if($serviceinfo->serviceprogress == 'Ongoing') ongoing
+                       @elseif($serviceinfo->serviceprogress == 'Finalizing') finalizing
+                       @elseif($serviceinfo->serviceprogress == 'Completed') completed
+                       @endif">{{ $serviceinfo->serviceprogress }}</td>
                                     <td>{{ $serviceinfo->serviceremarks }}</td>
                                     <td>{{ date('Y-m-d h:i A', strtotime($serviceinfo->dateandtime)) }}</td>
                                     <td>{{ date('Y-m-d h:i A', strtotime($serviceinfo->servicestarted)) }}</td>
