@@ -14,6 +14,9 @@
     <br>
     <br>
     <style>
+        *{
+            text-align: center;
+        }
         h2{
             font-family:"Century Gothic";
             font-weight:bold;
@@ -21,7 +24,7 @@
         }
         </style>
 
-    <div class="flex justify-center items-center h-screen">
+    <div style = "text-align:center;">
         <div class="flex space-x-4">
             <!-- Card 1 -->
             <div class="w-1/4 p-4">
@@ -33,12 +36,5 @@
                 </div>
     </div>      
     </div>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
 </div>
 </x-app-layout>

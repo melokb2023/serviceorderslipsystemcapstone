@@ -14,6 +14,12 @@
         <a href="{{ route('servicedata') }}" style="background-color: red; color: white;">Clear</a>
     </form>
     <form action="{{ route('servicedata') }}" method="GET" style="display: flex; gap: 10px;">
+        <label for="customer_name_filter">Customer Name:</label>
+        <input type="text" name="customer_name_filter" value="{{ request('customer_name_filter') }}">
+        <button type="submit" style="background-color: green; color: white;">Search</button>
+        <a href="{{ route('servicedata') }}" style="background-color: red; color: white;">Clear</a>
+    </form>
+    <form action="{{ route('servicedata') }}" method="GET" style="display: flex; gap: 10px;">
         <label for="typeofservice_filter">Type of Service:</label>
         <select name="typeofservice_filter">
             <option value="">All</option>
@@ -154,8 +160,8 @@ button{
                        @elseif($serviceinfo->serviceprogress == 'Completed') completed
                        @endif">{{ $serviceinfo->serviceprogress }}</td>
                                     <td>{{ $serviceinfo->serviceremarks }}</td>
-                                    <td>{{ date('Y-m-d h:i A', strtotime($serviceinfo->dateandtime)) }}</td>
-                                    <td>{{ date('Y-m-d h:i A', strtotime($serviceinfo->servicestarted)) }}</td>
+                                    <td>{{ date('m-d-Y h:i A', strtotime($serviceinfo->dateandtime)) }}</td>
+                                    <td>{{ date('m-d-Y h:i A', strtotime($serviceinfo->servicestarted)) }}</td>
                                     <td>{{ $serviceinfo->orderreferencecode }}</td>
                                     <td>
                                         <br>

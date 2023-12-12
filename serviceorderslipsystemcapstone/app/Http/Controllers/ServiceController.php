@@ -35,6 +35,10 @@ class ServiceController extends Controller
         $query->where('servicedata.customerappointmentnumber', $request->input('customer_appointment_number_filter'));
     }
 
+    if ($request->has('customer_name_filter')) {
+        $query->where('servicedata.customername', $request->input('customer_name_filter'));
+    }
+
     // Check if there is a filter for Type of Service
     if ($request->has('typeofservice_filter') && $request->input('typeofservice_filter') !== 'All') {
         $query->where('servicedata.typeofservice', $request->input('typeofservice_filter'));
