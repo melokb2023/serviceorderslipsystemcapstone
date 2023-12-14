@@ -10,6 +10,7 @@ use App\Models\Staff;
 use App\Models\Rating;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\DB;
 use App\Mail\MyMail;
 use App\Models\User;
 use Illuminate\Support\Facades\Redirect;
@@ -33,6 +34,10 @@ class ServiceController extends Controller
     // Check if there is a filter for Customer Appointment Number
     if ($request->has('customer_appointment_number_filter')) {
         $query->where('servicedata.customerappointmentnumber', $request->input('customer_appointment_number_filter'));
+    }
+
+    if ($request->has('customer_name_filter')) {
+        $query->where('servicedata.customername', $request->input('customer_name_filter'));
     }
 
     // Check if there is a filter for Type of Service
@@ -323,8 +328,54 @@ public function getAvailableStaffNumbers()
     $customerAppointmentsCount = CustomerAppointment::count();
     $serviceDataCount = Service::count();
     $ratingsCount = Rating::count();
+    
+    $currentMonth = now()->format('m'); // Assuming you have Carbon installed for the now() function
+    
+    $months = [
+        '01' => 'January', '02' => 'February', '03' => 'March', '04' => 'April',
+        '05' => 'May', '06' => 'June', '07' => 'July', '08' => 'August',
+        '09' => 'September', '10' => 'October', '11' => 'November', '12' => 'December'
+    ];
 
-    return view('admin.admindashboard', compact('typesOfServicesCount', 'customerAppointmentsCount', 'serviceDataCount', 'ratingsCount'));
+    $data = [];
+
+    foreach ($months as $monthNumber => $monthName) {
+        // Count the number of job orders for each month
+        $count = DB::table('servicedata')
+            ->whereMonth('created_at', $monthNumber)
+            ->count();
+
+        $data[$monthName] = $count;
+    }
+
+    return view('admin.admindashboard', compact('typesOfServicesCount', 'customerAppointmentsCount', 'serviceDataCount', 'ratingsCount','data'));
+}
+
+public function LineChart2()
+{
+    // Get the current month
+    $currentMonth = now()->format('m'); // Assuming you have Carbon installed for the now() function
+
+    // Define an array of months for counting
+    $months = [
+        '01' => 'January', '02' => 'February', '03' => 'March', '04' => 'April',
+        '05' => 'May', '06' => 'June', '07' => 'July', '08' => 'August',
+        '09' => 'September', '10' => 'October', '11' => 'November', '12' => 'December'
+    ];
+
+    $data = [];
+
+    foreach ($months as $monthNumber => $monthName) {
+        // Count the number of services for each month
+        $count = DB::table('servicedata')
+            ->whereMonth('created_at', $monthNumber)
+            ->count();
+
+        $data[$monthName] = $count;
+    }
+
+    // Pass data to the view
+    return view('admin.admindashboard', compact('data'));
 }
 
 

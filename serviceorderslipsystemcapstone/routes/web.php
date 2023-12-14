@@ -184,6 +184,7 @@ Route::get('/service', [ServiceController::class, 'index'])
 
 Route::get('/admindashboard', [ServiceController::class, 'countAll'])->name('admindashboard');
 
+
 Route::get('/customerlist', [ServiceController::class, 'CustomerList']) 
    ->middleware(['auth', 'verified'])
    ->name('customerlist');
