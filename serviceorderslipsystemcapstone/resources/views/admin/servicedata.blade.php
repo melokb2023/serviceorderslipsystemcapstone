@@ -14,6 +14,12 @@
         <a href="{{ route('servicedata') }}" style="background-color: red; color: white;">Clear</a>
     </form>
     <form action="{{ route('servicedata') }}" method="GET" style="display: flex; gap: 10px;">
+    <label for="customer_name_filter">Customer Appointment Number:</label>
+        <input type="text" name="customer_name_filter" value="{{ request('customer_name_filter') }}">
+        <button type="submit" style="background-color: green; color: white;">Search</button>
+        <a href="{{ route('servicedata') }}" style="background-color: red; color: white;">Clear</a>
+    </form>
+    <form action="{{ route('servicedata') }}" method="GET" style="display: flex; gap: 10px;">
         <label for="typeofservice_filter">Type of Service:</label>
         <select name="typeofservice_filter">
             <option value="">All</option>
@@ -123,10 +129,6 @@ button{
                             <th>Customer Appointment Number</th>
                             <th>Staff Number</th>
                             <th>Customer Name</th>
-                            <th>Type of Service</th>
-                            <th>List Of Problems</th>
-                            <th>Defective Units</th>
-                            <th>Actions Required</th>
                             <th>Work Progress</th>
                             <th>Service Progress</th>
                             <th>Service Remarks</th>
@@ -143,10 +145,6 @@ button{
                                     <td>{{ $serviceinfo->customerappointmentnumber }}</td>
                                     <td>{{ $serviceinfo->staffnumber }} </td>
                                     <td>{{ $serviceinfo->customername}} </td>
-                                    <td>{{ $serviceinfo->typeofservice }}</td>
-                                    <td>{{ $serviceinfo->listofproblems }}</td>
-                                    <td>{{ $serviceinfo->defectiveunits }}</td>
-                                    <td>{{ $serviceinfo->actionsrequired }}</td>
                                     <td class="@if($serviceinfo->serviceprogress == 'Ongoing') ongoing
                        @elseif($serviceinfo->serviceprogress == 'Finalizing') finalizing
                        @elseif($serviceinfo->serviceprogress == 'Completed') completed
