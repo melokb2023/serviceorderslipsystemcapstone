@@ -219,7 +219,17 @@ class ServiceController extends Controller
         return redirect()->route('servicedata');
     } 
     else {
-        return redirect()->route('servicedata')->with('error', 'Service progress cannot be updated unless the service is complete.');
+        Service::where('serviceno', $id)
+        ->update([
+            'listofproblems' => $request->xlistofproblems,
+            'typeofservice' => $request->xtypeofservice,
+            'customerpassword' => $request->xcustomerpassword,
+            'defectiveunits' => $request->xdefectiveunits,
+            'actionsrequired' => $request->xactionsrequired,
+            'serviceprogress' => $request->xserviceprogress,
+            'serviceremarks' => $request->xserviceremarks,
+        ]);
+        return redirect()->route('servicedata');
     }
  }
     
@@ -249,6 +259,29 @@ class ServiceController extends Controller
         $servicedata->delete();
         return redirect()->route('servicedata');
     }
+
+    public function editstaff(string $id)
+    {
+        $servicedata = Service::where('serviceno', $id)->get();
+        $staff = Staff::all();
+        return view('admin.replacestaff', compact('servicedata','staff'));
+    }
+
+    public function updatestaff(Request $request, string $id)
+    {
+       
+      $servicedata= Service::where('serviceno', $id)
+        ->update(
+             [
+             
+             'staffnumber'=> $request->xstaffnumber,
+             
+             ]);
+        return redirect()->route('servicedata');
+    }
+
+
+
     public function getAppointmentInfo(){
         $customerappointment = CustomerAppointment::all();
         return view('admin.add', compact('customerappointment'));
@@ -287,8 +320,9 @@ public function getAvailableStaffNumbers()
     // Get all service numbers
     $allStaffNumbers = Staff::all();
 
-    // Get service numbers that are not listed in service data
-    $listedStaffNumbers = Service::pluck('staffnumber')->unique();
+    // Get staff numbers that are not listed in service data or have completed services
+    $listedStaffNumbers = Service::where('serviceprogress', '!=', 'Completed')->pluck('staffnumber')->unique();
+    
     $availableStaffNumbers = $allStaffNumbers->reject(function ($staff) use ($listedStaffNumbers) {
         return $listedStaffNumbers->contains($staff->staffnumber);
     });
@@ -306,6 +340,10 @@ public function getAvailableStaffNumbers()
         $staff = Staff::all();
         return view('admin.add', compact('staff'));
     }
+
+
+
+  
 
     public function checkServiceStatus(Request $request)
     {

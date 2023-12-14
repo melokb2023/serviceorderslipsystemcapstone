@@ -214,6 +214,19 @@ Route::get('/service/edit/{serno}', [ServiceController::class, 'edit'])
    ->name('service-edit');
 
 
+Route::get('/service/editstaff/{serno}', [ServiceController::class, 'editstaff']) 
+   ->middleware(['auth', 'verified'])
+   ->name('service-editstaff');
+
+Route::patch('/service/updatestaff/{serno}', [ServiceController::class, 'updatestaff']) 
+   ->middleware(['auth', 'verified'])
+   ->name('service-updatestaff');
+
+
+
+
+
+
 
 //////////////////////SERVICE PROGRESS////////////////////////////////////////////////////////////////
 Route::get('/serviceprogress/add', [ServiceProgressController::class, 'getServiceNumber'])

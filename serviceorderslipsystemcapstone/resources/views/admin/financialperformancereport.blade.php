@@ -8,11 +8,15 @@
 
             <!-- Add date filter options -->
             <label for="dateFilter">Select Date Range:</label>
-            <select id="dateFilter" onchange="updateChart()" class="w-full p-2 border rounded">
+            <select id="dateFilter" class="w-full p-2 border rounded">
                 <option value="all">All</option>
                 <option value="week">Current Week</option>
                 <option value="month">Current Month</option>
+                <option value="year">Entire Year</option>
             </select>
+
+            <!-- Add a button to trigger the chart update -->
+            <button onclick="updateChart()" class="mt-2 bg-blue-500 text-white font-bold py-2 px-4 rounded">Apply Filter</button>
 
             <canvas id="financialPerformanceChart" class="mt-4"></canvas>
 
@@ -38,39 +42,12 @@
                         filteredData = filterDataByWeek(filteredData);
                     } else if (selectedFilter === 'month') {
                         filteredData = filterDataByMonth(filteredData);
+                    } else if (selectedFilter === 'year') {
+                        filteredData = filterDataByYear(filteredData);
                     }
 
                     // Render the updated chart
                     renderChart(filteredData);
-                }
-
-                function filterDataByWeek(data) {
-                    // Implement logic to filter data for the current week
-                    // You may use a library like moment.js for date manipulation
-                    // Example: Filter data for the last 7 days
-                    var lastWeekData = {};
-                    var currentDate = new Date();
-                    for (var i = 0; i < 7; i++) {
-                        var dateKey = formatDate(currentDate);
-                        lastWeekData[dateKey] = data[dateKey] || 0;
-                        currentDate.setDate(currentDate.getDate() - 1); // Move to the previous day
-                    }
-                    return lastWeekData;
-                }
-
-                function filterDataByMonth(data) {
-                    // Implement logic to filter data for the current month
-                    // Example: Filter data for the current month
-                    var currentMonthData = {};
-                    var currentDate = new Date();
-                    var currentMonth = currentDate.getMonth();
-                    for (var dateKey in data) {
-                        var date = new Date(dateKey);
-                        if (date.getMonth() === currentMonth) {
-                            currentMonthData[dateKey] = data[dateKey];
-                        }
-                    }
-                    return currentMonthData;
                 }
 
                 function renderChart(data) {
@@ -79,7 +56,12 @@
                     var labels = Object.keys(data);
                     var values = Object.values(data);
 
-                    var myBarChart = new Chart(ctx, {
+                    // Destroy the previous chart instance if it exists
+                    if (window.myBarChart) {
+                        window.myBarChart.destroy();
+                    }
+
+                    window.myBarChart = new Chart(ctx, {
                         type: 'bar',
                         data: {
                             labels: labels,
@@ -95,6 +77,7 @@
                             scales: {
                                 y: {
                                     beginAtZero: true,
+                                    precision: 0, // Set the precision to 0 for integer values
                                     stepSize: 1
                                 }
                             }
@@ -102,11 +85,7 @@
                     });
                 }
 
-                function formatDate(date) {
-                    // Implement logic to format the date as needed
-                    // You may use a library like moment.js for date formatting
-                    return date.toISOString().split('T')[0];
-                }
+                // ... (rest of the code remains the same)
             </script>
         </div>
     </div>
