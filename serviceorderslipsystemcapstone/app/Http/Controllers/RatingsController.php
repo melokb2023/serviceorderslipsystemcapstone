@@ -49,6 +49,7 @@ $details = [
 
 // Send email to a recipient (replace 'recipient@example.com' with the actual recipient email)
 Mail::to('kyle.melo@lccdo.edu.ph')->send(new MyMail($details));
+session()->flash('success_message', 'Rating Has Been Saved');
 return view('customer.startappointment');
     }
 
@@ -88,15 +89,23 @@ return view('customer.startappointment');
     }
 
    
-    public function getCompletedServices()
+    
+    public function getCompletedServicesforRating()
 {
-    // Adjust the logic to get completed services based on your application requirements
-    $completedServices = Service::where('serviceprogress', 'Completed')->get();
+    // Get completed services with Rating
+    $completedServices = Service::where('serviceprogress', 'Completed')
+        ->get();
 
-    return $completedServices;
+    // Get service numbers that are not listed in service data
+    $listedServiceNumbers = Rating::pluck('serviceno')->unique();
+    $filteredServices = $completedServices->reject(function ($servicedata) use ($listedServiceNumbers) {
+        // Adjust the condition based on your specific requirements
+        return $listedServiceNumbers->contains($servicedata->serviceno);
+    });
+
+    return $filteredServices;
 }
-
-    public function getService(){
+        public function getService(){
         $servicedata = Service::all();
         return view('customer.customerrating', compact('servicedata'));
     }

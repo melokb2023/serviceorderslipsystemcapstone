@@ -1,19 +1,15 @@
 @include('layouts.adminnavigation')
 
 <x-app-layout>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
+   
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8" style="background-color: #d70021; border: 3px solid black">
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
         <style>
+            * {
+                box-sizing: border-box;
+                font-family: "Century Gothic";
+                font-weight: bold;
+            }
+
             h2 {
                 font-family: "Century Gothic";
                 font-weight: bold;
@@ -24,6 +20,122 @@
             .additional-content p {
                 color: black;
                 font-weight: bold;
+            }
+
+            /* Additional styles for hyperlinks in the cards */
+            .additional-content a {
+                display: inline-block;
+                padding: 10px;
+                background-color: #3490dc; /* Change to the desired color */
+                color: white;
+                text-decoration: none;
+                border-radius: 5px;
+                margin-top: 10px;
+            }
+
+            .additional-content a:hover {
+                background-color: #276695; /* Change to the desired hover color */
+            }
+
+            h6 {
+                color: white;
+            }
+
+            .flex {
+                display: flex;
+            }
+
+            .justify-center {
+                justify-content: center;
+            }
+
+            .items-center {
+                align-items: center;
+            }
+
+            .h-screen {
+                height: 100vh;
+            }
+
+            .space-x-4 {
+                margin-right: 1rem;
+            }
+
+           
+
+            .p-4 {
+                padding: 1rem;
+            }
+
+            .bg-white {
+                background-color: #fff;
+            }
+
+            .dark:bg-gray-800 {
+                background-color: #2d2f33;
+            }
+
+            .overflow-hidden {
+                overflow: hidden;
+            }
+
+            .shadow-sm {
+                box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+            }
+
+            .sm\:rounded-lg {
+                border-radius: 0.375rem;
+            }
+
+            .text-white {
+                color: #fff;
+            }
+
+            .dark\:text-gray-100 {
+                color: #f9fafb;
+            }
+
+            .border {
+                border: 1px solid #d2d6dc;
+            }
+
+            .rounded-lg {
+                border-radius: 0.5rem;
+            }
+
+            .text-2xl {
+                font-size: 1.5rem;
+                line-height: 2rem;
+            }
+
+            .font-bold {
+                font-weight: 700;
+            }
+
+            .mb-4 {
+                margin-bottom: 1rem;
+            }
+
+            .mt-8 {
+                margin-top: 2rem;
+            }
+
+            .text-center {
+                text-align: center;
+            }
+
+            .text-blue-500 {
+                color: #3490dc;
+            }
+
+            .mt-8 {
+                margin-top: 2rem;
+            }
+
+            /* Chart Section Styles */
+            #servicePerformanceChart {
+                width: 100%;
+                height: auto;
             }
         </style>
 
@@ -37,16 +149,12 @@
                             <!-- Additional Content for Card 1 -->
                             <div class="additional-content">
                                 <p>Explore the different types of services offered by your business. Monitor and manage service categories.</p>
-                                <a href="{{ route('servicelist') }}" class="text-blue-500">View Service Types</a>
+                                <a href="{{ route('servicelist') }}">View Service Types</a>
                             </div>
                         </div>
                     </div>
                 </div>
-                &nbsp;
-                &nbsp;
-                &nbsp;
-                &nbsp;&nbsp;
-                &nbsp;
+
                 <!-- Card 2 -->
                 <div class="w-1/4 p-4">
                     <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
@@ -55,16 +163,12 @@
                             <!-- Additional Content for Card 2 -->
                             <div class="additional-content">
                                 <p>Track and manage customer appointments efficiently. Ensure a smooth scheduling process for your clients.</p>
-                                <a href="{{ route('customerlist') }}" class="text-blue-500">View Appointments</a>
+                                <a href="{{ route('customerlist') }}">View Appointments</a>
                             </div>
                         </div>
                     </div>
                 </div>
-                &nbsp;
-                &nbsp;
-                &nbsp;
-                &nbsp;&nbsp;
-                &nbsp;
+
                 <!-- Card 3 -->
                 <div class="w-1/4 p-4">
                     <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
@@ -73,16 +177,12 @@
                             <!-- Additional Content for Card 3 -->
                             <div class="additional-content">
                                 <p>Keep an eye on all job orders and service requests. Manage and prioritize tasks effectively.</p>
-                                <a href="{{ route('servicedata') }}" class="text-blue-500">View Job Orders</a>
+                                <a href="{{ route('servicedata') }}">View Job Orders</a>
                             </div>
                         </div>
                     </div>
                 </div>
-                &nbsp;
-                &nbsp;
-                &nbsp;
-                &nbsp;&nbsp;
-                &nbsp;
+
                 <!-- Card 4 -->
                 <div class="w-1/4 p-4">
                     <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
@@ -91,34 +191,19 @@
                             <!-- Additional Content for Card 4 -->
                             <div class="additional-content">
                                 <p>Monitor customer satisfaction through ratings. Address feedback and improve service quality.</p>
-                                <a href="{{ route('customerrating') }}" class="text-blue-500">View Ratings</a>
+                                <a href="{{ route('customerrating') }}">View Ratings</a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            &nbsp;
-                &nbsp;
-                &nbsp;
-                &nbsp;&nbsp;
-                &nbsp;
-          
-         
-
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-    </div>
-   <!-- Chart Section -->
-            <div class="mt-8" style="background-color: #e9e9e9; border: 3px solid black; width: 80%;">
-                <h2 class="text-2xl font-bold mb-4 text-center text-white">Service Performance Chart</h2>
-                <canvas id="servicePerformanceChart"></canvas>
-            </div>
         </div>
+ <!-- Chart Section -->
+        <div class="mt-8" style="background-color: #e9e9e9; border: 3px solid black; width: 80%;">
+            <h2 class="text-2xl font-bold mb-4 text-center text-white">Service Performance Chart</h2>
+            <canvas id="servicePerformanceChart"></canvas>
+        </div>
+    </div>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
@@ -145,8 +230,6 @@
                     }]
                 },
                 options: {
-                   
-                  
                     scales: {
                         y: {
                             beginAtZero: true

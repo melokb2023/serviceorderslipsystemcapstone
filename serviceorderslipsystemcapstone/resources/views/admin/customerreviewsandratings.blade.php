@@ -1,3 +1,9 @@
+@if(session('success_message'))
+    <script>
+        // Replace this with your preferred pop-up library or implementation
+        alert("{{ session('success_message') }}");
+    </script>
+@endif
 @include('layouts.adminnavigation')
 <x-app-layout>
 

@@ -75,14 +75,13 @@
                             @endforeach
                         </ul>
                     @endif
-
                     @php
-                        $completedServices = app(\App\Http\Controllers\RatingsController::class)->getCompletedServices();
-                    @endphp
+    $completedServices = app(\App\Http\Controllers\RatingsController::class)->getCompletedServicesforRating();
+@endphp
 
                     @if(auth()->check())
                         @if($completedServices->isEmpty())
-                            <p class="no-services">You have no services that are completed or available for rating.</p>
+                            <p class="no-services">You have no services that are completed for rating.</p>
                         @else
                             <form style="align-items:center" method="POST" action="{{ route('add-customerrating') }}">
                                 @csrf
@@ -112,23 +111,23 @@
                                 <div class="flex-items-center">
                                     <label for="Rating">Rating</label>
                                     <div>
-                                    <select name="xrating">
-                        <option style="color:orange" value="1">
-                        <h2 class = "star"> *  - <h3 class = "description">Very Poor</h3>
-                        </option>
-                        <option style="color:orange" value="2">
-                        <h2 class = "star"> * * </h2> - <h3 class = "description"> Poor</h3>
-                        </option>
-                        <option style="color:orange" value="3">
-                        <h2 class = "star"> * * *</h2> - <h3 class = "description"> Average</h3>
-                        </option>
-                        <option style="color:orange" value="4">
-                        <h2 class = "star"> * * * *</h2> - <h3 class = "description"> Good</h3>
-                        </option>
-                        <option style="color:orange" value="5">
-                        <h2 class = "star"> * * * * * </h2> - <h3 class = "description"> Very Good</h3>
-                        </option>
-</select>
+                                        <select name="xrating">
+                                            <option style="color:orange" value="1">
+                                                <h2 class="star"> * - <h3 class="description">Very Poor</h3>
+                                                </option>
+                                            <option style="color:orange" value="2">
+                                                <h2 class="star"> * * </h2> - <h3 class="description"> Poor</h3>
+                                                </option>
+                                            <option style="color:orange" value="3">
+                                                <h2 class="star"> * * *</h2> - <h3 class="description"> Average</h3>
+                                                </option>
+                                            <option style="color:orange" value="4">
+                                                <h2 class="star"> * * * *</h2> - <h3 class="description"> Good</h3>
+                                                </option>
+                                            <option style="color:orange" value="5">
+                                                <h2 class="star"> * * * * * </h2> - <h3 class="description"> Very Good</h3>
+                                                </option>
+                                        </select>
                                     </div>
                                 </div>
 

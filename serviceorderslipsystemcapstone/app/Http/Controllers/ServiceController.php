@@ -152,6 +152,7 @@ class ServiceController extends Controller
     }
         $servicedata->servicestarted = $request->xservicestarted;
         $servicedata->save();
+        session()->flash('success_message', 'Data Stored');
         return redirect()->route('servicedata');
     }
     /**
@@ -215,7 +216,7 @@ class ServiceController extends Controller
 
         // Send email to a recipient (replace 'recipient@example.com' with the actual recipient email)
         Mail::to($customerappointment->customeremail)->send(new MyMail($details));
-
+        session()->flash('success_message', 'Data Updated');
         return redirect()->route('servicedata');
     } 
     else {
@@ -229,6 +230,7 @@ class ServiceController extends Controller
             'serviceprogress' => $request->xserviceprogress,
             'serviceremarks' => $request->xserviceremarks,
         ]);
+        session()->flash('success_message', 'Data Updated');
         return redirect()->route('servicedata');
     }
  }
@@ -257,6 +259,7 @@ class ServiceController extends Controller
     {
         $servicedata= Service::where('serviceno', $id);
         $servicedata->delete();
+        session()->flash('success_message', 'Data Deleted');
         return redirect()->route('servicedata');
     }
 
@@ -277,6 +280,7 @@ class ServiceController extends Controller
              'staffnumber'=> $request->xstaffnumber,
              
              ]);
+        session()->flash('success_message', 'You successfully changed the staff');
         return redirect()->route('servicedata');
     }
 
@@ -314,6 +318,7 @@ class ServiceController extends Controller
 
     return $availableServiceNumbers;
 }
+
 
 public function getAvailableStaffNumbers()
 {
