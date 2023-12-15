@@ -2,18 +2,10 @@
 
 <x-app-layout>
     <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8" style="background-color:#d70021;border:3px solid black">
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg" style="background-color:#d70021;text-align:center">
-                <div class="p-6 text-gray-900 dark:text-gray-100" style="background-color:#d70021;">
-                    <!-- Favicon-->
-                    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
-                    <!-- Font Awesome icons (free version)-->
-                    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
-                    <!-- Google fonts-->
-                    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
-                    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
-                    <!-- Core theme CSS (includes Bootstrap)-->
-                    <link href="resources/css/style.scss" rel="stylesheet" />
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8" style="background-color: #d70021; border: 3px solid black">
+            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg" style="background-color: #d70021; text-align: center">
+                <div class="p-6 text-gray-900 dark:text-gray-100" style="background-color: #d70021;">
+                    <!-- Include Favicon, Font Awesome, Google fonts, Core theme CSS, etc., based on your requirements -->
 
                     <style>
                         * {
@@ -31,7 +23,8 @@
 
                         input[type=text],
                         select,
-                        textarea {
+                        textarea,
+                        input[type=datetime-local] {
                             width: 100%;
                             padding: 12px;
                             border: 1px solid #ccc;
@@ -81,15 +74,6 @@
                             font-weight: bold;
                         }
                     </style>
-
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <h6>Errors Encountered</h6>
                     @if($errors)
                     <ul>
                         @foreach($errors->all() as $error)
@@ -125,19 +109,9 @@
                             <input type="datetime-local" name="xworkstarted" value="{{old('xworkstarted')}}" required>
                         </div>
 
-                        <button class="submit" type="submit" style="background-color: green; color: white;">Submit Info</button>
+                        <button class="btn btn-primary" type="submit">Submit Info</button>
                     </form>
                     @endif
-
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
                 </div>
             </div>
         </div>

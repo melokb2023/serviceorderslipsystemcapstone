@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\MyMail;
 use App\Models\Rating;
+use App\Models\Service;
 use App\Models\CustomerAppointment;
 class RatingsController extends Controller
 {
@@ -35,6 +36,7 @@ class RatingsController extends Controller
  
 
 $customerrating = new Rating();
+$customerrating->serviceno = $request->xserviceno;
 $customerrating->reviewerid = auth()->user()->id;
 $customerrating->reviewername = auth()->user()->name;
 $customerrating->review = $request->xreview;
@@ -85,9 +87,18 @@ return view('customer.startappointment');
         return redirect()->route('customerrating');
     }
 
-    public function getAppointmentInfo(){
-        $customerappointment = CustomerAppointment::all();
-        return view('customer.customerrating', compact('customerappointment'));
+   
+    public function getCompletedServices()
+{
+    // Adjust the logic to get completed services based on your application requirements
+    $completedServices = Service::where('serviceprogress', 'Completed')->get();
+
+    return $completedServices;
+}
+
+    public function getService(){
+        $servicedata = Service::all();
+        return view('customer.customerrating', compact('servicedata'));
     }
 
 }

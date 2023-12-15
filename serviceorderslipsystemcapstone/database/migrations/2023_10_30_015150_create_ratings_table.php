@@ -13,10 +13,12 @@ return new class extends Migration
     {
         Schema::create('customerrating', function (Blueprint $table) {
             $table->id('ratingno');
+            $table->unsignedBigInteger('serviceno');
             $table->integer('reviewerid');
             $table->string('reviewername');
             $table->string('review');
             $table->integer('rating');
+            $table->foreign('serviceno')->references('serviceno')->on('servicedata');
             $table->timestamps();
         });
     }

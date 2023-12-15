@@ -331,6 +331,8 @@ public function getAvailableStaffNumbers()
 }
 
 
+
+
     public function ServiceInfo(){
         $servicedata = Service::select('serviceno', 'typeofservice', 'workprogress')->get();
         return view('staff.staffdatabase', compact('servicedata'));

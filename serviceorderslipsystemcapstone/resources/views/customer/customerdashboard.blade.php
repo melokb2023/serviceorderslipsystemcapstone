@@ -46,7 +46,7 @@
                                     <th>Appointment Purpose</th>
                                     <th>Appointment Type</th>
                                     <th>Date and Time</th>
-                                    <th>Order Reference Code</th> 
+                                    <th>Service Reference Code</th> 
                                     <th>Service Progress</th>
                                 </tr>
                             </thead>

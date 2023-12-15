@@ -20,7 +20,6 @@ return new class extends Migration
             $table->string('typeofservice',100);
             $table->dateTime('workstarted', $precision = 0);
             $table->string('workprogress',100);
-
             $table->foreign('serviceno')->references('serviceno')->on('servicedata');
             $table->foreign('staffnumber')->references('staffnumber')->on('staff');
             $table->timestamps();
