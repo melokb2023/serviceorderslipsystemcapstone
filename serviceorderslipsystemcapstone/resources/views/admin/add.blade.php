@@ -164,7 +164,7 @@ button[type=submit]:hover {
                             <div class="form-group">
                                 <label for="staffnumber">Staff Number</label>
                                 <select class="textexpand2" name="xstaffnumber">
-                                    @foreach($availableStaffNumbers as $staffco)
+                                @foreach($availableStaffNumbers as $staffco)
                                     <option value="{{ $staffco->staffnumber }}">{{ $staffco->staffnumber }}-{{ $staffco->staffname }}</option>
                                     @endforeach
                                 </select>

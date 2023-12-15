@@ -147,7 +147,16 @@
                         <i class="fa fa-cogs"></i> {{ __('CONTACT US') }}
                     </a>
                     @auth
-                    <a href="{{ url('/dashboard') }}" class="top-nav-link">DASHBOARD</a>
+    @if(auth()->check())
+        @if(auth()->user()->usertype == 'admin')
+            <a href="{{ route('admindashboard') }}" class="top-nav-link">ADMIN DASHBOARD</a>
+        @elseif(auth()->user()->usertype == 'staff')
+            <a href="{{ route('staffdashboard') }}" class="top-nav-link">STAFF DASHBOARD</a>
+        @elseif(auth()->user()->usertype == 'customer')
+            <a href="{{ route('customerdashboard') }}" class="top-nav-link">CUSTOMER DASHBOARD</a>
+        @endif
+    @endif
+ 
                     @else
                     <a href="{{ route('login') }}" class="top-nav-link-login">LOG IN</a>
                     @if (Route::has('register'))

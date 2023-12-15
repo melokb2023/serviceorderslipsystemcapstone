@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\StaffDatabase;
 use App\Models\Service;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\DB;
 use App\Mail\MyMail;
 use App\Models\CustomerAppointment;
 use Illuminate\Http\Request;
+
 
 class StaffDatabaseController extends Controller
 {
@@ -141,7 +143,26 @@ public function store(Request $request)
 {
     // Assuming you have a StaffDatabase model
     $staffDatabaseCount = StaffDatabase::count();
-    return view('staff.staffdashboard', compact('staffDatabaseCount'));
+    $currentMonth = now()->format('m'); // Assuming you have Carbon installed for the now() function
+
+    // Define an array of months for counting
+    $months = [
+        '01' => 'January', '02' => 'February', '03' => 'March', '04' => 'April',
+        '05' => 'May', '06' => 'June', '07' => 'July', '08' => 'August',
+        '09' => 'September', '10' => 'October', '11' => 'November', '12' => 'December'
+    ];
+
+    $data = [];
+
+    foreach ($months as $monthNumber => $monthName) {
+        // Count the number of services for each month
+        $count = DB::table('staffdatabase')
+            ->whereMonth('workstarted', $monthNumber)
+            ->count();
+
+        $data[$monthName] = $count;
+    }
+    return view('staff.staffdashboard', compact('staffDatabaseCount','data'));
 }
 
 public function getAvailableServiceNumbers(){

@@ -10,6 +10,7 @@ use App\Models\Staff;
 use App\Models\Rating;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\DB;
 use App\Mail\MyMail;
 use App\Models\User;
 use Illuminate\Support\Facades\Redirect;
@@ -33,6 +34,10 @@ class ServiceController extends Controller
     // Check if there is a filter for Customer Appointment Number
     if ($request->has('customer_appointment_number_filter')) {
         $query->where('servicedata.customerappointmentnumber', $request->input('customer_appointment_number_filter'));
+    }
+
+    if ($request->has('customer_name_filter')) {
+        $query->where('servicedata.customername', $request->input('customer_name_filter'));
     }
 
     // Check if there is a filter for Type of Service
@@ -214,7 +219,17 @@ class ServiceController extends Controller
         return redirect()->route('servicedata');
     } 
     else {
-        return redirect()->route('servicedata')->with('error', 'Service progress cannot be updated unless the service is complete.');
+        Service::where('serviceno', $id)
+        ->update([
+            'listofproblems' => $request->xlistofproblems,
+            'typeofservice' => $request->xtypeofservice,
+            'customerpassword' => $request->xcustomerpassword,
+            'defectiveunits' => $request->xdefectiveunits,
+            'actionsrequired' => $request->xactionsrequired,
+            'serviceprogress' => $request->xserviceprogress,
+            'serviceremarks' => $request->xserviceremarks,
+        ]);
+        return redirect()->route('servicedata');
     }
  }
     
@@ -244,6 +259,29 @@ class ServiceController extends Controller
         $servicedata->delete();
         return redirect()->route('servicedata');
     }
+
+    public function editstaff(string $id)
+    {
+        $servicedata = Service::where('serviceno', $id)->get();
+        $staff = Staff::all();
+        return view('admin.replacestaff', compact('servicedata','staff'));
+    }
+
+    public function updatestaff(Request $request, string $id)
+    {
+       
+      $servicedata= Service::where('serviceno', $id)
+        ->update(
+             [
+             
+             'staffnumber'=> $request->xstaffnumber,
+             
+             ]);
+        return redirect()->route('servicedata');
+    }
+
+
+
     public function getAppointmentInfo(){
         $customerappointment = CustomerAppointment::all();
         return view('admin.add', compact('customerappointment'));
@@ -282,8 +320,9 @@ public function getAvailableStaffNumbers()
     // Get all service numbers
     $allStaffNumbers = Staff::all();
 
-    // Get service numbers that are not listed in service data
-    $listedStaffNumbers = Service::pluck('staffnumber')->unique();
+    // Get staff numbers that are not listed in service data or have completed services
+    $listedStaffNumbers = Service::where('serviceprogress', '!=', 'Completed')->pluck('staffnumber')->unique();
+    
     $availableStaffNumbers = $allStaffNumbers->reject(function ($staff) use ($listedStaffNumbers) {
         return $listedStaffNumbers->contains($staff->staffnumber);
     });
@@ -301,6 +340,10 @@ public function getAvailableStaffNumbers()
         $staff = Staff::all();
         return view('admin.add', compact('staff'));
     }
+
+
+
+  
 
     public function checkServiceStatus(Request $request)
     {
@@ -323,8 +366,54 @@ public function getAvailableStaffNumbers()
     $customerAppointmentsCount = CustomerAppointment::count();
     $serviceDataCount = Service::count();
     $ratingsCount = Rating::count();
+    
+   
+    
+    $months = [
+        '01' => 'January', '02' => 'February', '03' => 'March', '04' => 'April',
+        '05' => 'May', '06' => 'June', '07' => 'July', '08' => 'August',
+        '09' => 'September', '10' => 'October', '11' => 'November', '12' => 'December'
+    ];
 
-    return view('admin.admindashboard', compact('typesOfServicesCount', 'customerAppointmentsCount', 'serviceDataCount', 'ratingsCount'));
+    $data = [];
+
+    foreach ($months as $monthNumber => $monthName) {
+        // Count the number of job orders for each month
+        $count = DB::table('servicedata')
+            ->whereMonth('created_at', $monthNumber)
+            ->count();
+
+        $data[$monthName] = $count;
+    }
+
+    return view('admin.admindashboard', compact('typesOfServicesCount', 'customerAppointmentsCount', 'serviceDataCount', 'ratingsCount','data'));
+}
+
+public function LineChart2()
+{
+    // Get the current month
+    $currentMonth = now()->format('m'); // Assuming you have Carbon installed for the now() function
+
+    // Define an array of months for counting
+    $months = [
+        '01' => 'January', '02' => 'February', '03' => 'March', '04' => 'April',
+        '05' => 'May', '06' => 'June', '07' => 'July', '08' => 'August',
+        '09' => 'September', '10' => 'October', '11' => 'November', '12' => 'December'
+    ];
+
+    $data = [];
+
+    foreach ($months as $monthNumber => $monthName) {
+        // Count the number of services for each month
+        $count = DB::table('servicedata')
+            ->whereMonth('created_at', $monthNumber)
+            ->count();
+
+        $data[$monthName] = $count;
+    }
+
+    // Pass data to the view
+    return view('admin.admindashboard', compact('data'));
 }
 
 

@@ -4,27 +4,29 @@
     <div class="py-12" style="display: flex; justify-content: center; align-items: center;">
  
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg"
-                style="background-color: #d70021; text-align: center; height:900px;width: 1600px;border: 3px solid black;">
+                style="background-color: #d70021; text-align: center;width: 1600px;border: 3px solid black;">
                 <div class="p-6 text-gray-900 dark:text-gray-100" style="background-color: #d70021;">
                 <div class="form-group" style="display: flex; gap: 10px;">
-    <form action="{{ route('servicedata') }}" method="GET" style="display: flex; gap: 10px;">
-        <label for="customer_appointment_number_filter">Customer Appointment Number:</label>
-        <input type="text" name="customer_appointment_number_filter" value="{{ request('customer_appointment_number_filter') }}">
-        <button type="submit" style="background-color: green; color: white;">Search</button>
-        <a href="{{ route('servicedata') }}" style="background-color: red; color: white;">Clear</a>
-    </form>
-    <form action="{{ route('servicedata') }}" method="GET" style="display: flex; gap: 10px;">
-        <label for="typeofservice_filter">Type of Service:</label>
-        <select name="typeofservice_filter">
-            <option value="">All</option>
-            @foreach($typesOfService as $typeOfService)
-                <option value="{{ $typeOfService }}" {{ request('typeofservice_filter') == $typeOfService ? 'selected' : '' }}>
-                    {{ $typeOfService }}
-                </option>
-            @endforeach
-        </select>
-        <button type="submit" style="background-color: blue; color: white;">Apply Filters</button>
-    </form>
+                <form action="{{ route('servicedata') }}" method="GET" style="display: flex; gap: 10px;">
+    <label for="customer_appointment_number_filter">Customer Appointment Number:</label>
+    <input type="text" name="customer_appointment_number_filter" value="{{ request('customer_appointment_number_filter') }}">
+
+    <label for="customer_name_filter">Customer Name:</label>
+    <input type="text" name="customer_name_filter" value="{{ request('customer_name_filter') }}">
+
+    <label for="typeofservice_filter">Type of Service:</label>
+    <select name="typeofservice_filter">
+        <option value="">All</option>
+        @foreach($typesOfService as $typeOfService)
+            <option value="{{ $typeOfService }}" {{ request('typeofservice_filter') == $typeOfService ? 'selected' : '' }}>
+                {{ $typeOfService }}
+            </option>
+        @endforeach
+    </select>
+
+    <button type="submit" style="background-color: green; color: white;">Search</button>
+    <a href="{{ route('servicedata') }}" style="background-color: red; color: white;">Clear</a>
+</form>
 </div>
                     <br>
                     <br>
@@ -121,10 +123,6 @@ button{
                             <th>Customer Appointment Number</th>
                             <th>Staff Number</th>
                             <th>Customer Name</th>
-                            <th>Type of Service</th>
-                            <th>List Of Problems</th>
-                            <th>Defective Units</th>
-                            <th>Actions Required</th>
                             <th>Work Progress</th>
                             <th>Service Progress</th>
                             <th>Service Remarks</th>
@@ -141,10 +139,6 @@ button{
                                     <td>{{ $serviceinfo->customerappointmentnumber }}</td>
                                     <td>{{ $serviceinfo->staffnumber }} </td>
                                     <td>{{ $serviceinfo->customername}} </td>
-                                    <td>{{ $serviceinfo->typeofservice }}</td>
-                                    <td>{{ $serviceinfo->listofproblems }}</td>
-                                    <td>{{ $serviceinfo->defectiveunits }}</td>
-                                    <td>{{ $serviceinfo->actionsrequired }}</td>
                                     <td class="@if($serviceinfo->serviceprogress == 'Ongoing') ongoing
                        @elseif($serviceinfo->serviceprogress == 'Finalizing') finalizing
                        @elseif($serviceinfo->serviceprogress == 'Completed') completed
@@ -154,8 +148,8 @@ button{
                        @elseif($serviceinfo->serviceprogress == 'Completed') completed
                        @endif">{{ $serviceinfo->serviceprogress }}</td>
                                     <td>{{ $serviceinfo->serviceremarks }}</td>
-                                    <td>{{ date('Y-m-d h:i A', strtotime($serviceinfo->dateandtime)) }}</td>
-                                    <td>{{ date('Y-m-d h:i A', strtotime($serviceinfo->servicestarted)) }}</td>
+                                    <td>{{ date('F d, Y h:i A', strtotime($serviceinfo->dateandtime)) }}</td>
+                                    <td>{{ date('F d, Y h:i A', strtotime($serviceinfo->servicestarted)) }}</td>
                                     <td>{{ $serviceinfo->orderreferencecode }}</td>
                                     <td>
                                         <br>
@@ -167,6 +161,13 @@ button{
                                             <a style="background-color: #3490dc; height: 0.20rem;"
                                              class="mt-4 text-black font-bold py-2 px-4 rounded"
                                              href="{{ route('service-edit', ['serno' => $serviceinfo->serviceno]) }}">Edit</a>
+                                             <br>
+                                             <br>
+                                             <a style="background-color: #9FE2BF; height: 2rem; width: 8rem; display: flex; align-items: center; justify-content: center; text-decoration: none; border: 1px solid #3490dc; border-radius: 5px;"
+   class="mt-4 text-black font-bold py-2 px-4 rounded"
+   href="{{ route('service-editstaff', ['serno' => $serviceinfo->serviceno]) }}">
+    Change Staff
+</a>
                                         <form method="POST"
                                             action="{{ route('service-delete', ['serno' => $serviceinfo->serviceno ]) }}"
                                             onclick="return confirm('Are you sure you want to delete this record?')">

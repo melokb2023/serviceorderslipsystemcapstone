@@ -134,8 +134,7 @@
                                     <label for="List of Problems">List of Problems</label>
                                     <input class="textexpand2" type="text" name="xlistofproblems" value="{{$serviceinfo->listofproblems}}"/>
                                 </div>
-
-                                <div class="form-group">
+                            <div class="form-group">
                                     <label for="Type Of Service">Type Of Service</label>
                                     <select name="xtypeofservice">
                                         <option value="Reformatting">Reformatting</option>

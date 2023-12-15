@@ -114,7 +114,7 @@
                                 <select name="xserviceno">
                                     @foreach($availableServiceNumbers as $service)
                                     <option value="{{ $service->serviceno }}">
-                                        Service Number {{ $service->serviceno }}
+                                        Service Number {{ $service->serviceno }} - {{ $service->typeofservice }} - {{ $service->customername }}
                                     </option>
                                     @endforeach
                                 </select>
