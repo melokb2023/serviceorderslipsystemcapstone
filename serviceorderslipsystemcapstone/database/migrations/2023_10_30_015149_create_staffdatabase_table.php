@@ -15,13 +15,12 @@ return new class extends Migration
         Schema::create('staffdatabase', function (Blueprint $table) {
             $table->id('worknumber');
             $table->unsignedBigInteger('serviceno');
-            $table->unsignedBigInteger('staffnumber');
+            $table->string('staffname',100);
             $table->string('actionsrequired',100);
             $table->string('typeofservice',100);
             $table->dateTime('workstarted', $precision = 0);
             $table->string('workprogress',100);
             $table->foreign('serviceno')->references('serviceno')->on('servicedata');
-            $table->foreign('staffnumber')->references('staffnumber')->on('staff');
             $table->timestamps();
         });
     }

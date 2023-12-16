@@ -2,136 +2,111 @@
 <x-app-layout style="background-color: #d70021;">
 
 <style>
-            table,
-            tr {
-                font-family: "Century ";
-                font-weight:bold;
-            }
+    table,
+    tr {
+        font-family: "Century ";
+        font-weight: bold;
+    }
 
-            td {
-                font-family: "Arial";
-                background-color: #cbd6e4;
-            }
+    td {
+        font-family: "Arial";
+        background-color: #cbd6e4;
+    }
 
-            th {
-                font-family: "Arial";
-                background-color: white;
-            }
-            h1{
-                font-family:Arial;
-                color:white;
-                font-size:30px;
-                font-weight:bold;
-            }
+    th {
+        font-family: "Arial";
+        background-color: white;
+    }
 
-            #customers {
-    width: 95%; /* Adjust the width as needed */
-    margin: auto;
-    margin-left: 2%; /* Adjust the left margin as needed */
-}
+    h1 {
+        font-family: Arial;
+        color: white;
+        font-size: 30px;
+        font-weight: bold;
+    }
 
-/* Center the table header text */
-#customers th {
-    text-align: center;
-}
+    .card {
+        background-color: #cbd6e4;
+        border: 1px solid black;
+        border-radius: 8px;
+        margin: 20px;
+        padding: 20px;
+        text-align: left;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        width: 90%;
+        max-width: 600px; /* Adjust the max-width as needed */
+        margin: auto;
+    }
 
-/* Center the table content text */
-#customers td {
-    text-align: center;
-}
+    .card h2 {
+        color: #d70021;
+        font-size: 24px;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
 
-label{
-    font-family: "Century Gothic";
-    font-weight:bold;
-    color:white;
-}
+    .card p {
+        font-family: "Arial";
+        color: #333;
+        margin-bottom: 10px;
+    }
 
-button{
-    font-family: "Century Gothic";
-    font-weight:bold;
-    color:white;
-    background-color:blue;
-}
+    .button {
+        border: none;
+        color: white;
+        text-decoration: none;
+        display: inline-block;
+        padding: 15px 32px;
+        background-color: black; /* Indian Red color */
+        border-radius: 8px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: transform 0.2s ease-in-out;
+        background-color: green;
+        font-weight: bold;
+    }
 
-.button {
-                            border: none;
-                            color: white;
-                            text-decoration: none;
-                            display: inline-block;
-                            padding: 15px 32px;
-                            background-color: black; /* Indian Red color */
-                            border-radius: 8px;
-                            font-size: 16px;
-                            cursor: pointer;
-                            transition: transform 0.2s ease-in-out;
-                            background-color:green;
-                            font-weight:bold;
-                        }
+    .button:hover {
+        transform: scale(1.05);
+    }
+    p{
+        font-family:"Century Gothic";
+        font-weight:bold;
+    }
+</style>
 
-                        .button:hover {
-                            transform: scale(1.05);
-                        }
+<div class="py-12" style="display: flex; justify-content: center; align-items: center;">
 
-        </style>
+    <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg"
+         style="background-color: #d70021; text-align: center; height: auto; width: 90%; max-width: 1200px; border: 3px solid black;">
+        <div class="p-6 text-gray-900 dark:text-gray-100" style="background-color: #d70021;">
 
-    <div class="py-12" style="display: flex; justify-content: center; align-items: center;">
+            <h1 style="font-family:Century Gothic; color:white; font-size:30px; font-weight:bold;">Service Details</h1>
 
-        <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg"
-             style="background-color: #d70021; text-align: center; height:900px;width: 1200px;border: 3px solid black;">
-            <div class="p-6 text-gray-900 dark:text-gray-100" style="background-color: #d70021;">
+            @foreach($servicedata as $serviceinfo)
+                <div class="card">
+                    <h2>Service Number: {{ $serviceinfo->serviceno }}</h2>
+                    <p>Customer Appointment Number: {{ $serviceinfo->customerappointmentnumber }}</p>
+                    <p>Staff Number: {{ $serviceinfo->staffnumber }}</p>
+                    <p>Type of Service: {{ $serviceinfo->typeofservice }}</p>
+                    <p>List Of Problems: {{ $serviceinfo->listofproblems }}</p>
+                    <p>Defective Units: {{ $serviceinfo->defectiveunits }}</p>
+                    <p>Actions Required: {{ $serviceinfo->actionsrequired }}</p>
+                    <p>Work Progress: {{ $serviceinfo->workprogress }}</p>
+                    <p>Work Remarks: {{ $serviceinfo->workremarks }}</p>
+                    <p>Service Progress: {{ $serviceinfo->serviceprogress }}</p>
+                    <p>Service Remarks: {{ $serviceinfo->serviceremarks }}</p>
+                    <p>Date and Time: {{ $serviceinfo->dateandtime }}</p>
+                    <p>Service Started: {{ $serviceinfo->servicestarted }}</p>
+                    <p>Order Reference Code: {{ $serviceinfo->orderreferencecode }}</p>
 
-            <h1 style="font-family:Century Gothic; color:white; font-size:30px; font-weight:bold;">Service Information</h1>
-                <table id="customers" style="border: 1px solid black; margin: auto;">
-                    <tr>
-                        <th>Service Number</th>
-                        <th>Customer Appointment Number</th>
-                        <th>Staff Number</th>
-                        <th>Type of Service</th>
-                        <th>List Of Problems</th>
-                        <th>Defective Units</th>
-                        <th>Actions Required</th>
-                        <th>Work Progress</th>
-                        <th>Work Remarks</th>
-                        <th>Service Progress</th>
-                        <th>Service Remarks</th>
-                        <th>Date and Time</th>
-                        <th>Service Started</th>
-                        <th>Order Reference Code</th>
-                    </tr>
-                    <tbody>
-                        @foreach($servicedata as $serviceinfo)
-                            <tr>
-                                <td>{{ $serviceinfo->serviceno }}</td>
-                                <td>{{ $serviceinfo->customerappointmentnumber }}</td>
-                                <td>{{ $serviceinfo->staffnumber }}</td>
-                                <td>{{ $serviceinfo->typeofservice }}</td>
-                                <td>{{ $serviceinfo->listofproblems }}</td>
-                                <td>{{ $serviceinfo->defectiveunits }}</td>
-                                <td>{{ $serviceinfo->actionsrequired }}</td>
-                                <td>{{ $serviceinfo->workprogress }}</td>
-                                <td>{{ $serviceinfo->workremarks }}</td>
-                                <td>{{ $serviceinfo->serviceprogress }}</td>
-                                <td>{{ $serviceinfo->serviceremarks }}</td>
-                                <td>{{ $serviceinfo->dateandtime }}</td>
-                                <td>{{ $serviceinfo->servicestarted }}</td>
-                                <td>{{ $serviceinfo->orderreferencecode }}</td>
-                            </tr>
-                        @endforeach
-                    </tbody>
-                </table>
+                    <a class="button" href="{{ route('staffdatabase') }}">
+                        BACK
+                    </a>
+                </div>
+            @endforeach
 
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <a class="button" href="{{ route('staffdatabase') }}">
-                    BACK
-                </a>
-                <!-- Additional space if needed -->
-            </div>
         </div>
     </div>
+</div>
 </x-app-layout>

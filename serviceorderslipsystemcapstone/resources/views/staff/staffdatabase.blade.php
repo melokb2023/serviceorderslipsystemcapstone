@@ -55,7 +55,7 @@
                       <tr>
                         <th>Staff Work Number</th>
                         <th>Service Number</th>
-                        <th>Staff Number</th>
+                        <th>Staff Name</th>
                         <th>Actions Required</th>
                         <th>Type of Service</th>
                         <th>Work Started</th>
@@ -65,12 +65,12 @@
 <tbody>
                 @foreach($staffdatabase as $staff)
                        <tr>
-                        <td>{{$staff->staffnumber}}</td>
+                        <td>{{$staff->worknumber}}</td>
                         <td>{{$staff->serviceno}}</td>
-                        <td>{{$staff->staffnumber}}</td>
+                        <td>{{$staff->staffname}}</td>
                         <td>{{$staff->actionsrequired}}</td>  
                         <td>{{$staff->typeofservice}}</td>  
-                        <td>{{ date('Y-m-d h:i A', strtotime($staff->workstarted)) }}</td>         
+                        <td>{{ date('F d, Y h:i A', strtotime($staff->workstarted)) }}</td>      
                         <td>{{$staff->workprogress}}</td>
                         <td>
                         <br>
@@ -80,7 +80,7 @@
                         <a style="background-color: #f6e05e; height: 0.10rem;" class="mt-4 text-black font-bold py-2 px-4 rounded" href="{{route('staffdatabase-show', ['serviceno' => $staff->serviceno])}}">View</a> 
                         <br>
                         <br>
-                        <a style="background-color: blue; height: 0.20rem;" class="mt-4 text-black font-bold py-2 px-4 rounded" href= "{{route('staffdatabase-edit', ['serviceno' => $staff->staffnumber]) }}" >Edit</a>
+                        <a style="background-color: blue; height: 0.20rem;" class="mt-4 text-black font-bold py-2 px-4 rounded" href= "{{route('staffdatabase-edit', ['serviceno' => $staff->serviceno]) }}" >Edit</a>
                         <br>
                         <br>
                      </td>

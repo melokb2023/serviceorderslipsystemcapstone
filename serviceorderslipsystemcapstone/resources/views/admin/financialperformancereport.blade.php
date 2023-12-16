@@ -1,92 +1,158 @@
-@include('layouts.adminnavigation')
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Service Report</title>
 
-<x-app-layout>
-    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8" style="background-color: #d70021; border: 3px solid black;">
-        <div class="p-6 text-black font-bold" style="border: 3px solid black; background-color: #e9e9e9; text-align: center;">
+    <!-- Styles -->
+    <style>
+        body {
+            font-family: 'Nunito', sans-serif;
+            background-color: #e9e9e9;
+            color: black;
+        }
 
-            <h1 style="color: black; font-weight: bold;">Service Report</h1>
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #d70021;
+            border: 3px solid black;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .chart-container {
+            background-color: #e9e9e9;
+            border: 3px solid black;
+            text-align: center;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        h1 {
+            font-weight: bold;
+        }
+
+        label {
+            display: block;
+            margin-top: 10px;
+        }
+
+        select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-top: 5px;
+        }
+
+        button {
+            background-color: #1e4f8f;
+            color: white;
+            font-weight: bold;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #144075;
+        }
+    </style>
+</head>
+<body class="antialiased">
+    @include('layouts.adminnavigation')
+
+    <x-app-layout>
+        <div class="container">
+            <h1>Service Report</h1>
 
             <!-- Add date filter options -->
-            <label for="dateFilter">Select Date Range:</label>
-            <select id="dateFilter" class="w-full p-2 border rounded">
-                <option value="all">All</option>
-                <option value="week">Current Week</option>
-                <option value="month">Current Month</option>
-                <option value="year">Entire Year</option>
-            </select>
+            <form action="{{ route('financialperformancereport') }}" method="get">
+                @csrf
+                <label for="monthFilter">Select Month:</label>
+                <select name="month" id="monthFilter">
+                    @for ($month = 1; $month <= 12; $month++)
+                        <option value="{{ $month }}">{{ date('F', mktime(0, 0, 0, $month, 1)) }}</option>
+                    @endfor
+                </select>
 
-            <!-- Add a button to trigger the chart update -->
-            <button onclick="updateChart()" class="mt-2 bg-blue-500 text-white font-bold py-2 px-4 rounded">Apply Filter</button>
+                <label for="yearFilter">Select Year:</label>
+                <select name="year" id="yearFilter">
+                    @for ($year = date('Y'); $year >= 2020; $year--)
+                        <option value="{{ $year }}">{{ $year }}</option>
+                    @endfor
+                </select>
 
-            <canvas id="financialPerformanceChart" class="mt-4"></canvas>
+                <!-- Add a button to trigger the chart update -->
+                <button type="submit" class="mt-2 bg-blue-500 text-white font-bold py-2 px-4 rounded">Apply Filter</button>
+            </form>
 
-            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-            <script>
-                document.addEventListener('DOMContentLoaded', function () {
-                    var ctx = document.getElementById('financialPerformanceChart').getContext('2d');
+            <!-- Chart container -->
+            <div id="financialPerformanceChart" class="chart-container">
+                @isset($data)
+                    <canvas id="financialPerformanceChartCanvas"></canvas>
+                @endisset
+            </div>
+        </div>
+    </x-app-layout>
 
-                    // Manually encode the PHP data into JSON format
-                    var rawData = '{!! json_encode($data, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP | JSON_UNESCAPED_UNICODE) !!}';
-                    var originalData = JSON.parse(rawData);
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    @isset($data)
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var ctx = document.getElementById('financialPerformanceChartCanvas').getContext('2d');
 
-                    // Initial rendering with all data
-                    renderChart(originalData);
-                });
+            // Manually encode the PHP data into JSON format
+            var rawData = '{!! json_encode($data, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP | JSON_UNESCAPED_UNICODE) !!}';
+            var originalData = JSON.parse(rawData);
 
-                function updateChart() {
-                    var selectedFilter = document.getElementById('dateFilter').value;
-                    var filteredData = originalData;
+            // Initial rendering with all data
+            renderChart(originalData);
+        });
 
-                    // Apply date filter
-                    if (selectedFilter === 'week') {
-                        filteredData = filterDataByWeek(filteredData);
-                    } else if (selectedFilter === 'month') {
-                        filteredData = filterDataByMonth(filteredData);
-                    } else if (selectedFilter === 'year') {
-                        filteredData = filterDataByYear(filteredData);
-                    }
+        function renderChart(data) {
+            var ctx = document.getElementById('financialPerformanceChartCanvas').getContext('2d');
 
-                    // Render the updated chart
-                    renderChart(filteredData);
-                }
+            var labels = Object.keys(data);
+            var values = Object.values(data);
 
-                function renderChart(data) {
-                    var ctx = document.getElementById('financialPerformanceChart').getContext('2d');
+            // Destroy the previous chart instance if it exists
+            if (window.myBarChart) {
+                window.myBarChart.destroy();
+            }
 
-                    var labels = Object.keys(data);
-                    var values = Object.values(data);
-
-                    // Destroy the previous chart instance if it exists
-                    if (window.myBarChart) {
-                        window.myBarChart.destroy();
-                    }
-
-                    window.myBarChart = new Chart(ctx, {
-                        type: 'bar',
-                        data: {
-                            labels: labels,
-                            datasets: [{
-                                label: 'Count',
-                                data: values,
-                                backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                                borderColor: 'rgba(75, 192, 192, 1)',
-                                borderWidth: 1
-                            }]
-                        },
-                        options: {
-                            scales: {
-                                y: {
-                                    beginAtZero: true,
-                                    precision: 0, // Set the precision to 0 for integer values
-                                    stepSize: 1
-                                }
+            // Only render the chart if new data is available
+            if (labels.length > 0) {
+                window.myBarChart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            label: 'Count',
+                            data: values,
+                            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                            borderColor: 'rgba(75, 192, 192, 1)',
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                precision: 0, // Set the precision to 0 for integer values
+                                stepSize: 1
                             }
                         }
-                    });
-                }
-
-                // ... (rest of the code remains the same)
-            </script>
-        </div>
-    </div>
-</x-app-layout>
+                    }
+                });
+            }
+        }
+    </script>
+@endisset
+</body>
+</html>

@@ -40,6 +40,7 @@ $customerrating->serviceno = $request->xserviceno;
 $customerrating->reviewerid = auth()->user()->id;
 $customerrating->reviewername = auth()->user()->name;
 $customerrating->review = $request->xreview;
+$customerrating->staffperformance = $request->xstaffperformance;
 $customerrating->rating = $request->xrating;
 $customerrating->save();
 $details = [

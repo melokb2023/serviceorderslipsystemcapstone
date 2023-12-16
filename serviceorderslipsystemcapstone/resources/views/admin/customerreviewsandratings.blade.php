@@ -48,7 +48,8 @@
                         <th>Reviewer ID</th>
                         <th>Reviewer Name</th>
                         <th>Review</th>
-                        <th>Rating</th>
+                        <th>Staff Performance Rating</th>
+                        <th>Overall Performance Rating</th>
                         <th>Options</th>
 </tr>
 
@@ -60,6 +61,7 @@
                         <td>{{$customer->reviewerid}}</td>
                         <td>{{$customer->reviewername}}</td>
                         <td>{{$customer->review}}</td>
+                        <td>{{$customer->staffperformance}}</td>
                         <td>{{$customer->rating}}</td>
                         <td>
                         <br>

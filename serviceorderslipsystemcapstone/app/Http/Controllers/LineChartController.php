@@ -6,24 +6,39 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
+use App\Models\Service;
 
 class LineChartController extends Controller
 {
-    public function LineChart(){
-        // Define an array of services for counting
-        $services = ['Reformatting', 'Replacement', 'Virus Removal', 'Computer Network Troubleshooting', 'Upgrade Hardware','Clean Up Files','Hardware Fixing','Peripheral Fixing','Software Installation','Reapplication'];
-        $data = [];
+    public function LineChart(Request $request)
+{
+    // Get the selected month and year from the request, default to the current month and year
+    $selectedDate = $request->input('date', now()->format('Y-m'));
 
-        foreach ($services as $service) {
-            $count = DB::table('servicedata')->where('typeofservice', $service)->count();
-            $data[$service] = $count;
-        }
+    // Extract year and month from the selected date
+    [$selectedYear, $selectedMonth] = explode('-', $selectedDate);
 
-        // Pass data to the view
-        return view('admin.financialperformancereport', compact('data'));
+    // Example: Assuming you have a 'created_at' field in your Service model
+    $services = ['Reformatting', 'Replacement', 'Virus Removal', 'Computer Network Troubleshooting', 'Upgrade Hardware', 'Clean Up Files', 'Hardware Fixing', 'Peripheral Fixing', 'Software Installation', 'Reapplication'];
 
+    $data = [];
 
+    foreach ($services as $service) {
+        $count = Service::where('typeofservice', $service)
+            ->whereYear('created_at', $selectedYear)
+            ->whereMonth('created_at', $selectedMonth)
+            ->count();
+
+        $data[$service] = $count;
     }
+
+    // Get distinct types of service for the combo box
+    $typesOfService = Service::distinct('typeofservice')->pluck('typeofservice');
+
+    // Return the view with the data
+    return view('admin.financialperformancereport', compact('data', 'typesOfService', 'selectedMonth', 'selectedYear'));
+}
 
     public function LineChart2()
 {

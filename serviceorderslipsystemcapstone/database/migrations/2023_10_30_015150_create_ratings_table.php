@@ -17,6 +17,7 @@ return new class extends Migration
             $table->integer('reviewerid');
             $table->string('reviewername');
             $table->string('review');
+            $table->integer('staffperformance');
             $table->integer('rating');
             $table->foreign('serviceno')->references('serviceno')->on('servicedata');
             $table->timestamps();

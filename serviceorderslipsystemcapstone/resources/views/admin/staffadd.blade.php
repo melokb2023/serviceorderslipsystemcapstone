@@ -4,7 +4,9 @@
         alert("{{ session('success_message') }}");
     </script>
 @endif
+
 @include('layouts.adminnavigation')
+
 <x-app-layout>
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8" style="background-color: #d70021; border: 3px solid black">
@@ -34,7 +36,6 @@
                             box-sizing: border-box;
                         }
 
-                        
                         select,
                         textarea,
                         input[type=datetime-local],
@@ -135,32 +136,51 @@
                             text-align: left;
                         }
 
-                        
-
                     </style>
 
                     <h6 style="font-family:Arial">Errors Encountered</h6>
                     @if($errors)
-                    <ul>
-                        @foreach($errors->all() as $error)
-                        <li>{{$error}}</li>
-                        @endforeach
-                    </ul>
+                        <ul>
+                            @foreach($errors->all() as $error)
+                                <li>{{$error}}</li>
+                            @endforeach
+                        </ul>
                     @endif
 
-                    <form style="text-align: center;" method="POST" action="{{ route('staff-store') }}">
-                        @csrf
+                    @php
+                        $availableStaffIDs = app(\App\Http\Controllers\StaffController::class)->getAvailableStaffIds();
+                    @endphp
 
-                     <!-- Form row with one column in one line -->
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="Enter a New Staff">Enter a New Staff</label>
-                                <input class="textexpand2" type="text" name="xstaffname" value="{{ old('xstaffname') }}" />
+                    @if($availableStaffIDs->isEmpty())
+                        <p>No available staff to be listed for the business process for the service.</p>
+                        <a class="button" href="{{ route('staff') }}">
+                            BACK
+                        </a>
+                    @else
+                        <form style="text-align: center;" method="POST" action="{{ route('staff-store') }}">
+                            @csrf
+
+                            <!-- Form row with one column in one line -->
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="xstaffid">Select Staff</label>
+                                    <select name="xstaffid">
+                                        @foreach($availableStaffIDs as $staffId)
+                                            @php
+                                                $user = \App\Models\User::find($staffId);
+                                            @endphp
+                                            <option value="{{ $user->id }}">{{ $user->id }}-{{ $user->name }} - {{ $user->email }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
                             </div>
-                        </div>
-                           <button class="btn btn-primary" type="submit">Submit Info</button>
-                    </form>
-                <br><br><br><br><br><br><br><br><br><br>
+
+                            <button class="btn btn-primary" type="submit">Submit Info</button>
+                        </form>
+                    @endif
+
+                    <!-- Additional content if needed -->
+
                 </div>
             </div>
         </div>

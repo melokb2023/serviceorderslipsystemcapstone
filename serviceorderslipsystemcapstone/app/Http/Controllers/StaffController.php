@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Staff;
+use App\Models\User;
 class StaffController extends Controller
 {
     /**
@@ -29,7 +30,16 @@ class StaffController extends Controller
     public function store(Request $request)
     {
         $staff = new Staff();
-        $staff->staffname = $request->xstaffname;
+        $staff->id = $request->xstaffid;
+        $user = User::find($request->xstaffid);
+
+        // Check if the User exists
+        if ($user) {
+            // Assuming you have 'name' and 'email' fields in your User model
+            $staff->staffname = $user->name;
+            $staff->staffemail = $user->email;
+            // Add more fields as needed
+        }
         session()->flash('success_message', 'Staff Has Been Added');
         $staff->save();
         return redirect()->route('staff');
@@ -79,5 +89,27 @@ class StaffController extends Controller
         $staff= Staff::where('staffnumber', $id);
         $staff->delete();
         return redirect()->route('staff');
+    }
+
+    public function getStaffUsers()
+    {
+        $staffUsers = User::where('usertype', 'staff')->get();
+        return view('admin.staffadd', compact('staffUsers'));
+    }
+
+    public function getAvailableStaffIds()
+    {
+        // Get all staff IDs
+        $allStaffIds = User::where('usertype', 'staff')->pluck('id')->all();
+    
+        // Get staff IDs that are not listed in service data
+        $listedStaffIds = Staff::pluck('id')->unique();
+    
+        // Filter available staff IDs
+        $availableStaffIds = collect($allStaffIds)->reject(function ($staffId) use ($listedStaffIds) {
+            return $listedStaffIds->contains($staffId);
+        });
+    
+        return $availableStaffIds;
     }
 }

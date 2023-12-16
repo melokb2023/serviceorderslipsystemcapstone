@@ -109,7 +109,29 @@
                                 </div>
 
                                 <div class="flex-items-center">
-                                    <label for="Rating">Rating</label>
+                                    <label for="Staff Performance Rating">Staff Performance Rating</label>
+                                    <div>
+                                    <select name="xstaffperformance">
+                                            <option style="color:orange" value="1">
+                                                <h2 class="star"> * - <h3 class="description">Very Poor</h3>
+                                                </option>
+                                            <option style="color:orange" value="2">
+                                                <h2 class="star"> * * </h2> - <h3 class="description"> Poor</h3>
+                                                </option>
+                                            <option style="color:orange" value="3">
+                                                <h2 class="star"> * * *</h2> - <h3 class="description"> Average</h3>
+                                                </option>
+                                            <option style="color:orange" value="4">
+                                                <h2 class="star"> * * * *</h2> - <h3 class="description"> Good</h3>
+                                                </option>
+                                            <option style="color:orange" value="5">
+                                                <h2 class="star"> * * * * * </h2> - <h3 class="description"> Very Good</h3>
+                                                </option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="flex-items-center">
+                                    <label for="Service Rating">Service Rating</label>
                                     <div>
                                         <select name="xrating">
                                             <option style="color:orange" value="1">

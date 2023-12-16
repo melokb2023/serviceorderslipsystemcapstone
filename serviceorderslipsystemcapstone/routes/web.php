@@ -3,16 +3,13 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ServiceController;
-use App\Http\Controllers\ServiceProgressController;
 use App\Http\Controllers\StaffDatabaseController;
 use App\Http\Controllers\LogsController;
 use App\Http\Controllers\CustomerAppointmentController;
 use App\Http\Controllers\RatingsController;
 use App\Http\Controllers\LineChartController;
-use App\Http\Controllers\FinancialandPerformanceDataController;
-use App\Http\Controllers\CheckStatusController;
 use App\Http\Controllers\StaffController;
-use Illuminate\Support\Facades\Mail;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -222,47 +219,7 @@ Route::patch('/service/updatestaff/{serno}', [ServiceController::class, 'updates
    ->middleware(['auth', 'verified'])
    ->name('service-updatestaff');
 
-
-
-
-
-
-
-//////////////////////SERVICE PROGRESS////////////////////////////////////////////////////////////////
-Route::get('/serviceprogress/add', [ServiceProgressController::class, 'getServiceNumber'])
-   ->middleware(['auth', 'verified'])
-   ->name('add-serviceprogress');
-
-Route::post('/serviceprogress/add',[ServiceProgressController::class, 'store'] )
-   ->middleware(['auth', 'verified'])
-   ->name('serviceprogress-store');   
-
-Route::get('/serviceprogress', [ServiceProgressController::class, 'index']) 
-   ->middleware(['auth', 'verified'])
-   ->name('serviceprogress');
-
-   //Save The Updated Data
-Route::patch('/serviceprogress/update/{servicenumber}', [ServiceProgressController::class, 'update']) 
-   ->middleware(['auth', 'verified'])
-   ->name('serviceprogress-update');
-
-Route::get('/serviceprogress/{servicenumber}', [ServiceProgressController::class, 'show']) 
-   ->middleware(['auth', 'verified'])
-   ->name('serviceprogress-show');
-
-//Transfer Record to Edit Form
-Route::get('/serviceprogress/edit/{servicenumber}', [ServiceProgressController::class, 'edit']) 
-   ->middleware(['auth', 'verified'])
-   ->name('serviceprogress-edit');
-
-
-  
 //STAFF DATABASE
-
-
-   //View Student Info
-
-
 
 Route::get('/staffdatabase/add', [StaffDatabaseController::class, 'getService']) 
    ->middleware(['auth', 'verified'])
@@ -292,7 +249,8 @@ Route::get('/staffdatabase/{serviceno}', [ServiceController::class, 'show2'])
 Route::get('/staffdatabase/edit/{serviceno}', [StaffDatabaseController::class, 'edit']) 
    ->middleware(['auth', 'verified'])
    ->name('staffdatabase-edit');
-   Route::get('/staffdashboard', [StaffDatabaseController::class, 'countWork'])->name('staffdashboard');
+
+Route::get('/staffdashboard', [StaffDatabaseController::class, 'countWork'])->name('staffdashboard');
 
 
 
@@ -361,6 +319,9 @@ Route::middleware([
 
 ////////////////////////////////////////////////////////////////STAFF LIST ///////////////////////////////////
 
+Route::get('/staff/add', [StaffController::class, 'getStaffUsers'])
+   ->middleware(['auth', 'verified'])
+   ->name('add-staff');
 
 Route::post('/staff/add',[StaffController::class, 'store'] )
 ->middleware(['auth', 'verified'])

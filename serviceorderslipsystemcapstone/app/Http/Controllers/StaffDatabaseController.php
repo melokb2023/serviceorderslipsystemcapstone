@@ -54,16 +54,20 @@ public function store(Request $request)
 
     // Update or insert into StaffDatabase table
     StaffDatabase::updateOrInsert(
-        ['serviceno' => $request->xserviceno,
-         'workstarted' => $request->xworkstarted,
-    ],
+        ['serviceno' => $request->xserviceno, 'workstarted' => $request->xworkstarted],
         [
             'actionsrequired' => $service ? $service->actionsrequired : null,
-            'staffnumber' => $service ? $service->staffnumber : null,
+            'staffname' => $service ? $service->staffname : null,
             'typeofservice' => $service ? $service->typeofservice : null,
             'workprogress' => $service ? $service->workprogress : null,
         ]
     );
+
+    // Check if the work progress is 'Completed'
+    if ($service && $service->workprogress == 'Completed') {
+        // Update the work progress to 'Completed' in StaffDatabase
+        StaffDatabase::where('serviceno', $request->xserviceno)->update(['workprogress' => 'Completed']);
+    }
 
     // Retrieve the updated StaffDatabase entries
     $staffdatabase = StaffDatabase::join('servicedata', 'staffdatabase.serviceno', '=', 'servicedata.serviceno')
@@ -102,29 +106,35 @@ public function store(Request $request)
      * Update the specified resource in storage.
      */
     public function update(Request $request, string $id)
-{
-    // Update the Service record
-    $servicedata = Service::where('serviceno', $id)
-        ->update([
-            'workprogress' => $request->xworkprogress,
-        ]);
-
-    // Retrieve the corresponding CustomerAppointment record
-    $customerappointment = CustomerAppointment::where('customerappointmentnumber', $id)->first();
-
-    // If the work progress is set to 'Completed', send an email notification
-    if ($request->xworkprogress == 'Completed' && $customerappointment) {
-        $details = [
-            'title' => 'Work Completion Notification',
-            'body' => 'The work number with ID ' . $id . ' is marked as completed. The admin will be notified of this.',
-        ];
-
-        // Send email to a recipient (replace 'recipient@example.com' with the actual recipient email)
-        Mail::to($customerappointment->customeremail)->send(new MyMail($details));
+    {
+        // Update the Service record
+        $servicedata = Service::where('serviceno', $id)
+            ->update([
+                'workprogress' => $request->xworkprogress,
+            ]);
+    
+        // Update the corresponding entry in the StaffDatabase table
+        StaffDatabase::where('serviceno', $id)
+            ->update([
+                'workprogress' => $request->xworkprogress,
+            ]);
+    
+        // Retrieve the corresponding CustomerAppointment record
+        $customerappointment = CustomerAppointment::where('customerappointmentnumber', $id)->first();
+    
+        // If the work progress is set to 'Completed', send an email notification
+        if ($request->xworkprogress == 'Completed' && $customerappointment) {
+            $details = [
+                'title' => 'Work Completion Notification',
+                'body' => 'The work number with ID ' . $id . ' is marked as completed. The admin will be notified of this.',
+            ];
+    
+            // Send email to a recipient (replace 'recipient@example.com' with the actual recipient email)
+            Mail::to($customerappointment->customeremail)->send(new MyMail($details));
+        }
+    
+        return redirect()->route('staffdatabase');
     }
-
-    return redirect()->route('staffdatabase');
-}
 
     /**
      * Remove the specified resource from storage.

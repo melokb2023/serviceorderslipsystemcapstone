@@ -58,14 +58,18 @@
                     <table style="width:100%">
                       <tr>
                         <th>Staff Number</th>
+                        <th>ID</th>
                         <th>Staff Name</th>
+                        <th>Staff Email</th>
                         <th>Options</th>
 </tr>
 <tbody>
                 @foreach($staff as $staffco)
                        <tr>
                         <td>{{$staffco->staffnumber}}</td>
-                        <td>{{$staffco->staffname}}</td>     
+                        <td>{{$staffco->id}}</td>
+                        <td>{{$staffco->staffname}}</td> 
+                        <td>{{$staffco->staffemail}}</td>       
                         <td>
                             
         <div class="form-group " style="display: flex; justify-content: center; align-items: center;">
@@ -90,7 +94,7 @@
                 </tbody>
                     </table>
 
-                    <a class="button" href="{{ route('startlist') }}">
+                    <a class="button" href="{{ route('add-staff') }}">
                         ADD STAFF
                     </a>
 

@@ -12,7 +12,10 @@ class Staff extends Model
     protected $table= 'staff';
     
     protected $fillable = [
+         'staffnumber',
+         'id',
          'staffname',
+         'staffemail',
     ];
 
 }

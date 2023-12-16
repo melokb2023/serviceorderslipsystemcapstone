@@ -8,11 +8,11 @@ use App\Models\CustomerAppointment;
 use App\Models\StaffDatabase;
 use App\Models\Staff;
 use App\Models\Rating;
+use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\DB;
 use App\Mail\MyMail;
-use App\Models\User;
 use Illuminate\Support\Facades\Redirect;
 
 
@@ -144,11 +144,14 @@ class ServiceController extends Controller
 
           // Get dateandtime from CustomerAppointment based on customerappointmentnumber
          $customerAppointment = CustomerAppointment::where('customerappointmentnumber', $request->xcustomerappointmentnumber)->first();
-
+         $staff = Staff::where('staffnumber', $request->xstaffnumber)->first();
     // Check if the CustomerAppointment exists
     if ($customerAppointment) {
         $servicedata->dateandtime = $customerAppointment->dateandtime;
         $servicedata->customername = $customerAppointment->customername;
+    }
+    if ($staff) {
+        $servicedata->staffname = $staff->staffname;
     }
         $servicedata->servicestarted = $request->xservicestarted;
         $servicedata->save();

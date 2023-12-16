@@ -128,6 +128,7 @@ button{
                             <th>Service Number</th>
                             <th>Customer Appointment Number</th>
                             <th>Staff Number</th>
+                            <th>Staff Name</th>
                             <th>Customer Name</th>
                             <th>Work Progress</th>
                             <th>Service Progress</th>
@@ -144,6 +145,7 @@ button{
                                     <td>{{ $serviceinfo->serviceno }}</td>
                                     <td>{{ $serviceinfo->customerappointmentnumber }}</td>
                                     <td>{{ $serviceinfo->staffnumber }} </td>
+                                    <td>{{ $serviceinfo->staffname }} </td>
                                     <td>{{ $serviceinfo->customername}} </td>
                                     <td class="@if($serviceinfo->serviceprogress == 'Ongoing') ongoing
                        @elseif($serviceinfo->serviceprogress == 'Finalizing') finalizing
