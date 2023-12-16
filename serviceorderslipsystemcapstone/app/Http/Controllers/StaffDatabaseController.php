@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\StaffDatabase;
 use App\Models\Service;
+use App\Models\Staff;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\DB;
 use App\Mail\MyMail;
 use App\Models\CustomerAppointment;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 
@@ -18,16 +20,20 @@ class StaffDatabaseController extends Controller
      */
     public function index()
     {
-        $staffdatabase = StaffDatabase::join('servicedata', 'staffdatabase.serviceno', '=', 'servicedata.serviceno')
-            ->select(
-                'staffdatabase.*',  // Select all columns from staffdatabase
-                'servicedata.typeofservice',
-                'servicedata.actionsrequired',  // Add more columns from servicedata as needed
-                'servicedata.workprogress'      // Add more columns from servicedata as needed
-            )
-            ->get();
-    
-        return view('staff.staffdatabase', compact('staffdatabase'));
+         $user = Auth::user();
+    $staff = Staff::where('staffname', $user->name)->get();
+
+    // Retrieve the updated StaffDatabase entries
+    $staffdatabase = StaffDatabase::join('servicedata', 'staffdatabase.serviceno', '=', 'servicedata.serviceno')
+        ->select(
+            'staffdatabase.*',
+            'servicedata.typeofservice',
+            'servicedata.actionsrequired',
+            'servicedata.workprogress'
+        )
+        ->get();
+
+    return view('staff.staffdatabase', compact('staff', 'staffdatabase'));
     }
        
 
@@ -186,6 +192,25 @@ public function getAvailableServiceNumbers(){
     });
 
     return $availableServiceNumbers;
+}
+
+public function SpecificStaff()
+{
+    // Check if the user is authenticated
+    if (Auth::check()) {
+        // Get the authenticated user
+        $user = Auth::user();
+
+        // Fetch staff data only for the authenticated user
+        $staff = Staff::where('staffname', $user->name)->get();
+
+        // Pass the staff data to the view
+        return view('staff.staffdatabase', compact('staffdatabase'));
+    } else {
+        // Handle the case when the user is not authenticated
+        // You might want to redirect them to the login page or show an error message
+        return redirect()->route('login');
+    }
 }
    
 

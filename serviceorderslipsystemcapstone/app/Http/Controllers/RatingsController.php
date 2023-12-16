@@ -106,9 +106,11 @@ return view('customer.startappointment');
 
     return $filteredServices;
 }
-        public function getService(){
+    public function getService(){
         $servicedata = Service::all();
         return view('customer.customerrating', compact('servicedata'));
     }
 
+
+ 
 }

@@ -73,10 +73,10 @@
                         <td>
                             
         <div class="form-group " style="display: flex; justify-content: center; align-items: center;">
-                        <a class="mx-2 bg-yellow-500  text-black font-bold py-2 px-4 rounded"
+        <a style="display: inline-block; margin-right: 0.5rem; padding: 0.5rem 1rem; background-color: #f6e05e; color: #000; text-decoration: none; font-weight: bold; border-radius: 0.25rem; transition: background-color 0.3s;"
    href="{{ route('staff-show', ['staff' => $staffco->staffnumber]) }}">View</a>
 
-<a class="mx-4 bg-blue-500  text-black font-bold py-2 px-4 rounded"
+<a style="display: inline-block; margin-right: 1rem; padding: 0.5rem 1rem; background-color: #1e4f8f; color: #fff; text-decoration: none; font-weight: bold; border-radius: 0.25rem; transition: background-color 0.3s;"
    href="{{ route('staff-edit', ['staff' => $staffco->staffnumber]) }}">Edit</a>
 <form method="POST"
       action="{{ route('staff-delete', ['staff' => $staffco->staffnumber ]) }}"

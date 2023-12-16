@@ -233,6 +233,10 @@ Route::get('/staffdatabase', [StaffDatabaseController::class, 'index'])
    ->middleware(['auth', 'verified'])
    ->name('staffdatabase');
 
+Route::get('/works', [StaffDatabaseController::class, 'SpecificStaff']) 
+   ->middleware(['auth', 'verified'])
+   ->name('works');
+
 Route::patch('/staffdatabase/update/{serviceno}', [StaffDatabaseController::class, 'update']) 
    ->middleware(['auth', 'verified'])
    ->name('staffdatabase-update');

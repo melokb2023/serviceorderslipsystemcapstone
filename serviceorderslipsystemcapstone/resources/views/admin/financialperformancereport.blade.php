@@ -11,6 +11,9 @@
             font-family: 'Nunito', sans-serif;
             background-color: #e9e9e9;
             color: black;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
         .container {
@@ -20,6 +23,8 @@
             border: 3px solid black;
             padding: 20px;
             box-sizing: border-box;
+            border-radius: 10px;
+            margin-top: 20px;
         }
 
         .chart-container {
@@ -28,38 +33,52 @@
             text-align: center;
             padding: 20px;
             margin-top: 20px;
+            border-radius: 10px;
         }
 
         h1 {
             font-weight: bold;
+            font-size: 28px;
+            text-align: center;
+            color: white;
         }
 
         label {
             display: block;
-            margin-top: 10px;
+            margin-top: 15px;
+            font-size: 16px;
+            font-weight: bold;
         }
 
         select {
             width: 100%;
-            padding: 10px;
+            padding: 12px;
             border: 1px solid #ccc;
             border-radius: 5px;
             margin-top: 5px;
+            font-size: 16px;
         }
 
         button {
             background-color: #1e4f8f;
             color: white;
             font-weight: bold;
-            padding: 10px 15px;
+            padding: 12px 20px;
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            margin-top: 10px;
+            margin-top: 15px;
+            font-size: 16px;
+            transition: background-color 0.3s;
         }
 
         button:hover {
             background-color: #144075;
+        }
+
+        canvas {
+            width: 100%;
+            border-radius: 10px;
         }
     </style>
 </head>
@@ -68,7 +87,7 @@
 
     <x-app-layout>
         <div class="container">
-            <h1>Service Report</h1>
+            <h1>Service Performance Report</h1>
 
             <!-- Add date filter options -->
             <form action="{{ route('financialperformancereport') }}" method="get">
@@ -88,7 +107,7 @@
                 </select>
 
                 <!-- Add a button to trigger the chart update -->
-                <button type="submit" class="mt-2 bg-blue-500 text-white font-bold py-2 px-4 rounded">Apply Filter</button>
+                <button type="submit" style="background-color: #1e4f8f; color: white; font-weight: bold; padding: 12px 20px; border: none; border-radius: 5px; cursor: pointer; margin-top: 15px; font-size: 16px; transition: background-color 0.3s;" onmouseover="this.style.backgroundColor='#144075'" onmouseout="this.style.backgroundColor='#1e4f8f'">Apply Filter</button>
             </form>
 
             <!-- Chart container -->

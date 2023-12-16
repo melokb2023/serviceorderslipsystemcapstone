@@ -89,15 +89,6 @@
                 </tbody>
                     </table>
 
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
                     <a class="button" href="{{ route('add-staffdatabase') }}">
                         Add Work Data
 </a>

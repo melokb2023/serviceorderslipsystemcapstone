@@ -12,34 +12,27 @@ use App\Models\Service;
 class LineChartController extends Controller
 {
     public function LineChart(Request $request)
-{
-    // Get the selected month and year from the request, default to the current month and year
-    $selectedDate = $request->input('date', now()->format('Y-m'));
-
-    // Extract year and month from the selected date
-    [$selectedYear, $selectedMonth] = explode('-', $selectedDate);
-
-    // Example: Assuming you have a 'created_at' field in your Service model
-    $services = ['Reformatting', 'Replacement', 'Virus Removal', 'Computer Network Troubleshooting', 'Upgrade Hardware', 'Clean Up Files', 'Hardware Fixing', 'Peripheral Fixing', 'Software Installation', 'Reapplication'];
-
-    $data = [];
-
-    foreach ($services as $service) {
-        $count = Service::where('typeofservice', $service)
-            ->whereYear('created_at', $selectedYear)
-            ->whereMonth('created_at', $selectedMonth)
-            ->count();
-
-        $data[$service] = $count;
+    {
+        $selectedYear = $request->input('year', date('Y'));
+        $selectedMonth = $request->input('month', date('m'));
+    
+        $services = ['Reformatting', 'Replacement', 'Virus Removal', 'Computer Network Troubleshooting', 'Upgrade Hardware', 'Clean Up Files', 'Hardware Fixing', 'Peripheral Fixing', 'Software Installation', 'Reapplication'];
+    
+        $data = [];
+    
+        foreach ($services as $service) {
+            // Count the number of services for the selected month, year, and service type
+            $count = Service::where('typeofservice', $service)
+                ->whereYear('servicestarted', $selectedYear)
+                ->whereMonth('servicestarted', $selectedMonth)
+                ->count();
+    
+            $data[$service] = $count;
+        }
+    
+        // Return the view with the data
+        return view('admin.financialperformancereport', compact('data', 'selectedMonth', 'selectedYear'));
     }
-
-    // Get distinct types of service for the combo box
-    $typesOfService = Service::distinct('typeofservice')->pluck('typeofservice');
-
-    // Return the view with the data
-    return view('admin.financialperformancereport', compact('data', 'typesOfService', 'selectedMonth', 'selectedYear'));
-}
-
     public function LineChart2()
 {
     // Get the current month
