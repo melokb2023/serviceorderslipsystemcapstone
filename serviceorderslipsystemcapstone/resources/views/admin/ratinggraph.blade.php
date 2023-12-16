@@ -1,45 +1,46 @@
 @include('layouts.adminnavigation')
 <x-app-layout>
-<div>
-    <h1 style = "text-align:center">Rating Performance Report</h1>
+    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8" style="background-color: #d70021; border: 3px solid black;">
+        <div class="p-6 text-black font-bold" style="border: 3px solid black; background-color: #e9e9e9; text-align: center;">
 
-    <canvas id="financialPerformanceChart"></canvas>
+            <h1 style="color: black; font-weight: bold;">Rating Performance Report</h1>
 
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            var ctx = document.getElementById('financialPerformanceChart').getContext('2d');
+            <canvas id="financialPerformanceChart" class="mt-4"></canvas>
 
-            // Manually encode the PHP data into JSON format
-            var rawData = '{!! json_encode($data, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP | JSON_UNESCAPED_UNICODE) !!}';
-            var data = JSON.parse(rawData);
+            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+            <script>
+                document.addEventListener('DOMContentLoaded', function () {
+                    var ctx = document.getElementById('financialPerformanceChart').getContext('2d');
 
-            var labels = Object.keys(data);
-            var values = Object.values(data);
+                    // Manually encode the PHP data into JSON format
+                    var rawData = '{!! json_encode($data, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP | JSON_UNESCAPED_UNICODE) !!}';
+                    var data = JSON.parse(rawData);
 
-            var myBarChart = new Chart(ctx, {
-                type: 'bar', // Change chart type to 'bar'
-                data: {
-                    labels: labels,
-                    datasets: [{
-                        label: 'Count',
-                        data: values,
-                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                        borderColor: 'rgba(75, 192, 192, 1)',
-                        borderWidth: 1
-                    }]
-                },
-                options: {
-                   
-                  
-                    scales: {
-                        y: {
-                            beginAtZero: true
+                    var labels = Object.keys(data);
+                    var values = Object.values(data);
+
+                    var myBarChart = new Chart(ctx, {
+                        type: 'bar',
+                        data: {
+                            labels: labels,
+                            datasets: [{
+                                label: 'Count',
+                                data: values,
+                                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                                borderColor: 'rgba(75, 192, 192, 1)',
+                                borderWidth: 1
+                            }]
+                        },
+                        options: {
+                            scales: {
+                                y: {
+                                    beginAtZero: true
+                                }
+                            }
                         }
-                    }
-                }
-            });
-        });
-    </script>
-</div>
-    </x-app-layout>
+                    });
+                });
+            </script>
+        </div>
+    </div>
+</x-app-layout>

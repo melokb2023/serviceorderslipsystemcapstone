@@ -47,7 +47,7 @@ class CustomerAppointmentController extends Controller
     Mail::to(auth()->user()->email)->send(new MyMail($details));
 
   
-
+    session()->flash('success_message', 'Data Stored');
     // Send email notification using the custom notification
 
 

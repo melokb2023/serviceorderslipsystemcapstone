@@ -301,17 +301,17 @@ Route::get('/staffdatabase/edit/{serviceno}', [StaffDatabaseController::class, '
 
 /////CUSTOMER RATING
 
-Route::get('/customerrating/add', [RatingsController::class, 'getAppointmentInfo'])
+Route::get('/customerrating/add', [RatingsController::class, 'getService'])
    ->middleware(['auth', 'verified'])
    ->name('add-customerrating');
+
+Route::post('/customerrating/add',[RatingsController::class, 'store'] )
+    ->middleware(['auth', 'verified'])
+    ->name('customerrating-store');
 
 Route::get('/customerrating', [RatingsController::class, 'getRatingInfo'])
    ->middleware(['auth', 'verified'])
    ->name('customerrating');
-
-Route::post('/customerrating/add',[RatingsController::class, 'store'] )
-->middleware(['auth', 'verified'])
-->name('customerrating-store');
 
 Route::get('/customerrating', [RatingsController::class, 'index']) 
    ->middleware(['auth', 'verified'])

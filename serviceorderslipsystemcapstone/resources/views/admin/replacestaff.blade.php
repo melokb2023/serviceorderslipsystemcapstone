@@ -7,6 +7,7 @@
         .form-row-group {
             display: flex;
             justify-content: space-between;
+            align-items:center;
         }
 
         .form-row-group .form-group {
@@ -136,8 +137,9 @@
                                     <option value="{{ $staffco->staffnumber }}">{{ $staffco->staffnumber }}-{{ $staffco->staffname }}</option>
                                     @endforeach
                                 </select>
-                            </div>
+                            
 <button type="submit" style="text-align:center;background-color:green">Replace Staff</button>
+                            </div>
                         </form>
                     @endforeach
                 </div>

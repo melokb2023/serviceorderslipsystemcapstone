@@ -1,3 +1,9 @@
+@if(session('success_message'))
+    <script>
+        // Replace this with your preferred pop-up library or implementation
+        alert("{{ session('success_message') }}");
+    </script>
+@endif
 @include('layouts.adminnavigation')
 <x-app-layout style="background-color:#d70021;">
 
@@ -128,7 +134,7 @@ button{
                             <th>Service Remarks</th>
                             <th>Date and Time</th>
                             <th>Service Started</th>
-                            <th>Order Reference Code</th>
+                            <th>Service Reference Code</th>
                             <th>Options</th>
                         </tr>
 

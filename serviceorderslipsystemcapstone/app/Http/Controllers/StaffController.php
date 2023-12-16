@@ -30,6 +30,7 @@ class StaffController extends Controller
     {
         $staff = new Staff();
         $staff->staffname = $request->xstaffname;
+        session()->flash('success_message', 'Staff Has Been Added');
         $staff->save();
         return redirect()->route('staff');
     }

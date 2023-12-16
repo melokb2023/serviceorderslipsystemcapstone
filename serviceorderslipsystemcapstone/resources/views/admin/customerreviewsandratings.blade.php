@@ -1,3 +1,9 @@
+@if(session('success_message'))
+    <script>
+        // Replace this with your preferred pop-up library or implementation
+        alert("{{ session('success_message') }}");
+    </script>
+@endif
 @include('layouts.adminnavigation')
 <x-app-layout>
 
@@ -38,6 +44,7 @@
                     <table  style="border: 5px solid black;width: 100%">
                     <tr>
                         <th>Rating Number</th>
+                        <th>Service Number</th>
                         <th>Reviewer ID</th>
                         <th>Reviewer Name</th>
                         <th>Review</th>
@@ -49,6 +56,7 @@
                 @foreach($customerrating as $customer)
                        <tr>
                         <td>{{$customer->ratingno}}</td>
+                        <td>{{$customer->serviceno}}</td>
                         <td>{{$customer->reviewerid}}</td>
                         <td>{{$customer->reviewername}}</td>
                         <td>{{$customer->review}}</td>
