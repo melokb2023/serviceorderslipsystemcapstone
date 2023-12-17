@@ -56,7 +56,7 @@ $details = [
 // Send email to a recipient (replace 'recipient@example.com' with the actual recipient email)
 Mail::to('kyle.melo@lccdo.edu.ph')->send(new MyMail($details));
 session()->flash('success_message', 'Rating Has Been Saved');
-return view('customer.startappointment');
+return view('dashboard');
     }
 
     /**
