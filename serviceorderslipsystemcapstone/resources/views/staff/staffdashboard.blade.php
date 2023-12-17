@@ -4,12 +4,16 @@
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
         <div style="background-color: #d70021;border: 3px solid black; padding: 20px;">
             <div class="text-center">
-                <h2 class="font-bold text-red-500 text-4xl mb-6">{{$staffDatabaseCount}} Total Number of Works</h2>
-                <p style = "font-family:Century Gothic;color:white;font-weight:bold">Description for Works: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque sed lectus sit amet urna dignissim efficitur.</p>
+            <div class="p-6 text-gray-900 dark:text-gray-100" style="background-color: #e9e9e9;">
+            <h2 style = "font-family:Century Gothic;font-weight:bold;color:#d70021" class="font-bold text-white text-2xl mb-4">{{$staffDatabaseCount}} Total Number of Works</h2>
+        </div>
+<p style="font-family:Century Gothic;color:white;font-weight:bold">
+    Elevate your experience with our dedicated service professionals. Our team is committed to delivering exceptional services tailored to your unique needs. Trust us to bring excellence and reliability to every service we provide.
+</p>
 
                 <!-- Service Performance Chart -->
                 <div style="background-color:white;padding: 20px;">
-                    <h2 style = "font-family:Century Gothic;color:black;font-weight:bold" class="text-2xl font-bold mb-4 text-center text-white">Service Performance Chart</h2>
+                    <h2 style = "font-family:Century Gothic;color:black;font-weight:bold" class="text-2xl font-bold mb-4 text-center text-white">Work Chart</h2>
                     <canvas id="servicePerformanceChart"></canvas>
                 </div>
             </div>
