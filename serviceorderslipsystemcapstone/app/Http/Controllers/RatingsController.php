@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Auth;
 use App\Mail\MyMail;
 use App\Models\Rating;
 use App\Models\Service;
@@ -42,6 +43,10 @@ $customerrating->reviewername = auth()->user()->name;
 $customerrating->review = $request->xreview;
 $customerrating->staffperformance = $request->xstaffperformance;
 $customerrating->rating = $request->xrating;
+$service= Service::where('serviceno', $request->xserviceno)->first();
+if ($service) {
+    $customerrating->assignedstaff = $service->staffname;
+}
 $customerrating->save();
 $details = [
     'title' => 'Work Completion Notification',
@@ -92,20 +97,25 @@ return view('customer.startappointment');
    
     
     public function getCompletedServicesforRating()
-{
-    // Get completed services with Rating
-    $completedServices = Service::where('serviceprogress', 'Completed')
-        ->get();
-
-    // Get service numbers that are not listed in service data
-    $listedServiceNumbers = Rating::pluck('serviceno')->unique();
-    $filteredServices = $completedServices->reject(function ($servicedata) use ($listedServiceNumbers) {
-        // Adjust the condition based on your specific requirements
-        return $listedServiceNumbers->contains($servicedata->serviceno);
-    });
-
-    return $filteredServices;
-}
+    {
+        // Get the name of the currently authenticated customer
+        $authenticatedCustomerName = Auth::user()->name;
+    
+        // Get service numbers assigned to the authenticated customer from Rating
+        $assignedServiceNumbers = Rating::where('reviewername', $authenticatedCustomerName)
+            ->pluck('serviceno')
+            ->unique();
+    
+        // Get completed services with Rating for the authenticated customer
+        $completedServices = Service::where('serviceprogress', 'Completed')
+            ->where('customername', $authenticatedCustomerName)
+            ->whereNotIn('serviceno', $assignedServiceNumbers)
+            ->get();
+    
+        // You may further filter or adjust the condition based on your specific requirements
+    
+        return $completedServices;
+    }
     public function getService(){
         $servicedata = Service::all();
         return view('customer.customerrating', compact('servicedata'));

@@ -16,6 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('serviceno');
             $table->integer('reviewerid');
             $table->string('reviewername');
+            $table->string('assignedstaff');
             $table->string('review');
             $table->integer('staffperformance');
             $table->integer('rating');

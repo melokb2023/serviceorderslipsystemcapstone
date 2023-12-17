@@ -162,10 +162,10 @@
                     options: {
                         scales: {
                             y: {
-                                beginAtZero: true,
-                                precision: 0, // Set the precision to 0 for integer values
-                                stepSize: 1
-                            }
+                        ticks: {
+                            precision: 0
+                        }
+                        }
                         }
                     }
                 });

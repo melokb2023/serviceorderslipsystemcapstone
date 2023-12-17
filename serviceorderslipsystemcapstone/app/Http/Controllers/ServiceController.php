@@ -32,20 +32,21 @@ class ServiceController extends Controller
                ->select('servicedata.*', 'customerappointment.*', 'staff.*');
 
     // Check if there is a filter for Customer Appointment Number
-    if ($request->has('customer_appointment_number_filter')) {
+    if ($request->filled('customer_appointment_number_filter')) {
         $query->where('servicedata.customerappointmentnumber', $request->input('customer_appointment_number_filter'));
     }
 
-    if ($request->has('customer_name_filter')) {
-        $query->where('servicedata.customername', $request->input('customer_name_filter'));
+    // Check if there is a filter for Customer Name
+    if ($request->filled('customer_name_filter')) {
+        $query->where('servicedata.customername', 'like', '%' . $request->input('customer_name_filter') . '%');
     }
 
     // Check if there is a filter for Type of Service
-    if ($request->has('typeofservice_filter') && $request->input('typeofservice_filter') !== 'All') {
+    if ($request->filled('typeofservice_filter') && $request->input('typeofservice_filter') !== 'All') {
         $query->where('servicedata.typeofservice', $request->input('typeofservice_filter'));
     }
 
-    $servicedata = $query->get();
+    $servicedata = $query->orderBy('serviceno', 'asc')->get();
 
     // Get distinct types of service for the combo box
     $typesOfService = Service::distinct('typeofservice')->pluck('typeofservice');

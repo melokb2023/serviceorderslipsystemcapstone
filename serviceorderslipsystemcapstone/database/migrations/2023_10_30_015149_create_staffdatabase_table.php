@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('actionsrequired',100);
             $table->string('typeofservice',100);
             $table->dateTime('workstarted', $precision = 0);
+            $table->string('actionstaken');
             $table->string('workprogress',100);
             $table->foreign('serviceno')->references('serviceno')->on('servicedata');
             $table->timestamps();

@@ -3,10 +3,19 @@
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8" style="background-color: #d70021; border: 3px solid black;">
         <div class="p-6 text-black font-bold" style="border: 3px solid black; background-color: #e9e9e9; text-align: center;">
 
-            <h1 style="color: black; font-weight: bold;">Rating Performance Report</h1>
+            <h1 style="color: black; font-weight: bold;">Overall Performance Report</h1>
+            <div class="mt-4">
+            <form action="{{ route('ratinggraph') }}" method="get" style="display: inline;">
+    @csrf
+    <button type="submit" class="btn btn-primary" style="background-color: #3490dc; color: #fff; border-radius: 8px; padding: 10px 20px; margin-right: 10px; font-weight: bold;">View Rating Graph</button>
+</form>
 
+<form action="{{ route('ratinggraphstaff') }}" method="get" style="display: inline;">
+    @csrf
+    <button type="submit" class="btn btn-primary" style="background-color: #38a169; color: #fff; border-radius: 8px; padding: 10px 20px; font-weight: bold;">View Rating Graph by Staff</button>
+</form>
+            </div>
             <canvas id="financialPerformanceChart" class="mt-4"></canvas>
-
             <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
             <script>
                 document.addEventListener('DOMContentLoaded', function () {
@@ -34,8 +43,10 @@
                         options: {
                             scales: {
                                 y: {
-                                    beginAtZero: true
-                                }
+                        ticks: {
+                            precision: 0
+                        }
+                        }
                             }
                         }
                     });

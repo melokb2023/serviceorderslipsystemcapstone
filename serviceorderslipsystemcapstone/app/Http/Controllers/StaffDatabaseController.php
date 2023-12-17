@@ -20,22 +20,34 @@ class StaffDatabaseController extends Controller
      */
     public function index()
     {
-         $user = Auth::user();
-    $staff = Staff::where('staffname', $user->name)->get();
-
-    // Retrieve the updated StaffDatabase entries
-    $staffdatabase = StaffDatabase::join('servicedata', 'staffdatabase.serviceno', '=', 'servicedata.serviceno')
-        ->select(
-            'staffdatabase.*',
-            'servicedata.typeofservice',
-            'servicedata.actionsrequired',
-            'servicedata.workprogress'
-        )
-        ->get();
-
-    return view('staff.staffdatabase', compact('staff', 'staffdatabase'));
+        // Check if the user is authenticated
+        if (Auth::check()) {
+            // Get the authenticated user
+            $user = Auth::user();
+    
+            // Fetch staff data only for the authenticated user
+            $staff = Staff::where('staffname', $user->name)->get();
+    
+            // Retrieve the StaffDatabase entries for the specific staff
+            $staffdatabase = StaffDatabase::join('servicedata', 'staffdatabase.serviceno', '=', 'servicedata.serviceno')
+                ->where('staffdatabase.staffname', $user->name)
+                ->select(
+                    'staffdatabase.*',
+                    'servicedata.typeofservice',
+                    'servicedata.actionsrequired',
+                    'servicedata.workprogress'
+                )
+                ->get();
+    
+            // Pass the staff data to the view
+            return view('staff.staffdatabase', compact('staff', 'staffdatabase'));
+        } else {
+            // Handle the case when the user is not authenticated
+            // You might want to redirect them to the login page or show an error message
+            return redirect()->route('login');
+        }
     }
-       
+    
 
 
 
@@ -55,37 +67,33 @@ class StaffDatabaseController extends Controller
  */
 public function store(Request $request)
 {
-    // Retrieve the associated Service record
-    $service = Service::where('serviceno', $request->xserviceno)->first();
+    try {
+        // Retrieve the associated Service record
+        $service = Service::where('serviceno', $request->xserviceno)->first();
 
-    // Update or insert into StaffDatabase table
-    StaffDatabase::updateOrInsert(
-        ['serviceno' => $request->xserviceno, 'workstarted' => $request->xworkstarted],
-        [
-            'actionsrequired' => $service ? $service->actionsrequired : null,
-            'staffname' => $service ? $service->staffname : null,
-            'typeofservice' => $service ? $service->typeofservice : null,
-            'workprogress' => $service ? $service->workprogress : null,
-        ]
-    );
+        // Update or insert into StaffDatabase table
+        StaffDatabase::updateOrInsert(
+            ['serviceno' => $request->xserviceno, 'workstarted' => $request->xworkstarted, 'actionstaken' => ''],
+            [
+                'actionsrequired' => $service ? $service->actionsrequired : null,
+                'staffname' => $service ? $service->staffname : null,
+                'typeofservice' => $service ? $service->typeofservice : null,
+                'workprogress' => $service ? $service->workprogress : null,
+            ]
+        );
 
-    // Check if the work progress is 'Completed'
-    if ($service && $service->workprogress == 'Completed') {
-        // Update the work progress to 'Completed' in StaffDatabase
-        StaffDatabase::where('serviceno', $request->xserviceno)->update(['workprogress' => 'Completed']);
+        // Check if the work progress is 'Completed'
+        if ($service && $service->workprogress == 'Completed') {
+            // Update the work progress to 'Completed' in StaffDatabase
+            StaffDatabase::where('serviceno', $request->xserviceno)->update(['workprogress' => 'Completed']);
+        }
+
+        // Redirect to the admin dashboard with a success message
+        return redirect()->route('staff.staffdatabase')->with('success', 'Data saved successfully.');
+    } catch (\Exception $e) {
+        // Log the error or handle it as needed
+        return redirect()->back()->with('error', 'Error saving data: ' . $e->getMessage());
     }
-
-    // Retrieve the updated StaffDatabase entries
-    $staffdatabase = StaffDatabase::join('servicedata', 'staffdatabase.serviceno', '=', 'servicedata.serviceno')
-        ->select(
-            'staffdatabase.*',
-            'servicedata.typeofservice',
-            'servicedata.actionsrequired',
-            'servicedata.workprogress'
-        )
-        ->get();
-
-    return view('staff.staffdatabase', compact('staffdatabase'));
 }
 
     /**
@@ -122,6 +130,7 @@ public function store(Request $request)
         // Update the corresponding entry in the StaffDatabase table
         StaffDatabase::where('serviceno', $id)
             ->update([
+                'actionstaken' => $request->xactionstaken,
                 'workprogress' => $request->xworkprogress,
             ]);
     
@@ -182,14 +191,20 @@ public function store(Request $request)
 }
 
 public function getAvailableServiceNumbers(){
-    // Get all service numbers
-    $allServiceNumbers = Service::all();
+    // Get the name of the currently authenticated staff member
+    $authenticatedStaffName = Auth::user()->name;
 
-    // Get service numbers that are not listed in staff database
-    $listedServiceNumbers = StaffDatabase::pluck('serviceno')->unique();
-    $availableServiceNumbers = $allServiceNumbers->reject(function ($servicedata) use ($listedServiceNumbers) {
-        return $listedServiceNumbers->contains($servicedata->serviceno);
-    });
+    // Get all service numbers assigned to the authenticated staff member
+    $assignedServiceNumbers = StaffDatabase::where('staffname', $authenticatedStaffName)
+        ->pluck('serviceno')
+        ->unique();
+
+    // Get all service numbers that are not assigned to any staff member or are assigned to the authenticated staff member
+    $availableServiceNumbers = Service::where(function ($query) use ($authenticatedStaffName) {
+        $query->whereNull('staffname')
+            ->orWhere('staffname', $authenticatedStaffName);
+    })->whereNotIn('serviceno', $assignedServiceNumbers)
+    ->get();
 
     return $availableServiceNumbers;
 }

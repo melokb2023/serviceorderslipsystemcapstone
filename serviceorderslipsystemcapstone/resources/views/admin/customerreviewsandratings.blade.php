@@ -47,6 +47,7 @@
                         <th>Service Number</th>
                         <th>Reviewer ID</th>
                         <th>Reviewer Name</th>
+                        <th>Assigned Staff</th>
                         <th>Review</th>
                         <th>Staff Performance Rating</th>
                         <th>Overall Performance Rating</th>
@@ -60,6 +61,7 @@
                         <td>{{$customer->serviceno}}</td>
                         <td>{{$customer->reviewerid}}</td>
                         <td>{{$customer->reviewername}}</td>
+                        <td>{{$customer->assignedstaff}}</td>
                         <td>{{$customer->review}}</td>
                         <td>{{$customer->staffperformance}}</td>
                         <td>{{$customer->rating}}</td>

@@ -118,6 +118,13 @@
                         <form method="POST" action="{{ route('staffdatabase-update',['serviceno' => $serviceinfo->serviceno]) }}">
                             @csrf
                             @method('patch')
+                            <div class="flex-items-center">
+                                <label for="Actions Taken">Actions Taken</label>
+                                <div>
+                                <input class="textexpand" type="text" name="xactionstaken" value="{{ old('xactionstaken') }}" />
+                                </div>
+                            </div>
+
 
                             <div class="flex-items-center">
                                 <label for="Work Progress">Work Progress</label>

@@ -69,6 +69,11 @@
     .button:hover {
         transform: scale(1.05);
     }
+
+    p{
+        font-family:"Century Gothic";
+        font-weight:bold;
+    }
 </style>
 
 <div class="py-12" style="display: flex; justify-content: center; align-items: center;">

@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 use App\Models\Service;
+use App\Models\Rating;
 
 class LineChartController extends Controller
 {
@@ -75,5 +76,29 @@ class LineChartController extends Controller
         return view('admin.ratinggraph', compact('data'));
 
 
+    }
+
+    public function BarChart2() {
+        // Get all unique staff names from the database
+        $staffNames = Rating::distinct('assignedstaff')->pluck('assignedstaff');
+    
+        // Fetch data for each staff and build an array for the chart
+        $chartData = [];
+    
+        foreach ($staffNames as $staffName) {
+            $scores = ['1', '2', '3', '4', '5'];
+            $data = [];
+    
+            foreach ($scores as $score) {
+                $count = Rating::where('assignedstaff', $staffName)
+                    ->where('rating', $score)
+                    ->count();
+                $data[] = $count;
+            }
+    
+            $chartData[$staffName] = $data;
+        }
+    
+        return view('admin.ratinggraphstaff', compact('chartData', 'staffNames'));
     }
 }

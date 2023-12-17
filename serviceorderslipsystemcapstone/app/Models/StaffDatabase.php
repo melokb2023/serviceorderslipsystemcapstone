@@ -18,6 +18,7 @@ class StaffDatabase extends Model
          'actionsrequired',
          'typeofservice',
          'workstarted',
+         'actionstaken',
          'workprogress',
     ];
 

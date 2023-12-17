@@ -15,6 +15,7 @@ class Rating extends Model
          'serviceno',
          'reviewerid',
          'reviewername',
+         'assignedstaff',
          'review',
          'rating',
     ];

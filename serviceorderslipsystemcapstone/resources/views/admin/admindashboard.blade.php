@@ -97,7 +97,8 @@
         <br>
         <!-- Chart Section -->
         <div style="background-color: #e9e9e9; border: 3px solid black;">
-            <h2 class="text-2xl font-bold mb-4 text-center text-white">Service Performance Chart</h2>
+        <h2 class="text-2xl font-bold mb-4 text-center text-white" style="color: black;">Service Performance Chart</h2>
+
             <canvas id="servicePerformanceChart"></canvas>
         </div>
         <br>
@@ -106,31 +107,36 @@
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            var ctx = document.getElementById('servicePerformanceChart').getContext('2d');
-            // Manually encode the PHP data into JSON format
-            var rawData = '{!! json_encode($data, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP | JSON_UNESCAPED_UNICODE) !!}';
-            var data = JSON.parse(rawData);
-            var labels = Object.keys(data);
-            var values = Object.values(data);
-            var myBarChart = new Chart(ctx, {
-                type: 'bar',
-                data: {
-                    labels: labels,
-                    datasets: [{
-                        label: 'Count',
-                        data: values,
-                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                        borderColor: 'rgba(75, 192, 192, 1)',
-                        borderWidth: 1
-                    }]
-                },
-                options: {
-                    scales: {
-                        y: {beginAtZero: true}
+    document.addEventListener('DOMContentLoaded', function () {
+        var ctx = document.getElementById('servicePerformanceChart').getContext('2d');
+        // Manually encode the PHP data into JSON format
+        var rawData = '{!! json_encode($data, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP | JSON_UNESCAPED_UNICODE | JSON_NUMERIC_CHECK) !!}';
+        var data = JSON.parse(rawData);
+        var labels = Object.keys(data);
+        var values = Object.values(data);
+        var myBarChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Count',
+                    data: values,
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        ticks: {
+                            precision: 0
+                        }
                     }
                 }
-            });
+            }
         });
-    </script>
+    });
+</script>
+
 </x-app-layout>

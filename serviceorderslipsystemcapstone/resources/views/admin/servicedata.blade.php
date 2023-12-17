@@ -21,17 +21,17 @@
     <input type="text" name="customer_name_filter" value="{{ request('customer_name_filter') }}">
 
     <label for="typeofservice_filter">Type of Service:</label>
-    <select name="typeofservice_filter">
+    <select name="typeofservice_filter" style="font-weight:bold">
         <option value="">All</option>
         @foreach($typesOfService as $typeOfService)
-            <option value="{{ $typeOfService }}" {{ request('typeofservice_filter') == $typeOfService ? 'selected' : '' }}>
+            <option style="font-weight:bold" value="{{ $typeOfService }}" {{ request('typeofservice_filter') == $typeOfService ? 'selected' : '' }}>
                 {{ $typeOfService }}
             </option>
         @endforeach
     </select>
 
-    <button type="submit" style="background-color: green; color: white;">Search</button>
-    <a href="{{ route('servicedata') }}" style="background-color: red; color: white;">Clear</a>
+    <button type="submit" class="search-button">Search</button>
+    <a href="{{ route('servicedata') }}" class="clear-button">Clear</a>
 </form>
 </div>
                     <br>
@@ -119,6 +119,43 @@ button{
     .completed {
         background-color: #4caf50; /* Set your desired color for Completed */
     }
+    .search-button {
+        background-color: green;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 8px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    .search-button:hover {
+        background-color: darkgreen;
+    }
+
+    /* Styling for the clear button */
+    .clear-button {
+        background-color: red;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 8px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        text-decoration: none;
+        display: inline-block;
+        font-weight:bold;
+    }
+
+    .clear-button:hover {
+        background-color: darkred;
+    }
+    input[type="text"] {
+        font-weight: bold;
+        /* Add any additional styles you want for the input boxes */
+    }
 
         </style>
 
@@ -160,8 +197,7 @@ button{
                                     <td>{{ date('F d, Y h:i A', strtotime($serviceinfo->servicestarted)) }}</td>
                                     <td>{{ $serviceinfo->orderreferencecode }}</td>
                                     <td>
-                                        <br>
-                                    <a style="background-color: #f6e05e; height: 0.20rem;"
+                                    <a style="background-color: #f6e05e; height: 0.12rem;"
                                           class="mt-4 text-black font-bold py-2 px-4 rounded"
                                           href="{{ route('service-show', ['serno' => $serviceinfo->serviceno]) }}">View</a>
                                             <br>
@@ -169,7 +205,6 @@ button{
                                             <a style="background-color: #3490dc; height: 0.20rem;"
                                              class="mt-4 text-black font-bold py-2 px-4 rounded"
                                              href="{{ route('service-edit', ['serno' => $serviceinfo->serviceno]) }}">Edit</a>
-                                             <br>
                                              <br>
                                              <a style="background-color: #9FE2BF; height: 2rem; width: 8rem; display: flex; align-items: center; justify-content: center; text-decoration: none; border: 1px solid #3490dc; border-radius: 5px;"
    class="mt-4 text-black font-bold py-2 px-4 rounded"
@@ -194,13 +229,6 @@ button{
                             @endforelse
                         </tbody>
                     </table>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
                     <a class="button" href="{{ route('add-service') }}">
                         START SERVICE
                     </a>

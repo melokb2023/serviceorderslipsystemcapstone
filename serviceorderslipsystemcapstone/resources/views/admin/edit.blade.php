@@ -178,7 +178,6 @@
                                     <label for="Service Progress">Service Progress</label>
                                     <select name="xserviceprogress">
                                         <option value="Ongoing">Ongoing</option>
-                                        <option value="Finalizing">Finalizing</option>
                                         <option value="Completed">Completed</option>
                                     </select>
                                 </div>

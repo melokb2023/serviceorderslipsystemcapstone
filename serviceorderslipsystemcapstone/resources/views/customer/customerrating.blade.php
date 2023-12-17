@@ -76,7 +76,8 @@
                         </ul>
                     @endif
                     @php
-    $completedServices = app(\App\Http\Controllers\RatingsController::class)->getCompletedServicesforRating();
+                    $completedServices = app(\App\Http\Controllers\RatingsController::class)
+        ->getCompletedServicesforRating(auth()->user()->name);
 @endphp
 
                     @if(auth()->check())
@@ -104,7 +105,7 @@
                                 <div class="flex-items-center">
                                     <label for="Review">Review</label>
                                     <div>
-                                        <input type="textarea" name="xreview" value="{{ old('xreview') }}" />
+                                        <input type="text" name="xreview" value="{{ old('xreview') }}" />
                                     </div>
                                 </div>
 
@@ -112,21 +113,11 @@
                                     <label for="Staff Performance Rating">Staff Performance Rating</label>
                                     <div>
                                     <select name="xstaffperformance">
-                                            <option style="color:orange" value="1">
-                                                <h2 class="star"> * - <h3 class="description">Very Poor</h3>
-                                                </option>
-                                            <option style="color:orange" value="2">
-                                                <h2 class="star"> * * </h2> - <h3 class="description"> Poor</h3>
-                                                </option>
-                                            <option style="color:orange" value="3">
-                                                <h2 class="star"> * * *</h2> - <h3 class="description"> Average</h3>
-                                                </option>
-                                            <option style="color:orange" value="4">
-                                                <h2 class="star"> * * * *</h2> - <h3 class="description"> Good</h3>
-                                                </option>
-                                            <option style="color:orange" value="5">
-                                                <h2 class="star"> * * * * * </h2> - <h3 class="description"> Very Good</h3>
-                                                </option>
+                                    <option style="color:orange" value="1">&#9733;</option> <!-- ★ -->
+            <option style="color:orange" value="2">&#9733;&#9733;</option> <!-- ★★ -->
+            <option style="color:orange" value="3">&#9733;&#9733;&#9733;</option> <!-- ★★★ -->
+            <option style="color:orange" value="4">&#9733;&#9733;&#9733;&#9733;</option> <!-- ★★★★ -->
+            <option style="color:orange" value="5">&#9733;&#9733;&#9733;&#9733;&#9733;</option> <!-- ★★★★★ -->
                                         </select>
                                     </div>
                                 </div>
@@ -134,21 +125,11 @@
                                     <label for="Service Rating">Service Rating</label>
                                     <div>
                                         <select name="xrating">
-                                            <option style="color:orange" value="1">
-                                                <h2 class="star"> * - <h3 class="description">Very Poor</h3>
-                                                </option>
-                                            <option style="color:orange" value="2">
-                                                <h2 class="star"> * * </h2> - <h3 class="description"> Poor</h3>
-                                                </option>
-                                            <option style="color:orange" value="3">
-                                                <h2 class="star"> * * *</h2> - <h3 class="description"> Average</h3>
-                                                </option>
-                                            <option style="color:orange" value="4">
-                                                <h2 class="star"> * * * *</h2> - <h3 class="description"> Good</h3>
-                                                </option>
-                                            <option style="color:orange" value="5">
-                                                <h2 class="star"> * * * * * </h2> - <h3 class="description"> Very Good</h3>
-                                                </option>
+                                        <option style="color:orange" value="1">&#9733;</option> <!-- ★ -->
+            <option style="color:orange" value="2">&#9733;&#9733;</option> <!-- ★★ -->
+            <option style="color:orange" value="3">&#9733;&#9733;&#9733;</option> <!-- ★★★ -->
+            <option style="color:orange" value="4">&#9733;&#9733;&#9733;&#9733;</option> <!-- ★★★★ -->
+            <option style="color:orange" value="5">&#9733;&#9733;&#9733;&#9733;&#9733;</option> <!-- ★★★★★ -->
                                         </select>
                                     </div>
                                 </div>

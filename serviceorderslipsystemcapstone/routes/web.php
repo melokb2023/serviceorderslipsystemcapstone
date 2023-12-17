@@ -303,6 +303,7 @@ Route::get('/financialperformancereport', 'App\Http\Controllers\LineChartControl
 Route::get('/financialperformancereport', 'App\Http\Controllers\LineChartController@BarChart');
 Route::get('/financialperformancereport', [LineChartController::class, 'LineChart'])->name('financialperformancereport');
 Route::get('/ratinggraph', [LineChartController::class, 'BarChart'])->name('ratinggraph');
+Route::get('/ratinggraphstaff', [LineChartController::class, 'BarChart2'])->name('ratinggraphstaff');
 //Route::post('/service/add',[StudentController::class, 'store'] )
 //->middleware(['auth', 'verified'])
 //-//>name('service-store');

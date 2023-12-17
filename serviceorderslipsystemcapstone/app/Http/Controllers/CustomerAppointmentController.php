@@ -52,7 +52,7 @@ class CustomerAppointmentController extends Controller
 
 
 
-    return view('customer.startappointment');
+    return view('customer.customerdashboard');
 }
 
 public function CustomerSpecificAppointment()
