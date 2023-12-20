@@ -2,19 +2,35 @@
 
 <x-app-layout>
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-        <div style="background-color: #d70021;border: 3px solid black; padding: 20px;">
+        <div style="background-color: #d70021; border: 3px solid black; padding: 20px;">
             <div class="text-center">
-            <div class="p-6 text-gray-900 dark:text-gray-100" style="background-color: #e9e9e9;">
-            <h2 style = "font-family:Century Gothic;font-weight:bold;color:#d70021" class="font-bold text-white text-2xl mb-4">{{$staffDatabaseCount}} Total Number of Works</h2>
-        </div>
-<p style="font-family:Century Gothic;color:white;font-weight:bold">
-    Elevate your experience with our dedicated service professionals. Our team is committed to delivering exceptional services tailored to your unique needs. Trust us to bring excellence and reliability to every service we provide.
-</p>
+                <div class="p-6 text-gray-900 dark:text-gray-100" style="background-color: #e9e9e9;">
+                    @if(Auth::check())
+                        <h2 style="font-family: Century Gothic; font-weight: bold; color: #d70021" class="font-bold text-white text-2xl mb-4">
+                            {{ $staffDatabaseCount }} Total Number of Works
+                        </h2>
+                        <h2 style="font-family: Century Gothic; font-weight: bold; color: #d70021" class="font-bold text-white text-2xl mb-4">
+                            {{ $ongoingWorksCount }} Ongoing Works
+                        </h2>
+                        <h2 style="font-family: Century Gothic; font-weight: bold; color: #d70021" class="font-bold text-white text-2xl mb-4">
+                            {{ $completedWorksCount }} Completed Works
+                        </h2>
 
-                <!-- Service Performance Chart -->
-                <div style="background-color:white;padding: 20px;">
-                    <h2 style = "font-family:Century Gothic;color:black;font-weight:bold" class="text-2xl font-bold mb-4 text-center text-white">Work Chart</h2>
-                    <canvas id="servicePerformanceChart"></canvas>
+                        <p style="font-family: Century Gothic; color: black; font-weight: bold">
+                            Elevate your experience with our dedicated service professionals. Our team is committed to delivering
+                            exceptional services tailored to your unique needs. Trust us to bring excellence and reliability to every
+                            service we provide.
+                        </p>
+
+                        <!-- Service Performance Chart -->
+                        <div style="background-color: white; padding: 20px;">
+                            <h2 style="font-family: Century Gothic; color: black; font-weight: bold" class="text-2xl font-bold mb-4 text-center text-white">Work Chart</h2>
+                            <canvas id="servicePerformanceChart"></canvas>
+                        </div>
+                    @else
+                        <p>Please log in to view staff dashboard.</p>
+                        {{-- You might want to provide a login link or redirect --}}
+                    @endif
                 </div>
             </div>
         </div>
@@ -47,9 +63,9 @@
                 options: {
                     scales: {
                         y: {
-                        ticks: {
-                            precision: 0
-                        }
+                            ticks: {
+                                precision: 0
+                            }
                         }
                     }
                 }

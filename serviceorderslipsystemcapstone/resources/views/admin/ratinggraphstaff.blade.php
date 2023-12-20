@@ -7,14 +7,16 @@
             <h1 style="color: black; font-weight: bold;">Rating Performance Report by Staff</h1>
 
             <div>
-    <label for="staffFilter" style="font-weight: bold;">Filter by Assigned Staff:</label>
-    <select id="staffFilter" style="font-weight: bold;">
-        @foreach($staffNames as $staffName)
-            <option value="{{ $staffName }}">{{ $staffName }}</option>
-        @endforeach
-    </select>
-    <button onclick="applyFilter()" style="background-color: #38a169; color: #fff; border: none; border-radius: 5px; padding: 10px 20px; font-weight: bold; cursor: pointer; transition: background-color 0.3s;" onmouseover="this.style.backgroundColor='#2f855a'" onmouseout="this.style.backgroundColor='#38a169'">Apply Filter</button>
-</div>
+                <label for="staffFilter" style="font-weight: bold;">Filter by Assigned Staff:</label>
+                <select id="staffFilter" style="font-weight: bold;">
+                    @foreach($staffNames as $staffName)
+                        <option value="{{ $staffName }}">{{ $staffName }}</option>
+                    @endforeach
+                </select>
+                <button onclick="applyFilter()" style="background-color: #38a169; color: #fff; border: none; border-radius: 5px; padding: 10px 20px; font-weight: bold; cursor: pointer; transition: background-color 0.3s;" onmouseover="this.style.backgroundColor='#2f855a'" onmouseout="this.style.backgroundColor='#38a169'">Apply Filter</button>
+            </div>
+
+            <p id="averageRating" style="font-weight: bold; margin-top: 10px;">Average Rating: N/A</p>
 
             <canvas id="financialPerformanceChart" class="mt-4"></canvas>
 
@@ -68,13 +70,17 @@
                             options: {
                                 scales: {
                                     y: {
-                        ticks: {
-                            precision: 0
-                        }
-                        }
+                                        ticks: {
+                                            precision: 0
+                                        }
+                                    }
                                 }
                             }
                         });
+
+                        // Calculate and display the average rating
+                        var averageRating = values.reduce((acc, val, idx) => acc + (val * (idx + 1)), 0) / values.reduce((acc, val) => acc + val, 0);
+                        document.getElementById('averageRating').innerText = 'Average Rating: ' + (isNaN(averageRating) ? 'N/A' : averageRating.toFixed(2));
                     }
                 }
             </script>

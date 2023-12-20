@@ -39,4 +39,8 @@ class Service extends Model
     {
         return $this->belongsTo(Staff::class, 'staffnumber');
     }
+    public function getDecryptedPasswordAttribute()
+    {
+        return decrypt($this->attributes['customerpassword']);
+    }
 }

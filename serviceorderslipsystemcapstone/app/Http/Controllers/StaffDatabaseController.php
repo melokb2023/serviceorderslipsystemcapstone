@@ -19,34 +19,48 @@ class StaffDatabaseController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    {
-        // Check if the user is authenticated
-        if (Auth::check()) {
-            // Get the authenticated user
-            $user = Auth::user();
-    
-            // Fetch staff data only for the authenticated user
-            $staff = Staff::where('staffname', $user->name)->get();
-    
-            // Retrieve the StaffDatabase entries for the specific staff
-            $staffdatabase = StaffDatabase::join('servicedata', 'staffdatabase.serviceno', '=', 'servicedata.serviceno')
-                ->where('staffdatabase.staffname', $user->name)
-                ->select(
-                    'staffdatabase.*',
-                    'servicedata.typeofservice',
-                    'servicedata.actionsrequired',
-                    'servicedata.workprogress'
-                )
-                ->get();
-    
-            // Pass the staff data to the view
-            return view('staff.staffdatabase', compact('staff', 'staffdatabase'));
-        } else {
-            // Handle the case when the user is not authenticated
-            // You might want to redirect them to the login page or show an error message
-            return redirect()->route('login');
+{
+    // Check if the user is authenticated
+    if (Auth::check()) {
+        // Get the authenticated user
+        $user = Auth::user();
+
+        // Fetch staff data only for the authenticated user
+        $staff = Staff::where('staffname', $user->name)->get();
+
+        // Retrieve the StaffDatabase entries for the specific staff
+        $staffdatabaseQuery = StaffDatabase::join('servicedata', 'staffdatabase.serviceno', '=', 'servicedata.serviceno')
+            ->where('staffdatabase.staffname', $user->name)
+            ->select(
+                'staffdatabase.*',
+                'servicedata.typeofservice',
+                'servicedata.actionsrequired',
+                'servicedata.customerpassword',
+                'servicedata.workprogress'
+            );
+
+        // Apply filters
+        if (request()->has('workNumber')) {
+            $staffdatabaseQuery->where('staffdatabase.worknumber', request('workNumber'));
         }
+
+      
+
+        if (request()->has('workProgress')) {
+            $staffdatabaseQuery->where('servicedata.workprogress', request('workProgress'));
+        }
+
+        // Retrieve the filtered StaffDatabase entries
+        $staffdatabase = $staffdatabaseQuery->get();
+
+        // Pass the staff data and filtered staffdatabase to the view
+        return view('staff.staffdatabase', compact('staff', 'staffdatabase'));
+    } else {
+        // Handle the case when the user is not authenticated
+        // You might want to redirect them to the login page or show an error message
+        return redirect()->route('login');
     }
+}
     
 
 
@@ -166,8 +180,25 @@ public function store(Request $request)
 
     public function countWork()
 {
+   
     // Assuming you have a StaffDatabase model
-    $staffDatabaseCount = StaffDatabase::count();
+    $user = Auth::user();
+
+    // Assuming you have a StaffDatabase model
+    $staffDatabaseCount = StaffDatabase::where('staffname', $user->name) // Assuming 'name' is the correct field in the 'User' model
+    ->count();
+
+  
+   // Count all ongoing works
+   $ongoingWorksCount = StaffDatabase::where('workprogress', 'Ongoing')
+   ->where('staffname', $user->name) // Assuming 'name' is the correct field in the 'User' model
+   ->count();
+
+// Count all completed works
+$completedWorksCount = StaffDatabase::where('workprogress', 'Completed')
+    ->where('staffname', $user->name) // Assuming 'name' is the correct field in the 'User' model
+    ->count();
+
     $currentMonth = now()->format('m'); // Assuming you have Carbon installed for the now() function
 
     // Define an array of months for counting
@@ -182,12 +213,13 @@ public function store(Request $request)
     foreach ($months as $monthNumber => $monthName) {
         // Count the number of services for each month
         $count = DB::table('staffdatabase')
+            ->where('staffname', $user->name)
             ->whereMonth('workstarted', $monthNumber)
             ->count();
 
         $data[$monthName] = $count;
     }
-    return view('staff.staffdashboard', compact('staffDatabaseCount','data'));
+    return view('staff.staffdashboard', compact('staffDatabaseCount', 'data', 'ongoingWorksCount', 'completedWorksCount'));
 }
 
 public function getAvailableServiceNumbers(){

@@ -44,7 +44,7 @@
                        <tr>
                         <td>{{$staff->serviceno}}</td>
                         <td>{{$staff->actionsrequired}}</td>     
-                        <td>{{$staff->workstarted}}</td>
+                        <td>{{ date('F d, Y h:i A', strtotime($staff->workstarted)) }}</td>
                        </tr>
                         @endforeach
                 </tbody>

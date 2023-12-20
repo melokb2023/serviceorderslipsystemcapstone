@@ -88,18 +88,12 @@
                     <h2>Service Number: {{ $serviceinfo->serviceno }}</h2>
                     <p>Customer Appointment Number: {{ $serviceinfo->customerappointmentnumber }}</p>
                     <p>Staff Number: {{ $serviceinfo->staffnumber }}</p>
+                    <p>Customer's Password: {{ $serviceinfo->customerpassword }}</p>
                     <p>Type of Service: {{ $serviceinfo->typeofservice }}</p>
                     <p>List Of Problems: {{ $serviceinfo->listofproblems }}</p>
                     <p>Defective Units: {{ $serviceinfo->defectiveunits }}</p>
                     <p>Actions Required: {{ $serviceinfo->actionsrequired }}</p>
                     <p>Work Progress: {{ $serviceinfo->workprogress }}</p>
-                    <p>Work Remarks: {{ $serviceinfo->workremarks }}</p>
-                    <p>Service Progress: {{ $serviceinfo->serviceprogress }}</p>
-                    <p>Service Remarks: {{ $serviceinfo->serviceremarks }}</p>
-                    <p>Date and Time: {{ $serviceinfo->dateandtime }}</p>
-                    <p>Service Started: {{ $serviceinfo->servicestarted }}</p>
-                    <p>Order Reference Code: {{ $serviceinfo->orderreferencecode }}</p>
-
                     <a class="button" href="{{ route('staffdatabase') }}">
                         BACK
                     </a>

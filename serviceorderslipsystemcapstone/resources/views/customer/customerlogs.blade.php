@@ -44,7 +44,7 @@
                    <tr style="text-align:center">
                         <td>{{$customer->customerappointmentnumber}}</td>
                         <td>{{$customer->customerno}} </td>
-                        <td>{{ date('Y-m-d h:i A', strtotime($customer->dateandtime)) }}</td>
+                        <td>{{ date('F d, Y h:i A', strtotime($customer->dateandtime)) }}</td>
                     </tr>
                     @endforeach
 </tbody>

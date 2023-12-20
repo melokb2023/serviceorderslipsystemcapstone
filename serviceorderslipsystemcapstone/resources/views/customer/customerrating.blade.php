@@ -94,7 +94,7 @@
                                             @foreach($completedServices as $service)
                                                 @if($service->customername === auth()->user()->name)
                                                     <option value="{{ $service->serviceno }}">
-                                                        Service Number {{ $service->serviceno }} - {{ $service->typeofservice }} - {{ $service->customername }}
+                                                        Service Number {{ $service->serviceno }} - Type of Service: {{ $service->typeofservice }} - Customer: {{ $service->customername }} - Staff: {{ $service->staffname }}
                                                     </option>
                                                 @endif
                                             @endforeach

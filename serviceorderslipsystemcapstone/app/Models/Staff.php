@@ -18,4 +18,9 @@ class Staff extends Model
          'staffemail',
     ];
 
+    public function getDecryptedPasswordAttribute()
+    {
+        // Replace 'customerpassword' with the actual attribute name in your model
+        return decrypt($this->attributes['customerpassword']);
+    }
 }

@@ -72,8 +72,12 @@ class LineChartController extends Controller
             $data[$score] = $count;
         }
 
+        $total = array_sum($data);
+        $totalCount = array_sum($data);
+        $average = $totalCount > 0 ? array_sum(array_keys($data)) / $totalCount : 0;
+
         // Pass data to the view
-        return view('admin.ratinggraph', compact('data'));
+        return view('admin.ratinggraph', compact('data', 'average'));
 
 
     }

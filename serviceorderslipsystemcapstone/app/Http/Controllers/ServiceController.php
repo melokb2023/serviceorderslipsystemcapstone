@@ -46,7 +46,15 @@ class ServiceController extends Controller
         $query->where('servicedata.typeofservice', $request->input('typeofservice_filter'));
     }
 
-    $servicedata = $query->orderBy('serviceno', 'asc')->get();
+    if ($request->filled('serviceprogress_filter')) {
+        $filterValue = $request->input('serviceprogress_filter');
+    
+        if ($filterValue === 'Ongoing' || $filterValue === 'Completed') {
+            $query->where('servicedata.serviceprogress', $filterValue);
+        }
+    }
+
+    $servicedata = $query->orderBy('serviceno', 'desc')->get();
 
     // Get distinct types of service for the combo box
     $typesOfService = Service::distinct('typeofservice')->pluck('typeofservice');
@@ -120,7 +128,7 @@ class ServiceController extends Controller
         $servicedata->typeofservice = $request->xtypeofservice;
         $servicedata->listofproblems = $request->xlistofproblems;
          // Hash the password before saving
-        $servicedata->customerpassword = Hash::make($request->xcustomerpassword);
+        $servicedata->customerpassword = $request->xcustomerpassword;
         $servicedata->defectiveunits = $request->xdefectiveunits;
         $servicedata->actionsrequired = $request->xactionsrequired;
         $servicedata->workprogress = "Ongoing";

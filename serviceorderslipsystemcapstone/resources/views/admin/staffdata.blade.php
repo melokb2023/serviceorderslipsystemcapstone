@@ -57,7 +57,6 @@
                <h6>List of Staff</h6>
                     <table style="width:100%">
                       <tr>
-                        <th>Staff Number</th>
                         <th>ID</th>
                         <th>Staff Name</th>
                         <th>Staff Email</th>
@@ -66,7 +65,6 @@
 <tbody>
                 @foreach($staff as $staffco)
                        <tr>
-                        <td>{{$staffco->staffnumber}}</td>
                         <td>{{$staffco->id}}</td>
                         <td>{{$staffco->staffname}}</td> 
                         <td>{{$staffco->staffemail}}</td>       

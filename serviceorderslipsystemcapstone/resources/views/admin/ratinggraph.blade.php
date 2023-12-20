@@ -3,8 +3,10 @@
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8" style="background-color: #d70021; border: 3px solid black;">
         <div class="p-6 text-black font-bold" style="border: 3px solid black; background-color: #e9e9e9; text-align: center;">
 
-            <h1 style="color: black; font-weight: bold;">Overall Performance Report</h1>
+            <h1 style="color: black; font-weight: bold;">Overall Performance Report</h1> 
+            <p class="mt-4" style="font-weight: bold;">Average Rating: {{ $average }}</p>
             <div class="mt-4">
+           
             <form action="{{ route('ratinggraph') }}" method="get" style="display: inline;">
     @csrf
     <button type="submit" class="btn btn-primary" style="background-color: #3490dc; color: #fff; border-radius: 8px; padding: 10px 20px; margin-right: 10px; font-weight: bold;">View Rating Graph</button>

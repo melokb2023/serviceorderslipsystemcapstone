@@ -57,7 +57,7 @@
                                     <td>{{ $customer->customerno . ' - ' . auth()->user()->name }}</td>
                                     <td>{{$customer->appointmentpurpose}}</td>
                                     <td>{{$customer->appointmenttype}}</td>
-                                    <td>{{$customer->dateandtime}}</td>
+                                    <td>{{ date('F d, Y h:i A', strtotime($customer->dateandtime)) }}</td>
                                     <td>
                                         @php
                                             $service = \App\Models\Service::where('customerappointmentnumber', $customer->customerappointmentnumber)->first();

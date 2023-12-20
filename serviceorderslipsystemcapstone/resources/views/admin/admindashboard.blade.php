@@ -138,5 +138,9 @@
         });
     });
 </script>
+<script>
+        // Count and update the total number of service types
+        document.getElementById('totalServiceTypes').innerText = document.getElementById('serviceList').childElementCount + ' Total Number of Service Types';
+    </script>
 
 </x-app-layout>
