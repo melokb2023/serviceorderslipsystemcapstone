@@ -82,7 +82,7 @@ class LineChartController extends Controller
 
     }
 
-    public function BarChart2() {
+    public function BarChart2($selectedStaff = null) {
         // Get all unique staff names from the database
         $staffNames = Rating::distinct('assignedstaff')->pluck('assignedstaff');
     
@@ -90,14 +90,31 @@ class LineChartController extends Controller
         $chartData = [];
     
         foreach ($staffNames as $staffName) {
-            $scores = ['1', '2', '3', '4', '5'];
             $data = [];
     
-            foreach ($scores as $score) {
-                $count = Rating::where('assignedstaff', $staffName)
-                    ->where('rating', $score)
-                    ->count();
-                $data[] = $count;
+            // Fetch data for each month and year
+            for ($year = date('Y'); $year >= 2020; $year--) {
+                for ($month = 1; $month <= 12; $month++) {
+                    $scores = ['1', '2', '3', '4', '5'];
+                    $monthlyData = [];
+    
+                    foreach ($scores as $score) {
+                        $count = Rating::where('rating', $score)
+                            ->whereYear('created_at', $year)
+                            ->whereMonth('created_at', $month);
+    
+                        // Check if a specific staff member is selected
+                        if ($selectedStaff !== null) {
+                            $count = $count->where('assignedstaff', $staffName);
+                        }
+    
+                        $count = $count->count();
+                        $monthlyData[] = $count;
+                    }
+    
+                    // Store data for the specific month and year
+                    $data["$year-$month"] = $monthlyData;
+                }
             }
     
             $chartData[$staffName] = $data;
@@ -105,4 +122,6 @@ class LineChartController extends Controller
     
         return view('admin.ratinggraphstaff', compact('chartData', 'staffNames'));
     }
+    
+
 }

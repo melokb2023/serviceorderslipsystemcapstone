@@ -4,7 +4,7 @@
         <div class="p-6 text-black font-bold" style="border: 3px solid black; background-color: #e9e9e9; text-align: center;">
 
             <h1 style="color: black; font-weight: bold;">Overall Performance Report</h1> 
-            <p class="mt-4" style="font-weight: bold;">Average Rating: {{ $average }}</p>
+            <p class="mt-4" style="font-weight: bold;">Company's Overall Rating :{{ $average }}</p>
             <div class="mt-4">
            
             <form action="{{ route('ratinggraph') }}" method="get" style="display: inline;">

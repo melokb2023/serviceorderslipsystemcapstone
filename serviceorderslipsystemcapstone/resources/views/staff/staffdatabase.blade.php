@@ -65,25 +65,24 @@
                     <br>
                     <br>
 
+                    <div class="form-group" style="display: flex; gap: 10px;">
                     <!-- Filter Form -->
                     <form method="get" action="{{ route('staffdatabase') }}" class="flex items-center justify-center space-x-4 mb-8">
-    <div class="flex items-center space-x-4">
+   
         <label for="workNumber" class="text-black font-bold">Work Number:</label>
         <input type="text" name="workNumber" value="{{ request('workNumber') }}" class="border rounded-md py-2 px-3">
-    </div>
-
-    <div class="flex items-center space-x-4">
+    
         <label for="workProgress" class="text-black font-bold">Work Progress:</label>
         <select name="workProgress" class="border rounded-md py-2 px-3">
             <option value="">Select Work Progress</option>
             <option value="Ongoing" {{ request('workProgress') == 'Ongoing' ? 'selected' : '' }}>Ongoing</option>
             <option value="Completed" {{ request('workProgress') == 'Completed' ? 'selected' : '' }}>Completed</option>
         </select>
-    </div>
+   
 
     <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-md font-bold hover:bg-blue-700 transition duration-300">Filter</button>
 </form>
-
+ </div>
                     <!-- Display Works Table or No Records Found Message -->
                     @if($staffdatabase !== null && $staffdatabase->count() > 0)
                         <table style="text-align:center">

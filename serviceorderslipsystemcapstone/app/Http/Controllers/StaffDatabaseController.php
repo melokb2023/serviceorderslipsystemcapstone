@@ -18,7 +18,7 @@ class StaffDatabaseController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
 {
     // Check if the user is authenticated
     if (Auth::check()) {
@@ -30,24 +30,29 @@ class StaffDatabaseController extends Controller
 
         // Retrieve the StaffDatabase entries for the specific staff
         $staffdatabaseQuery = StaffDatabase::join('servicedata', 'staffdatabase.serviceno', '=', 'servicedata.serviceno')
-            ->where('staffdatabase.staffname', $user->name)
-            ->select(
-                'staffdatabase.*',
-                'servicedata.typeofservice',
-                'servicedata.actionsrequired',
-                'servicedata.customerpassword',
-                'servicedata.workprogress'
-            );
+    ->where('staffdatabase.staffname', $user->name)
+    ->select(
+        'staffdatabase.*',
+        'servicedata.typeofservice',
+        'servicedata.actionsrequired',
+        'servicedata.customerpassword',
+        'servicedata.workprogress'
+    )
+    ->orderBy('workstarted', 'desc');
 
         // Apply filters
-        if (request()->has('workNumber')) {
-            $staffdatabaseQuery->where('staffdatabase.worknumber', request('workNumber'));
+        if ($request->filled('workNumber')) {
+            $staffdatabaseQuery->where('staffdatabase.worknumber', $request->input('workNumber'));
         }
 
       
 
-        if (request()->has('workProgress')) {
-            $staffdatabaseQuery->where('servicedata.workprogress', request('workProgress'));
+        if ($request->filled('workProgress')) {
+            $filterValue = $request->input('workProgress');
+        
+            if ($filterValue === 'Ongoing' || $filterValue === 'Completed') {
+                $staffdatabaseQuery->where('servicedata.workprogress', $filterValue);
+            }
         }
 
         // Retrieve the filtered StaffDatabase entries
