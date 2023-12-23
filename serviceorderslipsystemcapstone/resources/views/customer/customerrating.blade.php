@@ -59,15 +59,15 @@
                         }
 
                         .error-message {
-                            color: red;
+                            color: white;
                         }
 
                         .no-services {
-                            color: red;
+                            color: white;
                         }
                     </style>
 
-                    <h6>Errors Encountered</h6>
+                    
                     @if($errors)
                         <ul class="error-message">
                             @foreach($errors->all() as $error)

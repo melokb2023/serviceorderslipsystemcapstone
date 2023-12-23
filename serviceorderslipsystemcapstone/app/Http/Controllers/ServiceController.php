@@ -164,6 +164,12 @@ class ServiceController extends Controller
     }
         $servicedata->servicestarted = $request->xservicestarted;
         $servicedata->save();
+        $details = [
+            'title' => 'Order Reference Code',
+            'body' => 'Service has been placed. Your order reference code is: ' . $orderReferenceCode,
+        ];
+        // Send email to a recipient (replace 'recipient@example.com' with the actual recipient email)
+        Mail::to($customerAppointment->customeremail)->send(new MyMail($details));
         session()->flash('success_message', 'Data Stored');
         return redirect()->route('servicedata');
     }

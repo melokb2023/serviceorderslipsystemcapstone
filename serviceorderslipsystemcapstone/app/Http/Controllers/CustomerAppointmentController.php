@@ -55,18 +55,30 @@ class CustomerAppointmentController extends Controller
     return view('dashboard');
 }
 
-public function CustomerSpecificAppointment()
+public function CustomerSpecificAppointment(Request $request)
 {
     // Check if the user is authenticated
     if (Auth::check()) {
         // Get the authenticated user
         $user = Auth::user();
 
-        // Fetch appointments only for Kenneth (assuming Kenneth's user ID is 5)
-        $customerappointment = CustomerAppointment::where('customerno', $user->id)->get();
+        // Fetch all customer appointment numbers for Kenneth (assuming Kenneth's user ID is 5)
+        $appointmentNumbers = CustomerAppointment::where('customerno', $user->id)
+            ->pluck('customerappointmentnumber');
 
-        // Pass the appointments to the view
-        return view('customer.customerdashboard', compact('customerappointment'));
+        // Initialize a query to retrieve customer appointments based on the filtered appointment numbers
+        $query = CustomerAppointment::whereIn('customerappointmentnumber', $appointmentNumbers);
+
+        // Filter by appointment number if provided in the request
+        if ($request->has('appointment_number')) {
+            $query->where('customerappointment.customerappointmentnumber', $request->input('appointment_number'));
+        }
+
+        // Get the filtered appointments
+        $customerappointments = $query->get();
+
+        // Pass the appointments and appointment numbers to the view
+        return view('customer.customerdashboard', compact('customerappointments', 'appointmentNumbers'));
     } else {
         // Handle the case when the user is not authenticated
         // You might want to redirect them to the login page or show an error message
