@@ -43,6 +43,7 @@
         .form-input {
             padding: 8px;
             margin-bottom: 15px;
+            color:black;
         }
 
         .bg-blue-500 {

@@ -10,22 +10,30 @@ use Illuminate\Http\Request;
 
 class LogsController extends Controller
 {
-    public function ServiceLogs()
-    {
-        $servicedata = Service:: join('customerappointment', 'servicedata.customerappointmentnumber', '=', 'customerappointment.customerappointmentnumber')
-         ->select(
+    public function ServiceLogs(Request $request)
+{
+    $month = $request->input('month');
+    $year = $request->input('year');
+
+    $query = Service::join('customerappointment', 'servicedata.customerappointmentnumber', '=', 'customerappointment.customerappointmentnumber')
+        ->select(
             'servicedata.serviceno',
             'servicedata.customerappointmentnumber',
             'servicedata.typeofservice',
-            'servicedata.created_at'
+            'servicedata.dateandtime'
             // Add more columns as needed
-        )
-        ->get();
-       
-        return view('admin.adminlogs', compact('servicedata'));
+        );
+
+    if ($month && $year) {
+        $query->whereMonth('servicedata.dateandtime', $month)
+            ->whereYear('servicedata.dateandtime', $year);
     }
 
-    public function StaffLogs()
+    $servicedata = $query->get();
+
+    return view('admin.adminlogs', compact('servicedata', 'month', 'year'));
+}
+public function StaffLogs(Request $request)
 {
     // Check if the user is authenticated
     if (Auth::check()) {
@@ -36,19 +44,29 @@ class LogsController extends Controller
         $staff = Staff::where('staffname', $user->name)->first();
 
         if ($staff) {
-            // Fetch staff logs only for the specific staff
-            $staffdatabase = StaffDatabase::join('servicedata', 'staffdatabase.serviceno', '=', 'servicedata.serviceno')
+            // Extract month and year from the request
+            $month = $request->input('month');
+            $year = $request->input('year');
+
+            // Fetch staff logs only for the specific staff with optional month and year filtering
+            $staffdatabaseQuery = StaffDatabase::join('servicedata', 'staffdatabase.serviceno', '=', 'servicedata.serviceno')
                 ->select(
                     'staffdatabase.serviceno',
                     'staffdatabase.actionsrequired',
                     'staffdatabase.workstarted'
                     // Add more columns as needed
                 )
-                ->where('servicedata.staffname', $staff->staffname)
-                ->get();
+                ->where('servicedata.staffname', $staff->staffname);
 
-            // Pass the staff data and logs to the view
-            return view('staff.stafflogs', compact('staffdatabase'));
+            if ($month && $year) {
+                $staffdatabaseQuery->whereMonth('staffdatabase.workstarted', $month)
+                    ->whereYear('staffdatabase.workstarted', $year);
+            }
+
+            $staffdatabase = $staffdatabaseQuery->get();
+
+            // Pass the staff data, logs, and selected month and year to the view
+            return view('staff.stafflogs', compact('staffdatabase', 'month', 'year'));
         } else {
             // Handle the case when the staff data for the user is not found
             // You might want to redirect them to a profile setup page or show an error message
@@ -61,22 +79,29 @@ class LogsController extends Controller
     }
 }
 
-    public function CustomerLogs()
-    {
-      // Check if the user is authenticated
+public function CustomerLogs(Request $request)
+{
+    // Check if the user is authenticated
     if (Auth::check()) {
         // Get the authenticated user
         $user = Auth::user();
 
-        // Fetch appointments only for Kenneth (assuming Kenneth's user ID is 5)
-        $customerappointment = CustomerAppointment::where('customerno', $user->id)->get();
+        // Default values for month and year
+        $selectedMonth = $request->input('month', date('m'));
+        $selectedYear = $request->input('year', date('Y'));
 
-        // Pass the appointments to the view
-        return view('customer.customerlogs', compact('customerappointment'));
+        // Fetch appointments only for Kenneth (assuming Kenneth's user ID is 5)
+        $customerappointment = CustomerAppointment::where('customerno', $user->id)
+            ->whereMonth('dateandtime', $selectedMonth)
+            ->whereYear('dateandtime', $selectedYear)
+            ->get();
+
+        // Pass the appointments to the view along with month and year
+        return view('customer.customerlogs', compact('customerappointment', 'selectedMonth', 'selectedYear'));
     } else {
         // Handle the case when the user is not authenticated
         // You might want to redirect them to the login page or show an error message
         return redirect()->route('login');
     }
-    }
+}
 }

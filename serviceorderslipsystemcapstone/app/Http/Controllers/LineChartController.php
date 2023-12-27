@@ -73,55 +73,66 @@ class LineChartController extends Controller
         }
 
         $total = array_sum($data);
-        $totalCount = array_sum($data);
-        $average = $totalCount > 0 ? array_sum(array_keys($data)) / $totalCount : 0;
+    $totalCount = array_sum(array_map(function ($key, $value) {
+        return $key * $value;
+    }, array_keys($data), $data));
 
-        // Pass data to the view
-        return view('admin.ratinggraph', compact('data', 'average'));
+    $average = $totalCount > 0 ? round($totalCount / $total, 1) : 0;
+
+    // Pass data to the view
+    return view('admin.ratinggraph', compact('data', 'average'));
 
 
     }
 
-    public function BarChart2($selectedStaff = null) {
-        // Get all unique staff names from the database
-        $staffNames = Rating::distinct('assignedstaff')->pluck('assignedstaff');
-    
-        // Fetch data for each staff and build an array for the chart
-        $chartData = [];
-    
-        foreach ($staffNames as $staffName) {
-            $data = [];
-    
-            // Fetch data for each month and year
-            for ($year = date('Y'); $year >= 2020; $year--) {
-                for ($month = 1; $month <= 12; $month++) {
-                    $scores = ['1', '2', '3', '4', '5'];
-                    $monthlyData = [];
-    
-                    foreach ($scores as $score) {
-                        $count = Rating::where('rating', $score)
-                            ->whereYear('created_at', $year)
-                            ->whereMonth('created_at', $month);
-    
-                        // Check if a specific staff member is selected
-                        if ($selectedStaff !== null) {
-                            $count = $count->where('assignedstaff', $staffName);
-                        }
-    
-                        $count = $count->count();
-                        $monthlyData[] = $count;
+    public function BarChart2($selectedStaff = null)
+{
+  
+
+    // Get all unique staff names from the database
+    $staffNames = Rating::distinct('assignedstaff')->pluck('assignedstaff');
+
+    // Fetch data for each staff and build an array for the chart
+    $chartData = [];
+
+    foreach ($staffNames as $staffName) {
+        $data = [];
+
+        // Fetch data for each month and year
+        for ($year = date('Y'); $year >= 2020; $year--) {
+            for ($month = 1; $month <= 12; $month++) {
+                $monthlyData = [];  // Define an array of scores for counting
+                $scores = ['1', '2', '3', '4', '5'];
+
+                foreach ($scores as $score) {
+                    // Fetch the count of each rating for the specific staff, month, and year
+                    $count = Rating::where('assignedstaff', $staffName)
+                        ->whereYear('created_at', $year)
+                        ->whereMonth('created_at', $month)
+                        ->where('staffperformance', $score);
+                    
+
+                    // Check if a specific staff member is selected
+                    if ($selectedStaff !== null) {
+                        $count = $count->where('assignedstaff', $staffName);
                     }
-    
-                    // Store data for the specific month and year
-                    $data["$year-$month"] = $monthlyData;
+
+                    $count = $count->count();
+                    $monthlyData[] = $count;
                 }
+
+                // Store data for the specific month and year
+                $data["$year-$month"] = $monthlyData;
             }
-    
-            $chartData[$staffName] = $data;
         }
-    
-        return view('admin.ratinggraphstaff', compact('chartData', 'staffNames'));
+
+        
+        $chartData[$staffName] = $data;
     }
+
+    return view('admin.ratinggraphstaff', compact('chartData', 'staffNames'));
+}
+
     
 
 }

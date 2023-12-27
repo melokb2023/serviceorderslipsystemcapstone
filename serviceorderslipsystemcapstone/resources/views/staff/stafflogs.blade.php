@@ -1,78 +1,90 @@
 @include('layouts.staffnavigation')
 <x-app-layout>
-  
 
-    <div class="py-12" >
+    <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8" style="background-color:#d70021;border: 3px solid black;">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg" style="background-color:#d70021">
                 <div class="p-6 text-gray-900 dark:text-gray-100" style="background-color:#d70021">
-<style>
-         table,
-            tr {
-                font-family: "Century ";
-                width: 5%;
-                font-weight:bold;
-                width:100%;
-                background-color:white;
-            }
+                    <style>
+                        /* Your existing styles */
 
-            td {
-                font-family: "Arial";
-                background-color: #cbd6e4;
-            }
+                        table,
+                        tr {
+                            font-family: "Century ";
+                            width: 5%;
+                            font-weight: bold;
+                            width: 100%;
+                            background-color: white;
+                        }
 
-            h6{
-    font-weight:bold;
-    text-align:center;
-    font-size:30px;
-    font-family:"Century Gothic";
-    color:white;
+                        td {
+                            font-family: "Arial";
+                            background-color: #cbd6e4;
+                        }
 
- }
+                        h6 {
+                            font-weight: bold;
+                            text-align: center;
+                            font-size: 30px;
+                            font-family: "Century Gothic";
+                            color: white;
+                        }
+                    </style>
 
-</style>
+                    <h6>Staff Logs</h6>
 
-               <h6>Staff Logs</h6>
+                    <!-- Filter Form -->
+                    <form id="filterForm" method="get" action="{{ route('stafflogs') }}" class="mb-4">
+                        <label for="month" class="text-sm font-semibold">Select Month:</label>
+                        <select name="month" id="month" class="border border-gray-300 rounded px-2 py-2">
+                            @for ($i = 1; $i <= 12; $i++)
+                                <option value="{{ $i }}" @if ($i == $month) selected @endif>{{ date('F', mktime(0, 0, 0, $i, 1)) }}</option>
+                            @endfor
+                        </select>
+
+                        <label for="year" class="text-sm font-semibold">Select Year:</label>
+                        <select name="year" id="year" class="border border-gray-300 rounded px-2 py-2">
+                            @for ($i = date('Y'); $i >= 2020; $i--)
+                                <option value="{{ $i }}" @if ($i == $year) selected @endif>{{ $i }}</option>
+                            @endfor
+                    </select>
+                    </form>
+                    <!-- End Filter Form -->
+
                     <table>
-                      <tr>
-                        <th>Service Number</th>
-                        <th>Actions Taken</th>
-                        <th>Service Started</th>
-</tr>
-<tbody>
-                @foreach($staffdatabase as $staff)
-                       <tr>
-                        <td>{{$staff->serviceno}}</td>
-                        <td>{{$staff->actionsrequired}}</td>     
-                        <td>{{ date('F d, Y h:i A', strtotime($staff->workstarted)) }}</td>
-                       </tr>
-                        @endforeach
-                </tbody>
+                        <tr>
+                            <th>Service Number</th>
+                            <th>Actions Taken</th>
+                            <th>Service Started</th>
+                        </tr>
+                        <tbody>
+                            @foreach($staffdatabase as $log)
+                                <tr>
+                                    <td>{{ $log->serviceno }}</td>
+                                    <td>{{ $log->actionsrequired }}</td>
+                                    <td>{{ date('F d, Y h:i A', strtotime($log->workstarted)) }}</td>
+                                </tr>
+                            @endforeach
+                        </tbody>
                     </table>
 
                     <br>
                     <br>
                     <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
+                    <!-- Additional space if needed -->
                 </div>
             </div>
         </div>
     </div>
+
+    <!-- Add JavaScript to trigger form submission on dropdown change -->
+    <script>
+        document.getElementById('month').addEventListener('change', function() {
+            document.getElementById('filterForm').submit();
+        });
+
+        document.getElementById('year').addEventListener('change', function() {
+            document.getElementById('filterForm').submit();
+        });
+    </script>
 </x-app-layout>

@@ -17,6 +17,7 @@ class Rating extends Model
          'reviewername',
          'assignedstaff',
          'review',
+         'staffperformance',
          'rating',
     ];
 }
