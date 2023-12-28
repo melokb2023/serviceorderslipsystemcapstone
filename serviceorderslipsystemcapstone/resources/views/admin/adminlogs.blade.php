@@ -1,4 +1,4 @@
-@include('layouts.staffnavigation')
+@include('layouts.adminnavigation')
 <x-app-layout>
 
     <div class="py-12">
@@ -32,12 +32,12 @@
                     </style>
 
                     <div style="text-align: center;">
-                        <h6>Staff Logs</h6>
+                        <h6>Service Logs</h6>
                         <br>
                         <br>
 
                         <!-- Filter Form -->
-                        <form id="filterForm" method="get" action="{{ route('stafflogs') }}" class="flex items-center justify-center space-x-4">
+                        <form id="filterForm" method="get" action="{{ route('servicelogs') }}" class="flex items-center justify-center space-x-4">
                             <label for="month" class="text-sm font-semibold">Select Month:</label>
                             <select name="month" id="month" class="border border-gray-300 rounded px-2 py-2">
                                 @for ($i = 1; $i <= 12; $i++)
@@ -57,9 +57,9 @@
                         <br>
                         <br>
 
-                        <div id="staffLogsContainer">
-                            @if(count($staffdatabase) > 0)
-                                <table id="staffLogs" style="border: 1px solid black; margin: auto;">
+                        <div id="adminLogsContainer">
+                            @if(count($servicedata) > 0)
+                                <table id="adminLogs" style="border: 1px solid black; margin: auto;">
                                     <tr>
                                         <th>Service Number</th>
                                         <th>Actions Taken</th>
@@ -67,11 +67,11 @@
                                     </tr>
 
                                     <tbody>
-                                        @foreach($staffdatabase as $log)
+                                        @foreach($servicedata as $log)
                                             <tr>
                                                 <td>{{ $log->serviceno }}</td>
                                                 <td>{{ $log->actionsrequired }}</td>
-                                                <td>{{ date('F d, Y h:i A', strtotime($log->workstarted)) }}</td>
+                                                <td>{{ date('F d, Y h:i A', strtotime($log->dateandtime)) }}</td>
                                             </tr>
                                         @endforeach
                                     </tbody>

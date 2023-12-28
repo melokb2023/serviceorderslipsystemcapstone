@@ -245,29 +245,40 @@
                                 <td>{{ date('F d, Y h:i A', strtotime($serviceinfo->servicestarted)) }}</td>
 
                                 <td>
-                                    <div class="flex flex-col space-y-2">
-                                        <a href="{{ route('service-show', ['serno' => $serviceinfo->serviceno]) }}"
-                                           class="bg-yellow-400 text-black font-bold py-2 px-4 rounded hover:bg-yellow-500">View</a>
+                                <div class="grid grid-cols-2 gap-4">
+    <div>
+        <a href="{{ route('service-show', ['serno' => $serviceinfo->serviceno]) }}"
+           class="bg-yellow-400 text-black font-bold p-2 rounded hover:bg-yellow-500 h-10 w-20 text-base">View</a>
+    </div>
 
-                                        <a href="{{ route('service-edit', ['serno' => $serviceinfo->serviceno]) }}"
-                                           class="bg-blue-500 text-black font-bold py-2 px-4 rounded hover:bg-blue-600">Edit</a>
+    <div>
+        <a href="{{ route('service-edit', ['serno' => $serviceinfo->serviceno]) }}"
+           class="bg-blue-500 text-black font-bold p-2 rounded hover:bg-blue-600 h-10 w-20 text-base">Edit</a>
+    </div>
 
-                                        <a href="{{ route('service-editstaff', ['serno' => $serviceinfo->serviceno]) }}"
-                                           class="bg-green-300 text-black font-bold py-2 px-4 rounded hover:bg-green-400 flex items-center justify-center text-decoration-none border border-blue-500 rounded-md">
-                                            Change Staff
-                                        </a>
+    <div>
+        <a href="{{ route('service-editstaff', ['serno' => $serviceinfo->serviceno]) }}"
+           class="bg-green-300 text-black font-bold p-2 rounded hover:bg-green-400 h-10 w-20 flex items-center justify-center text-decoration-none border border-blue-500 rounded-md text-base">
+            Change Staff
+        </a>
+    </div>
 
-                                        <form method="POST"
-                                              action="{{ route('service-delete', ['serno' => $serviceinfo->serviceno ]) }}"
-                                              onsubmit="return confirm('Are you sure you want to delete this record?')">
-                                            @csrf
-                                            @method('delete')
-                                            <button class="bg-red-500 text-black font-bold py-2 px-4 rounded hover:bg-red-600"
-                                                    type="submit">Delete
-                                            </button>
-                                        </form>
-                                    </div>
-                                </td>
+    <div>
+        <form method="POST"
+              action="{{ route('service-delete', ['serno' => $serviceinfo->serviceno ]) }}"
+              onsubmit="return confirm('Are you sure you want to delete this record?')">
+            @csrf
+            @method('delete')
+            <button class="bg-red-500 text-black font-bold p-2 rounded hover:bg-red-600 h-10 w-20 text-base"
+                    type="submit">Delete
+            </button>
+        </form>
+    </div>
+</div>
+
+
+</td>
+
                             </tr>
                         @empty
                             <tr>

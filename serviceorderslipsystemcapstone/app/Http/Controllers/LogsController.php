@@ -20,6 +20,7 @@ class LogsController extends Controller
             'servicedata.serviceno',
             'servicedata.customerappointmentnumber',
             'servicedata.typeofservice',
+            'servicedata.actionsrequired',
             'servicedata.dateandtime'
             // Add more columns as needed
         );
@@ -53,6 +54,7 @@ public function StaffLogs(Request $request)
                 ->select(
                     'staffdatabase.serviceno',
                     'staffdatabase.actionsrequired',
+                    'staffdatabase.actionstaken',
                     'staffdatabase.workstarted'
                     // Add more columns as needed
                 )

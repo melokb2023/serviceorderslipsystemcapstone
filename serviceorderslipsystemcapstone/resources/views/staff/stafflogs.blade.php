@@ -61,7 +61,7 @@
                             @foreach($staffdatabase as $log)
                                 <tr>
                                     <td>{{ $log->serviceno }}</td>
-                                    <td>{{ $log->actionsrequired }}</td>
+                                    <td>{{ $log->actionstaken }}</td>
                                     <td>{{ date('F d, Y h:i A', strtotime($log->workstarted)) }}</td>
                                 </tr>
                             @endforeach

@@ -82,7 +82,7 @@
          style="background-color: #d70021; text-align: center; height: auto; width: 90%; max-width: 1200px; border: 3px solid black;">
         <div class="p-6 text-gray-900 dark:text-gray-100" style="background-color: #d70021;">
 
-            <h1>List of Customers</h1>
+            <h1>Rating Data</h1>
 
             @foreach($customerrating as $customer)
                 <div class="card">
