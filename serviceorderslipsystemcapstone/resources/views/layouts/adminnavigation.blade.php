@@ -198,7 +198,7 @@
                         <i class="fa fa-star"></i> {{ __('REVIEWS & RATINGS') }}
                     </a>
                     <a class="top-nav-link" href="{{ route('customerlist') }}" :active="request()->routeIs('customerlist')">
-                        <i class="fa fa-play"></i> {{ __('CUSTOMER LIST') }}
+                        <i class="fa fa-play"></i> {{ __('APPOINTMENTS') }}
                     </a>
                     <a class="top-nav-link" href="{{ route('reportmenu') }}" :active="request()->routeIs('reportmenu')">
                         <i class="fa fa-bar-chart"></i> {{ __('REPORTS') }}

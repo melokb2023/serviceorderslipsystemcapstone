@@ -1,57 +1,111 @@
 @include('layouts.adminnavigation')
 
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Customer Appointment Information') }}
-        </h2>
-    </x-slot>
+<x-app-layout style="background-color: #d70021;">
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-        <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg" style="background-color: #d70021; text-align: center">
-                <div class="p-6 text-gray-900 dark:text-gray-100">
+    <style>
+        table,
+        tr {
+            font-family: "Century ";
+            font-weight: bold;
+        }
 
-                    <h6 class="text-2xl font-semibold mb-4">List of Students</h6>
-                    
-                    <table class="w-full border-collapse border border-gray-300">
-                        <thead>
-                            <tr class="bg-gray-200 dark:bg-gray-700">
-                                <th class="py-2 px-4 border">Customer Number</th>
-                                <th class="py-2 px-4 border">Complete Name</th>
-                                <th class="py-2 px-4 border">Contact Number</th>
-                                <th class="py-2 px-4 border">Email</th>
-                                <th class="py-2 px-4 border">Address</th>
-                                <th class="py-2 px-4 border">Appointment Purpose</th>
-                                <th class="py-2 px-4 border">Appointment Type</th>
-                                <th class="py-2 px-4 border">Date and Time</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach($customerappointment as $customer)
-                                <tr class="hover:bg-gray-100 dark:hover:bg-gray-800">
-                                <td>{{$customer->customerappointmentnumber}}</td>
-                        <td>{{$customer->customerno}} </td>
-                        <td>{{$customer->customername}} </td>
-                        <td>{{$customer->customeremail}} </td>
-                        <td>{{$customer->appointmentpurpose}}</td>
-                        <td>{{$customer->appointmenttype}}</td>
-                        <td>{{ date('F d, Y h:i A', strtotime($customer->dateandtime)) }}</td>
+        td {
+            font-family: "Arial";
+            background-color: #cbd6e4;
+        }
 
-                        <td>
-                        @php
-                        $service = \App\Models\Service::where('customerappointmentnumber', $customer->customerappointmentnumber)->first();
-                              echo $service ? $service->serviceprogress : 'N/A';
-                        @endphp
-                        </td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                    
-                    <a class="mt-4 bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded inline-block" href="{{route('customerlist')}}">Back</a>
-                    
-                </div>
+        th {
+            font-family: "Arial";
+            background-color: white;
+        }
+
+        h1 {
+            font-family: Arial;
+            color: white;
+            font-size: 30px;
+            font-weight: bold;
+        }
+
+        .card {
+            background-color: #cbd6e4;
+            border: 1px solid black;
+            border-radius: 8px;
+            margin: 20px;
+            padding: 20px;
+            text-align: left;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 600px; /* Adjust the max-width as needed */
+            margin: auto;
+        }
+
+        .card h2 {
+            color: #d70021;
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            font-family: "Arial";
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .button {
+            border: none;
+            color: white;
+            text-decoration: none;
+            display: inline-block;
+            padding: 15px 32px;
+            background-color: green;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: transform 0.2s ease-in-out;
+            font-weight: bold;
+        }
+
+        .button:hover {
+            transform: scale(1.05);
+        }
+
+        p {
+            font-family: "Century Gothic";
+            font-weight: bold;
+        }
+    </style>
+
+    <div class="py-12" style="display: flex; justify-content: center; align-items: center;">
+
+        <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg"
+            style="background-color: #d70021; text-align: center; height: auto; width: 90%; max-width: 1200px; border: 3px solid black;">
+            <div class="p-6 text-gray-900 dark:text-gray-100" style="background-color: #d70021;">
+
+                <h1 style="font-family:Century Gothic; color:white; font-size:30px; font-weight:bold;">Service Information</h1>
+
+                @foreach($customerappointment as $customer)
+                    <div class="card">
+                        <h2>Customer Appointment Number: {{ $customer->customerappointmentnumber }}</h2>
+                        <p>Customer Number: {{ $customer->customerno }}</p>
+                        <p>Customer Name: {{ $customer->customername }}</p>
+                        <p>Email: {{ $customer->customeremail }}</p>
+                        <p>Appointment Purpose: {{ $customer->appointmentpurpose }}</p>
+                        <p>Appointment Type: {{ $customer->appointmenttype }}</p>
+                        <p>Date and Time: {{ date('F d, Y h:i A', strtotime($customer->dateandtime)) }}</p>
+                        <p>Service Progress: 
+                            @php
+                            $service = \App\Models\Service::where('customerappointmentnumber', $customer->customerappointmentnumber)->first();
+                            echo $service ? $service->serviceprogress : 'N/A';
+                            @endphp
+                        </p>
+
+                        <a class="button" href="{{ route('customerlist') }}">
+                            BACK
+                        </a>
+                    </div>
+                @endforeach
+
             </div>
         </div>
     </div>

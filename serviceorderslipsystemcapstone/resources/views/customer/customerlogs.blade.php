@@ -28,6 +28,10 @@
                             font-family: "Century Gothic";
                             color: white;
                         }
+                        p, label{
+                            color:white;
+                            font-weight:bold;
+                        }
                     </style>
 
                     <div style="text-align: center;">

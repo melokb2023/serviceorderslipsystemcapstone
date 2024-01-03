@@ -29,6 +29,9 @@
                             font-family: "Century Gothic";
                             color: white;
                         }
+                        label{
+                            color:white;
+                        }
                     </style>
 
                     <h6>Staff Logs</h6>

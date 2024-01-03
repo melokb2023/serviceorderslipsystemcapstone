@@ -1,4 +1,5 @@
 @include('layouts.adminnavigation')
+
 <x-app-layout>
 
     <div class="py-12">
@@ -12,7 +13,7 @@
                         table,
                         tr {
                             font-family: "Century ";
-                            width: 5%;
+                            width: 100%; /* Extend table width */
                             font-weight: bold;
                             background-color: white;
                         }
@@ -20,6 +21,7 @@
                         td {
                             font-family: "Arial";
                             background-color: #cbd6e4;
+                            padding: 8px; /* Adjust cell padding */
                         }
 
                         h6 {
@@ -28,6 +30,15 @@
                             font-size: 30px;
                             font-family: "Century Gothic";
                             color: white;
+                        }
+
+                        label {
+                            color: white;
+                        }
+
+                        p {
+                            color: white;
+                            font-weight: bold;
                         }
                     </style>
 
@@ -81,6 +92,7 @@
                             @endif
                         </div>
 
+                        <br>
                         <br>
                         <br>
                         <br>

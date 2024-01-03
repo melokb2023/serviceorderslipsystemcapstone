@@ -62,10 +62,32 @@ class ServiceController extends Controller
     return view('admin.servicedata', compact('servicedata', 'typesOfService'));
 }
     //////VIEW CUSTOMER LIST
-    public function CustomerList(){
-        $customerappointment = CustomerAppointment:: all();
-        return view('admin.customerdata', compact('customerappointment'));
+    public function CustomerList(Request $request)
+{
+    $month = $request->input('month');
+    $year = $request->input('year');
+
+    $query = CustomerAppointment::select(
+        'customerappointment.customerappointmentnumber',
+        'customerappointment.customerno',
+        'customerappointment.customername',
+        'customerappointment.customeremail',
+        'customerappointment.appointmentpurpose', // Corrected column name
+        'customerappointment.appointmenttype',
+        'customerappointment.dateandtime'
+        // Add more columns as needed
+    );
+
+    if ($month && $year) {
+        $query->whereMonth('customerappointment.dateandtime', $month)
+            ->whereYear('customerappointment.dateandtime', $year);
     }
+
+    $customerappointment = $query->get();
+
+    return view('admin.customerdata', compact('customerappointment', 'month', 'year'));
+}
+
     ///VIEW CUSTOMER
     public function ViewCustomer(string $id){
         $customerappointment = CustomerAppointment::where('customerappointmentnumber', $id)->get();

@@ -15,11 +15,22 @@ class RatingsController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
-        $customerrating = Rating::all();
-        return view('admin.customerreviewsandratings', compact('customerrating'));
+    public function index(Request $request)
+{
+    // Get all ratings initially
+    $query = Rating::query();
+
+    // Check if there is a rating_filter parameter in the URL
+    if ($request->has('rating_filter')) {
+        // If yes, filter the results by the selected rating
+        $query->where('rating', $request->input('rating_filter'));
     }
+
+    // Fetch the customerrating based on the applied filters
+    $customerrating = $query->get();
+
+    return view('admin.customerreviewsandratings', compact('customerrating'));
+}
 
     /**
      * Show the form for creating a new resource.
