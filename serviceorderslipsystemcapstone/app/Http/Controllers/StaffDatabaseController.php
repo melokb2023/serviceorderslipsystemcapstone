@@ -139,37 +139,53 @@ public function store(Request $request)
      * Update the specified resource in storage.
      */
     public function update(Request $request, string $id)
-    {
-        // Update the Service record
-        $servicedata = Service::where('serviceno', $id)
-            ->update([
-                'workprogress' => $request->xworkprogress,
-            ]);
-    
-        // Update the corresponding entry in the StaffDatabase table
-        StaffDatabase::where('serviceno', $id)
-            ->update([
-                'actionstaken' => $request->xactionstaken,
-                'workprogress' => $request->xworkprogress,
-            ]);
-    
-        // Retrieve the corresponding CustomerAppointment record
-        $customerappointment = CustomerAppointment::where('customerappointmentnumber', $id)->first();
-    
+{
+    // Update the Service record
+    $servicedata = Service::where('serviceno', $id)
+        ->update([
+            'workprogress' => $request->xworkprogress,
+        ]);
+
+    // Update the corresponding entry in the StaffDatabase table
+    StaffDatabase::where('serviceno', $id)
+        ->update([
+            'actionstaken' => $request->xactionstaken,
+            'workprogress' => $request->xworkprogress,
+        ]);
+
+    // Retrieve the corresponding CustomerAppointment record
+    $customerappointment = CustomerAppointment::where('customerappointmentnumber', $id)->first();
+
+    // If the work progress is set to 'Unable to Complete', send an email notification
+    if ($request->xworkprogress == 'Unable to Complete' && $customerappointment) {
+        $details = [
+            'title' => 'Work Completion Notification',
+            'body' => 'We regret to inform you that the work with ID ' . $id . ' cannot continue. Sorry for the inconvenience. We recommend seeking services from another shop. The admin will be notified of this.',
+        ];
+
+        // Send email to the customer
+        Mail::to($customerappointment->customeremail)->send(new MyMail($details));
+
+        // Flash a session message
+        session()->flash('success_message', 'Work Data Updated');
+    } elseif ($request->xworkprogress == 'Completed') {
         // If the work progress is set to 'Completed', send an email notification
-        if ($request->xworkprogress == 'Completed' && $customerappointment) {
-            $details = [
-                'title' => 'Work Completion Notification',
-                'body' => 'The work number with ID ' . $id . ' is marked as completed. The admin will be notified of this.',
-            ];
-    
-            // Send email to a recipient (replace 'recipient@example.com' with the actual recipient email)
-            Mail::to($customerappointment->customeremail)->send(new MyMail($details));
-        }
-    
-        return redirect()->route('staffdatabase');
+        $details = [
+            'title' => 'Work Completion Notification',
+            'body' => 'The work with ID ' . $id . ' is marked as completed. The admin will be notified of this.',
+        ];
+
+        // Send email to the customer
+        Mail::to($customerappointment->customeremail)->send(new MyMail($details));
+
+        // Flash a session message
+        session()->flash('success_message', 'Work Progress Updated: Completed');
+    } else {
+        session()->flash('success_message', 'Work Progress Updated');
     }
 
+    return redirect()->route('staffdatabase');
+}
     /**
      * Remove the specified resource from storage.
      */

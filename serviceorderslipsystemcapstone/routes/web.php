@@ -112,7 +112,7 @@ Route::get('/financialperformancereport', function () {
 })->name('financialperformancereport');
 
 
-Route::get('/checkreferencenumber', function () {
+Route::get('/check-service-status', function () {
    return view('customer.checkreferencenumber');
 })->name('checkreferencenumber');
 

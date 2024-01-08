@@ -28,6 +28,7 @@ return new class extends Migration
             $table->string('serviceremarks',100);
             $table->dateTime('dateandtime', $precision = 0);
             $table->dateTime('servicestarted', $precision = 0);
+            $table->dateTime('serviceend', $precision = 0);
             $table->string('orderreferencecode')->nullable();
             $table->timestamps();
             $table->foreign('customerappointmentnumber')->references('customerappointmentnumber')->on('customerappointment');

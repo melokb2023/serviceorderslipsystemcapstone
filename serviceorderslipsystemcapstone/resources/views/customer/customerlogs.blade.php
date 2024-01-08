@@ -11,7 +11,7 @@
                         table,
                         tr {
                             font-family: "Century ";
-                            width: 5%;
+                            width: 100%; /* Extend table width */
                             font-weight: bold;
                             background-color: white;
                         }
@@ -19,6 +19,13 @@
                         td {
                             font-family: "Arial";
                             background-color: #cbd6e4;
+                            padding: 8px; /* Adjust cell padding */
+                        }
+
+                        th {
+                            font-family: "Century Gothic";
+                            background-color: #cbd6e4;
+                            color: black;
                         }
 
                         h6 {
@@ -28,9 +35,14 @@
                             font-family: "Century Gothic";
                             color: white;
                         }
-                        p, label{
-                            color:white;
-                            font-weight:bold;
+
+                        label {
+                            color: white;
+                        }
+
+                        p {
+                            color: white;
+                            font-weight: bold;
                         }
                     </style>
 
@@ -51,9 +63,12 @@
 
                             <label for="year" class="text-sm font-semibold">Select Year:</label>
                             <select name="year" id="year" class="border border-gray-300 rounded px-2 py-2">
-                                @for ($i = date('Y'); $i >= 2020; $i--)
-                                    <option value="{{ $i }}" @if ($i == $selectedYear) selected @endif>{{ $i }}</option>
-                                @endfor
+                                 @php
+            $currentYear = date('Y');
+        @endphp
+        @for ($i = 2000; $i <= 2099; $i++)
+            <option value="{{ $i }}" @if ($i == $selectedYear) selected @endif>{{ $i }}</option>
+        @endfor
                             </select>
                         </form>
                         <!-- End Filter Form -->
@@ -66,7 +81,7 @@
                                 <table id="customerLogs" style="border: 1px solid black; margin: auto;">
                                     <tr>
                                         <th>Customer Appointment Number</th>
-                                        <th>User ID</th>
+                                        <th>Appointment Type</th>
                                         <th>Date and Time</th>
                                     </tr>
 
@@ -74,7 +89,7 @@
                                         @foreach($customerappointment as $customer)
                                             <tr>
                                                 <td>{{ $customer->customerappointmentnumber }}</td>
-                                                <td>{{ $customer->customerno }}</td>
+                                                <td>{{ $customer->appointmenttype}}</td>
                                                 <td>{{ date('F d, Y h:i A', strtotime($customer->dateandtime)) }}</td>
                                             </tr>
                                         @endforeach
@@ -85,6 +100,7 @@
                             @endif
                         </div>
 
+                        <br>
                         <br>
                         <br>
                         <br>

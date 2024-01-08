@@ -20,8 +20,13 @@ class LogsController extends Controller
             'servicedata.serviceno',
             'servicedata.customerappointmentnumber',
             'servicedata.typeofservice',
+            'servicedata.staffname',
+            'servicedata.workprogress',
+            'servicedata.customername',
             'servicedata.actionsrequired',
-            'servicedata.dateandtime'
+            'servicedata.dateandtime',
+            'servicedata.servicestarted',
+            'servicedata.serviceend',
             // Add more columns as needed
         );
 

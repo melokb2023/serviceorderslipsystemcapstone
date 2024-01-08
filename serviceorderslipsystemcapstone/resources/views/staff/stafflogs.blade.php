@@ -37,21 +37,24 @@
                     <h6>Staff Logs</h6>
 
                     <!-- Filter Form -->
-                    <form id="filterForm" method="get" action="{{ route('stafflogs') }}" class="mb-4">
-                        <label for="month" class="text-sm font-semibold">Select Month:</label>
-                        <select name="month" id="month" class="border border-gray-300 rounded px-2 py-2">
-                            @for ($i = 1; $i <= 12; $i++)
-                                <option value="{{ $i }}" @if ($i == $month) selected @endif>{{ date('F', mktime(0, 0, 0, $i, 1)) }}</option>
-                            @endfor
-                        </select>
+                    <form id="filterForm" method="get" action="{{ route('stafflogs') }}" class="mb-4 text-center">
+    <label for="month" class="text-sm font-semibold">Select Month:</label>
+    <select name="month" id="month" class="border border-gray-300 rounded px-2 py-2">
+        @for ($i = 1; $i <= 12; $i++)
+            <option value="{{ $i }}" @if ($i == $month) selected @endif>{{ date('F', mktime(0, 0, 0, $i, 1)) }}</option>
+        @endfor
+    </select>
 
-                        <label for="year" class="text-sm font-semibold">Select Year:</label>
-                        <select name="year" id="year" class="border border-gray-300 rounded px-2 py-2">
-                            @for ($i = date('Y'); $i >= 2020; $i--)
-                                <option value="{{ $i }}" @if ($i == $year) selected @endif>{{ $i }}</option>
-                            @endfor
-                    </select>
-                    </form>
+    <label for="year" class="text-sm font-semibold">Select Year:</label>
+    <select name="year" id="year" class="border border-gray-300 rounded px-2 py-2">
+    @php
+            $currentYear = date('Y');
+        @endphp
+        @for ($i = 2000; $i <= 2099; $i++)
+            <option value="{{ $i }}" @if ($i == $year) selected @endif>{{ $i }}</option>
+        @endfor
+    </select>
+</form>
                     <!-- End Filter Form -->
 
                     <table>

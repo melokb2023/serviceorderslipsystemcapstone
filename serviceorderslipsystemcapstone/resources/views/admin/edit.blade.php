@@ -176,12 +176,18 @@
                                     <br>
                                     <br>
                                     <label for="Service Progress">Service Progress</label>
-                                    <select name="xserviceprogress">
-                                        <option value="Ongoing">Ongoing</option>
-                                        <option value="Completed">Completed</option>
-                                    </select>
+                                    <select id="serviceProgress" name="xserviceprogress">
+    <option value="Ongoing">Ongoing</option>
+    <option value="Refer to Other Technicians or Other Shop" {{ $serviceinfo->serviceprogress == 'Refer to Other Technicians or Other Shop' ? 'selected' : '' }}>Refer to Other Technicians or Other Shop</option>
+    <option value="Completed">Completed</option>
+</select>
                                 </div>
                             </div>
+
+                            <div class="form-group" style="text-align:center; display: none;" id="serviceEndGroup">
+    <label for="serviceend">Service End Date</label>
+    <input type="datetime-local" name="xserviceend" value="{{$serviceinfo->serviceend}}" required>
+</div>
 
                             <!-- Row group for Service Remarks -->
                             <div class="form-row">
@@ -197,5 +203,21 @@
                 </div>
             </div>
         </div>
+        <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const serviceProgressSelect = document.getElementById('serviceProgress');
+        const serviceEndGroup = document.getElementById('serviceEndGroup');
+
+        serviceProgressSelect.addEventListener('change', function () {
+            if (serviceProgressSelect.value === 'Completed') {
+                serviceEndGroup.style.display = 'block';
+            } else {
+                serviceEndGroup.style.display = 'none';
+            }
+        });
+
+        serviceProgressSelect.dispatchEvent(new Event('change'));
+    });
+</script>
     </div>
 </x-app-layout>

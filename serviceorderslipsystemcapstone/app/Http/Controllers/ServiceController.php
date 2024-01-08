@@ -185,6 +185,7 @@ class ServiceController extends Controller
         $servicedata->staffname = $staff->staffname;
     }
         $servicedata->servicestarted = $request->xservicestarted;
+        $servicedata->serviceend = now();
         $servicedata->save();
         $details = [
             'title' => 'Order Reference Code',
@@ -243,6 +244,7 @@ class ServiceController extends Controller
                 'customerpassword' => $request->xcustomerpassword,
                 'defectiveunits' => $request->xdefectiveunits,
                 'actionsrequired' => $request->xactionsrequired,
+                'serviceend' => $request->xserviceend,
                 'serviceprogress' => $request->xserviceprogress,
                 'serviceremarks' => $request->xserviceremarks,
             ]);
@@ -397,9 +399,19 @@ public function getAvailableStaffNumbers()
         $orderReferenceCode = $request->input('order_reference_code');
     
         // Query the service data based on the provided order reference code
-        $serviceStatus = Service::where('orderreferencecode', $orderReferenceCode)->value('serviceprogress');
-    
-        if (!empty($serviceStatus)) {
+        $serviceData = Service::where('orderreferencecode', $orderReferenceCode)
+        ->select('serviceprogress', 'customername')
+        ->first();
+        
+        if($serviceData){
+        $serviceStatus = $serviceData->serviceprogress;
+        $customerName = $serviceData->customername;
+
+        // Pass the data to the view
+        return view('customer.checkreferencenumber', compact('orderReferenceCode', 'serviceStatus', 'customerName'));
+        }
+        
+        elseif (!empty($serviceStatus)) {
             return view('customer.checkreferencenumber', compact('serviceStatus', 'orderReferenceCode'));
         } else {
             // If serviceStatus is empty, redirect back with an error message

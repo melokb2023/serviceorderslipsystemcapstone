@@ -27,6 +27,7 @@ class Service extends Model
          'serviceremarks',
          'dateandtime',
          'servicestarted',
+         'serviceend',
          'orderreferencecode'
     ];
 

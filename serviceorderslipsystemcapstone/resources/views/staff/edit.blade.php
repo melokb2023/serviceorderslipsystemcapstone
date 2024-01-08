@@ -131,6 +131,7 @@
                                 <div>
                                     <select name="xworkprogress" class="form-control">
                                         <option value="Ongoing">Ongoing</option>
+                                        <option value="Unable to Complete">Incomplete</option>
                                         <option value="Completed">Completed</option>
                                     </select>
                                 </div>

@@ -58,24 +58,27 @@
                             padding: 6px;
                         }
 
-                        .button-yellow {
-                            background-color: #f6e05e;
-                            color: black;
+                        .button-green {
+                            background-color:green;
+                            color: white;
                             font-weight: bold;
-                            border: 1px solid #f6e05e;
                             border-radius: 4px;
                             padding: 6px 10px;
                             cursor: pointer;
                         }
 
-                        .button-yellow:hover {
-                            background-color: #e0cc52;
-                            border: 1px solid #e0cc52;
+                        .button-green:hover {
+                            background-color: blue;
+                            border: 1px solid blue;
                         }
                         p{ 
                             color:white;
                             font-weight:bold;
                             text-align:center;
+                        }
+                        label{
+                            color:white;
+                            font-weight:bold;
                         }
                     </style>
 
@@ -83,46 +86,89 @@
 
                     <!-- Add the form for filtering -->
                     <form id="filterForm" method="GET" action="{{ route('customerrating') }}" class="flex items-center justify-center space-x-4">
-                        @csrf
+    @csrf
 
-                        <label for="ratingFilter" class="text-sm font-semibold text-white">Filter by Rating:</label>
-                        <select name="rating_filter" id="ratingFilter">
-                            <option value="">Select Rating (All)</option>
-                            @for ($i = 1; $i <= 5; $i++)
-                                <option value="{{ $i }}" {{ request('rating_filter') == $i ? 'selected' : '' }}>{{ $i }}</option>
-                            @endfor
-                        </select>
+    <label for="reviewername_filter">Reviewer Name:</label>
+    <input type="text" id="reviewername_filter" name="reviewername_filter" style="font-weight: bold; height: 50px;" value="{{ request('reviewername_filter') }}" placeholder="Enter Reviewer Name">
 
-                        <!-- Add more dropdowns for additional filters if needed -->
+    <!-- Add more input boxes for additional filters if needed -->
 
-                        <button type="button" class="button-yellow" onclick="applyFilter()">Filter</button>
-                    </form>
-
+    <button type="button" class="button-green" onclick="applyFilter()">Search</button>
+</form>
                     @if(count($customerrating) > 0)
                         <table style="border: 5px solid black;width: 100%">
                             <tr>
-                                <th>Rating Number</th>
                                 <th>Service Number</th>
-                                <th>Reviewer ID</th>
                                 <th>Reviewer Name</th>
                                 <th>Assigned Staff</th>
                                 <th>Review</th>
                                 <th>Staff Performance Rating</th>
+                                <th>Performance Interpretation</th>
                                 <th>Overall Performance Rating</th>
+                                <th>Interpretation</th>
                                 <th>Options</th>
                             </tr>
 
                             <tbody>
                                 @foreach($customerrating as $customer)
                                     <tr>
-                                        <td>{{ $customer->ratingno }}</td>
                                         <td>{{ $customer->serviceno }}</td>
-                                        <td>{{ $customer->reviewerid }}</td>
                                         <td>{{ $customer->reviewername }}</td>
                                         <td>{{ $customer->assignedstaff }}</td>
                                         <td>{{ $customer->review }}</td>
                                         <td>{{ $customer->staffperformance }}</td>
+                                        <td>
+                                        @if (!empty($customer->staffperformance))
+                            @switch($customer->staffperformance)
+                                @case(1)
+                                    Very Poor
+                                    @break
+                                @case(2)
+                                    Poor
+                                    @break
+                                @case(3)
+                                    Average
+                                    @break
+                                @case(4)
+                                    Good
+                                    @break
+                                @case(5)
+                                    Excellent
+                                    @break
+                                @default
+                                    Unknown Rating
+                            @endswitch
+                        @else
+                            No Rating
+                        @endif
+        </td>
                                         <td>{{ $customer->rating }}</td>
+                                        <td>
+            @if (!empty($customer->rating))
+                @switch($customer->rating)
+                    @case(1)
+                        Very Dissatisfied
+                        @break
+                    @case(2)
+                        Somewhat Dissatisfied
+                        @break
+                    @case(3)
+                        Neither Satisfied nor Dissatisfied
+                        @break
+                    @case(4)
+                        Somewhat Satisfied
+                        @break
+                    @case(5)
+                        Very Satisfied
+                        @break
+                    @default
+                        Unknown Rating
+                @endswitch
+            @else
+                No Rating
+            @endif
+        </td>
+                                        
                                         <td>
                                             <br>
                                             <br>

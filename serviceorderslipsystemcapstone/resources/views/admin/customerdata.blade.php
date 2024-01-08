@@ -123,14 +123,38 @@
                                             @endphp
                                         </td>
                                         <td>
-                                            <a class="button button-yellow" href="{{route('customerlist-show', ['cano' => $customer->customerappointmentnumber])}}">View</a>
-                                            <a class="button button-green" href="{{route('customerlist-edit', ['cano' => $customer->customerappointmentnumber])}}">Edit</a>
-                                            <form method="POST" action="{{ route('customerlist-delete', ['cano' => $customer->customerappointmentnumber]) }}" onclick="return confirm('Are you sure you want to delete this record?')">
-                                                @csrf
-                                                @method('delete')
-                                                <button class="button button-red" type="submit">Delete</button>
-                                            </form>
-                                        </td>
+    <div class="grid grid-cols-2 gap-2">
+        <div>
+            <a href="{{ route('customerlist-show', ['cano' => $customer->customerappointmentnumber]) }}"
+               class="button button-yellow"
+               title="View">
+               👁
+            </a>
+        </div>
+
+        <div>
+            <a href="{{ route('customerlist-edit', ['cano' => $customer->customerappointmentnumber]) }}"
+               class="button button-green"
+               title="Edit">
+               ✏
+            </a>
+        </div>
+
+        <div>
+            <form method="POST"
+                  action="{{ route('customerlist-delete', ['cano' => $customer->customerappointmentnumber]) }}"
+                  onclick="return confirm('Are you sure you want to delete this record?')">
+                @csrf
+                @method('delete')
+                <button class="button button-red"
+                        type="submit"
+                        title="Delete">
+                    🗑
+                </button>
+            </form>
+        </div>
+    </div>
+</td>
                                     </tr>
                                 @endforeach
                             </tbody>

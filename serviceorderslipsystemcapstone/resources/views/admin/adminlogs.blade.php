@@ -49,20 +49,23 @@
 
                         <!-- Filter Form -->
                         <form id="filterForm" method="get" action="{{ route('servicelogs') }}" class="flex items-center justify-center space-x-4">
-                            <label for="month" class="text-sm font-semibold">Select Month:</label>
-                            <select name="month" id="month" class="border border-gray-300 rounded px-2 py-2">
-                                @for ($i = 1; $i <= 12; $i++)
-                                    <option value="{{ $i }}" @if ($i == $month) selected @endif>{{ date('F', mktime(0, 0, 0, $i, 1)) }}</option>
-                                @endfor
-                            </select>
+    <label for="month" class="text-sm font-semibold">Select Month:</label>
+    <select name="month" id="month" class="border border-gray-300 rounded px-2 py-2">
+        @for ($i = 1; $i <= 12; $i++)
+            <option value="{{ $i }}" @if ($i == $month) selected @endif>{{ date('F', mktime(0, 0, 0, $i, 1)) }}</option>
+        @endfor
+    </select>
 
-                            <label for="year" class="text-sm font-semibold">Select Year:</label>
-                            <select name="year" id="year" class="border border-gray-300 rounded px-2 py-2">
-                                @for ($i = date('Y'); $i >= 2020; $i--)
-                                    <option value="{{ $i }}" @if ($i == $year) selected @endif>{{ $i }}</option>
-                                @endfor
-                            </select>
-                        </form>
+    <label for="year" class="text-sm font-semibold">Select Year:</label>
+    <select name="year" id="year" class="border border-gray-300 rounded px-2 py-2">
+        @php
+            $currentYear = date('Y');
+        @endphp
+        @for ($i = 2000; $i <= 2099; $i++)
+            <option value="{{ $i }}" @if ($i == $year) selected @endif>{{ $i }}</option>
+        @endfor
+    </select>
+</form>
                         <!-- End Filter Form -->
 
                         <br>
@@ -73,16 +76,26 @@
                                 <table id="adminLogs" style="border: 1px solid black; margin: auto;">
                                     <tr>
                                         <th>Service Number</th>
-                                        <th>Actions Taken</th>
+                                        <th>Customer Name</th>
+                                        <th>Staff Name</th>
+                                        <th>Actions Required</th>
+                                        <th>Date and Time</th>
                                         <th>Service Started</th>
+                                        <th>Service End</th>
+                                        <th>Work Progress</th>
                                     </tr>
 
                                     <tbody>
                                         @foreach($servicedata as $log)
                                             <tr>
                                                 <td>{{ $log->serviceno }}</td>
+                                                <td>{{ $log->customername }}</td>
+                                                <td>{{ $log->staffname }}</td>
                                                 <td>{{ $log->actionsrequired }}</td>
                                                 <td>{{ date('F d, Y h:i A', strtotime($log->dateandtime)) }}</td>
+                                                <td>{{ date('F d, Y h:i A', strtotime($log->servicestarted)) }}</td>
+                                                <td>{{ date('F d, Y h:i A', strtotime($log->serviceend)) }}</td>
+                                                <td>{{ $log->workprogress}}</td>
                                             </tr>
                                         @endforeach
                                     </tbody>

@@ -113,11 +113,11 @@
                                     <label for="Staff Performance Rating">Staff Performance Rating</label>
                                     <div>
                                     <select name="xstaffperformance">
-                                    <option style="color:orange" value="1">&#9733;</option> <!-- ★ -->
-            <option style="color:orange" value="2">&#9733;&#9733;</option> <!-- ★★ -->
-            <option style="color:orange" value="3">&#9733;&#9733;&#9733;</option> <!-- ★★★ -->
-            <option style="color:orange" value="4">&#9733;&#9733;&#9733;&#9733;</option> <!-- ★★★★ -->
-            <option style="color:orange" value="5">&#9733;&#9733;&#9733;&#9733;&#9733;</option> <!-- ★★★★★ -->
+                                    <option style="color: orange" value="1">&#9733; - Very Poor</option> <!-- ★ -->
+    <option style="color: orange" value="2">&#9733;&#9733; - Somewhat Dissatisfied</option> <!-- ★★ -->
+    <option style="color: orange" value="3">&#9733;&#9733;&#9733; - Neither Satisfied nor Dissatisfied</option> <!-- ★★★ -->
+    <option style="color: orange" value="4">&#9733;&#9733;&#9733;&#9733; - Somewhat Satisfied</option> <!-- ★★★★ -->
+    <option style="color: orange" value="5">&#9733;&#9733;&#9733;&#9733;&#9733; - Very Satisfied</option> <!-- ★★★★★ -->
                                         </select>
                                     </div>
                                 </div>
@@ -125,11 +125,11 @@
                                     <label for="Service Rating">Service Rating</label>
                                     <div>
                                         <select name="xrating">
-                                        <option style="color:orange" value="1">&#9733;</option> <!-- ★ -->
-            <option style="color:orange" value="2">&#9733;&#9733;</option> <!-- ★★ -->
-            <option style="color:orange" value="3">&#9733;&#9733;&#9733;</option> <!-- ★★★ -->
-            <option style="color:orange" value="4">&#9733;&#9733;&#9733;&#9733;</option> <!-- ★★★★ -->
-            <option style="color:orange" value="5">&#9733;&#9733;&#9733;&#9733;&#9733;</option> <!-- ★★★★★ -->
+                                        <option style="color: orange" value="1">&#9733; - Very Dissatisfied</option> <!-- ★ -->
+    <option style="color: orange" value="2">&#9733;&#9733; - Somewhat Dissatisfied</option> <!-- ★★ -->
+    <option style="color: orange" value="3">&#9733;&#9733;&#9733; - Neither Satisfied nor Dissatisfied</option> <!-- ★★★ -->
+    <option style="color: orange" value="4">&#9733;&#9733;&#9733;&#9733; - Somewhat Satisfied</option> <!-- ★★★★ -->
+    <option style="color: orange" value="5">&#9733;&#9733;&#9733;&#9733;&#9733; - Very Satisfied</option> <!-- ★★★★★ -->
                                         </select>
                                     </div>
                                 </div>

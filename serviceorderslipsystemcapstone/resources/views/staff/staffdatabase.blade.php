@@ -1,3 +1,9 @@
+@if(session('success_message'))
+    <script>
+        // Replace this with your preferred pop-up library or implementation
+        alert("{{ session('success_message') }}");
+    </script>
+@endif
 @include('layouts.staffnavigation')
 
 <x-app-layout>
@@ -58,6 +64,9 @@
                             margin-top: 20px;
                         }
                         .ongoing { background-color: yellow; }
+                        .incomplete {
+    background-color: #FFB6C1; /* Light Red */
+}
                         .completed { background-color: #90EE90; }
                     </style>
 
@@ -111,16 +120,29 @@
                                         <td>{{ $staffRecord->typeofservice }}</td>
                                         <td>{{ date('F d, Y h:i A', strtotime($staffRecord->workstarted)) }}</td>
                                         <td>{{ $staffRecord->actionstaken }}</td>
-                                        <td class="{{ $staffRecord->workprogress === 'Ongoing' ? 'ongoing' : 'completed' }}">{{ $staffRecord->workprogress }}</td>
+                                        <td class="{{ $staffRecord->workprogress === 'Ongoing' ? 'ongoing' : ($staffRecord->workprogress === 'Unable to Complete' ? 'incomplete' : 'completed') }}">{{ $staffRecord->workprogress }}</td>
                                         <td>
-                                            <a style="background-color: #f6e05e; height: 2rem; line-height: 2rem; padding: 0 1rem;"
-                                               class="mt-4 text-black font-bold rounded inline-block"
-                                               href="{{ route('staffdatabase-show', ['serviceno' => $staffRecord->serviceno]) }}">View</a>
+    <div class="grid grid-cols-2 gap-2">
+        <div>
+            <a style="background-color: #f6e05e; width: 1.5rem; height: 1.5rem; line-height: 1.5rem; padding: 0.3rem; margin: 0.1rem; display: inline-flex; align-items: center; justify-content: center;"
+               class="mt-4 text-black font-bold rounded inline-block"
+               href="{{ route('staffdatabase-show', ['serviceno' => $staffRecord->serviceno]) }}"
+               title="View">
+               👁
+            </a>
+        </div>
 
-                                            <a style="background-color: blue; height: 2rem; line-height: 2rem; padding: 0 1rem;"
-                                               class="mt-4 text-white font-bold rounded inline-block"
-                                               href="{{ route('staffdatabase-edit', ['serviceno' => $staffRecord->serviceno]) }}">Edit</a>
-                                        </td>
+        <div>
+            <a style="background-color: blue; width: 1.5rem; height: 1.5rem; line-height: 1.5rem; padding: 0.3rem; margin: 0.1rem; display: inline-flex; align-items: center; justify-content: center;"
+               class="mt-4 text-white font-bold rounded inline-block"
+               href="{{ route('staffdatabase-edit', ['serviceno' => $staffRecord->serviceno]) }}"
+               title="Edit">
+               ✏
+            </a>
+        </div>
+    </div>
+</td>
+
                                     </tr>
                                 @endforeach
                             </tbody>

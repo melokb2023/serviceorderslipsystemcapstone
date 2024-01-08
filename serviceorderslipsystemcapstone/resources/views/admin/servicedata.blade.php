@@ -44,6 +44,9 @@
                             <option style="font-weight:bold" value="Ongoing"
                                     {{ request('serviceprogress_filter') == 'Ongoing' ? 'selected' : '' }}>Ongoing
                             </option>
+                            <option style="font-weight:bold" value="Refer to Other Technicians or Other Shop"
+                                    {{ request('serviceprogress_filter') == 'Refer' ? 'selected' : '' }}>Refer to Other Technicians or Other Shop
+                            </option>
                             <option style="font-weight:bold" value="Completed"
                                     {{ request('serviceprogress_filter') == 'Completed' ? 'selected' : '' }}>Completed
                             </option>
@@ -158,13 +161,17 @@
                         background-color: #f6e05e; /* Set your desired color for Ongoing */
                     }
 
-                    .finalizing {
-                        background-color: #3490dc; /* Set your desired color for Finalizing */
+                    .incomplete {
+                        background-color: #FFB6C1; /* Set your desired color for Incomplete */
                     }
 
                     .completed {
                         background-color: #4caf50; /* Set your desired color for Completed */
                     }
+                    .refer-to-other-technicians {
+    background-color: #ffcccb; /* Set your desired color for "Refer to Other Technicians" */
+    /* Add any other styles as needed */
+}
 
                     .search-button {
                         background-color: green;
@@ -220,6 +227,7 @@
                             <th>Service Remarks</th>
                             <th>Date and Time</th>
                             <th>Service Started</th>
+                            <th>Service End Date</th>
                             <th>Options</th>
                         </tr>
 
@@ -231,52 +239,60 @@
                                 <td>{{ $serviceinfo->staffname }} </td>
                                 <td>{{ $serviceinfo->customername}} </td>
                                 <td
-                                    class="@if($serviceinfo->serviceprogress == 'Ongoing') ongoing
-                                    @elseif($serviceinfo->serviceprogress == 'Finalizing') finalizing
-                                    @elseif($serviceinfo->serviceprogress == 'Completed') completed
+                                    class="@if($serviceinfo->workprogress == 'Ongoing') ongoing
+                                    @elseif($serviceinfo->workprogress == 'Unable to Complete') incomplete
+                                    @elseif($serviceinfo->workprogress == 'Completed') completed
                                     @endif">{{ $serviceinfo->workprogress }}</td>
                                 <td
                                     class="@if($serviceinfo->serviceprogress == 'Ongoing') ongoing
-                                    @elseif($serviceinfo->serviceprogress == 'Finalizing') finalizing
+                                    @elseif($serviceinfo->serviceprogress == 'Refer to Other Technicians or Other Shop') refer-to-other-technicians
                                     @elseif($serviceinfo->serviceprogress == 'Completed') completed
                                     @endif">{{ $serviceinfo->serviceprogress }}</td>
                                 <td>{{ $serviceinfo->serviceremarks }}</td>
                                 <td>{{ date('F d, Y h:i A', strtotime($serviceinfo->dateandtime)) }}</td>
                                 <td>{{ date('F d, Y h:i A', strtotime($serviceinfo->servicestarted)) }}</td>
+                                <td>{{ date('F d, Y h:i A', strtotime($serviceinfo->serviceend)) }}</td>
 
                                 <td>
-                                <div class="grid grid-cols-2 gap-4">
-    <div>
-        <a href="{{ route('service-show', ['serno' => $serviceinfo->serviceno]) }}"
-           class="bg-yellow-400 text-black font-bold p-2 rounded hover:bg-yellow-500 h-10 w-20 text-base">View</a>
+    <div class="grid grid-cols-2 gap-2">
+        <div>
+            <a href="{{ route('service-show', ['serno' => $serviceinfo->serviceno]) }}"
+               class="bg-yellow-400 text-black font-bold p-1 rounded hover:bg-yellow-500 h-8 w-8 flex items-center justify-center text-base"
+               title="View">
+               👁
+            </a>
+        </div>
+
+        <div>
+            <a href="{{ route('service-edit', ['serno' => $serviceinfo->serviceno]) }}"
+               class="bg-blue-500 text-black font-bold p-1 rounded hover:bg-blue-600 h-8 w-8 flex items-center justify-center text-base"
+               title="Edit">
+               ✏
+            </a>
+        </div>
+
+        <div>
+            <a href="{{ route('service-editstaff', ['serno' => $serviceinfo->serviceno]) }}"
+               class="bg-green-300 text-black font-bold p-1 rounded hover:bg-green-400 h-8 w-8 flex items-center justify-center text-decoration-none border border-blue-500 rounded-md text-base"
+               title="Change Staff">
+               👥
+            </a>
+        </div>
+
+        <div>
+            <form method="POST"
+                  action="{{ route('service-delete', ['serno' => $serviceinfo->serviceno ]) }}"
+                  onsubmit="return confirm('Are you sure you want to delete this record?')">
+                @csrf
+                @method('delete')
+                <button class="bg-red-500 text-black font-bold p-1 rounded hover:bg-red-600 h-8 w-8 flex items-center justify-center text-base"
+                        type="submit"
+                        title="Delete">
+                    🗑
+                </button>
+            </form>
+        </div>
     </div>
-
-    <div>
-        <a href="{{ route('service-edit', ['serno' => $serviceinfo->serviceno]) }}"
-           class="bg-blue-500 text-black font-bold p-2 rounded hover:bg-blue-600 h-10 w-20 text-base">Edit</a>
-    </div>
-
-    <div>
-        <a href="{{ route('service-editstaff', ['serno' => $serviceinfo->serviceno]) }}"
-           class="bg-green-300 text-black font-bold p-2 rounded hover:bg-green-400 h-10 w-20 flex items-center justify-center text-decoration-none border border-blue-500 rounded-md text-base">
-            Change Staff
-        </a>
-    </div>
-
-    <div>
-        <form method="POST"
-              action="{{ route('service-delete', ['serno' => $serviceinfo->serviceno ]) }}"
-              onsubmit="return confirm('Are you sure you want to delete this record?')">
-            @csrf
-            @method('delete')
-            <button class="bg-red-500 text-black font-bold p-2 rounded hover:bg-red-600 h-10 w-20 text-base"
-                    type="submit">Delete
-            </button>
-        </form>
-    </div>
-</div>
-
-
 </td>
 
                             </tr>
