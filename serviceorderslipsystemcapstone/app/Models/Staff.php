@@ -16,6 +16,8 @@ class Staff extends Model
          'id',
          'staffname',
          'staffemail',
+         'timeloggedin',
+         'timeloggedout',
     ];
 
     public function getDecryptedPasswordAttribute()

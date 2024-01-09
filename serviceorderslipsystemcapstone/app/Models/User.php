@@ -32,6 +32,8 @@ class User extends Authenticatable
         'phone',
         'address',
         'password',
+        'timeloggedin',
+        'timeloggedout',
     ];
 
     /**
@@ -63,10 +65,26 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+ 
+    protected static function boot()
+    {
+        parent::boot();
 
+        // Listen for the creating event to set the initial timeloggedin
+        static::creating(function ($user) {
+            $user->timeloggedin = now();
+        });
+
+        // Listen for the updating event to set timeloggedout
+        // static::updating(function ($user) {
+        //     $user->timeloggedout = now();
+        // });
+    }
     public function customerAppointment()
     {
         return $this->hasOne(CustomerAppointment::class, 'customerno', 'id');
     }
+
+    
    
 }

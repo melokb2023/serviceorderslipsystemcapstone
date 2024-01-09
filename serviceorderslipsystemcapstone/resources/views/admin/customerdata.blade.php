@@ -94,7 +94,7 @@
 
                     <!-- Display Appointments -->
                     @if(count($customerappointment) > 0)
-                        <table style="text-align:center">
+                    <table style="text-align:center; width: 100%;">
                             <tr style="text-align:center">
                                 <th>Customer Appointment Number</th>
                                 <th>ID</th>
@@ -123,30 +123,32 @@
                                             @endphp
                                         </td>
                                         <td>
-    <div class="grid grid-cols-2 gap-2">
-        <div>
-            <a href="{{ route('customerlist-show', ['cano' => $customer->customerappointmentnumber]) }}"
-               class="button button-yellow"
-               title="View">
-               👁
-            </a>
-        </div>
+    <div class="grid grid-cols-3 gap-4 ml-1">
+        <!-- First Row -->
+        <div class="mr-4"> <!-- Increased margin for more space -->
+    <a href="{{ route('customerlist-show', ['cano' => $customer->customerappointmentnumber]) }}"
+       class="bg-yellow-400 text-black font-bold p-3 rounded hover:bg-yellow-500 h-12 w-12 flex items-center justify-center text-xl"
+       title="View">
+       👁
+    </a>
+</div>
 
-        <div>
-            <a href="{{ route('customerlist-edit', ['cano' => $customer->customerappointmentnumber]) }}"
-               class="button button-green"
-               title="Edit">
-               ✏
-            </a>
-        </div>
+<div class="ml-4"> <!-- Increased margin for more space -->
+    <a href="{{ route('customerlist-edit', ['cano' => $customer->customerappointmentnumber]) }}"
+       class="bg-blue-500 text-black font-bold p-3 rounded hover:bg-blue-600 h-12 w-12 flex items-center justify-center text-xl"
+       title="Edit">
+       ✏
+    </a>
+</div>
 
-        <div>
+        <!-- Second Row -->
+        <div class="col-span-3 flex items-center justify-center mt-2">
             <form method="POST"
                   action="{{ route('customerlist-delete', ['cano' => $customer->customerappointmentnumber]) }}"
                   onclick="return confirm('Are you sure you want to delete this record?')">
                 @csrf
                 @method('delete')
-                <button class="button button-red"
+                <button class="bg-red-500 text-black font-bold p-3 rounded hover:bg-red-600 h-12 w-12 flex items-center justify-center text-xl" 
                         type="submit"
                         title="Delete">
                     🗑
@@ -155,6 +157,7 @@
         </div>
     </div>
 </td>
+
                                     </tr>
                                 @endforeach
                             </tbody>

@@ -114,10 +114,10 @@
                                     <div>
                                     <select name="xstaffperformance">
                                     <option style="color: orange" value="1">&#9733; - Very Poor</option> <!-- ★ -->
-    <option style="color: orange" value="2">&#9733;&#9733; - Somewhat Dissatisfied</option> <!-- ★★ -->
-    <option style="color: orange" value="3">&#9733;&#9733;&#9733; - Neither Satisfied nor Dissatisfied</option> <!-- ★★★ -->
-    <option style="color: orange" value="4">&#9733;&#9733;&#9733;&#9733; - Somewhat Satisfied</option> <!-- ★★★★ -->
-    <option style="color: orange" value="5">&#9733;&#9733;&#9733;&#9733;&#9733; - Very Satisfied</option> <!-- ★★★★★ -->
+    <option style="color: orange" value="2">&#9733;&#9733; - Poor</option> <!-- ★★ -->
+    <option style="color: orange" value="3">&#9733;&#9733;&#9733; - Average</option> <!-- ★★★ -->
+    <option style="color: orange" value="4">&#9733;&#9733;&#9733;&#9733; - Good</option> <!-- ★★★★ -->
+    <option style="color: orange" value="5">&#9733;&#9733;&#9733;&#9733;&#9733; - Excellent</option> <!-- ★★★★★ -->
                                         </select>
                                     </div>
                                 </div>

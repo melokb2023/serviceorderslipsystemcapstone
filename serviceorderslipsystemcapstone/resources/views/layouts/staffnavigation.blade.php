@@ -159,7 +159,7 @@
                 <i class="fa fa-database"></i>{{ __('DASHBOARD') }}
         </a> 
                  <a class="top-nav-link"  href="{{ route('staffdatabase') }}" :active="request()->routeIs('staffdatabase')">
-                 <i class="fa fa-database"></i>{{ __('STAFF DATABASE') }}
+                 <i class="fa fa-database"></i>{{ __('STAFF WORK') }}
 </a>
                  <a class="top-nav-link"  href="{{ route('stafflogs') }}" :active="request()->routeIs('stafflogs')">
                  <i class="fa fa-bar-chart"></i>   {{ __('LOGS') }}

@@ -82,6 +82,8 @@
                                         <th>Date and Time</th>
                                         <th>Service Started</th>
                                         <th>Service End</th>
+                                        <th>Staff Log In Time</th>
+                                        <th>Staff Log Out Time</th>
                                         <th>Work Progress</th>
                                     </tr>
 
@@ -95,6 +97,8 @@
                                                 <td>{{ date('F d, Y h:i A', strtotime($log->dateandtime)) }}</td>
                                                 <td>{{ date('F d, Y h:i A', strtotime($log->servicestarted)) }}</td>
                                                 <td>{{ date('F d, Y h:i A', strtotime($log->serviceend)) }}</td>
+                                                <td>{{ date('F d, Y h:i:s A', strtotime($log->timeloggedin)) }}</td>
+                                                <td>{{ date('F d, Y h:i:s A', strtotime($log->timeloggedout)) }}</td>
                                                 <td>{{ $log->workprogress}}</td>
                                             </tr>
                                         @endforeach

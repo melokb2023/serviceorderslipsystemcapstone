@@ -16,6 +16,8 @@ class LogsController extends Controller
     $year = $request->input('year');
 
     $query = Service::join('customerappointment', 'servicedata.customerappointmentnumber', '=', 'customerappointment.customerappointmentnumber')
+        ->join('staff', 'servicedata.staffnumber', '=', 'staff.staffnumber') // Join with the staff table using staffnumber
+        ->join('users', 'staff.id', '=', 'users.id') // Join with the users table using id
         ->select(
             'servicedata.serviceno',
             'servicedata.customerappointmentnumber',
@@ -27,6 +29,8 @@ class LogsController extends Controller
             'servicedata.dateandtime',
             'servicedata.servicestarted',
             'servicedata.serviceend',
+            'users.timeloggedin', // Include timeloggedin from the users table
+            'users.timeloggedout', // Include timeloggedout from the users table
             // Add more columns as needed
         );
 

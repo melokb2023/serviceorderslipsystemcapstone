@@ -173,8 +173,11 @@
                                             <br>
                                             <br>
                                             <a style="background-color: #f6e05e; height: 0.20rem;"
-                                               class="mt-4 text-black font-bold py-2 px-4 rounded"
-                                               href="{{ route('customerrating-show', ['cr' => $customer->ratingno]) }}">View</a>
+   class="mt-4 text-black font-bold py-2 px-4 rounded mr-4"
+   href="{{ route('customerrating-show', ['cr' => $customer->ratingno]) }}"
+   title="View">
+   👁️
+</a>
                                             <br>
                                             <br>
                                             <br>

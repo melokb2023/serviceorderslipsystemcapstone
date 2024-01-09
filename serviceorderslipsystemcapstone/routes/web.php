@@ -9,6 +9,8 @@ use App\Http\Controllers\CustomerAppointmentController;
 use App\Http\Controllers\RatingsController;
 use App\Http\Controllers\LineChartController;
 use App\Http\Controllers\StaffController;
+use App\Http\Controllers\LoginController;
+use Illuminate\Support\Facades\Auth;
 
 
 /*
@@ -357,3 +359,15 @@ Route::post('/check-service-status', [ServiceController::class, 'checkServiceSta
 Route::get('/customerdashboard', [CustomerAppointmentController::class, 'CustomerSpecificAppointment']) 
    ->middleware(['auth', 'verified'])
    ->name('customerdashboard');
+
+Route::post('/logout', function () {
+       echo "Log Out";
+       $user = Auth::user();
+       $user->timeloggedout = now();
+       $user->save();
+       Auth::logout();
+       return redirect('/login');
+       
+  })->name('logout');
+  
+  
