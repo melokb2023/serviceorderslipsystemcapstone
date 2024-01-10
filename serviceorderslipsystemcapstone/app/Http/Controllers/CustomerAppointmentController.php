@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Auth;
 use App\Mail\MyMail;
 use Illuminate\Http\Request;
+use App\Models\Logs;
+
 use App\Models\CustomerAppointment;
 use App\Notifications\AppointmentReceivedNotification;
 
@@ -50,13 +52,23 @@ class CustomerAppointmentController extends Controller
     session()->flash('success_message', 'Data Stored');
     // Send email notification using the custom notification
 
-
+    $logs = new Logs;
+        $logs->userid = Auth::id(); 
+        $logs->description = "Customer Sets Appointment";
+        $logs->actiondatetime = now();
+        $logs->save();
 
     return view('dashboard');
 }
 
 public function CustomerSpecificAppointment(Request $request)
 {
+    $logs = new Logs;
+    $logs->userid = Auth::id(); 
+    $logs->description = "Views the Specific Appointments for the Customer";
+    $logs->actiondatetime = now();
+    $logs->save();
+
     // Check if the user is authenticated
     if (Auth::check()) {
         // Get the authenticated user

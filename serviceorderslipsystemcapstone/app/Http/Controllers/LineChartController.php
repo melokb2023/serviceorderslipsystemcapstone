@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 use App\Models\Service;
+use App\Models\Logs;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Rating;
 
 class LineChartController extends Controller
@@ -30,12 +32,18 @@ class LineChartController extends Controller
     
             $data[$service] = $count;
         }
-    
+        $logs = new Logs;
+        $logs->userid = Auth::id(); 
+        $logs->description = "Views the Line Chart for a Specifc Year and Month";
+        $logs->actiondatetime = now();
+        $logs->save();
+
         // Return the view with the data
         return view('admin.financialperformancereport', compact('data', 'selectedMonth', 'selectedYear'));
     }
     public function LineChart2()
 {
+    
     // Get the current month
     $currentMonth = now()->format('m'); // Assuming you have Carbon installed for the now() function
 
@@ -56,6 +64,11 @@ class LineChartController extends Controller
 
         $data[$monthName] = $count;
     }
+    $logs = new Logs;
+    $logs->userid = Auth::id(); 
+    $logs->description = "Checks Ratings for the Month of";
+    $logs->actiondatetime = now();
+    $logs->save();
 
     // Pass data to the view
     return view('admin.admindashboard', compact('data'));
@@ -78,6 +91,13 @@ class LineChartController extends Controller
     }, array_keys($data), $data));
 
     $average = $totalCount > 0 ? round($totalCount / $total, 1) : 0;
+
+    $logs = new Logs;
+    $logs->userid = Auth::id(); 
+    $logs->description = "Checks Overall Rating of the Company";
+    $logs->actiondatetime = now();
+    $logs->save();
+
 
     // Pass data to the view
     return view('admin.ratinggraph', compact('data', 'average'));
@@ -129,7 +149,11 @@ class LineChartController extends Controller
         
         $chartData[$staffName] = $data;
     }
-
+    $logs = new Logs;
+    $logs->userid = Auth::id(); 
+    $logs->description = "Views the Rating of a Specific Staff with Month and Year";
+    $logs->actiondatetime = now();
+    $logs->save();
     return view('admin.ratinggraphstaff', compact('chartData', 'staffNames'));
 }
 

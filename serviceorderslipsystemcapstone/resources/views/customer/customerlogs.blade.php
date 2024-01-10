@@ -77,20 +77,24 @@
                         <br>
 
                         <div id="customerLogsContainer">
-                            @if(count($customerappointment) > 0)
+                            @if(count($logs) > 0)
                                 <table id="customerLogs" style="border: 1px solid black; margin: auto;">
                                     <tr>
-                                        <th>Customer Appointment Number</th>
-                                        <th>Appointment Type</th>
-                                        <th>Date and Time</th>
+                                        <th>User ID</th>
+                                        <th>Name</th>
+                                        <th>User Type</th>
+                                        <th>Description</th>
+                                        <th>Action Date and Time</th>
                                     </tr>
 
                                     <tbody>
-                                        @foreach($customerappointment as $customer)
+                                        @foreach($logs as $customer)
                                             <tr>
-                                                <td>{{ $customer->customerappointmentnumber }}</td>
-                                                <td>{{ $customer->appointmenttype}}</td>
-                                                <td>{{ date('F d, Y h:i A', strtotime($customer->dateandtime)) }}</td>
+                                                <td>{{ $customer->userid }}</td>
+                                                <td>{{ $customer->name}}</td>
+                                                <td>{{ $customer->usertype}}</td>
+                                                <td>{{ $customer->description}}</td>
+                                                <td>{{ date('F d, Y h:i A', strtotime($customer->actiondatetime)) }}</td>
                                             </tr>
                                         @endforeach
                                     </tbody>

@@ -43,7 +43,7 @@
                     </style>
 
                     <div style="text-align: center;">
-                        <h6>Service Logs</h6>
+                        <h6>System Logs</h6>
                         <br>
                         <br>
 
@@ -71,43 +71,33 @@
                         <br>
                         <br>
 
-                        <div id="adminLogsContainer">
-                            @if(count($servicedata) > 0)
-                                <table id="adminLogs" style="border: 1px solid black; margin: auto;">
-                                    <tr>
-                                        <th>Service Number</th>
-                                        <th>Customer Name</th>
-                                        <th>Staff Name</th>
-                                        <th>Actions Required</th>
-                                        <th>Date and Time</th>
-                                        <th>Service Started</th>
-                                        <th>Service End</th>
-                                        <th>Staff Log In Time</th>
-                                        <th>Staff Log Out Time</th>
-                                        <th>Work Progress</th>
-                                    </tr>
+                        <div id="adminLogsContainer" style="max-height: 500px; overflow: auto;">
+    @if(count($servicedata) > 0)
+        <table id="adminLogs" style="border: 1px solid black; margin: auto; width: 100%;">
+            <tr>
+                <th>User ID</th>
+                <th>Name</th>
+                <th>User Type</th>
+                <th>Description</th>
+                <th>Action Date and Time</th>
+            </tr>
 
-                                    <tbody>
-                                        @foreach($servicedata as $log)
-                                            <tr>
-                                                <td>{{ $log->serviceno }}</td>
-                                                <td>{{ $log->customername }}</td>
-                                                <td>{{ $log->staffname }}</td>
-                                                <td>{{ $log->actionsrequired }}</td>
-                                                <td>{{ date('F d, Y h:i A', strtotime($log->dateandtime)) }}</td>
-                                                <td>{{ date('F d, Y h:i A', strtotime($log->servicestarted)) }}</td>
-                                                <td>{{ date('F d, Y h:i A', strtotime($log->serviceend)) }}</td>
-                                                <td>{{ date('F d, Y h:i:s A', strtotime($log->timeloggedin)) }}</td>
-                                                <td>{{ date('F d, Y h:i:s A', strtotime($log->timeloggedout)) }}</td>
-                                                <td>{{ $log->workprogress}}</td>
-                                            </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table>
-                            @else
-                                <p>No records found.</p>
-                            @endif
-                        </div>
+            <tbody>
+                @foreach($servicedata as $log)
+                    <tr>
+                        <td>{{ $log->userid }}</td>
+                        <td>{{ $log->name}}</td>
+                        <td>{{ $log->usertype}}</td>
+                        <td>{{ $log->description}}</td>
+                        <td>{{ date('F d, Y h:i A', strtotime($log->actiondatetime)) }}</td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+    @else
+        <p>No records found.</p>
+    @endif
+</div>
 
                         <br>
                         <br>

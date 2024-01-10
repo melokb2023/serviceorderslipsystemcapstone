@@ -6,6 +6,7 @@ use App\Models\StaffDatabase;
 use App\Models\Service;
 use App\Models\Staff;
 use Illuminate\Support\Facades\Mail;
+use App\Models\Logs;
 use Illuminate\Support\Facades\DB;
 use App\Mail\MyMail;
 use App\Models\CustomerAppointment;
@@ -20,6 +21,11 @@ class StaffDatabaseController extends Controller
      */
     public function index(Request $request)
 {
+    $logs = new Logs;
+    $logs->userid = Auth::id(); 
+    $logs->description = "Accessed the Staff Work Menu";
+    $logs->actiondatetime = now();
+    $logs->save();
     // Check if the user is authenticated
     if (Auth::check()) {
         // Get the authenticated user
@@ -106,7 +112,11 @@ public function store(Request $request)
             // Update the work progress to 'Completed' in StaffDatabase
             StaffDatabase::where('serviceno', $request->xserviceno)->update(['workprogress' => 'Completed']);
         }
-
+        $logs = new Logs;
+        $logs->userid = Auth::id();
+        $logs->description = "Viewed Service with Staff Name: " . ($service ? $service->staffname : 'N/A');
+        $logs->actiondatetime = now();
+        $logs->save();
         // Redirect to the admin dashboard with a success message
         return redirect()->route('staff.staffdatabase')->with('success', 'Data saved successfully.');
     } catch (\Exception $e) {
@@ -121,6 +131,11 @@ public function store(Request $request)
     public function show(string $id)
     {
         $staffdatabase = Service::where('serviceno', $id)->get();
+        $logs = new Logs;
+        $logs->userid = Auth::id(); 
+        $logs->description = "Views Service with ID {$id} for the Staff to See"; // Updated description
+        $logs->actiondatetime = now();
+        $logs->save();
         return view('staff.show', compact('servicedata'));
      }
 
@@ -130,6 +145,11 @@ public function store(Request $request)
     public function edit(string $id)
     {
         $servicedata = Service::where('serviceno', $id)->get();
+        $logs = new Logs;
+        $logs->userid = Auth::id(); 
+        $logs->description = "Edits";
+        $logs->actiondatetime = now();
+        $logs->save();
         return view('staff.edit', compact('servicedata'));
 
 
@@ -162,7 +182,11 @@ public function store(Request $request)
             'title' => 'Work Completion Notification',
             'body' => 'We regret to inform you that the work with ID ' . $id . ' cannot continue. Sorry for the inconvenience. We recommend seeking services from another shop. The admin will be notified of this.',
         ];
-
+        $logs = new Logs;
+        $logs->userid = Auth::id(); 
+        $logs->description = "Staff Sets Progress to Unable to Complete";
+        $logs->actiondatetime = now();
+        $logs->save();
         // Send email to the customer
         Mail::to($customerappointment->customeremail)->send(new MyMail($details));
 
@@ -176,7 +200,12 @@ public function store(Request $request)
         ];
 
         // Send email to the customer
-        Mail::to($customerappointment->customeremail)->send(new MyMail($details));
+        Mail::to('melokylebryant4@gmail.com')->send(new MyMail($details));
+        $logs = new Logs;
+        $logs->userid = Auth::id(); 
+        $logs->description = "Sets Work Progress to Completed";
+        $logs->actiondatetime = now();
+        $logs->save();
 
         // Flash a session message
         session()->flash('success_message', 'Work Progress Updated: Completed');
@@ -201,6 +230,11 @@ public function store(Request $request)
 
     public function countWork()
 {
+    $logs = new Logs;
+    $logs->userid = Auth::id(); 
+    $logs->description = "Accesses the Staff Dashboard";
+    $logs->actiondatetime = now();
+    $logs->save();
    
     // Assuming you have a StaffDatabase model
     $user = Auth::user();
@@ -264,6 +298,11 @@ public function getAvailableServiceNumbers(){
 
 public function SpecificStaff()
 {
+    $logs = new Logs;
+    $logs->userid = Auth::id(); 
+    $logs->description = "Fetched Specific Data for a Specific Staff";
+    $logs->actiondatetime = now();
+    $logs->save();
     // Check if the user is authenticated
     if (Auth::check()) {
         // Get the authenticated user

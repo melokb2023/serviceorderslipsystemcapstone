@@ -9,8 +9,10 @@ use App\Models\StaffDatabase;
 use App\Models\Staff;
 use App\Models\Rating;
 use App\Models\User;
+use App\Models\Logs;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Mail\MyMail;
 use Illuminate\Support\Facades\Redirect;
@@ -27,6 +29,11 @@ class ServiceController extends Controller
      */
     public function index(Request $request)
 {
+    $logs = new Logs;
+    $logs->userid = Auth::id(); 
+    $logs->description = "Accessed the Service Data";
+    $logs->actiondatetime = now();
+    $logs->save();
     $query = Service::join('customerappointment', 'servicedata.customerappointmentnumber', '=', 'customerappointment.customerappointmentnumber')
                ->join('staff', 'servicedata.staffnumber', '=', 'staff.staffnumber')
                ->select('servicedata.*', 'customerappointment.*', 'staff.*');
@@ -64,6 +71,11 @@ class ServiceController extends Controller
     //////VIEW CUSTOMER LIST
     public function CustomerList(Request $request)
 {
+    $logs = new Logs;
+    $logs->userid = Auth::id(); 
+    $logs->description = "Accessed the Customer List";
+    $logs->actiondatetime = now();
+    $logs->save();
     $month = $request->input('month');
     $year = $request->input('year');
 
@@ -90,6 +102,11 @@ class ServiceController extends Controller
 
     ///VIEW CUSTOMER
     public function ViewCustomer(string $id){
+        $logs = new Logs;
+        $logs->userid = Auth::id(); 
+        $logs->description = "Showed a Specific Customer";
+        $logs->actiondatetime = now();
+        $logs->save();
         $customerappointment = CustomerAppointment::where('customerappointmentnumber', $id)->get();
         return view('admin.showcustomer', compact('customerappointment'));
     }
@@ -97,6 +114,11 @@ class ServiceController extends Controller
     //EDIT CUSTOMER
     public function EditCustomer(string $id)
     {
+        $logs = new Logs;
+        $logs->userid = Auth::id(); 
+        $logs->description = "Accessed the Edit Function";
+        $logs->actiondatetime = now();
+        $logs->save();
         $customerappointment = CustomerAppointment::where('customerappointmentnumber', $id)->get();
         return view('admin.editcustomer', compact('customerappointment'));
     }
@@ -116,12 +138,22 @@ class ServiceController extends Controller
              'appointmentpurpose'=> $request->xappointmentpurpose,
              'appointmenttype'=> $request->xappointmenttype,
              ]);
+             $logs = new Logs;
+             $logs->userid = Auth::id(); 
+             $logs->description = "Updated Data for: ";
+             $logs->actiondatetime = now();
+             $logs->save();
         return redirect()->route('customerlist');
     }
 
     //DELETE CUSTOMER
     public function DeleteCustomer(string $id)
     {
+        $logs = new Logs;
+        $logs->userid = Auth::id(); 
+        $logs->description = "Deleted a Customer";
+        $logs->actiondatetime = now();
+        $logs->save();
         $customerappointment= CustomerAppointment::where('customerappointmentnumber', $id);
         $customerappointment->delete();
         return redirect()->route('customerlist');
@@ -194,6 +226,11 @@ class ServiceController extends Controller
         // Send email to a recipient (replace 'recipient@example.com' with the actual recipient email)
         Mail::to($customerAppointment->customeremail)->send(new MyMail($details));
         session()->flash('success_message', 'Data Stored');
+        $logs = new Logs;
+        $logs->userid = Auth::id(); 
+        $logs->description = "Service added for: " . $customerAppointment->customername;
+        $logs->actiondatetime = now();
+        $logs->save();
         return redirect()->route('servicedata');
     }
     /**
@@ -201,12 +238,22 @@ class ServiceController extends Controller
      */
     public function show(string $id)
     {
+        $logs = new Logs;
+        $logs->userid = Auth::id(); 
+        $logs->description = "Viewed Service with ID: " . $id;
+        $logs->actiondatetime = now();
+        $logs->save();
         $servicedata = Service::where('serviceno', $id)->get();
         return view('admin.show', compact('servicedata'));
     }
    
     public function show2(string $id)
     {
+        $logs = new Logs;
+        $logs->userid = Auth::id(); 
+        $logs->description = "Views Service with ID {$id} for the Staff to See"; // Updated description
+        $logs->actiondatetime = now();
+        $logs->save();
         $servicedata = Service::where('serviceno', $id)->get();
         return view('staff.show', compact('servicedata'));
     }
@@ -217,6 +264,11 @@ class ServiceController extends Controller
      */
     public function edit(string $id)
     {
+        $logs = new Logs;
+        $logs->userid = Auth::id(); 
+        $logs->description = "Edit the Service";
+        $logs->actiondatetime = now();
+        $logs->save();
         $servicedata = Service::where('serviceno', $id)->get();
         return view('admin.edit', compact('servicedata'));
     }
@@ -259,6 +311,11 @@ class ServiceController extends Controller
         // Send email to a recipient (replace 'recipient@example.com' with the actual recipient email)
         Mail::to($customerappointment->customeremail)->send(new MyMail($details));
         session()->flash('success_message', 'Data Updated');
+        $logs = new Logs;
+        $logs->userid = Auth::id(); 
+        $logs->description = "Updated the Service Data";
+        $logs->actiondatetime = now();
+        $logs->save();
         return redirect()->route('servicedata');
     } 
     else {
@@ -273,6 +330,11 @@ class ServiceController extends Controller
             'serviceremarks' => $request->xserviceremarks,
         ]);
         session()->flash('success_message', 'Data Updated');
+        $logs = new Logs;
+        $logs->userid = Auth::id(); 
+        $logs->description = "Updated the Service Data";
+        $logs->actiondatetime = now();
+        $logs->save();
         return redirect()->route('servicedata');
     }
  }
@@ -290,6 +352,11 @@ class ServiceController extends Controller
              'workprogress'=> $request->xworkprogress,
              
              ]);
+             $logs = new Logs;
+             $logs->userid = Auth::id(); 
+             $logs->description = "Updated the Work Progress";
+             $logs->actiondatetime = now();
+             $logs->save();
         return redirect()->route('staffdatabase');
     }
 
@@ -309,6 +376,11 @@ class ServiceController extends Controller
     {
         $servicedata = Service::where('serviceno', $id)->get();
         $staff = Staff::all();
+        $logs = new Logs;
+        $logs->userid = Auth::id(); 
+        $logs->description = "Accessed the Change Staff Option";
+        $logs->actiondatetime = now();
+        $logs->save();
         return view('admin.replacestaff', compact('servicedata','staff'));
     }
 
@@ -323,12 +395,23 @@ class ServiceController extends Controller
              
              ]);
         session()->flash('success_message', 'You successfully changed the staff');
+        $logs = new Logs;
+        $logs->userid = Auth::id(); 
+        $logs->description = "Admin Changes Staff for a Specific Service";
+        $logs->actiondatetime = now();
+        $logs->save();
         return redirect()->route('servicedata');
     }
 
 
 
     public function getAppointmentInfo(){
+        $logs = new Logs;
+        $logs->userid = Auth::id(); 
+        $logs->description = "Accessed the Start Service Menu";
+        $logs->actiondatetime = now();
+        $logs->save();
+        
         $customerappointment = CustomerAppointment::all();
         return view('admin.add', compact('customerappointment'));
     }
@@ -406,6 +489,11 @@ public function getAvailableStaffNumbers()
         if($serviceData){
         $serviceStatus = $serviceData->serviceprogress;
         $customerName = $serviceData->customername;
+        $logs = new Logs;
+        $logs->userid = Auth::id(); 
+        $logs->description = "Checks Reference Code";
+        $logs->actiondatetime = now();
+        $logs->save();
 
         // Pass the data to the view
         return view('customer.checkreferencenumber', compact('orderReferenceCode', 'serviceStatus', 'customerName'));
@@ -420,6 +508,11 @@ public function getAvailableStaffNumbers()
     }
     public function countAll()
 {
+    $logs = new Logs;
+                $logs->userid = Auth::id(); 
+                $logs->description = "Accessed the Admin Dashobard";
+                $logs->actiondatetime = now();
+                $logs->save();
     $typesOfServicesCount = Service::select('typeofservice')->distinct()->count();
 
     $customerAppointmentsCount = CustomerAppointment::count();
@@ -450,6 +543,11 @@ public function getAvailableStaffNumbers()
 
 public function LineChart2()
 {
+    $logs = new Logs;
+    $logs->userid = Auth::id(); 
+    $logs->description = "Accessed the Chart for Service";
+    $logs->actiondatetime = now();
+    $logs->save();
     // Get the current month
     $currentMonth = now()->format('m'); // Assuming you have Carbon installed for the now() function
 

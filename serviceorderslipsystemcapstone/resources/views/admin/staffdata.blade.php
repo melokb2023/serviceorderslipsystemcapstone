@@ -72,18 +72,18 @@
                             
         <div class="form-group " style="display: flex; justify-content: center; align-items: center;">
         <a style="display: inline-block; margin-right: 0.5rem; padding: 0.5rem 1rem; background-color: #f6e05e; color: #000; text-decoration: none; font-weight: bold; border-radius: 0.25rem; transition: background-color 0.3s;"
-   href="{{ route('staff-show', ['staff' => $staffco->staffnumber]) }}" title="View">👁️</a>
+   href="{{ route('staff-show', ['staff' => $staffco->staffnumber]) }}" title="View"> 👁 </a>
 
-<a style="display: inline-block; margin-right: 1rem; padding: 0.5rem 1rem; background-color: #1e4f8f; color: #fff; text-decoration: none; font-weight: bold; border-radius: 0.25rem; transition: background-color 0.3s;"
-   href="{{ route('staff-edit', ['staff' => $staffco->staffnumber]) }}" title="Edit">✏️ </a>
+<a style="display: inline-block; margin-right: 0.5rem; padding: 0.5rem 1rem; background-color: #3490dc; color: #000; text-decoration: none; font-weight: bold; border-radius: 0.25rem; transition: background-color 0.3s;"
+   href="{{ route('staff-edit', ['staff' => $staffco->staffnumber]) }}" title="Edit">✏ </a>
 
 <form method="POST"
       action="{{ route('staff-delete', ['staff' => $staffco->staffnumber ]) }}"
       onclick="return confirm('Are you sure you want to delete this record?')">
     @csrf
     @method('delete')
-    <button style="display: inline-block; margin-right: 1rem; padding: 0.5rem 1rem; background-color: red; color: #fff; text-decoration: none; font-weight: bold; border-radius: 0.25rem; transition: background-color 0.3s;"
-            type="submit" title="Delete">🗑️</button>
+    <button style="display: inline-block; margin-right: 0.5rem; padding: 0.5rem 1rem; background-color: red; color: black; text-decoration: none; font-weight: bold; border-radius: 0.25rem; transition: background-color 0.3s;"
+            type="submit" title="Delete"> 🗑</button>
     <br>
 </form>
                     </div>

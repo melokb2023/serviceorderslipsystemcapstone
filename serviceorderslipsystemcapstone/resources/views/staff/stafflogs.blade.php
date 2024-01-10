@@ -59,16 +59,20 @@
 
                     <table>
                         <tr>
-                            <th>Service Number</th>
-                            <th>Actions Taken</th>
-                            <th>Service Started</th>
+                        <th>User ID</th>
+                        <th>Name</th>
+                        <th>User Type</th>
+                        <th>Description</th>
+                        <th>Action Date and Time</th>
                         </tr>
                         <tbody>
-                            @foreach($staffdatabase as $log)
+                            @foreach($logs as $log)
                                 <tr>
-                                    <td>{{ $log->serviceno }}</td>
-                                    <td>{{ $log->actionstaken }}</td>
-                                    <td>{{ date('F d, Y h:i A', strtotime($log->workstarted)) }}</td>
+                                <td>{{ $log->userid }}</td>
+                                                <td>{{ $log->name}}</td>
+                                                <td>{{ $log->usertype}}</td>
+                                                <td>{{ $log->description}}</td>
+                                                <td>{{ date('F d, Y h:i A', strtotime($log->actiondatetime)) }}</td>
                                 </tr>
                             @endforeach
                         </tbody>

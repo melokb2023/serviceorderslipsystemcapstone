@@ -11,6 +11,7 @@ use App\Http\Controllers\LineChartController;
 use App\Http\Controllers\StaffController;
 use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Logs;
 
 
 /*
@@ -48,6 +49,11 @@ Route::get('/startservice', function () {
 })->name('startservice');
 
 Route::get('/servicelist', function () {
+   $logs = new Logs;
+        $logs->userid = Auth::id(); 
+        $logs->description = "Accessed the Service List Menu";
+        $logs->actiondatetime = now();
+        $logs->save();
     return view('admin.servicelist');
 })->name('servicelist');
 
@@ -115,10 +121,20 @@ Route::get('/financialperformancereport', function () {
 
 
 Route::get('/check-service-status', function () {
+        $logs = new Logs;
+        $logs->userid = Auth::id(); 
+        $logs->description = "Accesses the Check Reference Number";
+        $logs->actiondatetime = now();
+        $logs->save();
    return view('customer.checkreferencenumber');
 })->name('checkreferencenumber');
 
 Route::get('/startlist', function () {
+   $logs = new Logs;
+        $logs->userid = Auth::id(); 
+        $logs->description = "Added Data from the Staff Work";
+        $logs->actiondatetime = now();
+        $logs->save();
    return view('admin.staffadd');
 })->name('startlist');
 
@@ -365,6 +381,11 @@ Route::post('/logout', function () {
        $user = Auth::user();
        $user->timeloggedout = now();
        $user->save();
+       $logs = new Logs;
+      $logs->userid = Auth::id(); 
+       $logs->description = "Logged Out of the System";
+       $logs->actiondatetime = now();
+       $logs->save();
        Auth::logout();
        return redirect('/login');
        

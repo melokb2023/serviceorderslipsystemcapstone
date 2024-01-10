@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Staff;
 use App\Models\User;
+use App\Models\Logs;
+use Illuminate\Support\Facades\Auth;
 class StaffController extends Controller
 {
     /**
@@ -12,6 +14,11 @@ class StaffController extends Controller
      */
     public function index()
     {
+        $logs = new Logs;
+        $logs->userid = Auth::id(); 
+        $logs->description = "Accessed the Staff List";
+        $logs->actiondatetime = now();
+        $logs->save();
         $staff = Staff::all();
         return view('admin.staffdata', compact('staff'));
     }
@@ -42,6 +49,11 @@ class StaffController extends Controller
         }
         session()->flash('success_message', 'Staff Has Been Added');
         $staff->save();
+        $logs = new Logs;
+        $logs->userid = Auth::id(); 
+        $logs->description = "Added a New Staff";
+        $logs->actiondatetime = now();
+        $logs->save();
         return redirect()->route('staff');
     }
 
@@ -50,6 +62,11 @@ class StaffController extends Controller
      */
     public function show(string $id)
     {
+        $logs = new Logs;
+        $logs->userid = Auth::id(); 
+        $logs->description = "Showed a Specific Staff";
+        $logs->actiondatetime = now();
+        $logs->save();
         $staff = Staff::where('staffnumber', $id)->get();
         return view('admin.staffshow', compact('staff'));
     }
@@ -59,6 +76,11 @@ class StaffController extends Controller
      */
     public function edit(string $id)
     {
+        $logs = new Logs;
+        $logs->userid = Auth::id(); 
+        $logs->description = "Accessed the Edit Option";
+        $logs->actiondatetime = now();
+        $logs->save();
         $staff = Staff::where('staffnumber', $id)->get();
         return view('admin.staffedit', compact('staff'));
     }
@@ -78,6 +100,11 @@ class StaffController extends Controller
              
              'staffname'=> $request->xstaffname,
              ]);
+             $logs = new Logs;
+             $logs->userid = Auth::id(); 
+             $logs->description = "Updated the Staff";
+             $logs->actiondatetime = now();
+             $logs->save();
         return redirect()->route('staff');
     }
 
@@ -88,6 +115,11 @@ class StaffController extends Controller
     {
         $staff= Staff::where('staffnumber', $id);
         $staff->delete();
+        $logs = new Logs;
+        $logs->userid = Auth::id(); 
+        $logs->description = "Deleted a Staff";
+        $logs->actiondatetime = now();
+        $logs->save();
         return redirect()->route('staff');
     }
 

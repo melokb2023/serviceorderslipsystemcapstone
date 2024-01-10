@@ -176,7 +176,7 @@
    class="mt-4 text-black font-bold py-2 px-4 rounded mr-4"
    href="{{ route('customerrating-show', ['cr' => $customer->ratingno]) }}"
    title="View">
-   👁️
+   👁
 </a>
                                             <br>
                                             <br>
