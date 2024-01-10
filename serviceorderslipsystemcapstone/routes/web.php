@@ -382,7 +382,7 @@ Route::post('/logout', function () {
        $user->timeloggedout = now();
        $user->save();
        $logs = new Logs;
-      $logs->userid = Auth::id(); 
+       $logs->userid = Auth::id(); 
        $logs->description = "Logged Out of the System";
        $logs->actiondatetime = now();
        $logs->save();
