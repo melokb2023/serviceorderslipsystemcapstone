@@ -267,7 +267,7 @@ $completedWorksCount = StaffDatabase::where('workprogress', 'Completed')
 
     foreach ($months as $monthNumber => $monthName) {
         // Count the number of services for each month
-        $count = DB::table('staffdatabase')
+        $count = DB::table('staffwork')
             ->where('staffname', $user->name)
             ->whereMonth('workstarted', $monthNumber)
             ->count();

@@ -11,11 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('staff', function (Blueprint $table) {
+        Schema::create('stafflist', function (Blueprint $table) {
             $table->id('staffnumber');
-            $table->unsignedBigInteger('id');
-            $table->string('staffname',255);
-            $table->string('staffemail',255);  
+            $table->unsignedBigInteger('id'); 
             $table->foreign('id')->references('id')->on('users');
             $table->timestamps();
         });

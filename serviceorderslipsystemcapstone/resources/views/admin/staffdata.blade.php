@@ -66,8 +66,8 @@
                 @foreach($staff as $staffco)
                        <tr>
                         <td>{{$staffco->id}}</td>
-                        <td>{{$staffco->staffname}}</td> 
-                        <td>{{$staffco->staffemail}}</td>       
+                        <td>{{$staffco->name}}</td> 
+                        <td>{{$staffco->email}}</td>       
                         <td>
                             
         <div class="form-group " style="display: flex; justify-content: center; align-items: center;">

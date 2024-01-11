@@ -9,15 +9,11 @@ class Staff extends Model
 {
     use HasFactory;
 
-    protected $table= 'staff';
+    protected $table= 'stafflist';
     
     protected $fillable = [
          'staffnumber',
          'id',
-         'staffname',
-         'staffemail',
-         'timeloggedin',
-         'timeloggedout',
     ];
 
     public function getDecryptedPasswordAttribute()

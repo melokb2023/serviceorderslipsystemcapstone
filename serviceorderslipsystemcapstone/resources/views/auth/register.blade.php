@@ -130,58 +130,56 @@
             </td>
             <td>
                 <x-validation-errors class="mb-4" />
-
                 <form method="POST" action="{{ route('register') }}">
-                    @csrf
+            @csrf
 
-                    <div class="form-group">
-                        <label for="name">Name</label>
-                        <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')"
-                            required autofocus autocomplete="name" />
-                    </div>
+            <div class="form-group">
+                <label for="name">Name</label>
+                <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')"
+                    required autofocus autocomplete="name" />
+            </div>
+            @php
+    $isAdminExists = \App\Models\User::where('usertype', 'admin')->exists();
+@endphp
+            <!-- Add the usertype field dynamically -->
+            <div class="form-group">
+    <label for="usertype">User Type</label>
+    <select id="usertype" name="usertype" class="block mt-1 w-full" required>
+        <option value="staff" {{ old('usertype') === 'staff' ? 'selected' : '' }}>Staff</option>
+        <option value="customer" {{ old('usertype') === 'customer' ? 'selected' : '' }}>Customer</option>
+        <?php if (!$isAdminExists): ?>
+            <option value="admin" {{ old('usertype') === 'admin' ? 'selected' : '' }}>Admin</option>
+        <?php endif; ?>
+    </select>
+</div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')"
+                    required autocomplete="email" />
+            </div>
 
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <x-input id="email" class="block mt-1 w-full" type="email" name="email"
-                            :value="old('email')" required autocomplete="username" />
-                    </div>
+            <!-- Add other form fields as needed -->
 
-                    <div class="form-group">
-                        <label for="phone">Contact Number</label>
-                        <x-input id="phone" class="block mt-1 w-full" type="text" name="phone"
-                            :value="old('phone')" required autocomplete="username" />
-                    </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <x-input id="password" class="block mt-1 w-full" type="password" name="password" required
+                    autocomplete="new-password" />
+            </div>
 
-                    <div class="form-group">
-                        <label for="address">Address</label>
-                        <x-input id="address" class="block mt-1 w-full" type="text" name="address"
-                            :value="old('address')" required autocomplete="username" />
-                    </div>
+            <div class="form-group">
+                <label for="password_confirmation">Confirm Password</label>
+                <x-input id="password_confirmation" class="block mt-1 w-full" type="password"
+                    name="password_confirmation" required autocomplete="new-password" />
+            </div>
 
-                    <div class="form-group">
-                        <label for="password">Password</label>
-                        <x-input id="password" class="block mt-1 w-full" type="password" name="password" required
-                            autocomplete="new-password" />
-                    </div>
-
-                    <div class="form-group">
-                        <label for="password_confirmation">Confirm Password</label>
-                        <x-input id="password_confirmation" class="block mt-1 w-full" type="password"
-                            name="password_confirmation" required autocomplete="new-password" />
-                    </div>
-
-                    <!-- Your existing form fields -->
-
-                    <div class="flex items-center justify-center mt-4">
-                      
-                       
-                        <x-button class="custom-login-button ">
-                            {{ __('Register') }}
-                        </x-button>
-                    </div>
-                </form>
-            </td>
-        </tr>
-    </table>
-    </div>
+            <div class="flex items-center justify-center mt-4">
+                <x-button class="custom-login-button ">
+                    {{ __('Register') }}
+                </x-button>
+            </div>
+        </form>
+    </td>
+</tr>
+</table>
+</div>
 </x-guest-layout>

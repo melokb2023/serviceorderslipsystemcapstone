@@ -10,7 +10,7 @@ class StaffDatabase extends Model
 {
     use HasFactory;
 
-    protected $table= 'staffdatabase';
+    protected $table= 'staffwork';
     
     protected $fillable = [
          'serviceno',

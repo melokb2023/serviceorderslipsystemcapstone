@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string('phone')->nullable();
             $table->string('address')->nullable();
-            $table->string('usertype')->default('customer');
+            $table->string('usertype'); // Change this line
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
@@ -27,6 +27,8 @@ return new class extends Migration
             $table->timestamp('timeloggedin')->nullable();
             $table->timestamp('timeloggedout')->nullable();
         });
+
+        // Set a unique constraint to ensure only one admin
     }
 
     /**

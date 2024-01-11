@@ -138,7 +138,7 @@
 
                     </style>
 
-                    <h6 style="font-family:Arial">Errors Encountered</h6>
+      
                     @if($errors)
                         <ul>
                             @foreach($errors->all() as $error)
@@ -163,7 +163,7 @@
                             <!-- Form row with one column in one line -->
                             <div class="form-row">
                                 <div class="form-group">
-                                    <label for="xstaffid">Select Staff</label>
+                                    <label for="xstaffid" style ="color:white" >Add Staff</label>
                                     <select name="xstaffid">
                                         @foreach($availableStaffIDs as $staffId)
                                             @php

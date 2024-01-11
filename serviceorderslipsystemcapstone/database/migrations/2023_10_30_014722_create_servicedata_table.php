@@ -15,8 +15,6 @@ return new class extends Migration
             $table->id('serviceno');
             $table->unsignedBigInteger('customerappointmentnumber');
             $table->unsignedBigInteger('staffnumber');
-            $table->string('staffname');
-            $table->string('customername');
             $table->string('typeofservice',100);
             $table->string('listofproblems',100);
             $table->string('customerpassword',100);
@@ -29,10 +27,10 @@ return new class extends Migration
             $table->dateTime('dateandtime', $precision = 0);
             $table->dateTime('servicestarted', $precision = 0);
             $table->dateTime('serviceend', $precision = 0);
-            $table->string('orderreferencecode')->nullable();
+            $table->string('servicereferencecode')->nullable();
             $table->timestamps();
             $table->foreign('customerappointmentnumber')->references('customerappointmentnumber')->on('customerappointment');
-            $table->foreign('staffnumber')->references('staffnumber')->on('staff');
+            $table->foreign('staffnumber')->references('staffnumber')->on('stafflist');
 
             
         

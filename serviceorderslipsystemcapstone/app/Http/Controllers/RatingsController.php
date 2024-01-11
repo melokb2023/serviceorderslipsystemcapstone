@@ -76,10 +76,10 @@ $details = [
 Mail::to('kyle.melo@lccdo.edu.ph')->send(new MyMail($details));
 session()->flash('success_message', 'Rating Has Been Saved');
 $logs = new Logs;
-    $logs->userid = Auth::id(); 
-    $logs->description = "Accessed the Rating Menu. Rated Service No.: {$request->xserviceno}, Staff Performance Score: {$request->xstaffperformance}, Rating Score: {$request->xrating}";
-    $logs->actiondatetime = now();
-    $logs->save();
+$logs->userid = Auth::id(); 
+$logs->description = "Accessed the Rating Menu. Rated Service No.: {$request->xserviceno}, Staff Performance Score: {$request->xstaffperformance}, Rating Score: {$request->xrating} by {$customerrating->reviewername}";
+$logs->actiondatetime = now();
+$logs->save();
 return view('dashboard');
     }
 

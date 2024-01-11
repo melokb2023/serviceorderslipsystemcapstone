@@ -19,7 +19,10 @@ class StaffController extends Controller
         $logs->description = "Accessed the Staff List";
         $logs->actiondatetime = now();
         $logs->save();
-        $staff = Staff::all();
+        // Perform a join between stafflist and users tables and select specific columns
+    $staff = Staff::join('users', 'stafflist.id', '=', 'users.id')
+    ->select('stafflist.*', 'users.name', 'users.email')
+    ->get();
         return view('admin.staffdata', compact('staff'));
     }
 
@@ -40,13 +43,6 @@ class StaffController extends Controller
         $staff->id = $request->xstaffid;
         $user = User::find($request->xstaffid);
 
-        // Check if the User exists
-        if ($user) {
-            // Assuming you have 'name' and 'email' fields in your User model
-            $staff->staffname = $user->name;
-            $staff->staffemail = $user->email;
-            // Add more fields as needed
-        }
         session()->flash('success_message', 'Staff Has Been Added');
         $staff->save();
         $logs = new Logs;
