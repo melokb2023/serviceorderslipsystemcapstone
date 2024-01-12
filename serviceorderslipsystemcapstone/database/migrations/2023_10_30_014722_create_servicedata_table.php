@@ -24,7 +24,6 @@ return new class extends Migration
             $table->string('workremarks',100);
             $table->string('serviceprogress',100);
             $table->string('serviceremarks',100);
-            $table->dateTime('dateandtime', $precision = 0);
             $table->dateTime('servicestarted', $precision = 0);
             $table->dateTime('serviceend', $precision = 0);
             $table->string('servicereferencecode')->nullable();

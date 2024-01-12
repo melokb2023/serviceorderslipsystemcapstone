@@ -87,5 +87,14 @@ class User extends Authenticatable
     }
 
     
-   
+    public function staff()
+    {
+        return $this->hasOne(Staff::class, 'id');
+    }
+
+    public function staff2()
+    {
+        return $this->hasOne(Staff::class, 'id', 'id');
+    }
+
 }

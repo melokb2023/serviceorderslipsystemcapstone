@@ -69,6 +69,10 @@ Route::get('/staffdatabase', function () {
     return view('staff.staffdatabase');
 })->name('staffdatabase');
 
+Route::get('/staffdashboard', function () {
+   return view('staff.staffdashboard');
+})->name('staffdashboard');
+
 Route::get('/staffdatabase', function () {
     return view('staff.staffdatabase');
 })->name('staffdatabase');
@@ -237,13 +241,17 @@ Route::patch('/service/updatestaff/{serno}', [ServiceController::class, 'updates
 
 //STAFF DATABASE
 
-Route::get('/staffdatabase/add', [StaffDatabaseController::class, 'getService']) 
+Route::get('/staffdatabase/{id}/add', [StaffDatabaseController::class, 'getService']) 
    ->middleware(['auth', 'verified'])
    ->name('add-staffdatabase');
 
-Route::post('/staffdatabase/add',[StaffDatabaseController::class, 'store'] )
+Route::post('/staffdatabase/{id}/add', [StaffDatabaseController::class, 'store'])
+   ->middleware(['auth', 'verified'])
+   ->name('staffdatabase-store');
+   
+Route::post('/staffdatabase/add2',[StaffDatabaseController::class, 'addWork'] )
 ->middleware(['auth', 'verified'])
-->name('staffdatabase-store');
+->name('staffdatabase2-store');
 
 Route::get('/staffdatabase', [StaffDatabaseController::class, 'index']) 
    ->middleware(['auth', 'verified'])
@@ -270,7 +278,7 @@ Route::get('/staffdatabase/edit/{serviceno}', [StaffDatabaseController::class, '
    ->middleware(['auth', 'verified'])
    ->name('staffdatabase-edit');
 
-Route::get('/staffdashboard', [StaffDatabaseController::class, 'countWork'])->name('staffdashboard');
+///Route::get('/staffdashboard', [StaffDatabaseController::class, 'countWork'])->name('staffdashboard');
 
 
 

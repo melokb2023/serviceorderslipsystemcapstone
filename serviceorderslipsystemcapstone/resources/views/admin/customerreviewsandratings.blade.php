@@ -88,8 +88,8 @@
                     <form id="filterForm" method="GET" action="{{ route('customerrating') }}" class="flex items-center justify-center space-x-4">
     @csrf
 
-    <label for="reviewername_filter">Reviewer Name:</label>
-    <input type="text" id="reviewername_filter" name="reviewername_filter" style="font-weight: bold; height: 50px;" value="{{ request('reviewername_filter') }}" placeholder="Enter Reviewer Name">
+    <label for="customer_name_filter">Reviewer Name:</label>
+    <input type="text" id="customer_name_filter" name="customer_name_filter" style="font-weight: bold; height: 50px;" value="{{ request('customer_name_filter') }}" placeholder="Enter Reviewer Name">
 
     <!-- Add more input boxes for additional filters if needed -->
 
@@ -113,8 +113,8 @@
                                 @foreach($customerrating as $customer)
                                     <tr>
                                         <td>{{ $customer->serviceno }}</td>
-                                        <td>{{ $customer->reviewername }}</td>
-                                        <td>{{ $customer->assignedstaff }}</td>
+                                        <td>{{ $customer->customername }}</td>
+                                        <td>{{ $customer->staffname }}</td>
                                         <td>{{ $customer->review }}</td>
                                         <td>{{ $customer->staffperformance }}</td>
                                         <td>

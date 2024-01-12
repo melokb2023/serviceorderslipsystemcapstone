@@ -15,11 +15,8 @@ return new class extends Migration
         Schema::create('staffwork', function (Blueprint $table) {
             $table->id('worknumber');
             $table->unsignedBigInteger('serviceno');
-            $table->string('staffname',100);
-            $table->string('actionsrequired',100);
             $table->dateTime('workstarted', $precision = 0);
             $table->string('actionstaken');
-            $table->string('workprogress',100);
             $table->foreign('serviceno')->references('serviceno')->on('servicedata');
             $table->timestamps();
         });

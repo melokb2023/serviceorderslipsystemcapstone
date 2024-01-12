@@ -235,7 +235,7 @@
                         @forelse($servicedata as $serviceinfo)
                             <tr>
                                 <td>{{ $serviceinfo->serviceno }}</td>
-                                <td>{{ $serviceinfo->orderreferencecode }}</td>
+                                <td>{{ $serviceinfo->servicereferencecode }}</td>
                                 <td>{{ $serviceinfo->staffname }} </td>
                                 <td>{{ $serviceinfo->customername}} </td>
                                 <td

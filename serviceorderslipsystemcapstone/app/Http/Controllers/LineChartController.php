@@ -106,57 +106,62 @@ class LineChartController extends Controller
     }
 
     public function BarChart2($selectedStaff = null)
-{
-  
-
-    // Get all unique staff names from the database
-    $staffNames = Rating::distinct('assignedstaff')->pluck('assignedstaff');
-
-    // Fetch data for each staff and build an array for the chart
-    $chartData = [];
-
-    foreach ($staffNames as $staffName) {
-        $data = [];
-
-        // Fetch data for each month and year
-        for ($year = date('Y'); $year >= 2020; $year--) {
-            for ($month = 1; $month <= 12; $month++) {
-                $monthlyData = [];  // Define an array of scores for counting
-                $scores = ['1', '2', '3', '4', '5'];
-
-                foreach ($scores as $score) {
-                    // Fetch the count of each rating for the specific staff, month, and year
-                    $count = Rating::where('assignedstaff', $staffName)
-                        ->whereYear('created_at', $year)
-                        ->whereMonth('created_at', $month)
-                        ->where('staffperformance', $score);
-                    
-
-                    // Check if a specific staff member is selected
-                    if ($selectedStaff !== null) {
-                        $count = $count->where('assignedstaff', $staffName);
+    {
+        // Get all unique staff names from the database
+        $staffNames = Rating::join('servicedata', 'customerrating.serviceno', '=', 'servicedata.serviceno')
+            ->join('stafflist', 'servicedata.staffnumber', '=', 'stafflist.staffnumber')
+            ->join('users', 'stafflist.id', '=', 'users.id')
+            ->distinct('users.id') // Use 'users.name' instead of 'users.id'
+            ->pluck('users.name')
+            ->toArray();
+    
+        // Fetch data for each staff and build an array for the chart
+        $chartData = [];
+    
+        foreach ($staffNames as $staffName) {
+            $data = [];
+    
+            // Fetch data for each month and year
+            for ($year = date('Y'); $year >= 2020; $year--) {
+                for ($month = 1; $month <= 12; $month++) {
+                    $monthlyData = [];  // Define an array of scores for counting
+                    $scores = ['1', '2', '3', '4', '5'];
+    
+                    foreach ($scores as $score) {
+                        // Use relationships and correct column names
+                        $count = Rating::whereHas('service.staff.user', function ($query) use ($staffName, $year, $month, $score) {
+                            $query->where('name', $staffName)
+                                ->whereYear('created_at', $year)
+                                ->whereMonth('created_at', $month);
+                        })->where('staffperformance', $score);
+    
+                        // Check if a specific staff member is selected
+                        if ($selectedStaff !== null) {
+                            $count->whereHas('service.staff.user', function ($query) use ($selectedStaff) {
+                                $query->where('name', $selectedStaff);
+                            });
+                        }
+    
+                        $count = $count->count();
+                        $monthlyData[] = $count;
                     }
-
-                    $count = $count->count();
-                    $monthlyData[] = $count;
+    
+                    // Store data for the specific month and year
+                    $data["$year-$month"] = $monthlyData;
                 }
-
-                // Store data for the specific month and year
-                $data["$year-$month"] = $monthlyData;
             }
+    
+            $chartData[$staffName] = $data;
         }
-
-        
-        $chartData[$staffName] = $data;
+    
+        $logs = new Logs;
+        $logs->userid = Auth::id(); 
+        $logs->description = "Views the Rating of a Specific Staff with Month and Year";
+        $logs->actiondatetime = now();
+        $logs->save();
+    
+        return view('admin.ratinggraphstaff', compact('chartData', 'staffNames'));
     }
-    $logs = new Logs;
-    $logs->userid = Auth::id(); 
-    $logs->description = "Views the Rating of a Specific Staff with Month and Year";
-    $logs->actiondatetime = now();
-    $logs->save();
-    return view('admin.ratinggraphstaff', compact('chartData', 'staffNames'));
-}
-
     
 
 }

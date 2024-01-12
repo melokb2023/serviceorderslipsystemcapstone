@@ -97,16 +97,16 @@
                         <table style="text-align:center">
                             <thead>
                                 <tr>
-                                    <th>Staff Work Number</th>
-                                    <th>Service Number</th>
-                                    <th>Staff Name</th>
-                                    <th>Customer's System Password</th>
-                                    <th>Actions Required</th>
-                                    <th>Type of Service</th>
-                                    <th>Work Started</th>
-                                    <th>Actions Taken</th>
-                                    <th>Work Progress</th>
-                                    <th>Options</th>
+                            <th>Work Number</th>
+                            <th>Service Number</th>
+                            <th>Staff Name</th>
+                            <th>Customer Name</th>
+
+                            <th>Customer Password</th>
+                            <th>Work Started</th>
+                            <th>Actions Taken</th>
+                            <th>Work Progress</th>
+                            <th>Options</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -115,30 +115,41 @@
                                         <td>{{ $staffRecord->worknumber }}</td>
                                         <td>{{ $staffRecord->serviceno }}</td>
                                         <td>{{ $staffRecord->staffname }}</td>
+                                        <td>{{ $staffRecord->customername }}</td>
                                         <td>{{ str_repeat('*', strlen($staffRecord->customerpassword)) }}</td>
-                                        <td>{{ $staffRecord->actionsrequired }}</td>
-                                        <td>{{ $staffRecord->typeofservice }}</td>
                                         <td>{{ date('F d, Y h:i A', strtotime($staffRecord->workstarted)) }}</td>
                                         <td>{{ $staffRecord->actionstaken }}</td>
                                         <td class="{{ $staffRecord->workprogress === 'Ongoing' ? 'ongoing' : ($staffRecord->workprogress === 'Unable to Complete' ? 'incomplete' : 'completed') }}">{{ $staffRecord->workprogress }}</td>
                                         <td>
-    <div class="grid grid-cols-2 gap-2">
-        <div>
-            <a style="background-color: #f6e05e; width: 1.5rem; height: 1.5rem; line-height: 1.5rem; padding: 0.3rem; margin: 0.1rem; display: inline-flex; align-items: center; justify-content: center;"
-               class="mt-4 text-black font-bold rounded inline-block"
-               href="{{ route('staffdatabase-show', ['serviceno' => $staffRecord->serviceno]) }}"
-               title="View">
-               👁
-            </a>
-        </div>
+                                        <div class="grid grid-cols-2 gap-2">
+    <!-- First Row -->
+    <div>
+        <a style="background-color: #f6e05e; width: 1.5rem; height: 1.5rem; line-height: 1.5rem; padding: 0.3rem; margin: 0.1rem; display: inline-flex; align-items: center; justify-content: center;"
+           class="mt-4 text-black font-bold rounded inline-block"
+           href="{{ route('staffdatabase-show', ['serviceno' => $staffRecord->serviceno]) }}"
+           title="View">
+           👁
+        </a>
+    </div>
 
-        <div>
-            <a style="background-color: blue; width: 1.5rem; height: 1.5rem; line-height: 1.5rem; padding: 0.3rem; margin: 0.1rem; display: inline-flex; align-items: center; justify-content: center;"
-               class="mt-4 text-white font-bold rounded inline-block"
-               href="{{ route('staffdatabase-edit', ['serviceno' => $staffRecord->serviceno]) }}"
-               title="Edit">
-               ✏
-            </a>
+    <div>
+        <a style="background-color: blue; width: 1.5rem; height: 1.5rem; line-height: 1.5rem; padding: 0.3rem; margin: 0.1rem; display: inline-flex; align-items: center; justify-content: center;"
+           class="mt-4 text-white font-bold rounded inline-block"
+           href="{{ route('staffdatabase-edit', ['serviceno' => $staffRecord->serviceno]) }}"
+           title="Edit">
+           ✏
+        </a>
+    </div>
+
+    <!-- Second Row -->
+    <div class="col-span-2">
+        <a class="mt-4 text-black font-bold rounded inline-block button text-center"
+           href="{{ route('add-staffdatabase', ['id' => $staffRecord->serviceno]) }}"
+           title="Start Work"
+           style="background-color: #76c893; /* Adjusted light green color */ color: black; /* Black text color */ width: 1.5rem; height: 1.5rem; line-height: 1.5rem; padding: 0.3rem; margin: 0.1rem; display: inline-flex; align-items: center; justify-content: center;">
+           +
+        </a>
+    </div>
         </div>
     </div>
 </td>
@@ -147,14 +158,8 @@
                                 @endforeach
                             </tbody>
                         </table>
-                        <a class="button" href="{{ route('add-staffdatabase') }}">
-                            Add Work Data
-                        </a>
                     @else
                     <p class="no-records text-black font-bold" style="color:black">No records found.</p>
-                        <a class="button" href="{{ route('add-staffdatabase') }}">
-                            Add Work Data
-                        </a>
                     @endif
                     <br>
                     <br>

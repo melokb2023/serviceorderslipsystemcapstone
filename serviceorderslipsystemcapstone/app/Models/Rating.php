@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\User;
 
 class Rating extends Model
 {
@@ -13,11 +14,18 @@ class Rating extends Model
     
     protected $fillable = [
          'serviceno',
-         'reviewerid',
-         'reviewername',
-         'assignedstaff',
          'review',
          'staffperformance',
          'rating',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'id', 'id');
+    }
+
+    public function service()
+    {
+        return $this->belongsTo(Service::class, 'serviceno', 'serviceno');
+    }
 }

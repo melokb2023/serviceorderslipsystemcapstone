@@ -17,29 +17,35 @@ class RatingsController extends Controller
      * Display a listing of the resource.
      */
     public function index(Request $request)
-    {
-        $logs = new Logs;
-        $logs->userid = Auth::id(); 
-        $logs->description = "Accessed the Rating Menu";
-        $logs->actiondatetime = now();
-        $logs->save();
-        // Get all ratings initially
-        $query = Rating::query();
-    
-        // Check if there is a reviewername_filter parameter in the URL
-        if ($request->has('reviewername_filter')) {
-            // If the reviewername_filter is provided, search the results by the reviewer name
-            $query->where('reviewername', 'like', '%' . $request->input('reviewername_filter') . '%');
-        }
-    
-        // Fetch the unique reviewer names for the combo box
-        $reviewerNames = Rating::distinct('reviewername')->pluck('reviewername');
-    
-        // Fetch the customerrating based on the applied filters
-        $customerrating = $query->get();
-    
-        return view('admin.customerreviewsandratings', compact('customerrating', 'reviewerNames'));
+{
+    $logs = new Logs;
+    $logs->userid = Auth::id(); 
+    $logs->description = "Accessed the Rating Menu";
+    $logs->actiondatetime = now();
+    $logs->save();
+
+    // Get all ratings initially
+    $query = Rating::join('servicedata', 'customerrating.serviceno', '=', 'servicedata.serviceno')
+        ->join('customerappointment', 'servicedata.customerappointmentnumber', '=', 'customerappointment.customerappointmentnumber')
+        ->join('users as customer', 'customerappointment.customerno', '=', 'customer.id')
+        ->join('stafflist', 'servicedata.staffnumber', '=', 'stafflist.staffnumber')
+        ->join('users as staff', 'stafflist.id', '=', 'staff.id')
+        ->select(
+            'customerrating.*',
+            'customer.name as customername',
+            'staff.name as staffname'
+        );
+
+    // Check if there is a filter for Customer Name
+    if ($request->filled('customer_name_filter')) {
+        $query->where('customer.name', 'like', '%' . $request->input('customer_name_filter') . '%');
     }
+
+    // Fetch the customerrating based on the applied filters
+    $customerrating = $query->get();
+
+    return view('admin.customerreviewsandratings', compact('customerrating'));
+}
     /**
      * Show the form for creating a new resource.
      */
@@ -57,15 +63,10 @@ class RatingsController extends Controller
 
 $customerrating = new Rating();
 $customerrating->serviceno = $request->xserviceno;
-$customerrating->reviewerid = auth()->user()->id;
-$customerrating->reviewername = auth()->user()->name;
 $customerrating->review = $request->xreview;
 $customerrating->staffperformance = $request->xstaffperformance;
 $customerrating->rating = $request->xrating;
-$service= Service::where('serviceno', $request->xserviceno)->first();
-if ($service) {
-    $customerrating->assignedstaff = $service->staffname;
-}
+
 $customerrating->save();
 $details = [
     'title' => 'Work Completion Notification',
@@ -126,29 +127,39 @@ return view('dashboard');
    
     
     public function getCompletedServicesforRating()
-    {
-        // Get the name of the currently authenticated customer
-        $authenticatedCustomerName = Auth::user()->name;
-    
-        // Get service numbers assigned to the authenticated customer from Rating
-        $assignedServiceNumbers = Rating::where('reviewername', $authenticatedCustomerName)
-            ->pluck('serviceno')
-            ->unique();
-    
-        // Get completed services with Rating for the authenticated customer
-        $completedServices = Service::where('serviceprogress', 'Completed')
-            ->where('customername', $authenticatedCustomerName)
-            ->whereNotIn('serviceno', $assignedServiceNumbers)
-            ->get();
-    
-        // You may further filter or adjust the condition based on your specific requirements
-    
-        return $completedServices;
-    }
-    public function getService(){
-        $servicedata = Service::all();
-        return view('customer.customerrating', compact('servicedata'));
-    }
+{
+    // Get the authenticated customer's id
+    $authenticatedCustomerId = Auth::id();
+
+    // Get completed services with Rating for the authenticated customer
+    $completedServices = Service::where('serviceprogress', 'Completed')
+        ->whereHas('customerAppointment', function ($query) use ($authenticatedCustomerId) {
+            $query->where('customerno', $authenticatedCustomerId);
+        })
+        ->get();
+
+    return $completedServices;
+}
+
+public function getService(){
+    $servicedata = Service::join('customerappointment', 'servicedata.customerappointmentnumber', '=', 'customerappointment.customerappointmentnumber')
+        ->join('users as customer', 'customerappointment.customerno', '=', 'customer.id')
+        ->join('stafflist', 'servicedata.staffnumber', '=', 'stafflist.staffnumber')
+        ->join('users as staff', 'stafflist.id', '=', 'staff.id')
+        ->where('customer.id', Auth::id())
+        ->select(
+            'servicedata.*',
+            'customer.name as customername',
+            'customer.email as customeremail',
+            'customerappointment.dateandtime',
+            'stafflist.*',
+            'staff.name as staffname',
+            'staff.email as staffemail'
+        )
+        ->get();
+
+    return view('customer.customerrating', compact('servicedata'));
+}
 
 
  

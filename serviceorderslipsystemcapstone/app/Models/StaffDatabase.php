@@ -14,12 +14,13 @@ class StaffDatabase extends Model
     
     protected $fillable = [
          'serviceno',
-         'staffname',
-         'actionsrequired',
-         'typeofservice',
          'workstarted',
          'actionstaken',
-         'workprogress',
     ];
+
+    public function staff()
+{
+    return $this->belongsTo(Staff::class, 'serviceno', 'staffnumber');
+}
 
 }

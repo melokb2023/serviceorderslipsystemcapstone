@@ -14,8 +14,6 @@ class Service extends Model
     protected $fillable = [
          'customerappointmentnumber',
          'staffnumber',
-         'staffname',
-         'customername',
          'typeofservice',
          'listofproblems',
          'customerpassword',
@@ -25,23 +23,25 @@ class Service extends Model
          'workremarks', 
          'serviceprogress',
          'serviceremarks',
-         'dateandtime',
          'servicestarted',
          'serviceend',
-         'orderreferencecode'
+         'servicereferencecode'
     ];
 
-    public function customerAppointment()
-    {
-        return $this->belongsTo(CustomerAppointment::class, 'customerappointmentnumber', 'customerno');
-    }
+    
 
     public function staff()
     {
-        return $this->belongsTo(Staff::class, 'staffnumber');
+        return $this->belongsTo(Staff::class, 'staffnumber', 'staffnumber');
     }
     public function getDecryptedPasswordAttribute()
     {
         return decrypt($this->attributes['customerpassword']);
     }
+    
+    public function customerAppointment()
+{
+    return $this->belongsTo(CustomerAppointment::class, 'customerappointmentnumber', 'customerappointmentnumber');
+}
+
 }

@@ -20,6 +20,11 @@ class CustomerAppointment extends Model
          'dateandtime',
     ];
 
+    public function user()
+{
+    return $this->belongsTo(User::class, 'customerno', 'id');
+}
+
    
   
 }

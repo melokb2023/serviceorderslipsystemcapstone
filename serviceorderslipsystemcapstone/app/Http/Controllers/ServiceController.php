@@ -28,46 +28,57 @@ class ServiceController extends Controller
      * Display a listing of the resource.
      */
     public function index(Request $request)
-{
-    $logs = new Logs;
-    $logs->userid = Auth::id(); 
-    $logs->description = "Accessed the Service Data";
-    $logs->actiondatetime = now();
-    $logs->save();
-    $query = Service::join('customerappointment', 'servicedata.customerappointmentnumber', '=', 'customerappointment.customerappointmentnumber')
-               ->join('staff', 'servicedata.staffnumber', '=', 'staff.staffnumber')
-               ->select('servicedata.*', 'customerappointment.*', 'staff.*');
-
-    // Check if there is a filter for Customer Appointment Number
-    if ($request->filled('customer_appointment_number_filter')) {
-        $query->where('servicedata.customerappointmentnumber', $request->input('customer_appointment_number_filter'));
-    }
-
-    // Check if there is a filter for Customer Name
-    if ($request->filled('customer_name_filter')) {
-        $query->where('servicedata.customername', 'like', '%' . $request->input('customer_name_filter') . '%');
-    }
-
-    // Check if there is a filter for Type of Service
-    if ($request->filled('typeofservice_filter') && $request->input('typeofservice_filter') !== 'All') {
-        $query->where('servicedata.typeofservice', $request->input('typeofservice_filter'));
-    }
-
-    if ($request->filled('serviceprogress_filter')) {
-        $filterValue = $request->input('serviceprogress_filter');
+    {
+        $logs = new Logs;
+        $logs->userid = Auth::id(); 
+        $logs->description = "Accessed the Service Data";
+        $logs->actiondatetime = now();
+        $logs->save();
     
-        if ($filterValue === 'Ongoing' || $filterValue === 'Completed') {
-            $query->where('servicedata.serviceprogress', $filterValue);
+        $query = Service::join('customerappointment', 'servicedata.customerappointmentnumber', '=', 'customerappointment.customerappointmentnumber')
+        ->join('stafflist', 'servicedata.staffnumber', '=', 'stafflist.staffnumber')
+        ->join('users as customer', 'customerappointment.customerno', '=', 'customer.id')
+        ->join('users as staff', 'stafflist.id', '=', 'staff.id')
+        ->select(
+            'servicedata.*', 
+            'customer.name as customername', 
+            'customer.email as customeremail', 
+            'customerappointment.dateandtime',
+            'stafflist.*',
+            'staff.name as staffname',
+            'staff.email as staffemail'
+        );
+    
+        // Check if there is a filter for Customer Appointment Number
+        if ($request->filled('customer_appointment_number_filter')) {
+            $query->where('servicedata.customerappointmentnumber', $request->input('customer_appointment_number_filter'));
         }
+    
+        // Check if there is a filter for Customer Name
+        if ($request->filled('customer_name_filter')) {
+            $query->where('customer.name', 'like', '%' . $request->input('customer_name_filter') . '%');
+        }
+    
+        // Check if there is a filter for Type of Service
+        if ($request->filled('typeofservice_filter') && $request->input('typeofservice_filter') !== 'All') {
+            $query->where('servicedata.typeofservice', $request->input('typeofservice_filter'));
+        }
+    
+        if ($request->filled('serviceprogress_filter')) {
+            $filterValue = $request->input('serviceprogress_filter');
+        
+            if ($filterValue === 'Ongoing' || $filterValue === 'Completed') {
+                $query->where('servicedata.serviceprogress', $filterValue);
+            }
+        }
+    
+        $servicedata = $query->orderBy('serviceno', 'desc')->get();
+    
+        // Get distinct types of service for the combo box
+        $typesOfService = Service::distinct('typeofservice')->pluck('typeofservice');
+    
+        return view('admin.servicedata', compact('servicedata', 'typesOfService'));
     }
-
-    $servicedata = $query->orderBy('serviceno', 'desc')->get();
-
-    // Get distinct types of service for the combo box
-    $typesOfService = Service::distinct('typeofservice')->pluck('typeofservice');
-
-    return view('admin.servicedata', compact('servicedata', 'typesOfService'));
-}
     //////VIEW CUSTOMER LIST
     public function CustomerList(Request $request)
 {
@@ -82,13 +93,14 @@ class ServiceController extends Controller
     $query = CustomerAppointment::select(
         'customerappointment.customerappointmentnumber',
         'customerappointment.customerno',
-        'customerappointment.customername',
-        'customerappointment.customeremail',
+        'users.name as customername',
+        'users.email as customeremail',
         'customerappointment.appointmentpurpose', // Corrected column name
         'customerappointment.appointmenttype',
         'customerappointment.dateandtime'
         // Add more columns as needed
-    );
+    )
+    ->join('users', 'users.id', '=', 'customerappointment.customerno');
 
     if ($month && $year) {
         $query->whereMonth('customerappointment.dateandtime', $month)
@@ -190,7 +202,7 @@ class ServiceController extends Controller
         $servicedata->serviceprogress = "Ongoing";
         $servicedata->serviceremarks = "";
         $currentYear = date('Y');
-        $lastOrder = Service::max('orderreferencecode');
+        $lastOrder = Service::max('servicereferencecode');
         $lastYear = substr($lastOrder, 0, 4);
     
         if ($lastYear == $currentYear) {
@@ -201,37 +213,43 @@ class ServiceController extends Controller
             $orderNumber = 1;
         }
     
-        $orderReferenceCode = $currentYear . '-' .str_pad($orderNumber, 4, '0', STR_PAD_LEFT);
+        $serviceReferenceCode = $currentYear . '-' .str_pad($orderNumber, 4, '0', STR_PAD_LEFT);
     
-        $servicedata->orderreferencecode = $orderReferenceCode;
+        $servicedata->servicereferencecode = $serviceReferenceCode;
 
-          // Get dateandtime from CustomerAppointment based on customerappointmentnumber
-         $customerAppointment = CustomerAppointment::where('customerappointmentnumber', $request->xcustomerappointmentnumber)->first();
-         $staff = Staff::where('staffnumber', $request->xstaffnumber)->first();
-    // Check if the CustomerAppointment exists
-    if ($customerAppointment) {
-        $servicedata->dateandtime = $customerAppointment->dateandtime;
-        $servicedata->customername = $customerAppointment->customername;
-    }
-    if ($staff) {
-        $servicedata->staffname = $staff->staffname;
-    }
-        $servicedata->servicestarted = $request->xservicestarted;
-        $servicedata->serviceend = now();
-        $servicedata->save();
-        $details = [
-            'title' => 'Order Reference Code',
-            'body' => 'Service has been placed. Your order reference code is: ' . $orderReferenceCode,
-        ];
-        // Send email to a recipient (replace 'recipient@example.com' with the actual recipient email)
-        Mail::to($customerAppointment->customeremail)->send(new MyMail($details));
-        session()->flash('success_message', 'Data Stored');
-        $logs = new Logs;
-        $logs->userid = Auth::id(); 
-        $logs->description = "Service added for: " . $customerAppointment->customername;
-        $logs->actiondatetime = now();
-        $logs->save();
-        return redirect()->route('servicedata');
+        // Get Customer Appointment based on customerappointmentnumber
+$customerAppointment = CustomerAppointment::where('customerappointmentnumber', $request->xcustomerappointmentnumber)->first();
+
+// Get User information based on customerno
+$customerUser = User::find($customerAppointment->customerno);
+
+// Now you have access to the customer's email
+$customerEmail = $customerUser->email;
+
+// Rest of your code
+$servicedata->servicestarted = $request->xservicestarted;
+$servicedata->serviceend = now();
+$servicedata->save();
+
+$details = [
+    'title' => 'Order Reference Code',
+    'body' => 'Service has been placed. Your order reference code is: ' . $serviceReferenceCode,
+];
+
+// Send email to the customer
+Mail::to($customerEmail)->send(new MyMail($details));
+
+// Flash success message and log the action
+session()->flash('success_message', 'Data Stored');
+
+$logs = new Logs;
+$logs->userid = Auth::id(); 
+$logs->description = "Service added for: " . $customerAppointment->customername;
+$logs->actiondatetime = now();
+$logs->save();
+
+return redirect()->route('servicedata');
+
     }
     /**
      * Display the specified resource.
@@ -301,7 +319,11 @@ class ServiceController extends Controller
                 'serviceremarks' => $request->xserviceremarks,
             ]);
 
-        $customerappointment = CustomerAppointment::where('customerappointmentnumber', $id)->first();
+            $customerappointment = CustomerAppointment::where('customerappointmentnumber', $servicedata->customerappointmentnumber)->first();
+
+            // Get User information based on customerno
+            $customerUser = User::find($customerappointment->customerno);
+            $customerEmail = $customerUser->email;
 
         $details = [
             'title' => 'Work Completion Notification',
@@ -309,7 +331,7 @@ class ServiceController extends Controller
         ];
 
         // Send email to a recipient (replace 'recipient@example.com' with the actual recipient email)
-        Mail::to($customerappointment->customeremail)->send(new MyMail($details));
+        Mail::to($customerEmail)->send(new MyMail($details));
         session()->flash('success_message', 'Data Updated');
         $logs = new Logs;
         $logs->userid = Auth::id(); 
@@ -405,21 +427,27 @@ class ServiceController extends Controller
 
 
 
-    public function getAppointmentInfo(){
-        $logs = new Logs;
-        $logs->userid = Auth::id(); 
-        $logs->description = "Accessed the Start Service Menu";
-        $logs->actiondatetime = now();
-        $logs->save();
-        
-        $customerappointment = CustomerAppointment::all();
-        return view('admin.add', compact('customerappointment'));
-    }
+    public function getAppointmentInfo()
+{
+    $logs = new Logs;
+    $logs->userid = Auth::id(); 
+    $logs->description = "Accessed the Start Service Menu";
+    $logs->actiondatetime = now();
+    $logs->save();
+    
+    $customerappointment = CustomerAppointment::join('users', 'customerappointment.customerno', '=', 'users.id')
+        ->select('customerappointment.*', 'users.name as customername')
+        ->get();
 
+    return view('admin.add', compact('customerappointment'));
+}
+    
     public function getAvailableCustomerAppointments()
     {
         // Get all customer appointments
-        $allCustomerAppointments = CustomerAppointment::all();
+        $allCustomerAppointments = CustomerAppointment::join('users', 'customerappointment.customerno', '=', 'users.id')
+        ->select('customerappointment.customerappointmentnumber', 'customerappointment.customerno', 'users.name as customername')
+        ->get();
 
         // Get customer appointments that are not listed in service data
         $listedCustomerAppointments = Service::pluck('customerappointmentnumber')->unique();
@@ -448,7 +476,9 @@ class ServiceController extends Controller
 public function getAvailableStaffNumbers()
 {
     // Get all service numbers
-    $allStaffNumbers = Staff::all();
+    $allStaffNumbers = Staff::join('users', 'stafflist.id', '=', 'users.id')
+    ->select('stafflist.staffnumber', 'users.name as staffname')
+    ->get();
 
     // Get staff numbers that are not listed in service data or have completed services
     $listedStaffNumbers = Service::where('serviceprogress', '!=', 'Completed')->pluck('staffnumber')->unique();
@@ -469,11 +499,12 @@ public function getAvailableStaffNumbers()
     }
 
     public function getStaff(){
-        $staff = Staff::all();
+        $staff = Staff::join('users', 'stafflist.id', '=', 'users.id')
+            ->select('stafflist.*', 'users.name as staffname')
+            ->get();
+    
         return view('admin.add', compact('staff'));
     }
-
-
 
   
 

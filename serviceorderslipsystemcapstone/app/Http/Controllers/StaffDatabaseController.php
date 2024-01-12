@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\StaffDatabase;
 use App\Models\Service;
 use App\Models\Staff;
+use App\Models\User;
 use Illuminate\Support\Facades\Mail;
 use App\Models\Logs;
 use Illuminate\Support\Facades\DB;
@@ -30,21 +31,30 @@ class StaffDatabaseController extends Controller
     if (Auth::check()) {
         // Get the authenticated user
         $user = Auth::user();
+    
+        // Fetch staff data only for the authenticated user using the User model
+        $staff = User::where('name', $user->name)->first();
+    
+        // Retrieve the StaffDatabase entries for the specific staff based on serviceno
+        $staffdatabaseQuery = Service::join('customerappointment', 'servicedata.customerappointmentnumber', '=', 'customerappointment.customerappointmentnumber')
+        ->join('stafflist', 'servicedata.staffnumber', '=', 'stafflist.staffnumber')
+        ->join('users as customer', 'customerappointment.customerno', '=', 'customer.id')
+        ->join('users as staff', 'stafflist.id', '=', 'staff.id')
+        ->join('staffwork','servicedata.serviceno','staffwork.serviceno')
+        ->select(
+            'servicedata.*',
+            'customer.name as customername',
+            'customer.email as customeremail',
+            'customerappointment.dateandtime',
+            'stafflist.*',
+            'staff.name as staffname',
+            'staff.email as staffemail',
+            'staffwork.*'
+        )->where('staff.id', '=', Auth::user()->id);
 
-        // Fetch staff data only for the authenticated user
-        $staff = Staff::where('staffname', $user->name)->get();
+            
 
-        // Retrieve the StaffDatabase entries for the specific staff
-        $staffdatabaseQuery = StaffDatabase::join('servicedata', 'staffdatabase.serviceno', '=', 'servicedata.serviceno')
-    ->where('staffdatabase.staffname', $user->name)
-    ->select(
-        'staffdatabase.*',
-        'servicedata.typeofservice',
-        'servicedata.actionsrequired',
-        'servicedata.customerpassword',
-        'servicedata.workprogress'
-    )
-    ->orderBy('workstarted', 'desc');
+        // Rest of your code...
 
         // Apply filters
         if ($request->filled('workNumber')) {
@@ -63,7 +73,7 @@ class StaffDatabaseController extends Controller
 
         // Retrieve the filtered StaffDatabase entries
         $staffdatabase = $staffdatabaseQuery->get();
-
+        
         // Pass the staff data and filtered staffdatabase to the view
         return view('staff.staffdatabase', compact('staff', 'staffdatabase'));
     } else {
@@ -90,41 +100,28 @@ class StaffDatabaseController extends Controller
   /**
  * Store a newly created resource in storage.
  */
-public function store(Request $request)
+public function store(Request $request, $id)
 {
-    try {
-        // Retrieve the associated Service record
-        $service = Service::where('serviceno', $request->xserviceno)->first();
+    // Retrieve the associated Service record
+    $service = Service::where('serviceno', $id)->first();
 
-        // Update or insert into StaffDatabase table
-        StaffDatabase::updateOrInsert(
-            ['serviceno' => $request->xserviceno, 'workstarted' => $request->xworkstarted, 'actionstaken' => ''],
-            [
-                'actionsrequired' => $service ? $service->actionsrequired : null,
-                'staffname' => $service ? $service->staffname : null,
-                'typeofservice' => $service ? $service->typeofservice : null,
-                'workprogress' => $service ? $service->workprogress : null,
-            ]
-        );
+    // Create a new StaffDatabase record
+    $staffdatabase = new StaffDatabase();
+    $staffdatabase->serviceno = $service->serviceno; // Use 'serviceno' from the associated Service record
+    $staffdatabase->workstarted = $request->xworkstarted;
+    $staffdatabase->actionstaken = '';
+    $staffdatabase->save();
 
-        // Check if the work progress is 'Completed'
-        if ($service && $service->workprogress == 'Completed') {
-            // Update the work progress to 'Completed' in StaffDatabase
-            StaffDatabase::where('serviceno', $request->xserviceno)->update(['workprogress' => 'Completed']);
-        }
-        $logs = new Logs;
-        $logs->userid = Auth::id();
-        $logs->description = "Viewed Service with Staff Name: " . ($service ? $service->staffname : 'N/A');
-        $logs->actiondatetime = now();
-        $logs->save();
-        // Redirect to the admin dashboard with a success message
-        return redirect()->route('staff.staffdatabase')->with('success', 'Data saved successfully.');
-    } catch (\Exception $e) {
-        // Log the error or handle it as needed
-        return redirect()->back()->with('error', 'Error saving data: ' . $e->getMessage());
-    }
+ 
+    // Log the action
+    $logs = new Logs;
+    $logs->userid = Auth::id();
+    $logs->description = "Stored Data";
+    $logs->actiondatetime = now();
+    $logs->save();
+
+    return redirect()->route('staffdatabase');
 }
-
     /**
      * Display the specified resource.
      */
@@ -170,7 +167,6 @@ public function store(Request $request)
     StaffDatabase::where('serviceno', $id)
         ->update([
             'actionstaken' => $request->xactionstaken,
-            'workprogress' => $request->xworkprogress,
         ]);
 
     // Retrieve the corresponding CustomerAppointment record
@@ -222,10 +218,17 @@ public function store(Request $request)
     {
   
     }
+    public function addWork(Request $request){
+        $staffdatabase = new StaffDatabase();
+        $staffdatabase ->workstarted-> $request->xworkstarted;
+        $staffdatabase->actionstaken = "";
+        $staffdatabase->save();
+        return redirect()->route('staffdatabase');
+    }
 
-    public function getService(){
-        $servicedata= Service::all();
-        return view('staff.add', compact('servicedata'));
+    public function getService($id) {
+        $servicedata = Service::where('serviceno', '=', $id)->first();
+        return view('staff.add', compact('servicedata', 'id'));
     }
 
     public function countWork()
@@ -277,24 +280,26 @@ $completedWorksCount = StaffDatabase::where('workprogress', 'Completed')
     return view('staff.staffdashboard', compact('staffDatabaseCount', 'data', 'ongoingWorksCount', 'completedWorksCount'));
 }
 
-public function getAvailableServiceNumbers(){
-    // Get the name of the currently authenticated staff member
-    $authenticatedStaffName = Auth::user()->name;
+public function getAvailableServiceNumbers()
+{
+    // Get the authenticated user's ID
+    $userId = Auth::id();
 
     // Get all service numbers assigned to the authenticated staff member
-    $assignedServiceNumbers = StaffDatabase::where('staffname', $authenticatedStaffName)
-        ->pluck('serviceno')
-        ->unique();
+    $assignedServiceNumbers = Service::whereHas('staff', function ($query) use ($userId) {
+        $query->where('id', $userId);
+    })->pluck('serviceno')->unique();
 
     // Get all service numbers that are not assigned to any staff member or are assigned to the authenticated staff member
-    $availableServiceNumbers = Service::where(function ($query) use ($authenticatedStaffName) {
-        $query->whereNull('staffname')
-            ->orWhere('staffname', $authenticatedStaffName);
+    $availableServiceNumbers = Service::where(function ($query) use ($userId) {
+        $query->whereNull('staffnumber')
+            ->orWhere('staffnumber', $userId); // Assuming staffnumber is the column in Service model
     })->whereNotIn('serviceno', $assignedServiceNumbers)
-    ->get();
+        ->get();
 
     return $availableServiceNumbers;
 }
+
 
 public function SpecificStaff()
 {
@@ -309,7 +314,7 @@ public function SpecificStaff()
         $user = Auth::user();
 
         // Fetch staff data only for the authenticated user
-        $staff = Staff::where('staffname', $user->name)->get();
+        $staff = User::where('name', $user->name)->get();
 
         // Pass the staff data to the view
         return view('staff.staffdatabase', compact('staffdatabase'));

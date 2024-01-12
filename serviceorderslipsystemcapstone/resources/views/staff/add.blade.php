@@ -82,27 +82,15 @@
                     </ul>
                     @endif
 
-                    @php
-                    $availableServiceNumbers = app(\App\Http\Controllers\StaffDatabaseController::class)->getAvailableServiceNumbers();
-                    @endphp
+                  
 
-                    @if($availableServiceNumbers->isEmpty())
+        
                     <p>No available services listed. Please add services first.</p>
-                    @else
-                    <form style="text-align: center;" method="POST" action="{{ route('add-staffdatabase') }}">
+                    
+                    <form style="text-align: center;" method="POST" action="{{ route('staffdatabase-store', ['id' => $id]) }}">
                         @csrf
 
                         <div class="flex-items-center" style="text-align:center">
-                            <label for="Service Number">Service Number</label>
-                            <div>
-                                <select name="xserviceno">
-                                    @foreach($availableServiceNumbers as $service)
-                                    <option value="{{ $service->serviceno }}">
-                                        Service Number {{ $service->serviceno }} - Type of Service: {{ $service->typeofservice }} - Customer Name: {{ $service->customername }}  - Staff Name: {{$service->staffname}}
-                                    </option>
-                                    @endforeach
-                                </select>
-                            </div>
                         </div>
                         <div class="form-group" style="text-align:center">
                             <label for="workstarted">Work Started</label>
@@ -111,7 +99,7 @@
 
                         <button class="btn btn-primary" type="submit">Submit Info</button>
                     </form>
-                    @endif
+                    
                 </div>
             </div>
         </div>

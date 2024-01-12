@@ -23,12 +23,11 @@
                 </select>
 
                 <label for="yearFilter" style="font-weight: bold;">Filter by Year:</label>
-                <select id="yearFilter" style="font-weight: bold;">
-                    @for ($year = date('Y'); $year >= 2020; $year--)
-                        <option value="{{ $year }}">{{ $year }}</option>
-                    @endfor
-                </select>
-
+<select id="yearFilter" style="font-weight: bold;">
+    @for ($year = 2030; $year >= 2020; $year--)
+        <option value="{{ $year }}">{{ $year }}</option>
+    @endfor
+</select>
                 <button onclick="applyFilter()" style="background-color: #38a169; color: #fff; border: none; border-radius: 5px; padding: 10px 20px; font-weight: bold; cursor: pointer; transition: background-color 0.3s;" onmouseover="this.style.backgroundColor='#2f855a'" onmouseout="this.style.backgroundColor='#38a169'">Apply Filter</button>
             </div>
 

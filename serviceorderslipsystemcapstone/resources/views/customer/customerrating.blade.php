@@ -65,6 +65,9 @@
                         .no-services {
                             color: white;
                         }
+                        label{
+                            color:white;
+                        }
                     </style>
 
                     
@@ -75,15 +78,7 @@
                             @endforeach
                         </ul>
                     @endif
-                    @php
-                    $completedServices = app(\App\Http\Controllers\RatingsController::class)
-        ->getCompletedServicesforRating(auth()->user()->name);
-@endphp
-
-                    @if(auth()->check())
-                        @if($completedServices->isEmpty())
-                            <p class="no-services">You have no services that are completed for rating.</p>
-                        @else
+                    
                             <form style="align-items:center" method="POST" action="{{ route('add-customerrating') }}">
                                 @csrf
 
@@ -91,12 +86,10 @@
                                     <label for="Service Number">Service Number</label>
                                     <div>
                                         <select name="xserviceno">
-                                            @foreach($completedServices as $service)
-                                                @if($service->customername === auth()->user()->name)
+                                            @foreach($servicedata as $service)
                                                     <option value="{{ $service->serviceno }}">
                                                         Service Number {{ $service->serviceno }} - Type of Service: {{ $service->typeofservice }} - Customer: {{ $service->customername }} - Staff: {{ $service->staffname }}
                                                     </option>
-                                                @endif
                                             @endforeach
                                         </select>
                                     </div>
@@ -136,10 +129,7 @@
 
                                 <button class="submit" type="submit">Submit Info</button>
                             </form>
-                        @endif
-                    @else
-                        <p class="no-services">You need to be logged in to access this feature.</p>
-                    @endif
+                    
                 </div>
             </div>
         </div>

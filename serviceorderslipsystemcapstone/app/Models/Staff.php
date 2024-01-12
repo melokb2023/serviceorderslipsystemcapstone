@@ -21,4 +21,18 @@ class Staff extends Model
         // Replace 'customerpassword' with the actual attribute name in your model
         return decrypt($this->attributes['customerpassword']);
     }
+    public function services()
+{
+    return $this->hasMany(Service::class, 'staffnumber');
+}
+
+public function user()
+{
+    return $this->belongsTo(User::class, 'id', 'id');
+}
+
+public function user2()
+    {
+        return $this->belongsTo(User::class, 'id', 'id');
+    }
 }

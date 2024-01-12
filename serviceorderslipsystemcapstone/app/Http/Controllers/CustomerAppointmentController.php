@@ -33,8 +33,6 @@ class CustomerAppointmentController extends Controller
 
     $customerappointment = new CustomerAppointment();
     $customerappointment->customerno = auth()->user()->id;
-    $customerappointment->customername = auth()->user()->name;
-    $customerappointment->customeremail = auth()->user()->email;
     $customerappointment->appointmentpurpose = $request->xappointmentpurpose;
     $customerappointment->appointmenttype = $request->xappointmenttype;
     $customerappointment->dateandtime = $request->xdateandtime;
