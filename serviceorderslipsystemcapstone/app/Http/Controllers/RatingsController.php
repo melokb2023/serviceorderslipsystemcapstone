@@ -141,12 +141,23 @@ return view('dashboard');
     return $completedServices;
 }
 
-public function getService(){
+public function getService()
+{
+    // Get the authenticated customer's id
+    $authenticatedCustomerId = Auth::id();
+
+    // Get completed services for the authenticated customer
     $servicedata = Service::join('customerappointment', 'servicedata.customerappointmentnumber', '=', 'customerappointment.customerappointmentnumber')
         ->join('users as customer', 'customerappointment.customerno', '=', 'customer.id')
         ->join('stafflist', 'servicedata.staffnumber', '=', 'stafflist.staffnumber')
         ->join('users as staff', 'stafflist.id', '=', 'staff.id')
-        ->where('customer.id', Auth::id())
+        ->where('customer.id', $authenticatedCustomerId)
+        ->where('servicedata.serviceprogress', 'Completed')
+        ->whereNotIn('servicedata.serviceno', function ($query) use ($authenticatedCustomerId) {
+            $query->select('serviceno')
+                ->from('customerrating')
+                ->where('customerno', $authenticatedCustomerId);
+        })
         ->select(
             'servicedata.*',
             'customer.name as customername',
@@ -157,7 +168,16 @@ public function getService(){
             'staff.email as staffemail'
         )
         ->get();
+    
+    return view('customer.customerrating', compact('servicedata'));
+}
 
+public function showRatingForm()
+{
+    // Call the getService function to get service data
+    $servicedata = $this->getService();
+
+    // Render the customerrating view with the service data
     return view('customer.customerrating', compact('servicedata'));
 }
 

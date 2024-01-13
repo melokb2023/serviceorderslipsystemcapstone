@@ -79,6 +79,7 @@
                         </ul>
                     @endif
                     
+                    @if(count($servicedata) > 0)
                             <form style="align-items:center" method="POST" action="{{ route('add-customerrating') }}">
                                 @csrf
 
@@ -129,6 +130,9 @@
 
                                 <button class="submit" type="submit">Submit Info</button>
                             </form>
+                            @else
+                        <p class="no-services">You have no completed services for rating.</p>
+                    @endif
                     
                 </div>
             </div>

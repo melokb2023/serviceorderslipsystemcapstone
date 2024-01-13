@@ -44,4 +44,9 @@ class Service extends Model
     return $this->belongsTo(CustomerAppointment::class, 'customerappointmentnumber', 'customerappointmentnumber');
 }
 
+   public function staffDatabases()
+    {
+        return $this->hasMany(StaffDatabase::class);
+    }
+
 }

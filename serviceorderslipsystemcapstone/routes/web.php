@@ -9,7 +9,7 @@ use App\Http\Controllers\CustomerAppointmentController;
 use App\Http\Controllers\RatingsController;
 use App\Http\Controllers\LineChartController;
 use App\Http\Controllers\StaffController;
-use App\Http\Controllers\LoginController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Logs;
 
@@ -278,7 +278,7 @@ Route::get('/staffdatabase/edit/{serviceno}', [StaffDatabaseController::class, '
    ->middleware(['auth', 'verified'])
    ->name('staffdatabase-edit');
 
-///Route::get('/staffdashboard', [StaffDatabaseController::class, 'countWork'])->name('staffdashboard');
+Route::get('/staffdashboard', [StaffDatabaseController::class, 'countWork'])->name('staffdashboard');
 
 
 
@@ -286,10 +286,15 @@ Route::get('/staffdatabase/edit/{serviceno}', [StaffDatabaseController::class, '
    ///////RATINGS CONTROLLER
 
 /////CUSTOMER RATING
+Route::get('/customerrating/add', [RatingsController::class, 'showRatingForm'])
+   ->middleware(['auth', 'verified'])
+   ->name('add-customerrating');
 
 Route::get('/customerrating/add', [RatingsController::class, 'getService'])
    ->middleware(['auth', 'verified'])
    ->name('add-customerrating');
+
+
 
 Route::post('/customerrating/add',[RatingsController::class, 'store'] )
     ->middleware(['auth', 'verified'])
@@ -398,5 +403,24 @@ Route::post('/logout', function () {
        return redirect('/login');
        
   })->name('logout');
+
+  Route::get('/listofusers', [UserController::class, 'index'])
+   ->middleware(['auth', 'verified'])
+   ->name('users');
   
+Route::get('/listofusers/editusertype/{id}', [UserController::class, 'editusertype']) 
+   ->middleware(['auth', 'verified'])
+   ->name('user-editusertype');
+
+Route::patch('/listofusers/updateusertype/{id}', [UserController::class, 'update']) 
+   ->middleware(['auth', 'verified'])
+   ->name('user-updateusertype');
+
+Route::get('/listofusers/editpassword/{id}', [UserController::class, 'editpassword']) 
+   ->middleware(['auth', 'verified'])
+   ->name('user-editpassword');
+
+Route::patch('/listofusers/updatepassword/{id}', [UserController::class, 'update2']) 
+   ->middleware(['auth', 'verified'])
+   ->name('user-updatepassword');
   

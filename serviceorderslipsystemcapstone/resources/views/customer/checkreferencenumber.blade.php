@@ -185,8 +185,8 @@
                     <form action="{{ route('checkServiceStatus') }}" method="post">
                         @csrf
                         <div class="mb-4">
-                            <label for="order_reference_code">Service Reference Code:</label>
-                            <input type="text" name="order_reference_code" class="form-input mt-1 block w-full" required>
+                            <label for="service_reference_code">Service Reference Code:</label>
+                            <input type="text" name="service_reference_code" class="form-input mt-1 block w-full" required>
                         </div>
                         
                         <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Check Status</button>
@@ -194,7 +194,7 @@
 
                     @if(isset($serviceStatus))
                         <div class="mt-4">
-                            <h4 class="text-xl font-bold text-white">Service Reference Code: {{ $orderReferenceCode }}</h4>
+                            <h4 class="text-xl font-bold text-white">Service Reference Code: {{ $serviceReferenceCode }}</h4>
                             <h4 class="text-xl font-bold text-white">Service Status:</h4>
                             <div class="text-white @if($serviceStatus == 'Ongoing') ongoing-container @endif
                                                  @if($serviceStatus == 'Completed') completed-container @endif">
@@ -206,7 +206,6 @@
                                         Your service is complete! You can now retrieve your fixed unit.
                                     @endif
                                 </p>
-                                <p class="text-white">Customer Name: {{ $customerName }}</p>
                             </div>
                         </div>
                     @elseif($errors->any())

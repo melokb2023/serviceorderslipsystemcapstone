@@ -97,4 +97,9 @@ class User extends Authenticatable
         return $this->hasOne(Staff::class, 'id', 'id');
     }
 
+    public function staffDatabases()
+    {
+        return $this->hasMany(StaffDatabase::class);
+    }
+
 }

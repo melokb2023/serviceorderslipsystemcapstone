@@ -67,7 +67,7 @@ class ServiceController extends Controller
         if ($request->filled('serviceprogress_filter')) {
             $filterValue = $request->input('serviceprogress_filter');
         
-            if ($filterValue === 'Ongoing' || $filterValue === 'Completed') {
+            if ($filterValue === 'Ongoing' || $filterValue === 'Refer to Other Technicians or Other Shop'  || $filterValue === 'Completed') {
                 $query->where('servicedata.serviceprogress', $filterValue);
             }
         }
@@ -510,16 +510,15 @@ public function getAvailableStaffNumbers()
 
     public function checkServiceStatus(Request $request)
     {
-        $orderReferenceCode = $request->input('order_reference_code');
+        $serviceReferenceCode = $request->input('service_reference_code');
     
         // Query the service data based on the provided order reference code
-        $serviceData = Service::where('orderreferencecode', $orderReferenceCode)
-        ->select('serviceprogress', 'customername')
+        $serviceData = Service::where('servicereferencecode', $serviceReferenceCode)
+        ->select('serviceprogress', 'customerappointmentnumber')
         ->first();
         
         if($serviceData){
         $serviceStatus = $serviceData->serviceprogress;
-        $customerName = $serviceData->customername;
         $logs = new Logs;
         $logs->userid = Auth::id(); 
         $logs->description = "Checks Reference Code";
@@ -527,14 +526,14 @@ public function getAvailableStaffNumbers()
         $logs->save();
 
         // Pass the data to the view
-        return view('customer.checkreferencenumber', compact('orderReferenceCode', 'serviceStatus', 'customerName'));
+        return view('customer.checkreferencenumber', compact('serviceReferenceCode', 'serviceStatus'));
         }
         
         elseif (!empty($serviceStatus)) {
-            return view('customer.checkreferencenumber', compact('serviceStatus', 'orderReferenceCode'));
+            return view('customer.checkreferencenumber', compact('serviceStatus', 'serviceReferenceCode'));
         } else {
             // If serviceStatus is empty, redirect back with an error message
-            return redirect()->back()->withInput()->withErrors(['order_reference_code' => 'Invalid Order Reference Code']);
+            return redirect()->back()->withInput()->withErrors(['service_reference_code' => 'Invalid Service Reference Code']);
         }
     }
     public function countAll()

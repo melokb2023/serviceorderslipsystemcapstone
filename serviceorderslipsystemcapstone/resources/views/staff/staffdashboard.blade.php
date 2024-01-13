@@ -5,7 +5,7 @@
         <div style="background-color: #d70021; border: 3px solid black; padding: 20px;">
             <div class="text-center">
                 <div class="p-6 text-gray-900 dark:text-gray-100" style="background-color: #e9e9e9;">
-                    @if(Auth::check())
+               
                         <h2 style="font-family: Century Gothic; font-weight: bold; color: #d70021" class="font-bold text-white text-2xl mb-4">
                             {{ $staffDatabaseCount }} Total Number of Works
                         </h2>
@@ -27,10 +27,6 @@
                             <h2 style="font-family: Century Gothic; color: black; font-weight: bold" class="text-2xl font-bold mb-4 text-center text-white">Work Chart</h2>
                             <canvas id="servicePerformanceChart"></canvas>
                         </div>
-                    @else
-                        <p>Please log in to view staff dashboard.</p>
-                        {{-- You might want to provide a login link or redirect --}}
-                    @endif
                 </div>
             </div>
         </div>

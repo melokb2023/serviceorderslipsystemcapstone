@@ -40,6 +40,8 @@
             align-items: center;
             justify-content: center;
             font-family: "Century Gothic";
+            width:100%;
+            margin-bottom: 10px;
         }
 
         .custom-login-button:hover {
@@ -75,13 +77,21 @@
             align-items: center;
             justify-content: center;
         }
+        .top-nav-link-register {
+        color: blue;
+        text-decoration: underline;
+        font-size: 80%;
+        margin-top: 50px;
+        display: inline-block; 
+
+    }
     </style>
 
     <body>
         @error('email')
             <div class="error-message">
                 @if($message == 'These credentials do not match our records.')
-                    Your username or password is incorrect.
+                    Your username or password is incorrect. If you still can't log in, please notify us at the Compusource Computer Center.
                 @else
                     {{ $message }}
                 @endif
@@ -117,6 +127,7 @@
                             <button class="custom-login-button">
                                 {{ __('LOG IN') }}
                             </button>
+                            <a href="{{ route('register') }}" class="top-nav-link-register">Don't have an account? Click here to register.</a>
                         </form>
                     </div>
                 </td>

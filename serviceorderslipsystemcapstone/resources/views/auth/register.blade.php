@@ -10,9 +10,7 @@
             font-weight: bold;
         }
 
-        body {
-            background-color: #d70021; /* Set the background color */
-        }
+    
 
         label {
             font-family: "Century Gothic";
@@ -54,6 +52,7 @@
             align-items: center;
             justify-content: center;
             font-family: "Century Gothic";
+            width:100%;
         }
 
         .custom-login-button:hover {

@@ -124,31 +124,37 @@
                                         <div class="grid grid-cols-2 gap-2">
     <!-- First Row -->
     <div>
+    @if ($staffRecord->workstarted !== null && $staffRecord->worknumber !== null)
         <a style="background-color: #f6e05e; width: 1.5rem; height: 1.5rem; line-height: 1.5rem; padding: 0.3rem; margin: 0.1rem; display: inline-flex; align-items: center; justify-content: center;"
            class="mt-4 text-black font-bold rounded inline-block"
            href="{{ route('staffdatabase-show', ['serviceno' => $staffRecord->serviceno]) }}"
            title="View">
            👁
         </a>
+    @endif
     </div>
 
     <div>
+    @if ($staffRecord->workstarted !== null && $staffRecord->worknumber !== null)
         <a style="background-color: blue; width: 1.5rem; height: 1.5rem; line-height: 1.5rem; padding: 0.3rem; margin: 0.1rem; display: inline-flex; align-items: center; justify-content: center;"
            class="mt-4 text-white font-bold rounded inline-block"
            href="{{ route('staffdatabase-edit', ['serviceno' => $staffRecord->serviceno]) }}"
            title="Edit">
            ✏
         </a>
+    @endif
     </div>
 
     <!-- Second Row -->
     <div class="col-span-2">
+    @if ($staffRecord->worknumber === null)
         <a class="mt-4 text-black font-bold rounded inline-block button text-center"
            href="{{ route('add-staffdatabase', ['id' => $staffRecord->serviceno]) }}"
            title="Start Work"
            style="background-color: #76c893; /* Adjusted light green color */ color: black; /* Black text color */ width: 1.5rem; height: 1.5rem; line-height: 1.5rem; padding: 0.3rem; margin: 0.1rem; display: inline-flex; align-items: center; justify-content: center;">
            +
         </a>
+    @endif
     </div>
         </div>
     </div>

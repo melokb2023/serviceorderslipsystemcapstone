@@ -36,11 +36,11 @@ class StaffDatabaseController extends Controller
         $staff = User::where('name', $user->name)->first();
     
         // Retrieve the StaffDatabase entries for the specific staff based on serviceno
-        $staffdatabaseQuery = Service::join('customerappointment', 'servicedata.customerappointmentnumber', '=', 'customerappointment.customerappointmentnumber')
-        ->join('stafflist', 'servicedata.staffnumber', '=', 'stafflist.staffnumber')
-        ->join('users as customer', 'customerappointment.customerno', '=', 'customer.id')
-        ->join('users as staff', 'stafflist.id', '=', 'staff.id')
-        ->join('staffwork','servicedata.serviceno','staffwork.serviceno')
+        $staffdatabaseQuery = Service::leftJoin('customerappointment', 'servicedata.customerappointmentnumber', '=', 'customerappointment.customerappointmentnumber')
+        ->leftJoin('stafflist', 'servicedata.staffnumber', '=', 'stafflist.staffnumber')
+        ->leftJoin('users as customer', 'customerappointment.customerno', '=', 'customer.id')
+        ->leftJoin('users as staff', 'stafflist.id', '=', 'staff.id')
+        ->leftJoin('staffwork', 'servicedata.serviceno', '=', 'staffwork.serviceno')
         ->select(
             'servicedata.*',
             'customer.name as customername',
@@ -49,16 +49,19 @@ class StaffDatabaseController extends Controller
             'stafflist.*',
             'staff.name as staffname',
             'staff.email as staffemail',
-            'staffwork.*'
-        )->where('staff.id', '=', Auth::user()->id);
-
+            'staffwork.worknumber',
+            'staffwork.actionstaken',
+            'staffwork.workstarted',
+            'servicedata.workprogress as workprogress' // Update this line
+        )
+        ->where('staff.id', '=', Auth::user()->id);
             
 
         // Rest of your code...
 
         // Apply filters
         if ($request->filled('workNumber')) {
-            $staffdatabaseQuery->where('staffdatabase.worknumber', $request->input('workNumber'));
+            $staffdatabaseQuery->where('staffwork.worknumber', $request->input('workNumber'));
         }
 
       
@@ -232,53 +235,63 @@ public function store(Request $request, $id)
     }
 
     public function countWork()
-{
-    $logs = new Logs;
-    $logs->userid = Auth::id(); 
-    $logs->description = "Accesses the Staff Dashboard";
-    $logs->actiondatetime = now();
-    $logs->save();
-   
-    // Assuming you have a StaffDatabase model
-    $user = Auth::user();
+    {
+        $logs = new Logs;
+        $logs->userid = Auth::id(); 
+        $logs->description = "Accesses the Staff Dashboard";
+        $logs->actiondatetime = now();
+        $logs->save();
+       
+        // Assuming you have a StaffDatabase model
+        $user = Auth::user();
 
-    // Assuming you have a StaffDatabase model
-    $staffDatabaseCount = StaffDatabase::where('staffname', $user->name) // Assuming 'name' is the correct field in the 'User' model
-    ->count();
+        $staffDatabaseCount = Service::whereHas('staff.user', function ($query) use ($user) {
+            $query->where('id', $user->id);
+        })->count();
+        
+        $ongoingWorksCount = Service::whereHas('staff.user', function ($query) use ($user) {
+            $query->where('id', $user->id);
+        })->where('workprogress', 'Ongoing')->count();
+        
+        $completedWorksCount = Service::whereHas('staff.user', function ($query) use ($user) {
+            $query->where('id', $user->id);
+        })->where('workprogress', 'Completed')->count();
 
-  
-   // Count all ongoing works
-   $ongoingWorksCount = StaffDatabase::where('workprogress', 'Ongoing')
-   ->where('staffname', $user->name) // Assuming 'name' is the correct field in the 'User' model
-   ->count();
-
-// Count all completed works
-$completedWorksCount = StaffDatabase::where('workprogress', 'Completed')
-    ->where('staffname', $user->name) // Assuming 'name' is the correct field in the 'User' model
-    ->count();
-
-    $currentMonth = now()->format('m'); // Assuming you have Carbon installed for the now() function
-
-    // Define an array of months for counting
-    $months = [
-        '01' => 'January', '02' => 'February', '03' => 'March', '04' => 'April',
-        '05' => 'May', '06' => 'June', '07' => 'July', '08' => 'August',
-        '09' => 'September', '10' => 'October', '11' => 'November', '12' => 'December'
-    ];
-
-    $data = [];
-
-    foreach ($months as $monthNumber => $monthName) {
-        // Count the number of services for each month
-        $count = DB::table('staffwork')
-            ->where('staffname', $user->name)
-            ->whereMonth('workstarted', $monthNumber)
-            ->count();
-
-        $data[$monthName] = $count;
+        
+    
+        $currentMonth = now()->format('m'); // Assuming you have Carbon installed for the now() function
+    
+        // Define an array of months for counting
+        $months = [
+            '01' => 'January', '02' => 'February', '03' => 'March', '04' => 'April',
+            '05' => 'May', '06' => 'June', '07' => 'July', '08' => 'August',
+            '09' => 'September', '10' => 'October', '11' => 'November', '12' => 'December'
+        ];
+    
+        $data = [];
+    
+        $months = [
+            '01' => 'January', '02' => 'February', '03' => 'March', '04' => 'April',
+            '05' => 'May', '06' => 'June', '07' => 'July', '08' => 'August',
+            '09' => 'September', '10' => 'October', '11' => 'November', '12' => 'December'
+        ];
+    
+        $data = [];
+    
+        foreach ($months as $monthNumber => $monthName) {
+            // Count the number of works for each month for the authenticated user
+            $count = DB::table('servicedata')
+                ->join('stafflist', 'servicedata.staffnumber', '=', 'stafflist.staffnumber') // Adjust the join condition based on your actual foreign key relationship
+                ->join('staffwork', 'servicedata.serviceno', '=', 'staffwork.serviceno')
+                ->where('stafflist.id', $user->id) // Assuming 'id' is the user ID in stafflist, adjust accordingly
+                ->whereMonth('staffwork.workstarted', $monthNumber)
+                ->count();
+        
+            $data[$monthName] = $count;
+        }
+    
+        return view('staff.staffdashboard', compact('staffDatabaseCount', 'data', 'ongoingWorksCount', 'completedWorksCount'));
     }
-    return view('staff.staffdashboard', compact('staffDatabaseCount', 'data', 'ongoingWorksCount', 'completedWorksCount'));
-}
 
 public function getAvailableServiceNumbers()
 {

@@ -109,7 +109,7 @@
     $serviceProgressClass = $service && $service->serviceprogress == 'Ongoing' ? 'service-ongoing' : ($service && $service->serviceprogress == 'Completed' ? 'service-completed' : '');
 @endphp
 
-<td>{{ optional($service)->orderreferencecode ?: 'N/A' }}</td>
+<td>{{ optional($service)->servicereferencecode ?: 'N/A' }}</td>
 <td class="{{ $serviceProgressClass }}">
     {{ optional($service)->serviceprogress ?: 'N/A' }}
 </td>                         </tr>

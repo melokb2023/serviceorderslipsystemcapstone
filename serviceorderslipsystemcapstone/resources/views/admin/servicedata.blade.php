@@ -45,8 +45,8 @@
                                     {{ request('serviceprogress_filter') == 'Ongoing' ? 'selected' : '' }}>Ongoing
                             </option>
                             <option style="font-weight:bold" value="Refer to Other Technicians or Other Shop"
-                                    {{ request('serviceprogress_filter') == 'Refer' ? 'selected' : '' }}>Refer to Other Technicians or Other Shop
-                            </option>
+        {{ request('serviceprogress_filter') == 'Refer to Other Technicians or Other Shop' ? 'selected' : '' }}>Refer to Other Technicians or Other Shop
+    </option>
                             <option style="font-weight:bold" value="Completed"
                                     {{ request('serviceprogress_filter') == 'Completed' ? 'selected' : '' }}>Completed
                             </option>

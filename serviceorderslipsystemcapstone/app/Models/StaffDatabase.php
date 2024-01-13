@@ -23,4 +23,22 @@ class StaffDatabase extends Model
     return $this->belongsTo(Staff::class, 'serviceno', 'staffnumber');
 }
 
+
+public function service()
+{
+    return $this->belongsTo(Service::class, 'serviceno', 'serviceno');
+}
+
+public function staff2()
+{
+    return $this->belongsTo(Staff::class);
+}
+
+public function service2()
+{
+    return $this->belongsTo(Service::class);
+}
+
+
+
 }

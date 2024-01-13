@@ -35,4 +35,13 @@ public function user2()
     {
         return $this->belongsTo(User::class, 'id', 'id');
     }
+    public function staffDatabases()
+    {
+        return $this->hasMany(StaffDatabase::class,'serviceno');
+    }
+
+    public function user3()
+    {
+        return $this->belongsTo(User::class, 'id');
+    }
 }
