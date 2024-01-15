@@ -177,6 +177,10 @@
                 </x-button>
             </div>
         </form>
+
+        <div class="flex items-center justify-center mt-4">
+    <a href="{{ route('login') }}" class="text-blue-500 underline">Already have an account? Click here to login.</a>
+</div>
     </td>
 </tr>
 </table>

@@ -1,4 +1,4 @@
-@include('layouts.staffnavigation')
+@include('layouts.adminnavigation')
 <x-app-layout>
     <style>
         body {
@@ -104,8 +104,6 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100" style="background-color:#d70021;font-family: 'Century Gothic', sans-serif; font-weight: bold;">
-
-                    <h2 style="font-family: Century Gothic; color:white">Change User Type</h2>
                     @if($errors)
                         <ul>
                             @foreach($errors->all() as $error)

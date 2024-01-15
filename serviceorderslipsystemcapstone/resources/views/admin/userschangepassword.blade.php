@@ -105,13 +105,15 @@
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100" style="background-color:#d70021;font-family: 'Century Gothic', sans-serif; font-weight: bold;">
 
-                    @if($errors)
-                        <ul>
-                            @foreach($errors->all() as $error)
-                                <li>{{$error}}</li>
-                            @endforeach
-                        </ul>
-                    @endif
+                @if($errors->any())
+    <div style="background-color: #ffcccc; border: 1px solid #ff3333; border-radius: 5px; padding: 10px; margin-bottom: 10px;">
+        <ul style="list-style: none; padding: 0; margin: 0;">
+            @foreach($errors->all() as $error)
+                <li style="color: #ff3333;">{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
 
                     @foreach($users as $user)
                         <form method="POST" action="{{ route('user-updatepassword',['id' => $user->id]) }}">
@@ -121,6 +123,12 @@
                                 <label for="Please Enter Your New Password">Please Enter a New Password For The User:</label>
                                 <input class="textexpand2" type="password" name="xpassword" value="{{ old('xpassword') }}"/>
                                 </div>
+                       
+
+            <div class="flex-items-center">
+                <label for="Confirm New Password">Confirm New Password:</label>
+                <input class="textexpand2" type="password" name="xpassword_confirmation" value="{{ old('xpassword_confirmation') }}" />
+            </div>
                             <button type="submit" class="btn btn-primary" style="text-align:center;background-color:green"> Update User Type</button>        
                             </div>
 

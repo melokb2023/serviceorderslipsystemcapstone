@@ -1,7 +1,13 @@
+@if(session('success_message'))
+    <script>
+        // Replace this with your preferred pop-up library or implementation
+        alert("{{ session('success_message') }}");
+    </script>
+@endif
+
 @include('layouts.adminnavigation')
 
 <x-app-layout>
-
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8" style="background-color:#d70021;width: 100%;border: 3px solid black">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg" style="background-color:#d70021;width: 100%">
@@ -59,9 +65,16 @@
                         .button:hover {
                             background-color: #333; /* Change the hover background color as needed */
                         }
-                        p{
-                            color:white;
-                            font-weight:bold;
+
+                        p {
+                            color: white;
+                            font-weight: bold;
+                        }
+
+                        /* Add style for the scrollable container */
+                        .scrollable-container {
+                            max-height: 400px;
+                            overflow-y: auto;
                         }
                     </style>
 
@@ -94,74 +107,71 @@
 
                     <!-- Display Appointments -->
                     @if(count($customerappointment) > 0)
-                    <table style="text-align:center; width: 100%;">
-                            <tr style="text-align:center">
-                                <th>Customer Appointment Number</th>
-                                <th>ID</th>
-                                <th>Customer Name</th>
-                                <th>Customer Email</th>
-                                <th>Appointment Purpose</th>
-                                <th>Appointment Type</th>
-                                <th>Date and Time</th>
-                                <th>Service Progress</th>
-                                <th>Options</th>
-                            </tr>
-                            <tbody>
-                                @foreach($customerappointment as $customer)
-                                    <tr style="text-align:center">
-                                        <td>{{$customer->customerappointmentnumber}}</td>
-                                        <td>{{$customer->customerno}} </td>
-                                        <td>{{$customer->customername}} </td>
-                                        <td>{{$customer->customeremail}} </td>
-                                        <td>{{$customer->appointmentpurpose}}</td>
-                                        <td>{{$customer->appointmenttype}}</td>
-                                        <td>{{ date('F d, Y h:i A', strtotime($customer->dateandtime)) }}</td>
-                                        <td>
-                                            @php
-                                            $service = \App\Models\Service::where('customerappointmentnumber', $customer->customerappointmentnumber)->first();
-                                            echo $service ? $service->serviceprogress : 'N/A';
-                                            @endphp
-                                        </td>
-                                        <td>
-    <div class="grid grid-cols-3 gap-4 ml-1">
-        <!-- First Row -->
-        <div class="mr-4"> <!-- Increased margin for more space -->
-    <a href="{{ route('customerlist-show', ['cano' => $customer->customerappointmentnumber]) }}"
-       class="bg-yellow-400 text-black font-bold p-3 rounded hover:bg-yellow-500 h-12 w-12 flex items-center justify-center text-xl"
-       title="View">
-       👁
-    </a>
-</div>
+                        <div class="scrollable-container">
+                            <table style="text-align:center; width: 100%;">
+                                <tr style="text-align:center">
+                                    <th>Customer Appointment Number</th>
+                                    <th>ID</th>
+                                    <th>Customer Name</th>
+                                    <th>Customer Email</th>
+                                    <th>Appointment Purpose</th>
+                                    <th>Appointment Type</th>
+                                    <th>Date and Time</th>
+                                    <th>Service Progress</th>
+                                    <th>Options</th>
+                                </tr>
+                                <tbody>
+                                    @foreach($customerappointment as $customer)
+                                        <tr style="text-align:center">
+                                            <td>{{$customer->customerappointmentnumber}}</td>
+                                            <td>{{$customer->customerno}} </td>
+                                            <td>{{$customer->customername}} </td>
+                                            <td>{{$customer->customeremail}} </td>
+                                            <td>{{$customer->appointmentpurpose}}</td>
+                                            <td>{{$customer->appointmenttype}}</td>
+                                            <td>{{ date('F d, Y h:i A', strtotime($customer->dateandtime)) }}</td>
+                                            <td>
+                                                @php
+                                                $service = \App\Models\Service::where('customerappointmentnumber', $customer->customerappointmentnumber)->first();
+                                                echo $service ? $service->serviceprogress : 'N/A';
+                                                @endphp
+                                            </td>
+                                            <td>
+                                                <div class="flex items-center justify-center space-x-2">
+                                                    <!-- View Option -->
+                                                    <a href="{{ route('customerlist-show', ['cano' => $customer->customerappointmentnumber]) }}"
+                                                       class="bg-yellow-400 text-black font-bold p-2 rounded hover:bg-yellow-500 option-btn"
+                                                       title="View">
+                                                       👁
+                                                    </a>
 
-<div class="ml-4"> <!-- Increased margin for more space -->
-    <a href="{{ route('customerlist-edit', ['cano' => $customer->customerappointmentnumber]) }}"
-       class="bg-blue-500 text-black font-bold p-3 rounded hover:bg-blue-600 h-12 w-12 flex items-center justify-center text-xl"
-       title="Edit">
-       ✏
-    </a>
-</div>
+                                                    <!-- Edit Option -->
+                                                    <a href="{{ route('customerlist-edit', ['cano' => $customer->customerappointmentnumber]) }}"
+                                                       class="bg-blue-500 text-black font-bold p-2 rounded hover:bg-blue-600 option-btn"
+                                                       title="Edit">
+                                                       ✏
+                                                    </a>
 
-        <!-- Second Row -->
-        <div class="col-span-3 flex items-center justify-center mt-2">
-            <form method="POST"
-                  action="{{ route('customerlist-delete', ['cano' => $customer->customerappointmentnumber]) }}"
-                  onclick="return confirm('Are you sure you want to delete this record?')">
-                @csrf
-                @method('delete')
-                <button class="bg-red-500 text-black font-bold p-3 rounded hover:bg-red-600 h-12 w-12 flex items-center justify-center text-xl" 
-                        type="submit"
-                        title="Delete">
-                    🗑
-                </button>
-            </form>
-        </div>
-    </div>
-</td>
+                                                    <!-- Delete Option -->
+                                                    <form method="POST"
+                                                          action="{{ route('customerlist-delete', ['cano' => $customer->customerappointmentnumber]) }}"
+                                                          onclick="return confirm('Are you sure you want to delete this record?')">
+                                                        @csrf
+                                                        @method('delete')
+                                                        <button class="bg-red-500 text-black font-bold p-2 rounded hover:bg-red-600 option-btn" 
+                                                                type="submit"
+                                                                title="Delete">
+                                                            🗑
+                                                        </button>
+                                                    </form>
+                                                </div>
+                                            </td>
 
-                                    </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
                     @else
                         <p>No records found.</p>
                     @endif

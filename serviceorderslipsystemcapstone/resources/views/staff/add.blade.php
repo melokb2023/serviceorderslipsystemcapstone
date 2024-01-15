@@ -85,7 +85,7 @@
                   
 
         
-                    <p>No available services listed. Please add services first.</p>
+                    <p style="font-family: 'Century Gothic', sans-serif; font-size: 24px; color: white;">START WORK</p>
                     
                     <form style="text-align: center;" method="POST" action="{{ route('staffdatabase-store', ['id' => $id]) }}">
                         @csrf
@@ -97,7 +97,7 @@
                             <input type="datetime-local" name="xworkstarted" value="{{old('xworkstarted')}}" required>
                         </div>
 
-                        <button class="btn btn-primary" type="submit">Submit Info</button>
+                        <button class="btn btn-primary" type="submit">Start Work</button>
                     </form>
                     
                 </div>

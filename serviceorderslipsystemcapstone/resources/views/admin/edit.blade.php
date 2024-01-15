@@ -155,7 +155,7 @@
                             <div class="form-row-group">
                                 <div class="form-group">
                                     <label for="Customer Password">Customer Password</label>
-                                    <input class="textexpand2" type="text" name="xcustomerpassword" value="{{$serviceinfo->customerpassword}}"/>
+                                    <input class="textexpand2" type="password" name="xcustomerpassword" value="{{$serviceinfo->customerpassword}}"/>
                                 </div>
 
                                 <div class="form-group">

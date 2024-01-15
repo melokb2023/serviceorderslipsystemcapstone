@@ -397,7 +397,11 @@ return redirect()->route('servicedata');
     public function editstaff(string $id)
     {
         $servicedata = Service::where('serviceno', $id)->get();
-        $staff = Staff::all();
+        $staff = Staff::join('users', 'stafflist.id', '=', 'users.id')
+    ->where('users.usertype', '=', 'staff') 
+    ->select('stafflist.staffnumber AS staffnumber', 'users.name AS staffname', 'users.email AS staffemail')
+    ->get();
+
         $logs = new Logs;
         $logs->userid = Auth::id(); 
         $logs->description = "Accessed the Change Staff Option";

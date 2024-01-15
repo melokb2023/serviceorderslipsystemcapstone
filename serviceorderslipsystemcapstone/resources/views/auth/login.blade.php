@@ -85,6 +85,17 @@
         display: inline-block; 
 
     }
+
+    x-input {
+        text-align: center;
+    }
+
+    /* Custom class for Century Gothic placeholder */
+    .century-gothic-placeholder::placeholder {
+        font-family: "Century Gothic";
+        font-weight: bold;
+        text-align: center;
+    }
     </style>
 
     <body>
@@ -117,12 +128,16 @@
                         <form method="POST" action="{{ route('login') }}" class="mt-8">
                             @csrf
                             <div>
-                                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" placeholder="Email" />
-                            </div>
+        <div>
+            <x-input id="email" class="block mt-1 w-full century-gothic-placeholder" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" placeholder="Email" />
+        </div>
+    </div>
 
-                            <div class="mt-4">
-                                <x-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="current-password" placeholder="Password" />
-                            </div>
+    <div class="mt-4">
+        <div>
+            <x-input id="password" class="block mt-1 w-full century-gothic-placeholder" type="password" name="password" required autocomplete="current-password" placeholder="Password" />
+        </div>
+    </div>
 
                             <button class="custom-login-button">
                                 {{ __('LOG IN') }}

@@ -20,9 +20,10 @@ class StaffController extends Controller
         $logs->actiondatetime = now();
         $logs->save();
         // Perform a join between stafflist and users tables and select specific columns
-    $staff = Staff::join('users', 'stafflist.id', '=', 'users.id')
-    ->select('stafflist.*', 'users.name', 'users.email')
-    ->get();
+        $staff = Staff::join('users', 'stafflist.id', '=', 'users.id')
+        ->where('users.usertype', '=', 'staff') 
+        ->select('stafflist.*', 'users.name', 'users.email')
+        ->get();
         return view('admin.staffdata', compact('staff'));
     }
 
