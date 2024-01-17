@@ -9,11 +9,11 @@
 <x-app-layout style="background-color:#d70021;">
 
     <div class="py-12" style="background-color: white;">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8" style="background-color:#d70021; border: 3px solid black;">
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg" style="background-color:#d70021;">
-                <div class="p-6 text-gray-900 dark:text-gray-100" style="background-color:#d70021;">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg" >
+                <div class="p-6 text-gray-900 dark:text-gray-100" >
 
-                    <h1 style="font-family:Arial; color:white; font-size:30px; font-weight:bold; text-align:center;">List of Users</h1>
+                    <h1 style="font-family:Arial; color:black; font-size:30px; font-weight:bold; text-align:center;">List of Users</h1>
                     <div class="table-wrapper">
                         <table id="customers">
                             <tr>

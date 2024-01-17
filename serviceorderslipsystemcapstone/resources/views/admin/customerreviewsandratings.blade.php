@@ -9,9 +9,9 @@
 
 <x-app-layout>
     <div class="py-12" style="width: 100%">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8" style="background-color:#d70021;width: 100%;border:3px solid black">
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg" style="background-color:#d70021;width: 100%">
-                <div class="p-6 text-gray-900 dark:text-gray-100" style="background-color:#d70021;width: 100%">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8" style="width: 100%;">
+            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg" style="width: 100%">
+                <div class="p-6 text-gray-900 dark:text-gray-100" style="width: 100%">
                     <link rel="stylesheet" href="style.scss">
                     <style>
                         table,
@@ -40,7 +40,7 @@
                             text-align: center;
                             font-weight: bold;
                             font-size: 30px;
-                            color: white;
+                            color: black;
                         }
 
                         /* Add styling for the form */
@@ -73,13 +73,13 @@
                         }
 
                         p {
-                            color: white;
+                            color: black;
                             font-weight: bold;
                             text-align: center;
                         }
 
                         label {
-                            color: white;
+                            color: black;
                             font-weight: bold;
                         }
 

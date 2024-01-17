@@ -99,7 +99,7 @@
                     <p>Service Remarks: {{ $serviceinfo->serviceremarks }}</p>
                     <p>Date and Time: {{ $serviceinfo->dateandtime }}</p>
                     <p>Service Started: {{ $serviceinfo->servicestarted }}</p>
-                    <p>Order Reference Code: {{ $serviceinfo->orderreferencecode }}</p>
+                    <p>Order Reference Code: {{ $serviceinfo->servicereferencecode }}</p>
 
                     <a class="button" href="{{ route('servicedata') }}">
                         BACK

@@ -11,8 +11,8 @@
     <div class="py-12" style="display: flex; justify-content: center; align-items: center;">
 
         <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg"
-             style="background-color: #d70021; text-align: center;width: 1600px;border: 3px solid black;">
-            <div class="p-6 text-gray-900 dark:text-gray-100" style="background-color: #d70021;">
+             style=" text-align: center;width: 1600px;border: 3px solid black;">
+            <div class="p-6 text-gray-900 dark:text-gray-100">
                 <div class="form-group" style="display: flex; gap: 10px;">
                     <form action="{{ route('servicedata') }}" method="GET" style="display: flex; gap: 10px;">
                         <label for="customer_appointment_number_filter">Customer Appointment Number:</label>
@@ -119,7 +119,7 @@
                     label {
                         font-family: "Century Gothic";
                         font-weight: bold;
-                        color: white;
+                        color: black;
                     }
 
                     button {
@@ -214,7 +214,7 @@
 
                 </style>
 
-                <h1 style="font-family:Arial; color:white; font-size:30px; font-weight:bold;">Service Information</h1>
+                <h1 style="font-family:Arial; color:black; font-size:30px; font-weight:bold;">Service Information</h1>
                 <div class="table-wrapper">
                     <table id="customers">
                         <tr>

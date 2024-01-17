@@ -1,7 +1,7 @@
 @include('layouts.adminnavigation')
 <x-app-layout>
-    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8" style="background-color: #d70021; border: 3px solid black;">
-        <div class="p-6 text-black font-bold" style="border: 3px solid black; background-color: #e9e9e9; text-align: center;">
+    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8" >
+        <div class="p-6 text-black font-bold" style="text-align: center;">
 
             <h1 style="color: black; font-weight: bold;">Overall Performance Report</h1> 
             <p class="mt-4" style="font-weight: bold;">Company's Overall Rating :{{ $average }}</p>

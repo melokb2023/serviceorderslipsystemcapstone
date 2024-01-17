@@ -41,16 +41,17 @@
                     }
 
                     th {
-                        background-color: #E51818;
+                        background-color: #2196f3;
                         font-family: 'Century Gothic', sans-serif;
                         font-weight: bold;
                         text-align:center;
                     }
 
                     td {
-                        background-color: #E51818;
+                        background-color: #2196f3;
                         font-family: 'Century Gothic', sans-serif;
                         text-align:center;
+                        font-weight:bold;
                     }
                 </style>
 

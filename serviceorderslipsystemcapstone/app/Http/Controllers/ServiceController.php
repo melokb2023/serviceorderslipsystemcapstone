@@ -233,7 +233,7 @@ $servicedata->save();
 
 $details = [
     'title' => 'Order Reference Code',
-    'body' => 'Service has been placed. Your order reference code is: ' . $serviceReferenceCode,
+    'body' => 'Service has been placed. Your service reference code is: ' . $serviceReferenceCode,
 ];
 
 // Send email to the customer
@@ -261,7 +261,20 @@ return redirect()->route('servicedata');
         $logs->description = "Viewed Service with ID: " . $id;
         $logs->actiondatetime = now();
         $logs->save();
-        $servicedata = Service::where('serviceno', $id)->get();
+        $servicedata = Service::join('customerappointment', 'servicedata.customerappointmentnumber', '=', 'customerappointment.customerappointmentnumber')
+        ->join('stafflist', 'servicedata.staffnumber', '=', 'stafflist.staffnumber')
+        ->join('users as customer', 'customerappointment.customerno', '=', 'customer.id')
+        ->join('users as staff', 'stafflist.id', '=', 'staff.id')
+        ->select(
+            'servicedata.*', 
+            'customer.name as customername', 
+            'customer.email as customeremail', 
+            'customerappointment.dateandtime',
+            'stafflist.*',
+            'staff.name as staffname',
+            'staff.email as staffemail'
+        )
+        ->where('serviceno', $id)->get();
         return view('admin.show', compact('servicedata'));
     }
    
@@ -325,10 +338,17 @@ return redirect()->route('servicedata');
             $customerUser = User::find($customerappointment->customerno);
             $customerEmail = $customerUser->email;
 
-        $details = [
-            'title' => 'Work Completion Notification',
-            'body' => 'Your service is complete! You may now claim your unit',
-        ];
+            $details = [
+                'title' => 'Work Completion Notification',
+                'body' => "Dear {$customerUser->name},\n\n"
+                    . "Thank you for placing a service with Compu Source Computer Center. "
+                    . "We appreciate the trust you have placed in us and aim to provide you with the highest quality of service. "
+                    . "If you have any questions or need further assistance, please do not hesitate to contact our customer service team at [customer service email address] or [customer service phone number]. "
+                    . "Thank you for choosing Compu Source Computer Center.\n\n"
+                    . "We value your business and look forward to serving you again.\n\n"
+                    . "Warm regards,\n\n"
+                    . "Compu Source Computer Center",
+            ];
 
         // Send email to a recipient (replace 'recipient@example.com' with the actual recipient email)
         Mail::to($customerEmail)->send(new MyMail($details));

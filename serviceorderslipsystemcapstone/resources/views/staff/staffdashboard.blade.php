@@ -2,17 +2,17 @@
 
 <x-app-layout>
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-        <div style="background-color: #d70021; border: 3px solid black; padding: 20px;">
+        <div style="background-color: #2196f3; border: 3px solid black; padding: 20px;">
             <div class="text-center">
                 <div class="p-6 text-gray-900 dark:text-gray-100" style="background-color: #e9e9e9;">
                
-                        <h2 style="font-family: Century Gothic; font-weight: bold; color: #d70021" class="font-bold text-white text-2xl mb-4">
+                        <h2 style="font-family: Century Gothic; font-weight: bold; color: black" class="font-bold text-white text-2xl mb-4">
                             {{ $staffDatabaseCount }} Total Number of Works
                         </h2>
-                        <h2 style="font-family: Century Gothic; font-weight: bold; color: #d70021" class="font-bold text-white text-2xl mb-4">
+                        <h2 style="font-family: Century Gothic; font-weight: bold; color: black" class="font-bold text-white text-2xl mb-4">
                             {{ $ongoingWorksCount }} Ongoing Works
                         </h2>
-                        <h2 style="font-family: Century Gothic; font-weight: bold; color: #d70021" class="font-bold text-white text-2xl mb-4">
+                        <h2 style="font-family: Century Gothic; font-weight: bold; color: black" class="font-bold text-white text-2xl mb-4">
                             {{ $completedWorksCount }} Completed Works
                         </h2>
 

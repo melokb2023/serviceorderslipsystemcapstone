@@ -3,9 +3,9 @@
 <x-app-layout>
 
     <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8" style="background-color:#d70021;border: 3px solid black;">
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg" style="background-color:#d70021">
-                <div class="p-6 text-gray-900 dark:text-gray-100" style="background-color:#d70021">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6 text-gray-900 dark:text-gray-100">
 
                     <style>
                         /* Your existing styles */
@@ -29,11 +29,11 @@
                             text-align: center;
                             font-size: 30px;
                             font-family: "Century Gothic";
-                            color: white;
+                            color: black;
                         }
 
                         label {
-                            color: white;
+                            color: black;
                         }
 
                         p {

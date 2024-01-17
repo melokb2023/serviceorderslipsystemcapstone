@@ -13,8 +13,7 @@
 }
 
 .top-nav {
-    background-color: #d70021;
-    border: 3px solid black;
+    background-color: #2196f3;
     font-weight: bold;
     overflow: hidden;
     display: flex;
@@ -48,10 +47,33 @@
 <body>
 
     <!-- Primary Navigation Menu -->
-    <nav x-data="{ open: false }" class="bg-red-500 border-b border-gray-50" style="background-color:#d70021">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 " style="background-color:#d70021">
-            <div class="flex justify-between h-16" style="background-color:#d70021">
-            <div class="hidden sm:flex sm:items-center sm:ml-6" style="background-color: #d70021;">
+    <nav x-data="{ open: false }" class="bg-red-500 border-b border-gray-50" style="background-color:#2196f3">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 " style="background-color:#2196f3">
+            <div class="flex justify-between h-16" style="background-color:#2196f3">
+         
+
+  <!-- Top Navigation Links -->
+  <div class="top-nav">
+                    <a class="top-nav-link" href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
+                        <i class="fa fa-home"></i> {{ __('DASHBOARD') }}
+                    </a>
+                    <a class="top-nav-link" href="{{ route('customerdashboard') }}" :active="request()->routeIs('customerdashboard')">
+                        <i class="fa fa-home"></i> {{ __('MY APPOINTMENTS') }}
+                    </a>
+                    <a class="top-nav-link" href="{{ route('add-appointment') }}" :active="request()->routeIs('add-appointment')">
+                        <i class="fa fa-home"></i> {{ __('START APPOINTMENT') }}
+                    </a>
+                   <a class="top-nav-link" href="{{ route('add-customerrating') }}" :active="request()->routeIs('add-customerrating')">
+                        <i class="fa fa-list"></i> {{ __('RATE THE SERVICE') }}
+                    </a>
+                    <a class="top-nav-link" href="{{ route('checkreferencenumber') }}" :active="request()->routeIs('checkreferencenumber')">
+                        <i class="fa fa-list"></i> {{ __('CHECK REFERENCE NUMBER') }}
+                    </a>
+                    <a class="top-nav-link" href="{{ route('customerlogs') }}" :active="request()->routeIs('customerlogs')">
+                        <i class="fa fa-database"></i>{{ __('LOGS') }}
+                    </a>                
+                </div>
+                <div class="hidden sm:flex sm:items-center sm:ml-6" style="background-color: #2196f3;">
     <!-- Teams Dropdown -->
     @if (Laravel\Jetstream\Jetstream::hasTeamFeatures())
         <div class="ml-3 relative">
@@ -151,29 +173,7 @@
         </x-dropdown>
     </div>
 </div>
-
-  <!-- Top Navigation Links -->
-  <div class="top-nav">
-                    <a class="top-nav-link" href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
-                        <i class="fa fa-home"></i> {{ __('DASHBOARD') }}
-                    </a>
-                    <a class="top-nav-link" href="{{ route('customerdashboard') }}" :active="request()->routeIs('customerdashboard')">
-                        <i class="fa fa-home"></i> {{ __('MY APPOINTMENTS') }}
-                    </a>
-                    <a class="top-nav-link" href="{{ route('add-appointment') }}" :active="request()->routeIs('add-appointment')">
-                        <i class="fa fa-home"></i> {{ __('START APPOINTMENT') }}
-                    </a>
-                   <a class="top-nav-link" href="{{ route('add-customerrating') }}" :active="request()->routeIs('add-customerrating')">
-                        <i class="fa fa-list"></i> {{ __('RATE THE SERVICE') }}
-                    </a>
-                    <a class="top-nav-link" href="{{ route('checkreferencenumber') }}" :active="request()->routeIs('checkreferencenumber')">
-                        <i class="fa fa-list"></i> {{ __('CHECK REFERENCE NUMBER') }}
-                    </a>
-                    <a class="top-nav-link" href="{{ route('customerlogs') }}" :active="request()->routeIs('customerlogs')">
-                        <i class="fa fa-database"></i>{{ __('LOGS') }}
-                    </a>                
-                </div>
-            </div>
+            </div>   
 </body>
 </nav>
 

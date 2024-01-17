@@ -9,9 +9,9 @@
 
 <x-app-layout>
     <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8" style="background-color:#d70021;width: 100%;border: 3px solid black">
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg" style="background-color:#d70021;width: 100%">
-                <div class="p-6 text-gray-900 dark:text-gray-100" style="background-color:#d70021;width: 100%">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8" style="width: 100%">
+            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg" style="width: 100%">
+                <div class="p-6 text-gray-900 dark:text-gray-100" style="width: 100%">
                     <style>
                         table,
                         tr {
@@ -36,7 +36,7 @@
                             text-align: center;
                             font-size: 30px;
                             font-family: "Century Gothic";
-                            color: white;
+                            color: black;
                         }
 
                         .button {
@@ -67,7 +67,7 @@
                         }
 
                         p {
-                            color: white;
+                            color: black;
                             font-weight: bold;
                         }
 
@@ -84,14 +84,14 @@
 
                     <!-- Filter Form -->
                     <form method="get" action="{{ route('customerlist') }}" class="flex items-center justify-center space-x-4">
-                        <label for="month" class="text-sm font-semibold text-white">Select Month:</label>
+                        <label for="month" class="text-sm font-semibold text-black">Select Month:</label>
                         <select name="month" id="month" class="border border-gray-300 rounded px-2 py-2">
                             @for ($i = 1; $i <= 12; $i++)
                                 <option value="{{ $i }}" @if ($i == $month) selected @endif>{{ date('F', mktime(0, 0, 0, $i, 1)) }}</option>
                             @endfor
                         </select>
 
-                        <label for="year" class="text-sm font-semibold text-white">Select Year:</label>
+                        <label for="year" class="text-sm font-semibold text-black">Select Year:</label>
                         <select name="year" id="year" class="border border-gray-300 rounded px-2 py-2">
                             @for ($i = date('Y'); $i >= 2020; $i--)
                                 <option value="{{ $i }}" @if ($i == $year) selected @endif>{{ $i }}</option>

@@ -15,7 +15,6 @@
 .top-nav {
         overflow-x: auto; /* Enable horizontal scrolling */
       /* Prevent line breaks */
-        border: 2px solid black;
         font-weight:bold;
     }
 
@@ -76,10 +75,10 @@
 <body>
 
     <!-- Primary Navigation Menu -->
-    <nav x-data="{ open: false }" class="bg-red-500 border-b border-gray-50" style="background-color:#d70021">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 " style="background-color:#d70021">
-            <div class="flex justify-between h-16" style="background-color:#d70021">
-            <div class="hidden sm:flex sm:items-center sm:ml-6" style="background-color: #d70021;">
+    <nav x-data="{ open: false }" class="bg-red-500 border-b border-gray-50" style="background-color:#2196f3">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 " style="background-color:#2196f3">
+            <div class="flex justify-between h-16" style="background-color:#2196f3">
+            <div class="hidden sm:flex sm:items-center sm:ml-6" style="background-color: #2196f3;">
     <!-- Teams Dropdown -->
     @if (Laravel\Jetstream\Jetstream::hasTeamFeatures())
         <div class="ml-3 relative">
@@ -131,7 +130,40 @@
 
     <!-- Settings Dropdown -->
     <div class="ml-3 relative">
-        <x-dropdown align="right" width="48">
+        
+
+                <!-- Top Navigation Links -->
+                <div class="top-nav flex">
+                        <a class="top-nav-link" href="{{ route('admindashboard') }}" :active="request()->routeIs('admindashboard')">
+                            <i class="fa fa-database"></i>{{ __('DASHBOARD') }}
+                        </a>
+                        <a class="top-nav-link" href="{{ route('servicedata') }}" :active="request()->routeIs('servicedata')">
+                            <i class="fa fa-database"></i>{{ __('SERVICE DATA') }}
+                        </a>
+                        <a class="top-nav-link" href="{{ route('servicelist') }}" :active="request()->routeIs('servicelist')">
+                            <i class="fa fa-list"></i> {{ __('SERVICE LIST') }}
+                        </a>
+                        <a class="top-nav-link" href="{{ route('staff') }}" :active="request()->routeIs('staff')">
+                            <i class="fa fa-star"></i> {{ __('STAFF LIST') }}
+                        </a>
+                        <a class="top-nav-link" href="{{ route('customerrating') }}" :active="request()->routeIs('customerrating')">
+                            <i class="fa fa-star"></i> {{ __('REVIEWS & RATINGS') }}
+                        </a>
+                        <a class="top-nav-link" href="{{ route('customerlist') }}" :active="request()->routeIs('customerlist')">
+                            <i class="fa fa-play"></i> {{ __('APPOINTMENTS') }}
+                        </a>
+                        <a class="top-nav-link" href="{{ route('users') }}" :active="request()->routeIs('users')">
+                            <i class="fa fa-bar-chart"></i> {{ __('LIST OF USERS') }}
+                        </a>
+                        <a class="top-nav-link" href="{{ route('reportmenu') }}" :active="request()->routeIs('reportmenu')">
+                            <i class="fa fa-bar-chart"></i> {{ __('REPORTS') }}
+                        </a>
+                        <a class="top-nav-link" href="{{ route('servicelogs') }}" :active="request()->routeIs('servicelogs')">
+                            <i class="fa fa-bar-chart"></i> {{ __('LOGS') }}
+                        </a>
+                </div>
+            </div>
+            <x-dropdown align="right" width="48">
             <x-slot name="trigger">
                 @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
                     <button class="flex text-sm border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300 transition">
@@ -149,7 +181,7 @@
                 @endif
             </x-slot>
 
-            <x-slot name="content" style="border: 3px solid black; background-color: #FF7F50;">
+            <x-slot name="content" style=" background-color: #FF7F50;">
                 <!-- Account Management -->
                 <div class="block px-4 py-2 text-sm text-white">
                     {{ __('Manage Account') }}
@@ -179,38 +211,6 @@
         </x-dropdown>
     </div>
 </div>
-
-                <!-- Top Navigation Links -->
-                <div class="top-nav">
-                   <a class="top-nav-link" href="{{ route('admindashboard') }}" :active="request()->routeIs('admindashboard')">
-                        <i class="fa fa-database"></i>{{ __('DASHBOARD') }}
-                    </a>
-                   <a class="top-nav-link" href="{{ route('servicedata') }}" :active="request()->routeIs('servicedata')">
-                        <i class="fa fa-database"></i>{{ __('SERVICE DATA') }}
-                    </a>
-                    <a class="top-nav-link" href="{{ route('servicelist') }}" :active="request()->routeIs('servicelist')">
-                        <i class="fa fa-list"></i> {{ __('SERVICE LIST') }}
-                    </a>
-                    <a class="top-nav-link" href="{{ route('staff') }}" :active="request()->routeIs('staff')">
-                        <i class="fa fa-star"></i> {{ __('STAFF LIST') }}
-                    </a>
-                    <a class="top-nav-link" href="{{ route('customerrating') }}" :active="request()->routeIs('customerrating')">
-                        <i class="fa fa-star"></i> {{ __('REVIEWS & RATINGS') }}
-                    </a>
-                    <a class="top-nav-link" href="{{ route('customerlist') }}" :active="request()->routeIs('customerlist')">
-                        <i class="fa fa-play"></i> {{ __('APPOINTMENTS') }}
-                    </a>
-                    <a class="top-nav-link" href="{{ route('users') }}" :active="request()->routeIs('users')">
-                        <i class="fa fa-bar-chart"></i> {{ __('LIST OF USERS') }}
-                    </a>
-                    <a class="top-nav-link" href="{{ route('reportmenu') }}" :active="request()->routeIs('reportmenu')">
-                        <i class="fa fa-bar-chart"></i> {{ __('REPORTS') }}
-                    </a>
-                    <a class="top-nav-link" href="{{ route('servicelogs') }}" :active="request()->routeIs('servicelogs')">
-                        <i class="fa fa-bar-chart"></i> {{ __('LOGS') }}
-                    </a>
-                </div>
-            </div>
 </body>
 </nav>
 

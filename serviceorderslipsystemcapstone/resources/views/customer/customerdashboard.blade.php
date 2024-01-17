@@ -4,9 +4,9 @@
 
 <x-app-layout>
     <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8" style="background-color: #d70021; width: 100%; border: 3px solid black">
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg" style="background-color: #d70021; width: 100%">
-                <div class="p-6 text-gray-900 dark:text-gray-100" style="background-color: #d70021;">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8" style="width: 100%">
+            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg" style="width: 100%">
+                <div class="p-6 text-gray-900 dark:text-gray-100">
                     <style>
                         /* Your existing styles here */
                         table, tr {
@@ -35,7 +35,7 @@
                             text-align: center;
                             font-size: 30px;
                             font-family: "Century Gothic";
-                            color: white;
+                            color: black;
                         }
 
                         /* Add new styles for the form and button */
@@ -48,6 +48,7 @@
 
                         label {
                             margin-bottom: 10px;
+                            color:black;
                         }
 
                         input {
@@ -78,7 +79,7 @@
 
                     <div class="form-group" style="display: flex; gap: 10px;">
     <form method="GET" action="{{ route('customerdashboard') }}" style="display: flex; flex: 1;">
-    <label for="appointment_number" class="mr-2" style="flex: 0 0 auto; font-family: 'Century Gothic', sans-serif; font-weight: bold;color:white;">Appointment Number:</label>
+    <label for="appointment_number" class="mr-2" style="flex: 0 0 auto; font-family: 'Century Gothic', sans-serif; font-weight: bold;color:black;">Appointment Number:</label>
 <input type="text" name="appointment_number" value="{{ request('appointment_number') }}" class="form-control mr-2" style="flex: 1; font-family: 'Century Gothic', sans-serif;">
         <button type="submit" class="btn btn-primary" style="flex: 0 0 auto; border-radius: 15px; font-weight: bold; background-color: #28a745; color: #fff;">Apply Filters</button>
     </form>

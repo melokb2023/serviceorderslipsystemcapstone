@@ -19,7 +19,6 @@
         .container {
             max-width: 800px;
             margin: 0 auto;
-            background-color: #d70021;
             border: 3px solid black;
             padding: 20px;
             box-sizing: border-box;
@@ -40,7 +39,7 @@
             font-weight: bold;
             font-size: 28px;
             text-align: center;
-            color: white;
+            color: black;
         }
 
         label {

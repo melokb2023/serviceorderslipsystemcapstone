@@ -14,8 +14,7 @@
         }
 
         .top-nav {
-            background-color: #d70021;
-            border: 3px solid black;
+            background-color: #2196f3;
             font-weight: bold;
             overflow: hidden;
             display: flex;
@@ -48,10 +47,25 @@
 <body>
 
     <!-- Primary Navigation Menu -->
-    <nav x-data="{ open: false }" class="bg-red-500 border-b border-gray-50" style="background-color:#d70021">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 " style="background-color:#d70021">
-            <div class="flex justify-between h-16" style="background-color:#d70021">
-            <div class="hidden sm:flex sm:items-center sm:ml-6" style="background-color: #d70021;">
+    <nav x-data="{ open: false }" class="bg-red-500 border-b border-gray-50" style="background-color:#2196f3">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 " style="background-color:#2196f3">
+            <div class="flex justify-between h-16" style="background-color:#2196f3">
+           
+
+                <!-- Top Navigation Links -->
+                <div class="top-nav">
+                
+                <a class="top-nav-link" href="{{ route('staffdashboard') }}" :active="request()->routeIs('staffdashboard')">
+                <i class="fa fa-database"></i>{{ __('DASHBOARD') }}
+        </a> 
+                 <a class="top-nav-link"  href="{{ route('staffdatabase') }}" :active="request()->routeIs('staffdatabase')">
+                 <i class="fa fa-database"></i>{{ __('STAFF WORK') }}
+</a>
+                 <a class="top-nav-link"  href="{{ route('stafflogs') }}" :active="request()->routeIs('stafflogs')">
+                 <i class="fa fa-bar-chart"></i>   {{ __('LOGS') }}
+                 </a>
+                </div>
+                 <div class="hidden sm:flex sm:items-center sm:ml-6" style="background-color: #2196f3;">
     <!-- Teams Dropdown -->
     @if (Laravel\Jetstream\Jetstream::hasTeamFeatures())
         <div class="ml-3 relative">
@@ -151,20 +165,6 @@
         </x-dropdown>
     </div>
 </div>
-
-                <!-- Top Navigation Links -->
-                <div class="top-nav">
-                
-                <a class="top-nav-link" href="{{ route('staffdashboard') }}" :active="request()->routeIs('staffdashboard')">
-                <i class="fa fa-database"></i>{{ __('DASHBOARD') }}
-        </a> 
-                 <a class="top-nav-link"  href="{{ route('staffdatabase') }}" :active="request()->routeIs('staffdatabase')">
-                 <i class="fa fa-database"></i>{{ __('STAFF WORK') }}
-</a>
-                 <a class="top-nav-link"  href="{{ route('stafflogs') }}" :active="request()->routeIs('stafflogs')">
-                 <i class="fa fa-bar-chart"></i>   {{ __('LOGS') }}
-                 </a>
-                </div>
             </div>
 </body>
 </nav>

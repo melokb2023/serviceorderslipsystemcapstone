@@ -1,10 +1,10 @@
 @include('layouts.adminnavigation')
 
 <x-app-layout>
-<div class="max-w-7xl mx-auto sm:px-6 lg:px-8" style="background-color: #d70021; border: 3px solid black">
+<div class="max-w-7xl mx-auto sm:px-6 lg:px-8" style="background-color: #2196f3; border: 3px solid black">
         <style>
             *{box-sizing:border-box;font-family:"Century Gothic";font-weight:bold}
-            h2{font-family:"Century Gothic";font-weight:bold;color:red}
+            h2{font-family:"Century Gothic";font-weight:bold;color:black}
             .additional-content p{color:black;font-weight:bold}
             .additional-content a{display:inline-block;padding:10px;background-color:#3490dc;color:white;text-decoration:none;border-radius:5px;margin-top:10px}
             .additional-content a:hover{background-color:#276695}

@@ -1,6 +1,6 @@
 <!-- resources/views/customer/checkreferencenumber.blade.php -->
 @include('layouts.customernavigation')
-<x-app-layout style="background-color: #d70021;">
+<x-app-layout style="background-color:#2196f3;">
     <style>
         * {
             font-family: 'Century Gothic';
@@ -177,9 +177,9 @@
     </style>
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 bg-white border-3 border-black"
-            style="background-color: #d70021; border: 3px solid black;">
+            style="background-color:#2196f3; border: 3px solid black;">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg text-center"
-                style="background-color: #d70021;">
+                style="background-color:#2196f3;">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
 
                     <form action="{{ route('checkServiceStatus') }}" method="post">
@@ -189,7 +189,7 @@
                             <input type="text" name="service_reference_code" class="form-input mt-1 block w-full" required>
                         </div>
                         
-                        <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Check Status</button>
+                        <button type="submit" class="bg-green-500 text-white px-4 py-2 rounded">Check Status</button>
                     </form>
 
                     @if(isset($serviceStatus))
