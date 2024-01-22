@@ -1,5 +1,5 @@
 @include('layouts.adminnavigation')
-<x-app-layout style="background-color: #d70021;">
+<x-app-layout style="background-color: #2196f3;">
 
 <style>
     table,
@@ -39,7 +39,7 @@
     }
 
     .card h2 {
-        color: #d70021;
+        color: #2196f3;
         font-size: 24px;
         font-weight: bold;
         margin-bottom: 10px;
@@ -79,8 +79,8 @@
 <div class="py-12" style="display: flex; justify-content: center; align-items: center;">
 
     <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg"
-         style="background-color: #d70021; text-align: center; height: auto; width: 90%; max-width: 1200px; border: 3px solid black;">
-        <div class="p-6 text-gray-900 dark:text-gray-100" style="background-color: #d70021;">
+         style="background-color: #2196f3; text-align: center; height: auto; width: 90%; max-width: 1200px; border: 3px solid black;">
+        <div class="p-6 text-gray-900 dark:text-gray-100" style="background-color: #2196f3;">
 
             <h1 style="font-family:Century Gothic; color:white; font-size:30px; font-weight:bold;">Service Information</h1>
 

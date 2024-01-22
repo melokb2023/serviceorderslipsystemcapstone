@@ -10,19 +10,26 @@
                     <style>
                         /* Your existing styles */
 
-                        table,
-                        tr {
-                            font-family: "Century ";
-                            width: 100%; /* Extend table width */
-                            font-weight: bold;
-                            background-color: white;
-                        }
+                        table th {
+        background-color: black;
+        color: white;
+        border: 3px solid black;
+    }
 
-                        td {
-                            font-family: "Arial";
-                            background-color: #cbd6e4;
-                            padding: 8px; /* Adjust cell padding */
-                        }
+    table,
+    tr {
+        font-family: "Century ";
+        width: 100%; /* Extend table width */
+        font-weight: bold;
+        background-color: white;
+    }
+
+    td {
+        font-family: "Arial";
+        background-color: white;
+        padding: 8px; /* Adjust cell padding */
+        border: 3px solid black; /* Keep the black border for cells */
+    }
 
                         h6 {
                             font-weight: bold;
@@ -73,7 +80,7 @@
 
                         <div id="adminLogsContainer" style="max-height: 500px; overflow: auto;">
     @if(count($servicedata) > 0)
-        <table id="adminLogs" style="border: 1px solid black; margin: auto; width: 100%;">
+        <table id="adminLogs" style="border: 3px solid black; margin: auto; width: 100%;">
             <tr>
                 <th>User ID</th>
                 <th>Name</th>

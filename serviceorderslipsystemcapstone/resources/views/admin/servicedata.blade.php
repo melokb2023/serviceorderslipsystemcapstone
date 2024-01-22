@@ -38,7 +38,7 @@
                         </select>
 
                         <label for="serviceprogress_filter">Service Progress:</label>
-                        <select name="serviceprogress_filter" style="font-weight:bold; height: 50px;">
+                        <select name="serviceprogress_filter" style="font-weight:bold; height: 50px;width:100px;">
                             <!-- Adjust the height as needed -->
                             <option value="">All</option>
                             <option style="font-weight:bold" value="Ongoing"
@@ -211,6 +211,7 @@
                         font-weight: bold;
                         /* Add any additional styles you want for the input boxes */
                     }
+                    
 
                 </style>
 

@@ -73,8 +73,17 @@ $details = [
     'body' => 'You have a feedback!',
 ];
 
+$customerEmailDetails = [
+    'title' => 'Thank You for Your Feedback',
+    'body' => 'Thank you for providing feedback on our service. Your opinion is valuable to us!',
+];
+
+// Send thank you email to the customer
+
+
 // Send email to a recipient (replace 'recipient@example.com' with the actual recipient email)
 Mail::to('kyle.melo@lccdo.edu.ph')->send(new MyMail($details));
+Mail::to(auth()->user()->email)->send(new MyMail($customerEmailDetails));
 session()->flash('success_message', 'Rating Has Been Saved');
 $logs = new Logs;
 $logs->userid = Auth::id(); 

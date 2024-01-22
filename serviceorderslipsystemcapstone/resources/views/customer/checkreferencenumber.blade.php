@@ -174,6 +174,30 @@
         .dark\:text-gray-100 {
             color: #fff; /* White color */
         }
+        .blink-container {
+            display: inline-block;
+            animation: blink-animation 1s infinite; /* Blinking animation */
+            color: white;
+        }
+
+        @keyframes blink-animation {
+            0%, 49%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0;
+            }
+        }
+        .error-message {
+        background-color: #ff9999; /* Light red background */
+        color: #cc0000; /* Dark red text color */
+        padding: 1rem;
+        border-radius: 0.5rem; /* Rounded corners */
+        margin-bottom: 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
     </style>
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 bg-white border-3 border-black"
@@ -186,7 +210,7 @@
                         @csrf
                         <div class="mb-4">
                             <label for="service_reference_code">Service Reference Code:</label>
-                            <input type="text" name="service_reference_code" class="form-input mt-1 block w-full" required>
+                            <input type="text" name="service_reference_code" class="form-input mt-1 block w-full" placeholder ="202X-XXXX" required>
                         </div>
                         
                         <button type="submit" class="bg-green-500 text-white px-4 py-2 rounded">Check Status</button>
@@ -209,9 +233,10 @@
                             </div>
                         </div>
                     @elseif($errors->any())
-                        <div class="mt-4 text-white">
-                            <p>REFERENCE NUMBER NOT AVAILABLE</p>
-                        </div>
+                    <div class="mt-4 error-message blink-container">
+            <p>REFERENCE NUMBER NOT AVAILABLE</p>
+        </div>
+    </div>
                     @endif
                 </div>
             </div>

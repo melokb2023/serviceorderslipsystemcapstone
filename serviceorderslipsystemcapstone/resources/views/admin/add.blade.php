@@ -1,9 +1,9 @@
 @include('layouts.adminnavigation')
 <x-app-layout>
     <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8" style="background-color: #d70021; border: 3px solid black">
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg" style="background-color: #d70021; text-align: center">
-                <div class="p-6 text-gray-900 dark:text-gray-100" style="background-color: #d70021; font-family: 'Century Gothic', sans-serif; font-weight: bold;">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8" style="background-color: #2196f3; border: 3px solid black">
+            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg" style="background-color: #2196f3; text-align: center">
+                <div class="p-6 text-gray-900 dark:text-gray-100" style="background-color: #2196f3; font-family: 'Century Gothic', sans-serif; font-weight: bold;">
 
                     <!-- Favicon-->
                     <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
@@ -22,7 +22,7 @@
     font-weight: bold;
     font-size: 16px;
     color: white;
-    background-color: #d70021;
+    background-color: #2196f3;
 }
 
 label {
@@ -49,6 +49,11 @@ input[type=checkbox] {
     resize: vertical;
     font-size: 14px;
 }
+
+button[disabled] {
+            cursor: not-allowed;
+            background-color: #808080; /* Adjust the color for the disabled state */
+        }
 
 .textexpand {
     width: 100%;
@@ -148,7 +153,7 @@ button[type=submit]:hover {
                         BACK
                     </a>
                     @else
-                    <form style="text-align: center;" method="POST" action="{{ route('add-service') }}">
+                    <form id="serviceForm" style="text-align: center;" method="POST" action="{{ route('add-service') }}">
                         @csrf
 
                         <!-- Form row with two columns in one line -->
@@ -220,12 +225,27 @@ button[type=submit]:hover {
                        
 
                        
-                        <button class="btn btn-primary" type="submit">Submit Info</button>
+                        <button type="submit" id="submitBtn" style="width: 100%; background-color: #04AA6D; color: white; padding: 12px; border: none; border-radius: 4px; cursor: pointer; font-size: 16px; text-align: center;">Submit Info</button>
                     </form>
                     @endif
 
                 </div>
             </div>
         </div>
+        <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const submitButton = document.getElementById('submitBtn');
+        const serviceForm = document.getElementById('serviceForm');
+
+        submitButton.addEventListener('click', function () {
+            // Check for duplicate data here if needed
+            // If duplicate data is found, display an alert and return without disabling the button
+
+            submitButton.disabled = true;
+            submitButton.style.opacity = '0.5'; // Set the opacity to a value between 0 (invisible) and 1 (fully visible)
+            serviceForm.submit();
+        });
+    });
+</script>
     </div>
 </x-app-layout>

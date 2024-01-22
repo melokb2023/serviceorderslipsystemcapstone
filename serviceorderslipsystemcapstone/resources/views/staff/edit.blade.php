@@ -6,7 +6,7 @@
             font-weight: bold;
             font-size: 16px;
             color: white;
-            background-color: #d70021;
+            background-color: #2196f3;
         }
 
         label {
@@ -76,6 +76,11 @@
             background-color: #45a049;
         }
 
+        button[disabled] {
+            cursor: not-allowed;
+            background-color: #808080; /* Adjust the color for the disabled state */
+        }
+
         .container {
             border-radius: 5px;
             background-color: #f2f2f2;
@@ -103,7 +108,7 @@
     <div class="py-12" >
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900 dark:text-gray-100" style="background-color:#d70021;font-family: 'Century Gothic', sans-serif; font-weight: bold;">
+                <div class="p-6 text-gray-900 dark:text-gray-100" style="background-color:#2196f3;font-family: 'Century Gothic', sans-serif; font-weight: bold;">
 
                     <h6 style="font-family: Century Gothic; color:white">Errors Encountered</h6>
                     @if($errors)

@@ -1,5 +1,6 @@
 @include('layouts.adminnavigation')
 <x-app-layout>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-mBEJ3L0zUkbpDhw1XOsTf3D7y8v3lZ9R08PcL1vND5Ee2j3R6DgNr0rNAZKz55I0vxBdSc5cTD5tRzNlOZ0riQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
         /* Your existing styles */
 
@@ -18,7 +19,7 @@
             font-weight: bold;
             font-size: 16px;
             color: white;
-            background-color: #d70021;
+            background-color: #2196f3;
         }
 
         label {
@@ -102,6 +103,25 @@
         .form-group {
             width: 48%;
         }
+        .password-input-container {
+    position: relative;
+}
+
+.password-input {
+    padding-right: 30px; /* Adjust the padding to make room for the icon */
+}
+
+.password-toggle-btn {
+    position: absolute;
+    top: 50%;
+    right: 10px; /* Adjust the right spacing as needed */
+    transform: translateY(-50%);
+    cursor: pointer;
+    border: none;
+    background: none;
+    font-size: 20px;
+    color: #888; /* Adjust the color as needed */
+}
 
         @media only screen and (max-width: 600px) {
             body {
@@ -111,9 +131,9 @@
     </style>
 
 <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8" style="background-color: #d70021; border: 3px solid black">
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg" style="background-color: #d70021; text-align: center">
-                <div class="p-6 text-gray-900 dark:text-gray-100" style="background-color: #d70021; font-family: 'Century Gothic', sans-serif; font-weight: bold;">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8" style="background-color: #2196f3; border: 3px solid black">
+            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg" style="background-color: #2196f3; text-align: center">
+                <div class="p-6 text-gray-900 dark:text-gray-100" style="background-color: #2196f3; font-family: 'Century Gothic', sans-serif; font-weight: bold;">
                     <h6>Errors Encountered</h6>
                     @if($errors)
                         <ul>
@@ -124,7 +144,7 @@
                     @endif
 
                     @foreach($servicedata as $serviceinfo)
-                        <form method="POST" action="{{ route('service-update',['serno' => $serviceinfo->serviceno]) }}">
+                        <form method="POST" id="updateForm" action="{{ route('service-update',['serno' => $serviceinfo->serviceno]) }}">
                             @csrf
                             @method('patch')
 
@@ -153,10 +173,13 @@
 
                             <!-- Row group for Customer Password and Defective Units -->
                             <div class="form-row-group">
-                                <div class="form-group">
-                                    <label for="Customer Password">Customer Password</label>
-                                    <input class="textexpand2" type="password" name="xcustomerpassword" value="{{$serviceinfo->customerpassword}}"/>
-                                </div>
+                            <div class="form-group password-strength">
+    <label for="Customer Password">Customer Password</label>
+    <div class="password-input-container">
+        <input class="textexpand2 password-input" type="password" name="xcustomerpassword" id="passwordInput" value="{{$serviceinfo->customerpassword}}" />
+        <button type="button" id="togglePassword" class="password-toggle-btn">&#x1F441;</button>
+    </div>
+</div>
 
                                 <div class="form-group">
                                     <label for="Defective Units">Defective Units</label>
@@ -197,7 +220,7 @@
                                 </div>
                             </div>
 
-                            <button type="submit" style="text-align:center;background-color:green">Update Info</button>
+                            <button type="submit" id="submitBtn"  style="text-align:center;background-color:green">Update Info</button>
                         </form>
                     @endforeach
                 </div>
@@ -219,5 +242,30 @@
         serviceProgressSelect.dispatchEvent(new Event('change'));
     });
 </script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const passwordInput = document.getElementById('passwordInput');
+        const togglePasswordButton = document.getElementById('togglePassword');
+
+        togglePasswordButton.addEventListener('click', function () {
+            const type = passwordInput.type === 'password' ? 'text' : 'password';
+            passwordInput.type = type;
+            togglePasswordButton.innerHTML = type === 'password' ? '&#x1F441;' : '&#x1F440;';
+        });
+    });
+</script>
+
+<script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const submitButton = document.getElementById('submitBtn');
+            const updateForm = document.getElementById('updateForm');
+
+            submitButton.addEventListener('click', function () {
+            submitButton.disabled = true;
+            submitButton.style.opacity = '0.5'; // Set the opacity to a value between 0 (invisible) and 1 (fully visible)
+            updateForm.submit();
+        });
+    });
+    </script>
     </div>
 </x-app-layout>

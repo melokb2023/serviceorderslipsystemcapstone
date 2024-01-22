@@ -219,12 +219,17 @@ class ServiceController extends Controller
 
         // Get Customer Appointment based on customerappointmentnumber
 $customerAppointment = CustomerAppointment::where('customerappointmentnumber', $request->xcustomerappointmentnumber)->first();
+$staff = Staff::where('staffnumber', $request->xstaffnumber)->first();
 
 // Get User information based on customerno
 $customerUser = User::find($customerAppointment->customerno);
+$staffUser = User::find($staff->id);
+
 
 // Now you have access to the customer's email
 $customerEmail = $customerUser->email;
+$staffEmail = $staffUser->email;
+
 
 // Rest of your code
 $servicedata->servicestarted = $request->xservicestarted;
@@ -236,8 +241,15 @@ $details = [
     'body' => 'Service has been placed. Your service reference code is: ' . $serviceReferenceCode,
 ];
 
+$details2 = [
+    'title' => 'New Service Assignment',
+    'body' => 'Dear ' .  $staffUser->name  . ', a new service has been assigned to you.' 
+];
+
+
 // Send email to the customer
 Mail::to($customerEmail)->send(new MyMail($details));
+Mail::to($staffEmail)->send(new MyMail($details2));
 
 // Flash success message and log the action
 session()->flash('success_message', 'Data Stored');
@@ -567,7 +579,7 @@ public function getAvailableStaffNumbers()
                 $logs->description = "Accessed the Admin Dashobard";
                 $logs->actiondatetime = now();
                 $logs->save();
-    $typesOfServicesCount = Service::select('typeofservice')->distinct()->count();
+                $typesOfServicesCount = Service::distinct('typeofservice')->count();
 
     $customerAppointmentsCount = CustomerAppointment::count();
     $serviceDataCount = Service::count();

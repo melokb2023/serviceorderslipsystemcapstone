@@ -18,28 +18,43 @@ class LineChartController extends Controller
     {
         $selectedYear = $request->input('year', date('Y'));
         $selectedMonth = $request->input('month', date('m'));
+        $selectedRange = $request->input('range', '1-7'); // Default to the first week
+        $selectedProgress = $request->input('progress', 'Ongoing'); // Default to Ongoing
+    
+        // Extract start and end day from the selected range
+        list($startDay, $endDay) = explode('-', $selectedRange);
     
         $services = ['Reformatting', 'Replacement', 'Virus Removal', 'Computer Network Troubleshooting', 'Upgrade Hardware', 'Clean Up Files', 'Hardware Fixing', 'Peripheral Fixing', 'Software Installation', 'Reapplication'];
     
         $data = [];
     
+        // Calculate start and end dates for the selected range
+        $startOfMonth = now()->setYear($selectedYear)->setMonth($selectedMonth)->startOfMonth();
+        $endOfMonth = now()->setYear($selectedYear)->setMonth($selectedMonth)->endOfMonth();
+    
+        $startOfDay = $startOfMonth->copy()->addDays($startDay - 1);
+        $endOfDay = $startOfMonth->copy()->addDays($endDay - 1);
+    
         foreach ($services as $service) {
-            // Count the number of services for the selected month, year, and service type
+            // Count the number of services for the selected range, year, service type, and service progress
             $count = Service::where('typeofservice', $service)
                 ->whereYear('servicestarted', $selectedYear)
                 ->whereMonth('servicestarted', $selectedMonth)
+                ->whereBetween('servicestarted', [$startOfDay, $endOfDay])
+                ->where('serviceprogress', $selectedProgress)
                 ->count();
     
             $data[$service] = $count;
         }
+    
         $logs = new Logs;
         $logs->userid = Auth::id(); 
-        $logs->description = "Views the Line Chart for a Specifc Year and Month";
+        $logs->description = "Views the Line Chart for a Specific Year, Month, Range of Days, and Service Progress";
         $logs->actiondatetime = now();
         $logs->save();
-
+    
         // Return the view with the data
-        return view('admin.financialperformancereport', compact('data', 'selectedMonth', 'selectedYear'));
+        return view('admin.financialperformancereport', compact('data', 'selectedMonth', 'selectedYear', 'selectedRange', 'selectedProgress'));
     }
     public function LineChart2()
 {

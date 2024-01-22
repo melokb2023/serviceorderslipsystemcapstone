@@ -5,6 +5,7 @@ use App\Models\Rating;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Auth;
 use App\Mail\MyMail;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Models\Logs;
 
@@ -28,14 +29,20 @@ class CustomerAppointmentController extends Controller
     $validateData = $request->validate([
         'xappointmentpurpose' => ['required', 'max:100'],
         'xappointmenttype' => ['required', 'max:100'],
-        'xdateandtime' => ['required'],
     ]);
 
     $customerappointment = new CustomerAppointment();
     $customerappointment->customerno = auth()->user()->id;
     $customerappointment->appointmentpurpose = $request->xappointmentpurpose;
     $customerappointment->appointmenttype = $request->xappointmenttype;
-    $customerappointment->dateandtime = $request->xdateandtime;
+     // Check the appointment mode and set dateandtime accordingly
+     if ($request->xappointmenttype == 'Scheduled' && $request->filled('xdateandtime')) {
+        // Set dateandtime from the xdateandtime field if Scheduled
+        $customerappointment->dateandtime = Carbon::parse($request->xdateandtime, 'Asia/Manila');
+    } else {
+        // Set dateandtime using Carbon if Direct or no xdateandtime provided
+        $customerappointment->dateandtime = now('Asia/Manila');
+    }
     $customerappointment->save();
 
     $details = [
@@ -43,8 +50,13 @@ class CustomerAppointmentController extends Controller
         'body' => 'Hi ' . auth()->user()->name . ', thanks for contacting us. We have received your appointment data and appreciate you for reaching out ',
     ];
 
+    $details2 = [
+        'title' => 'Appointment',
+        'body' => 'You have an appointment coming from ' . auth()->user()->name . '. '
+    ];
     // Send email to a recipient (replace 'recipient@example.com' with the actual recipient email)
     Mail::to(auth()->user()->email)->send(new MyMail($details));
+    Mail::to('kyle.melo@lccdo.edu.ph')->send(new MyMail($details2));
 
   
     session()->flash('success_message', 'Data Stored');

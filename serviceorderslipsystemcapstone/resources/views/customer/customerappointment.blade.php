@@ -88,31 +88,46 @@
                     </ul>
                     @endif
 
-                    <form method="POST" action="{{ route('customerappointment-store') }}" class="container">
-                        @csrf
-                        <div class="form-group">
-                            <label for="xappointmentpurpose">Appointment Purpose</label>
-                            <input type="text" name="xappointmentpurpose" value="{{old('xappointmentpurpose')}}" required>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="xappointmenttype">Appointment Type</label>
-                            <select name="xappointmenttype">
-                                <option value="Direct">Direct</option>
-                                <option value="Scheduled">Scheduled</option>
-                            </select>
-                        </div>
-
-                        <div class="form-group" style="text-align:center">
-                            <label for="xdateandtime">Date and Time</label>
-                            <input type="datetime-local" name="xdateandtime" value="{{old('xdateandtime')}}" required>
-                        </div>
-
-                        <button type="submit">Submit Info</button>
-                    </form>
-
+                    <form method="POST" action="{{ route('customerappointment-store') }}" class="container" id="appointmentForm">
+                @csrf
+                <div class="form-group">
+                    <label for="xappointmentpurpose">Appointment Purpose</label>
+                    <input type="text" name="xappointmentpurpose" value="{{old('xappointmentpurpose')}}" required>
                 </div>
-            </div>
+
+                <div class="form-group">
+                    <label for="xappointmenttype">Appointment Type</label>
+                    <select name="xappointmenttype" id="appointmentType">
+                        <option value="Direct">Direct</option>
+                        <option value="Scheduled">Scheduled</option>
+                    </select>
+                </div>
+
+                <div class="form-group" id="dateTimeGroup" style="display: none;">
+                    <label for="xdateandtime">Date and Time</label>
+                    <input type="datetime-local" name="xdateandtime" id="xdateandtime">
+                </div>
+
+                <button type="submit">Submit Info</button>
+            </form>
+
+            <script>
+                // Add an event listener to the "Appointment Type" drop-down
+                document.getElementById('appointmentType').addEventListener('change', function() {
+                    // Get the selected value
+                    var selectedValue = this.value;
+
+                    // Get the Date and Time group
+                    var dateTimeGroup = document.getElementById('dateTimeGroup');
+
+                    // Show or hide the Date and Time group based on the selected value
+                    if (selectedValue === 'Scheduled') {
+                        dateTimeGroup.style.display = 'block';
+                    } else {
+                        dateTimeGroup.style.display = 'none';
+                    }
+                });
+            </script>
         </div>
     </div>
 

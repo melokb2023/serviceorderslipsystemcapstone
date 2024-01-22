@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Carbon;
 
 class CustomerAppointment extends Model
 {
@@ -24,6 +25,8 @@ class CustomerAppointment extends Model
 {
     return $this->belongsTo(User::class, 'customerno', 'id');
 }
+
+
 
    
   
