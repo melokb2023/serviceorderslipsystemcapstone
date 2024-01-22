@@ -72,7 +72,7 @@
 
                     table,
                     tr {
-                        font-family: "Century ";
+                        font-family: "Century Gothic";
                         font-weight: bold;
                         width: 100%;
                         margin: auto;
@@ -82,7 +82,7 @@
 
                     th,
                     td {
-                        font-family: "Arial";
+                        font-family: "Century Gothic";
                         background-color: #cbd6e4;
                         border: 1px solid #ddd;
                         padding: 8px;
@@ -215,7 +215,7 @@
 
                 </style>
 
-                <h1 style="font-family:Arial; color:black; font-size:30px; font-weight:bold;">Service Information</h1>
+                <h1 style="font-family:Century Gothic; color:black; font-size:30px; font-weight:bold;">Service Information</h1>
                 <div class="table-wrapper">
                     <table id="customers">
                         <tr>

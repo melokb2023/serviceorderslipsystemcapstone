@@ -157,6 +157,18 @@
                     required autocomplete="email" />
             </div>
 
+            <div class="form-group">
+                            <label for="phone">Phone</label>
+                            <x-input id="phone" class="block mt-1 w-full" type="tel" name="phone" :value="old('phone')"
+                                required />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="address">Address</label>
+                            <x-input id="address" class="block mt-1 w-full" type="text" name="address"
+                                :value="old('address')" required />
+                        </div>
+
             <!-- Add other form fields as needed -->
 
             <div class="form-group">

@@ -13,7 +13,7 @@
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg" >
                 <div class="p-6 text-gray-900 dark:text-gray-100" >
 
-                    <h1 style="font-family:Arial; color:black; font-size:30px; font-weight:bold; text-align:center;">List of Users</h1>
+                    <h1 style="font-family:Century Gothic; color:black; font-size:30px; font-weight:bold; text-align:center;">List of Users</h1>
                     <div class="table-wrapper">
                         <table id="customers">
                             <tr>
@@ -67,7 +67,7 @@
 
     th,
     td {
-        font-family: "Arial";
+        font-family: "Century Gothic";
         background-color: #cbd6e4;
         border: 1px solid #ddd;
         padding: 8px;

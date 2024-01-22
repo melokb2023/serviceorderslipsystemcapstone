@@ -36,7 +36,7 @@
                         }
 
                         h6 {
-                            font-style: "Century Gothic";
+                            font-family: "Century Gothic";
                             text-align: center;
                             font-weight: bold;
                             font-size: 30px;

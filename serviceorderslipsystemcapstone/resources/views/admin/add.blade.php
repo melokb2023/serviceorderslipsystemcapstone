@@ -196,12 +196,12 @@ button[type=submit]:hover {
                         <div class="form-row">
                             <div class="form-group">
                                 <label for="list-of-problems">List of Problems</label>
-                                <input class="textexpand" type="text" name="xlistofproblems" value="{{ old('xlistofproblems') }}" />
+                                <input class="textexpand" type="text" name="xlistofproblems" value="{{ old('xlistofproblems') }}" required/>
                             </div>
                         
                              <div class="form-group">
                                 <label for="customer-password">Customer Password</label>
-                                <input type="password" name="xcustomerpassword" value="{{ old('xcustomerpassword') }}" />
+                                <input type="password" name="xcustomerpassword" value="{{ old('xcustomerpassword') }}" required/>
                             </div>
                         </div>
                           <div class="form-row">
@@ -211,16 +211,16 @@ button[type=submit]:hover {
                                 <br>
                                 <br>
                                 <label for="defective-units">Defective Units</label>
-                                <input class="textexpand2" type="text" name="xdefectiveunits" value="{{ old('xdefectiveunits') }}" />
+                                <input class="textexpand2" type="text" name="xdefectiveunits"  value="{{ old('xdefectiveunits') }}" required/>
                             </div>
                         </div>   
                          <div class="form-group">
                                 <label for="actions-required">Actions Required</label>
-                                <input class="textexpand2" type="text" name="xactionsrequired" value="{{ old('xactionsrequired') }}" />
+                                <input class="textexpand2" type="text" name="xactionsrequired"  value="{{ old('xactionsrequired') }}" required/>
                         </div>
                         <div class="form-group" style="text-align:center">
                             <label for="servicestarted">Service Started</label>
-                            <input type="datetime-local" name="xservicestarted" value="{{old('xservicestarted')}}" required>
+                            <input type="datetime-local" name="xservicestarted"  value="{{old('xservicestarted')}}" required>
                         </div>
                        
 

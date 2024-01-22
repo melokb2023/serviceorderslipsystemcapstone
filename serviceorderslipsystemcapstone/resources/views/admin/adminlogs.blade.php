@@ -18,14 +18,14 @@
 
     table,
     tr {
-        font-family: "Century ";
+        font-family: "Century Gothic";
         width: 100%; /* Extend table width */
         font-weight: bold;
         background-color: white;
     }
 
     td {
-        font-family: "Arial";
+        font-family: "Century Gothic";
         background-color: white;
         padding: 8px; /* Adjust cell padding */
         border: 3px solid black; /* Keep the black border for cells */
