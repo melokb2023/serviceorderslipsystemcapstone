@@ -21,7 +21,6 @@
 
                         td {
                             font-family: "Century Gothic";
-                            background-color: #cbd6e4;
                         }
 
                         th {

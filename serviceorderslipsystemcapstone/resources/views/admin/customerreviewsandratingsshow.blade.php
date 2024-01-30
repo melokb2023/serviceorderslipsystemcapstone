@@ -39,7 +39,7 @@
     }
 
     .card h2 {
-        color: #d70021;
+        color: #2196f3;
         font-size: 24px;
         font-weight: bold;
         margin-bottom: 10px;
@@ -80,15 +80,14 @@
 
     <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg"
          style="background-color: #d70021; text-align: center; height: auto; width: 90%; max-width: 1200px; border: 3px solid black;">
-        <div class="p-6 text-gray-900 dark:text-gray-100" style="background-color: #d70021;">
+        <div class="p-6 text-gray-900 dark:text-gray-100" style="background-color: #2196f3;">
 
             <h1>Rating Data</h1>
 
             @foreach($customerrating as $customer)
                 <div class="card">
                     <h2>Rating Number: {{ $customer->ratingno }}</h2>
-                    <p>Reviewer ID: {{ $customer->reviewerid }}</p>
-                    <p>Reviewer Name: {{ $customer->reviewername }}</p>
+                    <p>Reviewer Name: {{ $customer->customername }}</p>
                     <p>Review: {{ $customer->review }}</p>
                     <p>Rating: {{ $customer->rating }}</p>
                     <br>

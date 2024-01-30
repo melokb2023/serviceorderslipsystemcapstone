@@ -26,15 +26,16 @@ class RatingsController extends Controller
 
     // Get all ratings initially
     $query = Rating::join('servicedata', 'customerrating.serviceno', '=', 'servicedata.serviceno')
-        ->join('customerappointment', 'servicedata.customerappointmentnumber', '=', 'customerappointment.customerappointmentnumber')
-        ->join('users as customer', 'customerappointment.customerno', '=', 'customer.id')
-        ->join('stafflist', 'servicedata.staffnumber', '=', 'stafflist.staffnumber')
-        ->join('users as staff', 'stafflist.id', '=', 'staff.id')
-        ->select(
-            'customerrating.*',
-            'customer.name as customername',
-            'staff.name as staffname'
-        );
+    ->join('customerappointment', 'servicedata.customerappointmentnumber', '=', 'customerappointment.customerappointmentnumber')
+    ->join('users as customer', 'customerappointment.customerno', '=', 'customer.id')
+    ->join('stafflist', 'servicedata.staffnumber', '=', 'stafflist.staffnumber')
+    ->join('users as staff', 'stafflist.id', '=', 'staff.id')
+    ->select(
+        'customerrating.*',
+        'customer.name as customername',
+        'staff.name as staffname'
+    )
+    ->orderBy('customerrating.ratingno', 'asc');
 
     // Check if there is a filter for Customer Name
     if ($request->filled('customer_name_filter')) {
@@ -103,7 +104,18 @@ return view('dashboard');
         $logs->description = "Checks Overall Rating of the Company. Rating No.: {$id}";
         $logs->actiondatetime = now();
         $logs->save();
-        $customerrating= Rating::where('ratingno', $id)->get();
+        $customerrating = Rating::join('servicedata', 'customerrating.serviceno', '=', 'servicedata.serviceno')
+        ->join('customerappointment', 'servicedata.customerappointmentnumber', '=', 'customerappointment.customerappointmentnumber')
+        ->join('users as customer', 'customerappointment.customerno', '=', 'customer.id')
+        ->join('stafflist', 'servicedata.staffnumber', '=', 'stafflist.staffnumber')
+        ->join('users as staff', 'stafflist.id', '=', 'staff.id')
+        ->select(
+            'customerrating.*',
+            'customer.name as customername',
+            'staff.name as staffname'
+        )
+        ->where('customerrating.ratingno', $id)
+        ->get();
         return view('admin.customerreviewsandratingsshow', compact('customerrating'));
     }
 

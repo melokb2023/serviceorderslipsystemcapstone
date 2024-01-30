@@ -96,7 +96,7 @@
                         <td>{{ $log->name}}</td>
                         <td>{{ $log->usertype}}</td>
                         <td>{{ $log->description}}</td>
-                        <td>{{ date('F d, Y h:i A', strtotime($log->actiondatetime)) }}</td>
+                        <td>{{ date('F d, Y h:i:s A', strtotime($log->actiondatetime)) }}</td>
                     </tr>
                 @endforeach
             </tbody>

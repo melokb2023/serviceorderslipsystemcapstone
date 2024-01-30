@@ -42,7 +42,6 @@
                 align-items: center;
                 height: 100vh;
                 font-family:"Century Gothic";
-                background-color: #E51818;
             }
 
             .links {
@@ -89,7 +88,6 @@
                 padding-left: 100px;
                 padding-right: 40px;
                 padding-bottom: 20px;
-                background-color: #E51818;
                 font-family:"Century Gothic";
                 font-weight: bold;
 
@@ -106,7 +104,6 @@
                 justify-content: center;
                 align-items: center;
                 padding: 20px;
-                background-color: #E51818;
                 color: black;
                 border-radius: 8px;
                 text-decoration: none;

@@ -58,6 +58,12 @@ class UserController extends Controller
         return view('admin.userschangepassword', compact('users'));
     }
 
+    public function editpersonal(string $id)
+    {
+        $users = User::where('id', $id)->get();
+        return view('admin.userschangepersonal', compact('users'));
+    }
+
     /**
      * Update the specified resource in storage.
      */
@@ -96,6 +102,20 @@ class UserController extends Controller
             return redirect()->route('user-editpassword', ['id' => $id])->withErrors($validator);
         }
     }
+
+    public function update3(Request $request, string $id)
+    {
+        $users = User::where('id', $id)
+        ->update([
+            'email' => $request->xemail,
+            'name' => $request->xname,
+            'phone' => $request->xphone,
+            'address' => $request->xaddress,
+        ]);
+
+        return redirect()->route('users');
+    }
+
     /**
      * Remove the specified resource from storage.
      */

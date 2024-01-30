@@ -18,7 +18,6 @@
 
                         td {
                             font-family: "Century Gothic";
-                            background-color: #cbd6e4;
                             border: 1px solid #cbd6e4; /* Border color for table cells */
                             padding: 8px;
                         }

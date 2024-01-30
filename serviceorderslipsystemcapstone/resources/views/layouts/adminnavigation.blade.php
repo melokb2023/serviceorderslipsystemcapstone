@@ -17,7 +17,9 @@
       /* Prevent line breaks */
         font-weight:bold;
     }
-
+    .active {
+    opacity: 0.6; /* Adjust the opacity value as needed */
+}
     .top-nav-link {
         display: inline-block;
         padding: 10px;
@@ -134,33 +136,34 @@
 
                 <!-- Top Navigation Links -->
                 <div class="top-nav flex">
-                        <a class="top-nav-link" href="{{ route('admindashboard') }}" :active="request()->routeIs('admindashboard')">
-                            <i class="fa fa-database"></i>{{ __('DASHBOARD') }}
-                        </a>
-                        <a class="top-nav-link" href="{{ route('servicedata') }}" :active="request()->routeIs('servicedata')">
-                            <i class="fa fa-database"></i>{{ __('SERVICE DATA') }}
-                        </a>
-                        <a class="top-nav-link" href="{{ route('servicelist') }}" :active="request()->routeIs('servicelist')">
-                            <i class="fa fa-list"></i> {{ __('SERVICE LIST') }}
-                        </a>
-                        <a class="top-nav-link" href="{{ route('staff') }}" :active="request()->routeIs('staff')">
-                            <i class="fa fa-star"></i> {{ __('STAFF LIST') }}
-                        </a>
-                        <a class="top-nav-link" href="{{ route('customerrating') }}" :active="request()->routeIs('customerrating')">
-                            <i class="fa fa-star"></i> {{ __('REVIEWS & RATINGS') }}
-                        </a>
-                        <a class="top-nav-link" href="{{ route('customerlist') }}" :active="request()->routeIs('customerlist')">
-                            <i class="fa fa-play"></i> {{ __('APPOINTMENTS') }}
-                        </a>
-                        <a class="top-nav-link" href="{{ route('users') }}" :active="request()->routeIs('users')">
-                            <i class="fa fa-bar-chart"></i> {{ __('LIST OF USERS') }}
-                        </a>
-                        <a class="top-nav-link" href="{{ route('reportmenu') }}" :active="request()->routeIs('reportmenu')">
-                            <i class="fa fa-bar-chart"></i> {{ __('REPORTS') }}
-                        </a>
-                        <a class="top-nav-link" href="{{ route('servicelogs') }}" :active="request()->routeIs('servicelogs')">
-                            <i class="fa fa-bar-chart"></i> {{ __('LOGS') }}
-                        </a>
+                <a class="top-nav-link @if(request()->routeIs('admindashboard')) active @endif" href="{{ route('admindashboard') }}" @if(request()->routeIs('admindashboard')) style="pointer-events: none;" @endif>
+    <i class="fa fa-database"></i>{{ __('DASHBOARD') }}
+</a>
+<a class="top-nav-link @if(request()->routeIs(['servicedata', 'add-service', 'service-store', 'add-service.getAppointmentInfo', 'add-service.getStaff'])) active @endif" href="{{ route('servicedata') }}" @if(request()->routeIs(['servicedata', 'add-service', 'service-store', 'add-service.getAppointmentInfo', 'add-service.getStaff'])) style="pointer-events: none;" @endif>
+    <i class="fa fa-database"></i>{{ __('SERVICE DATA') }}
+</a>
+
+<a class="top-nav-link @if(request()->routeIs('servicelist')) active @endif" href="{{ route('servicelist') }}" @if(request()->routeIs('servicelist')) style="pointer-events: none;" @endif>
+    <i class="fa fa-list"></i>{{ __('SERVICE LIST') }}
+</a>
+<a class="top-nav-link @if(request()->routeIs('staff')) active @endif" href="{{ route('staff') }}" @if(request()->routeIs('staff')) style="pointer-events: none;" @endif>
+    <i class="fa fa-star"></i>{{ __('STAFF LIST') }}
+</a>
+<a class="top-nav-link @if(request()->routeIs('customerrating')) active @endif" href="{{ route('customerrating') }}" @if(request()->routeIs('customerrating')) style="pointer-events: none;" @endif>
+    <i class="fa fa-star"></i>{{ __('REVIEWS & RATINGS') }}
+</a>
+<a class="top-nav-link @if(request()->routeIs('customerlist')) active @endif" href="{{ route('customerlist') }}" @if(request()->routeIs('customerlist')) style="pointer-events: none;" @endif>
+    <i class="fa fa-play"></i>{{ __('APPOINTMENTS') }}
+</a>
+<a class="top-nav-link @if(request()->routeIs('users')) active @endif" href="{{ route('users') }}" @if(request()->routeIs('users')) style="pointer-events: none;" @endif>
+    <i class="fa fa-bar-chart"></i>{{ __('LIST OF USERS') }}
+</a>
+<a class="top-nav-link @if(request()->routeIs('reportmenu')) active @endif" href="{{ route('reportmenu') }}" @if(request()->routeIs('reportmenu')) style="pointer-events: none;" @endif>
+    <i class="fa fa-bar-chart"></i>{{ __('REPORTS') }}
+</a>
+<a class="top-nav-link @if(request()->routeIs('servicelogs')) active @endif" href="{{ route('servicelogs') }}" @if(request()->routeIs('servicelogs')) style="pointer-events: none;" @endif>
+    <i class="fa fa-bar-chart"></i>{{ __('LOGS') }}
+</a>
                 </div>
             </div>
             <x-dropdown align="right" width="48">

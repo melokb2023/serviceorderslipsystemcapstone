@@ -428,3 +428,10 @@ Route::patch('/listofusers/updatepassword/{id}', [UserController::class, 'update
    ->middleware(['auth', 'verified'])
    ->name('user-updatepassword');
   
+Route::get('/listofusers/editpersonal/{id}', [UserController::class, 'editpersonal']) 
+   ->middleware(['auth', 'verified'])
+   ->name('user-editpersonal');
+
+Route::patch('/listofusers/updatepersonal/{id}', [UserController::class, 'update3']) 
+   ->middleware(['auth', 'verified'])
+   ->name('user-updatepersonal');

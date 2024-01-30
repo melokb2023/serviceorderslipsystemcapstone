@@ -40,7 +40,7 @@ class MyMail extends Mailable
      */
     public function build()
     {
-        return $this->subject('Mail from CompuSource Computer Center')
+        return $this->subject('CompuSource Computer Center')
         ->view('emails.myMail');
         
         
@@ -49,7 +49,7 @@ class MyMail extends Mailable
 
     public function build2()
     {
-        return $this->subject('Mail from CompuSource Computer Center')
+        return $this->subject('CompuSource Computer Center')
         ->view('emails.myMail2');
        
     }

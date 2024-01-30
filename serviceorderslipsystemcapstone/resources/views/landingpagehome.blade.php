@@ -2,7 +2,7 @@
 
 <x-guest-layout style="background-color:#d70021;">
 
-    <html lang="{{ str_replace('_', '-', app()->getLocale()) }}" style="background-color:#d70021;">
+    <html lang="{{ str_replace('_', '-', app()->getLocale()) }}" >
         <head style="background-color:#d70021;">
         <body>
             <meta charset="utf-8">
@@ -18,7 +18,6 @@
                 body {
                     margin: 0;
                     padding: 0;
-                    background-color:#d70021;
 
                 }
 
@@ -93,7 +92,6 @@
                     padding-left: 100px;
                     padding-right: 40px;
                     padding-bottom: 20px;
-                    background-color: #E51818;
                     font-family: "Century Gothic";
                     font-weight: bold;
                     font-size: 32px;
@@ -174,7 +172,7 @@
 
             <div class="content">
 
-                <h2 style="font-weight:bold;font-size:32px;color:white;font-family:Century Gothic">CompuSource Computer Center</h2>
+                <h2 style="font-weight:bold;font-size:32px;color:black;font-family:Century Gothic">CompuSource Computer Center</h2>
 
                 <table>
                     <tr>
@@ -192,7 +190,7 @@
 
             <!-- Footer -->
             <footer>
-                <p>&copy; 2023 Your Company Name. All rights reserved.</p>
+                <p>&copy; 2024 CompuSource Computer Center. All rights reserved.</p>
             </footer>
     </body>
 </html>

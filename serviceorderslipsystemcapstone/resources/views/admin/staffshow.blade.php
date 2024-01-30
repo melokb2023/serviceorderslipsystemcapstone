@@ -2,9 +2,9 @@
 
 <x-app-layout>
 <div class="py-12">
-     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8" style="background-color: #d70021; border: 3px solid black">
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg" style="background-color: #d70021; text-align: center">
-                <div class="p-6 text-gray-900 dark:text-gray-100" style="background-color: #d70021; font-family: 'Century Gothic', sans-serif; font-weight: bold;">
+     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8" style="background-color: #2196f3; border: 3px solid black">
+            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg" style="background-color: #2196f3; text-align: center">
+                <div class="p-6 text-gray-900 dark:text-gray-100" style="background-color: #2196f3; font-family: 'Century Gothic', sans-serif; font-weight: bold;">
 
                     <!-- Favicon-->
                     <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
@@ -23,7 +23,7 @@
                             font-weight: bold;
                             font-size: 16px;
                             color: white;
-                            background-color: #d70021;
+                            background-color: #2196f3;
                         }
 
                         h6 {
@@ -73,24 +73,41 @@
                                 font-size: 14px;
                             }
                         }
+                        .card {
+        background-color: #cbd6e4;
+        border: 1px solid black;
+        border-radius: 8px;
+        margin: 20px;
+        padding: 20px;
+        text-align: left;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        width: 90%;
+        max-width: 600px;
+        margin: auto;
+    }
+
+    .card h2 {
+        color: #2196f3;
+        font-size: 24px;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .card p {
+        font-family: "Arial";
+        color: #333;
+        margin-bottom: 10px;
+    }
                     </style>
 
                     <h6>List of Staff</h6>
-                    <table>
-                        <tr>
-                            <th>Staff Number</th>
-                            <th>Staff Name</th>
-                        </tr>
-                        <tbody>
-                            @foreach($staff as $staffco)
-                                <tr>
-                                    <td>{{$staffco->staffnumber}}</td>
-                                    <td>{{$staffco->staffname}}</td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-
+                    @foreach($staff as $staffco)
+    <div class="card"> <!-- Wrap staff details inside a div with the card class -->
+        <h2>Staff Details</h2> <!-- Add a header for staff details -->
+        <p><strong>Staff Number:</strong> {{ $staffco->staffnumber }}</p> <!-- Wrap Staff Number inside <p> and apply bold styling -->
+        <p><strong>Staff Name:</strong> {{ $staffco->name }}</p> <!-- Wrap Staff Name inside <p> and apply bold styling -->
+    </div>
+@endforeach
                     <a class ="custom" href="{{route('staff')}}">Back</a>
 
                 </div>

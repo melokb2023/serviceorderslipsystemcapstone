@@ -134,11 +134,11 @@
                             <div class="flex-items-center">
                                 <label for="Work Progress">Work Progress</label>
                                 <div>
-                                    <select name="xworkprogress" class="form-control">
-                                        <option value="Ongoing">Ongoing</option>
-                                        <option value="Unable to Complete">Incomplete</option>
-                                        <option value="Completed">Completed</option>
-                                    </select>
+                                <select name="xworkprogress" class="form-control">
+    <option value="Ongoing" <?php if($serviceinfo->workprogress == 'Ongoing') echo 'selected'; ?>>Ongoing</option>
+    <option value="Unable to Complete" <?php if($serviceinfo->workprogress == 'Unable to Complete') echo 'selected'; ?>>Incomplete</option>
+    <option value="Completed" <?php if($serviceinfo->workprogress == 'Completed') echo 'selected'; ?>>Completed</option>
+</select>
                                 </div>
                             </div>
 

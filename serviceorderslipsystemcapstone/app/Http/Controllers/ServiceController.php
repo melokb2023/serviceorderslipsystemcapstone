@@ -237,7 +237,7 @@ $servicedata->serviceend = now();
 $servicedata->save();
 
 $details = [
-    'title' => 'Order Reference Code',
+    'title' => 'Service Reference Code',
     'body' => 'Service has been placed. Your service reference code is: ' . $serviceReferenceCode,
 ];
 
@@ -351,7 +351,7 @@ return redirect()->route('servicedata');
             $customerEmail = $customerUser->email;
 
             $details = [
-                'title' => 'Work Completion Notification',
+                'title' => 'Service Completed',
                 'body' => "Dear {$customerUser->name},\n\n"
                     . "Thank you for placing a service with Compu Source Computer Center. "
                     . "We appreciate the trust you have placed in us and aim to provide you with the highest quality of service. "

@@ -24,7 +24,6 @@
 
                         td {
                             font-family: "Century Gothic";
-                            background-color: #cbd6e4;
                             font-size: 15px;
                         }
 

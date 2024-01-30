@@ -172,39 +172,37 @@
     background-color: #ffcccb; /* Set your desired color for "Refer to Other Technicians" */
     /* Add any other styles as needed */
 }
-
-                    .search-button {
-                        background-color: green;
-                        color: white;
-                        border: none;
-                        padding: 10px 20px;
-                        border-radius: 8px;
-                        font-size: 16px;
-                        cursor: pointer;
-                        transition: background-color 0.3s;
-                    }
-
+.search-button {
+    border: 3px solid green; /* Set border to green */
+    color: black;
+    /* Remove border: none; */
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
                     .search-button:hover {
-                        background-color: darkgreen;
+                        background-color: #4caf50;
                     }
 
-                    /* Styling for the clear button */
                     .clear-button {
-                        background-color: red;
-                        color: white;
-                        border: none;
-                        padding: 10px 20px;
-                        border-radius: 8px;
-                        font-size: 16px;
-                        cursor: pointer;
-                        transition: background-color 0.3s;
-                        text-decoration: none;
-                        display: inline-block;
-                        font-weight: bold;
-                    }
+    border: 3px solid red; /* Set border to red */
+    color: black;
+    /* Remove border: none; */
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    text-decoration: none;
+    display: inline-block;
+    font-weight: bold;
+}
+
 
                     .clear-button:hover {
-                        background-color: darkred;
+                        background-color: red;
                     }
 
                     input[type="text"] {

@@ -15,7 +15,6 @@
 
             td {
                 font-family: "Arial";
-                background-color: #cbd6e4;
             }
 
             th {

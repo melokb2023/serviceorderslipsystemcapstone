@@ -64,7 +64,11 @@ class StaffController extends Controller
         $logs->description = "Showed a Specific Staff";
         $logs->actiondatetime = now();
         $logs->save();
-        $staff = Staff::where('staffnumber', $id)->get();
+        $staff = Staff::join('users', 'stafflist.id', '=', 'users.id')
+        ->where('users.usertype', '=', 'staff') 
+        ->select('stafflist.*', 'users.name', 'users.email')
+        ->where('stafflist.staffnumber', $id)
+        ->get();
         return view('admin.staffshow', compact('staff'));
     }
 

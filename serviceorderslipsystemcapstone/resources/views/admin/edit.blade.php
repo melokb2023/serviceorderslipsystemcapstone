@@ -157,17 +157,17 @@
                             <div class="form-group">
                                     <label for="Type Of Service">Type Of Service</label>
                                     <select name="xtypeofservice">
-                                        <option value="Reformatting">Reformatting</option>
-                                        <option value="Replacement">Replacement</option>
-                                        <option value="Virus Removal">Virus Removal</option>
-                                        <option value="Computer Network Troubleshooting">Computer Network Troubleshooting</option>
-                                        <option value="Upgrade Hardware">Upgrade Hardware</option>
-                                        <option value="Clean Up Files">Clean Up Files</option>
-                                        <option value="Hardware Fixing">Hardware Fixing</option>
-                                        <option value="Peripheral Fixing">Peripheral Fixing</option>
-                                        <option value="Software Installation">Software Installation</option>
-                                        <option value="Reapplication">Reapplication</option>
-                                    </select>
+    <option value="Reformatting" <?php if($serviceinfo->typeofservice == 'Reformatting') echo 'selected'; ?>>Reformatting</option>
+    <option value="Replacement" <?php if($serviceinfo->typeofservice == 'Replacement') echo 'selected'; ?>>Replacement</option>
+    <option value="Virus Removal" <?php if($serviceinfo->typeofservice == 'Virus Removal') echo 'selected'; ?>>Virus Removal</option>
+    <option value="Computer Network Troubleshooting" <?php if($serviceinfo->typeofservice == 'Computer Network Troubleshooting') echo 'selected'; ?>>Computer Network Troubleshooting</option>
+    <option value="Upgrade Hardware" <?php if($serviceinfo->typeofservice == 'Upgrade Hardware') echo 'selected'; ?>>Upgrade Hardware</option>
+    <option value="Clean Up Files" <?php if($serviceinfo->typeofservice == 'Clean Up Files') echo 'selected'; ?>>Clean Up Files</option>
+    <option value="Hardware Fixing" <?php if($serviceinfo->typeofservice == 'Hardware Fixing') echo 'selected'; ?>>Hardware Fixing</option>
+    <option value="Peripheral Fixing" <?php if($serviceinfo->typeofservice == 'Peripheral Fixing') echo 'selected'; ?>>Peripheral Fixing</option>
+    <option value="Software Installation" <?php if($serviceinfo->typeofservice == 'Software Installation') echo 'selected'; ?>>Software Installation</option>
+    <option value="Reapplication" <?php if($serviceinfo->typeofservice == 'Reapplication') echo 'selected'; ?>>Reapplication</option>
+</select>
                                 </div>
                             </div>
 
@@ -200,9 +200,9 @@
                                     <br>
                                     <label for="Service Progress">Service Progress</label>
                                     <select id="serviceProgress" name="xserviceprogress">
-    <option value="Ongoing">Ongoing</option>
-    <option value="Refer to Other Technicians or Other Shop" {{ $serviceinfo->serviceprogress == 'Refer to Other Technicians or Other Shop' ? 'selected' : '' }}>Refer to Other Technicians or Other Shop</option>
-    <option value="Completed">Completed</option>
+    <option value="Ongoing" <?php if($serviceinfo->serviceprogress == 'Ongoing') echo 'selected'; ?>>Ongoing</option>
+    <option value="Refer to Other Technicians or Other Shop" <?php if($serviceinfo->serviceprogress == 'Refer to Other Technicians or Other Shop') echo 'selected'; ?>>Refer to Other Technicians or Other Shop</option>
+    <option value="Completed" <?php if($serviceinfo->serviceprogress == 'Completed') echo 'selected'; ?>>Completed</option>
 </select>
                                 </div>
                             </div>
