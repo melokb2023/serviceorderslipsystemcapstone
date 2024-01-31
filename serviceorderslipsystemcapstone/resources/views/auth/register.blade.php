@@ -4,197 +4,192 @@
     </x-slot>
 
     <style>
-        /* Your existing styles with added font-weight: bold; */
+        /* Your CSS styles */
         * {
-            font-family: "Century Gothic";
+            font-family: "Poppins", sans-serif;
             font-weight: bold;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
-    
-
-        label {
-            font-family: "Century Gothic";
-            align-items: center;
-            font-weight: bold;
-            margin-bottom: 6px;
-            display: inline-block;
-            width: 150px; /* Set a fixed width for labels */
-            color:black;
+        body {
+            background: #2980b9;
+            height: 100vh;
         }
 
-        x-button {
-            align-items: center;
+        .center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            max-width: 620px; /* Increased max-width */
+            width: 95%; /* Adjusted width */
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.05);
+            padding: 30px; /* Adjusted padding */
         }
 
-        x-authentication-card {
-            align-items: center;
-            padding-top: 100px;
-            padding-bottom: 20px;
-            padding-left: 100px;
-            padding-right: 40px;
+        .center h1 {
+            text-align: center;
+            padding: 20px 0;
+            border-bottom: 1px solid silver;
         }
 
-        .custom-login-button {
-            /* Your existing button styles */
-            margin-top: 1.5rem;
-            padding: 0.5rem 1rem;
+        .center form {
+            padding: 0 20px; /* Adjusted padding */
+            box-sizing: border-box;
+        }
+
+        .txt_field {
+            position: relative;
+            border-bottom: 2px solid #adadad;
+            margin: 30px 0;
+        }
+
+        .txt_field input, .txt_field select {
+            width: 100%;
+            padding: 0 5px;
+            height: 40px;
+            font-size: 16px;
             border: none;
-            display: flex;
-            border-radius: 0.25rem;
-            color: white;
-            font-weight: bold;
+            background: none;
+            outline: none;
+        }
+
+        .txt_field label {
+            position: absolute;
+            top: 50%;
+            left: 5px;
+            color: #adadad;
+            transform: translateY(-50%);
+            font-size: 16px;
+            pointer-events: none;
+            transition: 0.5s;
+        }
+
+        .txt_field span::before {
+            content: "";
+            position: absolute;
+            top: 40px;
+            left: 0;
+            width: 0%;
+            height: 2px;
+            background: #2691d9;
+            transition: 0.5s;
+        }
+
+        .txt_field input:focus ~ label, .txt_field select:focus ~ label, .txt_field input:valid ~ label, .txt_field select:valid ~ label {
+            top: -5px;
+            color: #2691d9;
+        }
+
+        .txt_field input:focus ~ span::before, .txt_field select:focus ~ span::before, .txt_field input:valid ~ span::before, .txt_field select:valid ~ span::before {
+            width: 100%;
+        }
+
+        .pass {
+            margin: -5px 0 20px 5px;
+            color: #a6a6a6;
+            cursor: pointer;
+        }
+
+        .pass:hover {
+            text-decoration: underline;
+        }
+
+        input[type="submit"] {
+            width: 100%;
+            height: 50px;
+            background: #2691d9;
+            border-radius: 25px;
+            font-size: 18px;
+            color: #e9f4fb;
+            font-weight: 700;
             cursor: pointer;
             outline: none;
-            transition: all 0.3s ease-in-out;
-            background-color: green;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: 0.5s;
+            border: none;
+        }
+
+        input[type="submit"]:hover {
+            border-color: #2691d9;
+        }
+
+        .signup_link {
+            margin: 30px 0;
             text-align: center;
-            align-items: center;
-            justify-content: center;
-            font-family: "Century Gothic";
-            width:100%;
+            font-size: 16px;
+            color: #666666;
         }
 
-        .custom-login-button:hover {
-            /* Your existing button hover styles */
-            background: black;
+        .signup_link a {
+            color: #2691d9;
+            text-decoration: none;
         }
 
-        * {
-            text-align: center;
-            align-items: center;
-        }
-
-        table {
-            margin: 0 auto; /* Center the table */
-            padding-top: 100px;
-            padding-bottom: 20px;
-            padding-left: 100px;
-            padding-right: 40px;
-            background-color: #cbd6e4;
-        }
-
-        .form-group {
-            display: flex;
-            flex-direction: row;
-            text-align: left;
-            margin-bottom: 16px;
-            align-items: center;
-        }
-
-        .form-group label {
-            margin-right: 10px;
-        }
-
-        .form-group input,
-        .form-group select,
-        .form-group textarea {
-            flex: 1; /* Use the remaining space */
-            padding: 10px;
-            box-sizing: border-box;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            resize: vertical;
-            font-size: 14px; /* Adjust font size */
-        }
-
-        /* Center the layout */
-        .center-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh; /* Ensure full height of the viewport */
-        }
-
-        /* Justify the button to the middle */
-        .flex {
-            display: flex;
-            justify-content: center;
+        .signup_link a:hover {
+            text-decoration: underline;
         }
     </style>
 
-    <div class="center-container">
-        <table>
-            <tr>
-                <td>
-                    <!-- Your existing HTML code -->
-                    <section class="vh-100">
-                        <div class="container-fluid h-custom">
-                            <div class="row d-flex justify-content-center align-items-center h-100">
-                                <div class="col-md-9 col-lg-6 col-xl-5">
-                                    <img
-                                        src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
-                                        class="img-fluid" alt="Sample image">
-                                </div>
-            </td>
-            <td>
-                <x-validation-errors class="mb-4" />
-                <form method="POST" action="{{ route('register') }}">
+    <div class="center">
+        <h1>Register</h1>
+        <form method="POST" action="{{ route('register') }}">
             @csrf
-
-            <div class="form-group">
-                <label for="name">Name</label>
-                <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')"
-                    required autofocus autocomplete="name" />
+            <div class="txt_field">
+                <x-input id="name" type="text" name="name" :value="old('name')" required autofocus />
+                <span></span>
+                <label>Name</label>
             </div>
             @php
-    $isAdminExists = \App\Models\User::where('usertype', 'admin')->exists();
-@endphp
+                $isAdminExists = \App\Models\User::where('usertype', 'admin')->exists();
+            @endphp
             <!-- Add the usertype field dynamically -->
-            <div class="form-group">
-    <label for="usertype">User Type</label>
-    <select id="usertype" name="usertype" class="block mt-1 w-full" required>
-        <option value="staff" {{ old('usertype') === 'staff' ? 'selected' : '' }}>Staff</option>
-        <option value="customer" {{ old('usertype') === 'customer' ? 'selected' : '' }}>Customer</option>
-        <?php if (!$isAdminExists): ?>
-            <option value="admin" {{ old('usertype') === 'admin' ? 'selected' : '' }}>Admin</option>
-        <?php endif; ?>
-    </select>
+            <div class="txt_field">
+                <select id="usertype" name="usertype" required>
+                    <option value="staff" {{ old('usertype') === 'staff' ? 'selected' : '' }}>Staff</option>
+                    <option value="customer" {{ old('usertype') === 'customer' ? 'selected' : '' }}>Customer</option>
+                    @if (!$isAdminExists)
+                        <option value="admin" {{ old('usertype') === 'admin' ? 'selected' : '' }}>Admin</option>
+                    @endif
+                </select>
+                <span></span>
+                <label>User Type</label>
+            </div>
+            <div class="txt_field">
+                <x-input id="email" type="email" name="email" :value="old('email')" required />
+                <span></span>
+                <label>Email</label>
+            </div>
+            <div class="txt_field">
+                <x-input id="phone" type="tel" name="phone" :value="old('phone')" required />
+                <span></span>
+                <label>Phone</label>
+            </div>
+            <div class="txt_field">
+                <x-input id="address" type="text" name="address" :value="old('address')" required />
+                <span></span>
+                <label>Address</label>
+            </div>
+      <div class="txt_field">
+    <x-input id="password" type="password" name="password" required autocomplete="new-password" />
+    <span></span>
+    <label>Password</label>
+    <i id="password-eye" class="fa fa-eye pass-toggle" onclick="togglePassword('password', 'password-eye')"></i>
 </div>
-            <div class="form-group">
-                <label for="email">Email</label>
-                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')"
-                    required autocomplete="email" />
-            </div>
-
-            <div class="form-group">
-                            <label for="phone">Phone</label>
-                            <x-input id="phone" class="block mt-1 w-full" type="tel" name="phone" :value="old('phone')"
-                                required />
-                        </div>
-
-                        <div class="form-group">
-                            <label for="address">Address</label>
-                            <x-input id="address" class="block mt-1 w-full" type="text" name="address"
-                                :value="old('address')" required />
-                        </div>
-
-            <!-- Add other form fields as needed -->
-
-            <div class="form-group">
-                <label for="password">Password</label>
-                <x-input id="password" class="block mt-1 w-full" type="password" name="password" required
-                    autocomplete="new-password" />
-            </div>
-
-            <div class="form-group">
-                <label for="password_confirmation">Confirm Password</label>
-                <x-input id="password_confirmation" class="block mt-1 w-full" type="password"
-                    name="password_confirmation" required autocomplete="new-password" />
-            </div>
-
-            <div class="flex items-center justify-center mt-4">
-                <x-button class="custom-login-button ">
-                    {{ __('Register') }}
-                </x-button>
-            </div>
+<div class="txt_field">
+    <x-input id="password_confirmation" type="password" name="password_confirmation" required autocomplete="new-password" />
+    <span></span>
+    <label>Confirm Password</label>
+    <i id="confirm-password-eye" class="fa fa-eye pass-toggle" onclick="togglePassword('password_confirmation', 'confirm-password-eye')"></i>
+</div>
+            <input type="submit" value="Register" class="custom-login-button">
         </form>
-
-        <div class="flex items-center justify-center mt-4">
-    <a href="{{ route('login') }}" class="text-blue-500 underline">Already have an account? Click here to login.</a>
-</div>
-    </td>
-</tr>
-</table>
-</div>
+        <div class="signup_link">
+            <span>Already have an account? </span>
+            <a href="{{ route('login') }}">Login</a>
+        </div>
+    </div>
 </x-guest-layout>

@@ -1,7 +1,7 @@
 @include('layouts.adminnavigation')
 
 <x-app-layout>
-<div class="max-w-7xl mx-auto sm:px-6 lg:px-8" style="background-color: #2196f3; border: 3px solid black">
+<div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
         <style>
             *{box-sizing:border-box;font-family:"Century Gothic";font-weight:bold}
             h2{font-family:"Century Gothic";font-weight:bold;color:black}
@@ -37,11 +37,10 @@
                 <!-- Card 1 -->
                 <div>
                     <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                        <div class="p-6 text-white dark:text-gray-100" style="border: 3px solid black; background-color: #e9e9e9">
+                        <div class="p-6 text-white dark:text-gray-100" style="background-color: #e9e9e9">
                             <h2 class="text-2xl font-bold mb-4">{{$typesOfServicesCount}} Total Number of Service Types</h2>
                             <!-- Additional Content for Card 1 -->
                             <div class="additional-content">
-                                <p>Explore the different types of services offered by your business. Monitor and manage service categories.</p>
                                 <a href="{{ route('servicelist') }}">View Service Types</a>
                             </div>
                         </div>
@@ -51,11 +50,10 @@
                 <!-- Card 2 -->
                 <div>
                     <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                        <div class="p-6 text-white dark:text-gray-100" style="border: 3px solid black; background-color: #e9e9e9">
+                        <div class="p-6 text-white dark:text-gray-100" style="background-color: #e9e9e9">
                             <h2 class="text-2xl font-bold mb-4">{{$customerAppointmentsCount}} Total Number of Appointments</h2>
                             <!-- Additional Content for Card 2 -->
                             <div class="additional-content">
-                                <p>Track and manage customer appointments efficiently. Ensure a smooth scheduling process for your clients.</p>
                                 <a href="{{ route('customerlist') }}">View Appointments</a>
                             </div>
                         </div>
@@ -65,11 +63,10 @@
                 <!-- Card 3 -->
                 <div>
                     <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                        <div class="p-6 text-white dark:text-gray-100" style="border: 3px solid black; background-color: #e9e9e9">
+                        <div class="p-6 text-white dark:text-gray-100" style="background-color: #e9e9e9">
                             <h2 class="text-2xl font-bold mb-4">{{$serviceDataCount}} Total Number of Job Orders</h2>
                             <!-- Additional Content for Card 3 -->
                             <div class="additional-content">
-                                <p>Keep an eye on all job orders and service requests. Manage and prioritize tasks effectively.</p>
                                 <a href="{{ route('servicedata') }}">View Job Orders</a>
                             </div>
                         </div>
@@ -79,11 +76,10 @@
                 <!-- Card 4 -->
                 <div>
                     <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                        <div class="p-6 text-white dark:text-gray-100" style="border: 3px solid black; background-color: #e9e9e9">
+                        <div class="p-6 text-white dark:text-gray-100" style="background-color: #e9e9e9">
                             <h2 class="text-2xl font-bold mb-4">{{$ratingsCount}} Total Number of Ratings</h2>
                             <!-- Additional Content for Card 4 -->
                             <div class="additional-content">
-                                <p>Monitor customer satisfaction through ratings. Address feedback and improve service quality.</p>
                                 <a href="{{ route('customerrating') }}">View Ratings</a>
                             </div>
                         </div>
@@ -96,8 +92,8 @@
         <br>
         <br>
         <!-- Chart Section -->
-        <div style="background-color: #e9e9e9; border: 3px solid black;">
-        <h2 class="text-2xl font-bold mb-4 text-center text-white" style="color: black;">Service Performance Chart</h2>
+        <div style="background-color: #e9e9e9;">
+        <h2 class="text-2xl font-bold mb-4 text-center" style="color: black;">Service Performance Chart</h2>
 
             <canvas id="servicePerformanceChart"></canvas>
         </div>

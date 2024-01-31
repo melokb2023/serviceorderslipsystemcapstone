@@ -1,312 +1,285 @@
-@if(session('success_message'))
-    <script>
-        // Replace this with your preferred pop-up library or implementation
-        alert("{{ session('success_message') }}");
-    </script>
-@endif
-
 @include('layouts.adminnavigation')
-<x-app-layout style="background-color:#d70021;">
+<x-app-layout style="background-color:#2b2b2b;">
+    <div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6 text-gray-900 dark:text-gray-100">
+                    @if(session('success_message'))
+                        <div class="text-center mb-4">
+                            <script>
+                                // Replace this with your preferred pop-up library or implementation
+                                alert("{{ session('success_message') }}");
+                            </script>
+                        </div>
+                    @endif
+                    <style>
+                        body {
+                            font-family: 'Helvetica Neue', Helvetica, Arial;
+                            font-size: 14px;
+                            line-height: 20px;
+                            font-weight: 400;
+                            color: #3b3b3b;
+                            -webkit-font-smoothing: antialiased;
+                            font-smoothing: antialiased;
+                            background: #2b2b2b;
+                        }
 
-    <div class="py-12" style="display: flex; justify-content: center; align-items: center;">
+                        @media screen and (max-width: 580px) {
+                            body {
+                                font-size: 16px;
+                                line-height: 22px;
+                            }
+                        }
 
-        <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg"
-             style=" text-align: center;width: 1600px;border: 3px solid black;">
-            <div class="p-6 text-gray-900 dark:text-gray-100">
-                <div class="form-group" style="display: flex; gap: 10px;">
-                    <form action="{{ route('servicedata') }}" method="GET" style="display: flex; gap: 10px;">
-                        <label for="customer_appointment_number_filter">Customer Appointment Number:</label>
-                        <input type="text" name="customer_appointment_number_filter"
-                               value="{{ request('customer_appointment_number_filter') }}" style="height: 50px;">
-                        <!-- Adjust the height as needed -->
+                        .wrapper {
+                            margin: 0 auto;
+                            width:100%;
+                            text-align: center; /* Center align content */
+                        }
 
-                        <label for="customer_name_filter">Customer Name:</label>
-                        <input type="text" name="customer_name_filter"
-                               value="{{ request('customer_name_filter') }}" style="height: 50px;">
-                        <!-- Adjust the height as needed -->
+                        .table {
+                            margin: 0 auto; /* Center align table */
+                            width: 100%; /* Set table width to 100% */
+                            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+                            display: table;
+                        }
 
-                        <label for="typeofservice_filter">Type of Service:</label>
-                        <select name="typeofservice_filter" style="font-weight:bold; height: 50px;">
-                            <!-- Adjust the height as needed -->
-                            <option value="">All</option>
-                            @foreach($typesOfService as $typeOfService)
-                                <option style="font-weight:bold" value="{{ $typeOfService }}"
-                                        {{ request('typeofservice_filter') == $typeOfService ? 'selected' : '' }}>
-                                    {{ $typeOfService }}
-                                </option>
-                            @endforeach
-                        </select>
+                        @media screen and (max-width: 580px) {
+                            .table {
+                                display: block;
+                            }
+                        }
 
-                        <label for="serviceprogress_filter">Service Progress:</label>
-                        <select name="serviceprogress_filter" style="font-weight:bold; height: 50px;width:100px;">
-                            <!-- Adjust the height as needed -->
-                            <option value="">All</option>
-                            <option style="font-weight:bold" value="Ongoing"
-                                    {{ request('serviceprogress_filter') == 'Ongoing' ? 'selected' : '' }}>Ongoing
-                            </option>
-                            <option style="font-weight:bold" value="Refer to Other Technicians or Other Shop"
-        {{ request('serviceprogress_filter') == 'Refer to Other Technicians or Other Shop' ? 'selected' : '' }}>Refer to Other Technicians or Other Shop
-    </option>
-                            <option style="font-weight:bold" value="Completed"
-                                    {{ request('serviceprogress_filter') == 'Completed' ? 'selected' : '' }}>Completed
-                            </option>
-                        </select>
+                        .row {
+                            display: table-row;
+                            background: #f6f6f6;
+                        }
 
-                        <button type="submit" class="search-button" style="height: 50px;">Search</button>
-                        <a href="{{ route('servicedata') }}" class="clear-button" style="height: 50px;">Clear</a>
-                    </form>
-                </div>
-                <br>
-                <br>
-                <br>
+                        .row:nth-of-type(odd) {
+                            background: #e9e9e9;
+                        }
 
-                <link rel="stylesheet" href="style.scss">
-                <style>
-                    /* Existing styles ... */
+                        .row.header {
+                            font-weight: 900;
+                            color: #ffffff;
+                            background: #2980b9;
+                        }
 
-                    /* Additional style for the wrapper div */
-                    .table-wrapper {
-                        height: 500px;
-                        overflow-y: auto;
-                    }
+                        .row.green {
+                            background: #27ae60;
+                        }
 
-                    table,
-                    tr {
-                        font-family: "Century Gothic";
-                        font-weight: bold;
-                        width: 100%;
-                        margin: auto;
-                        border-collapse: collapse;
-                        margin-top: 20px;
-                    }
+                        .row.blue {
+                            background: #2980b9;
+                        }
 
-                    th,
-                    td {
-                        font-family: "Century Gothic";
-                        background-color: #cbd6e4;
-                        border: 1px solid #ddd;
-                        padding: 8px;
-                        text-align: center;
-                    }
+                        @media screen and (max-width: 580px) {
+                            .row {
+                                padding: 14px 0 7px;
+                                display: block;
+                            }
 
-                    th {
-                        font-family: "Arial";
-                        background-color: white;
-                    }
+                            .row.header {
+                                padding: 0;
+                                height: 6px;
+                                
+                            }
 
-                    h1 {
-                        font-family: Arial;
-                        color: white;
-                        font-size: 30px;
-                        font-weight: bold;
-                    }
+                            .row.header .cell {
+                                display: none;
+                            }
 
-                    #customers {
-                        width: 100%;
-                        margin: auto;
-                    }
+                            .cell {
+                                margin-bottom: 10px;
+                            }
 
-                    /* Center the table header text */
-                    #customers th {
-                        text-align: center;
-                    }
-
-                    /* Center the table content text */
-                    #customers td {
-                        text-align: center;
-                    }
-
-                    label {
-                        font-family: "Century Gothic";
-                        font-weight: bold;
-                        color: black;
-                    }
-
-                    button {
-                        font-family: "Century Gothic";
-                        font-weight: bold;
-                        color: white;
-                        background-color: blue;
-                        border: none;
-                        padding: 10px 20px;
-                        border-radius: 8px;
-                        font-size: 16px;
-                        cursor: pointer;
-                        transition: background-color 0.3s;
-                    }
-
-                    button:hover {
-                        background-color: darkblue;
-                    }
-
-                    .button {
-                        border: none;
-                        color: white;
-                        text-decoration: none;
-                        display: inline-block;
-                        padding: 15px 32px;
-                        border-radius: 8px;
-                        font-size: 16px;
-                        cursor: pointer;
-                        transition: transform 0.2s ease-in-out;
-                        background-color: green;
-                        font-weight: bold;
-                    }
-
-                    .button:hover {
-                        transform: scale(1.05);
-                    }
-
-                    .ongoing {
-                        background-color: #f6e05e; /* Set your desired color for Ongoing */
-                    }
-
-                    .incomplete {
-                        background-color: #FFB6C1; /* Set your desired color for Incomplete */
-                    }
-
-                    .completed {
-                        background-color: #4caf50; /* Set your desired color for Completed */
-                    }
-                    .refer-to-other-technicians {
-    background-color: #ffcccb; /* Set your desired color for "Refer to Other Technicians" */
-    /* Add any other styles as needed */
+                            .cell:before {
+                                margin-bottom: 3px;
+                                content: attr(data-title);
+                                min-width: 98px;
+                                font-size: 10px;
+                                line-height: 10px;
+                                font-weight: bold;
+                                text-transform: uppercase;
+                                color: #969696;
+                                display: block;
+                            }
+                        }
+                        .icon-container {
+    margin-right: 50px; /* Adjust margin as needed */
 }
-.search-button {
-    border: 3px solid green; /* Set border to green */
-    color: black;
-    /* Remove border: none; */
-    padding: 10px 20px;
-    border-radius: 8px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s;
+.icon-label {
+    display: block;
+    margin-top: 10px; /* Add space between icon and label */
+    font-size: 12px;
+    color: #888;
 }
-                    .search-button:hover {
-                        background-color: #4caf50;
-                    }
 
-                    .clear-button {
-    border: 3px solid red; /* Set border to red */
-    color: black;
-    /* Remove border: none; */
-    padding: 10px 20px;
-    border-radius: 8px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    text-decoration: none;
+                        .cell {
+                            padding: 6px 12px;
+                            display: table-cell;
+                        }
+
+                        @media screen and (max-width: 580px) {
+                            .cell {
+                                padding: 2px 16px;
+                                display: block;
+                            }
+                        }
+                        button{
+                            align-items:center;
+                        }
+                        .tooltip {
+    position: relative;
     display: inline-block;
-    font-weight: bold;
 }
 
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 100px;
+    background-color: black;
+    color: white;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px;
+    position: absolute;
+    z-index: 1;
+    bottom: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+}
 
-                    .clear-button:hover {
-                        background-color: red;
-                    }
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+}
+                    </style>
+                    <div class="wrapper">
+                        <div class="form-group" style="display: flex; gap: 10px;">
+                            <form action="{{ route('servicedata') }}" method="GET" style="display: flex; gap: 10px;">
+                                <label for="customer_appointment_number_filter">Customer Appointment Number:</label>
+                                <input type="text" name="customer_appointment_number_filter"
+                                       value="{{ request('customer_appointment_number_filter') }}" style="height: 50px;">
+                                <!-- Adjust the height as needed -->
 
-                    input[type="text"] {
-                        font-weight: bold;
-                        /* Add any additional styles you want for the input boxes */
-                    }
-                    
+                                <label for="customer_name_filter">Customer Name:</label>
+                                <input type="text" name="customer_name_filter"
+                                       value="{{ request('customer_name_filter') }}" style="height: 50px;">
+                                <!-- Adjust the height as needed -->
 
-                </style>
+                                <label for="typeofservice_filter">Type of Service:</label>
+                                <select name="typeofservice_filter" style="font-weight:bold; height: 50px;">
+                                    <!-- Adjust the height as needed -->
+                                    <option value="">All</option>
+                                    @foreach($typesOfService as $typeOfService)
+                                        <option style="font-weight:bold" value="{{ $typeOfService }}"
+                                                {{ request('typeofservice_filter') == $typeOfService ? 'selected' : '' }}>
+                                            {{ $typeOfService }}
+                                        </option>
+                                    @endforeach
+                                </select>
 
-                <h1 style="font-family:Century Gothic; color:black; font-size:30px; font-weight:bold;">Service Information</h1>
-                <div class="table-wrapper">
-                    <table id="customers">
-                        <tr>
-                            <th>Service Number</th>
-                            <th>Service Reference Code</th>
-                            <th>Staff Name</th>
-                            <th>Customer Name</th>
-                            <th>Work Progress</th>
-                            <th>Service Progress</th>
-                            <th>Service Remarks</th>
-                            <th>Date and Time</th>
-                            <th>Service Started</th>
-                            <th>Service End Date</th>
-                            <th>Options</th>
-                        </tr>
+                                <label for="serviceprogress_filter">Service Progress:</label>
+                                <select name="serviceprogress_filter" style="font-weight:bold; height: 50px;width:100px;">
+                                    <!-- Adjust the height as needed -->
+                                    <option value="">All</option>
+                                    <option style="font-weight:bold" value="Ongoing"
+                                            {{ request('serviceprogress_filter') == 'Ongoing' ? 'selected' : '' }}>Ongoing
+                                    </option>
+                                    <option style="font-weight:bold" value="Refer to Other Technicians or Shop"
+                                            {{ request('serviceprogress_filter') == 'Refer to Other Technicians or Shop' ? 'selected' : '' }}>Refer to Other Technicians or Shop
+                                    </option>
+                                    <option style="font-weight:bold" value="Completed"
+                                            {{ request('serviceprogress_filter') == 'Completed' ? 'selected' : '' }}>Completed
+                                    </option>
+                                </select>
+                                <div style="display: flex; gap: 10px;">
+    <button type="submit" class="search-button" style="height: 50px; display: inline-block;">Search</button>
+    <a href="{{ route('servicedata') }}" class="clear-button" style="height: 50px; display: inline-block; margin-top: 15px;">Clear</a>
+</div>
 
-                        <tbody>
-                        @forelse($servicedata as $serviceinfo)
-                            <tr>
-                                <td>{{ $serviceinfo->serviceno }}</td>
-                                <td>{{ $serviceinfo->servicereferencecode }}</td>
-                                <td>{{ $serviceinfo->staffname }} </td>
-                                <td>{{ $serviceinfo->customername}} </td>
-                                <td
-                                    class="@if($serviceinfo->workprogress == 'Ongoing') ongoing
+
+
+
+                            </form>
+                        </div>
+                        <div class="table">
+                            <div class="row header">
+                                <div class="cell">Service Number</div>
+                                <div class="cell">Service Reference Code</div>
+                                <div class="cell">Staff Name</div>
+                                <div class="cell">Customer Name</div>
+                                <div class="cell">Work Progress</div>
+                                <div class="cell">Service Progress</div>
+                                <div class="cell">Service Remarks</div>
+                                <div class="cell">Date and Time</div>
+                                <div class="cell">Service Started</div>
+                                <div class="cell">Service End Date</div>
+                                <div class="cell">Options</div>
+                            </div>
+                            @forelse($servicedata as $serviceinfo)
+                                <div class="row">
+                                    <div class="cell">{{ $serviceinfo->serviceno }}</div>
+                                    <div class="cell">{{ $serviceinfo->servicereferencecode }}</div>
+                                    <div class="cell">{{ $serviceinfo->staffname }}</div>
+                                    <div class="cell">{{ $serviceinfo->customername }}</div>
+                                    <div class="cell @if($serviceinfo->workprogress == 'Ongoing') ongoing
                                     @elseif($serviceinfo->workprogress == 'Unable to Complete') incomplete
                                     @elseif($serviceinfo->workprogress == 'Completed') completed
-                                    @endif">{{ $serviceinfo->workprogress }}</td>
-                                <td
-                                    class="@if($serviceinfo->serviceprogress == 'Ongoing') ongoing
+                                    @endif">{{ $serviceinfo->workprogress }}</div>
+                                    <div class="cell @if($serviceinfo->serviceprogress == 'Ongoing') ongoing
                                     @elseif($serviceinfo->serviceprogress == 'Refer to Other Technicians or Other Shop') refer-to-other-technicians
                                     @elseif($serviceinfo->serviceprogress == 'Completed') completed
-                                    @endif">{{ $serviceinfo->serviceprogress }}</td>
-                                <td>{{ $serviceinfo->serviceremarks }}</td>
-                                <td>{{ date('F d, Y h:i A', strtotime($serviceinfo->dateandtime)) }}</td>
-                                <td>{{ date('F d, Y h:i A', strtotime($serviceinfo->servicestarted)) }}</td>
-                                <td>{{ date('F d, Y h:i A', strtotime($serviceinfo->serviceend)) }}</td>
-
-                                <td>
-    <div class="grid grid-cols-2 gap-2">
-        <div>
-            <a href="{{ route('service-show', ['serno' => $serviceinfo->serviceno]) }}"
-               class="bg-yellow-400 text-black font-bold p-1 rounded hover:bg-yellow-500 h-8 w-8 flex items-center justify-center text-base"
-               title="View">
-               👁
-            </a>
-        </div>
-
-        <div>
-            <a href="{{ route('service-edit', ['serno' => $serviceinfo->serviceno]) }}"
-               class="bg-blue-500 text-black font-bold p-1 rounded hover:bg-blue-600 h-8 w-8 flex items-center justify-center text-base"
-               title="Edit">
-               ✏
-            </a>
-        </div>
-
-        <div>
-            <a href="{{ route('service-editstaff', ['serno' => $serviceinfo->serviceno]) }}"
-               class="bg-green-300 text-black font-bold p-1 rounded hover:bg-green-400 h-8 w-8 flex items-center justify-center text-decoration-none border border-blue-500 rounded-md text-base"
-               title="Change Staff">
-               👥
-            </a>
-        </div>
-
-        <div>
-            <form method="POST"
-                  action="{{ route('service-delete', ['serno' => $serviceinfo->serviceno ]) }}"
-                  onsubmit="return confirm('Are you sure you want to delete this record?')">
-                @csrf
-                @method('delete')
-                <button class="bg-red-500 text-black font-bold p-1 rounded hover:bg-red-600 h-8 w-8 flex items-center justify-center text-base"
-                        type="submit"
-                        title="Delete">
-                    🗑
-                </button>
-            </form>
-        </div>
+                                    @endif">{{ $serviceinfo->serviceprogress }}</div>
+                                    <div class="cell">{{ $serviceinfo->serviceremarks }}</div>
+                                    <div class="cell">{{ date('F d, Y h:i A', strtotime($serviceinfo->dateandtime)) }}</div>
+                                    <div class="cell">{{ date('F d, Y h:i A', strtotime($serviceinfo->servicestarted)) }}</div>
+                                    <div class="cell">{{ date('F d, Y h:i A', strtotime($serviceinfo->serviceend)) }}</div>
+                                    <div class="cell">
+                                    <div class="grid grid-cols-2 gap-4"> <!-- Adjust the gap size as needed -->
+    <div class="icon-container">
+        <a href="{{ route('service-show', ['serno' => $serviceinfo->serviceno]) }}"
+           class="bg-yellow-400 text-black font-bold p-1 rounded hover:bg-yellow-500 h-8 w-8 flex items-center justify-center text-base"
+           title="View">👁</a>
+        <span class="icon-label">View</span>
     </div>
-</td>
-
-                            </tr>
-                        @empty
-                            <tr>
-                                <td colspan="15">No records found.</td>
-                            </tr>
-                        @endforelse
-                        </tbody>
-                    </table>
+    <div class="icon-container">
+        <a href="{{ route('service-edit', ['serno' => $serviceinfo->serviceno]) }}"
+           class="bg-blue-500 text-black font-bold p-1 rounded hover:bg-blue-600 h-8 w-8 flex items-center justify-center text-base"
+           title="Edit">✏</a>
+        <span class="icon-label">Edit</span>
+    </div>
+    <div class="icon-container">
+        <a href="{{ route('service-editstaff', ['serno' => $serviceinfo->serviceno]) }}"
+           class="bg-green-300 text-black font-bold p-1 rounded hover:bg-green-400 h-8 w-8 flex items-center justify-center text-decoration-none border border-blue-500 rounded-md text-base"
+           title="Change Staff">👥</a>
+        <span class="icon-label">Staff</span>
+    </div>
+    <div class="icon-container">
+        <form method="POST"
+              action="{{ route('service-delete', ['serno' => $serviceinfo->serviceno ]) }}"
+              onsubmit="return confirm('Are you sure you want to delete this record?')">
+            @csrf
+            @method('delete')
+            <button class="bg-red-500 text-black font-bold p-1 rounded hover:bg-red-600 h-8 w-8 flex items-center justify-center text-base"
+                    type="submit"
+                    title="Delete">🗑</button>
+            <span class="icon-label">Delete</span>
+        </form>
+    </div>
+</div>
+                                    </div>
+                                </div>
+                            @empty
+                                <div class="row">
+                                    <div class="cell" colspan="15">No records found.</div>
+                                </div>
+                            @endforelse
+                        </div>
+                        <div style="text-align: center;">
+                            <a class="button" href="{{ route('add-service') }}">START SERVICE</a>
+                        </div>
+                    </div>
                 </div>
-                <a class="button" href="{{ route('add-service') }}">
-                    START SERVICE
-                </a>
-                <!-- Additional space if needed -->
             </div>
         </div>
     </div>

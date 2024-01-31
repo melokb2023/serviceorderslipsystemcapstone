@@ -1,208 +1,161 @@
-@if(session('success_message'))
-    <script>
-        // Replace this with your preferred pop-up library or implementation
-        alert("{{ session('success_message') }}");
-    </script>
-@endif
-
 @include('layouts.adminnavigation')
-<x-app-layout style="background-color:#d70021;">
+<x-app-layout>
+    @if(session('success_message'))
+        <script>
+            // Replace this with your preferred pop-up library or implementation
+            alert("{{ session('success_message') }}");
+        </script>
+    @endif
 
-    <div class="py-12" style="background-color: white;">
+    <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg" >
-                <div class="p-6 text-gray-900 dark:text-gray-100" >
+            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6 text-gray-900 dark:text-gray-100">
+                    <style>
+                        /* CSS styles */
+                        body {
+                            font-family: 'Helvetica Neue', Helvetica, Arial;
+                            font-size: 14px;
+                            line-height: 20px;
+                            font-weight: 400;
+                            color: #3b3b3b;
+                            -webkit-font-smoothing: antialiased;
+                            font-smoothing: antialiased;
+                            background: #2b2b2b;
+                        }
 
-                    <h1 style="font-family:Century Gothic; color:black; font-size:30px; font-weight:bold; text-align:center;">List of Users</h1>
-                    <div class="table-wrapper">
-                        <table id="customers">
-                            <tr>
-                                <th>Name</th>
-                                <th>User Type</th>
-                                <th>Options</th>
-                            </tr>
+                        @media screen and (max-width: 580px) {
+                            body {
+                                font-size: 16px;
+                                line-height: 22px;
+                            }
+                        }
 
-                            <tbody>
+                        .wrapper {
+                            margin: 0 auto;
+                            padding: 40px;
+                            max-width: 800px;
+                        }
+
+                        .table {
+                            margin: 0 0 40px 0;
+                            width: 100%;
+                            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+                            display: table;
+                        }
+
+                        @media screen and (max-width: 580px) {
+                            .table {
+                                display: block;
+                            }
+                        }
+
+                        .row {
+                            display: table-row;
+                            background: #f6f6f6;
+                        }
+
+                        .row:nth-of-type(odd) {
+                            background: #e9e9e9;
+                        }
+
+                        .row.header {
+                            font-weight: 900;
+                            color: #ffffff;
+                            background: #2980b9;
+                        }
+
+                        .row.green {
+                            background: #27ae60;
+                        }
+
+                        .row.blue {
+                            background: #2980b9;
+                        }
+
+                        @media screen and (max-width: 580px) {
+                            .row {
+                                padding: 14px 0 7px;
+                                display: block;
+                            }
+
+                            .row.header {
+                                padding: 0;
+                                height: 6px;
+                                
+                            }
+
+                            .row.header .cell {
+                                display: none;
+                            }
+
+                            .cell {
+                                margin-bottom: 10px;
+                            }
+
+                            .cell:before {
+                                margin-bottom: 3px;
+                                content: attr(data-title);
+                                min-width: 98px;
+                                font-size: 10px;
+                                line-height: 10px;
+                                font-weight: bold;
+                                text-transform: uppercase;
+                                color: #969696;
+                                display: block;
+                            }
+                        }
+
+                        .cell {
+                            padding: 6px 12px;
+                            display: table-cell;
+                        }
+
+                        @media screen and (max-width: 580px) {
+                            .cell {
+                                padding: 2px 16px;
+                                display: block;
+                            }
+                        }
+
+                        .button {
+                            border: none;
+                            color: white;
+                            text-decoration: none;
+                            display: inline-block;
+                            padding: 15px 32px;
+                            border-radius: 8px;
+                            font-size: 16px;
+                            cursor: pointer;
+                            transition: transform 0.2s ease-in-out;
+                            background-color: green;
+                            font-weight: bold;
+                        }
+
+                        .button:hover {
+                            transform: scale(1.05);
+                        }
+                    </style>
+                    <div class="wrapper">
+                        <div class="table">
+                            <div class="row header">
+                                <div class="cell">Name</div>
+                                <div class="cell">User Type</div>
+                                <div class="cell">Options</div>
+                            </div>
                             @foreach($users as $user)
-                                <tr>
-                                    <td>{{ $user->name }}</td>
-                                    <td>{{ $user->usertype}} </td>
-                                    <td>
-                                        <div class="flex items-center gap-2">
-                                            <a href="{{ route('user-editusertype', ['id' => $user->id]) }}"
-                                               class="bg-blue-500 text-black font-bold p-1 rounded hover:bg-blue-600 h-8 w-8 flex items-center justify-center text-base"
-                                               title="Change User Type">
-                                               🔄
-                                            </a>
-                                        </div>
-                                    </td>
-                                </tr>
+                                <div class="row">
+                                    <div class="cell">{{ $user->name }}</div>
+                                    <div class="cell">{{ $user->usertype }}</div>
+                                    <div class="cell">
+                                        <a href="{{ route('user-editusertype', ['id' => $user->id]) }}" class="bg-blue-500 text-black font-bold p-1 rounded hover:bg-blue-600 h-8 w-8 flex items-center justify-center text-base" title="Change User Type">🔄</a>
+                                    </div>
+                                </div>
                             @endforeach
-                            </tbody>
-                        </table>
+                        </div>  
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </x-app-layout>
-<style>
-    /* Existing styles ... */
-
-    /* Additional style for the wrapper div */
-    .table-wrapper {
-        height: 500px;
-        overflow-y: auto;
-    }
-
-    table,
-    tr {
-        font-family: "Century ";
-        font-weight: bold;
-        width: 100%;
-        margin: auto;
-        border-collapse: collapse;
-        margin-top: 20px;
-    }
-
-    th,
-    td {
-        font-family: "Century Gothic";
-        background-color: #cbd6e4;
-        border: 1px solid #ddd;
-        padding: 8px;
-        text-align: center;
-    }
-
-    th {
-        font-family: "Arial";
-        background-color: white;
-    }
-
-    h1 {
-        font-family: Arial;
-        color: white;
-        font-size: 30px;
-        font-weight: bold;
-    }
-
-    #customers {
-        width: 50%;
-        margin: auto;
-    }
-
-    /* Center the table header text */
-    #customers th {
-        text-align: center;
-    }
-
-    /* Center the table content text */
-    #customers td {
-        text-align: center;
-    }
-
-    label {
-        font-family: "Century Gothic";
-        font-weight: bold;
-        color: white;
-    }
-
-    button {
-        font-family: "Century Gothic";
-        font-weight: bold;
-        color: white;
-        background-color: blue;
-        border: none;
-        padding: 10px 20px;
-        border-radius: 8px;
-        font-size: 16px;
-        cursor: pointer;
-        transition: background-color 0.3s;
-    }
-
-    button:hover {
-        background-color: darkblue;
-    }
-
-    .button {
-        border: none;
-        color: white;
-        text-decoration: none;
-        display: inline-block;
-        padding: 15px 32px;
-        border-radius: 8px;
-        font-size: 16px;
-        cursor: pointer;
-        transition: transform 0.2s ease-in-out;
-        background-color: green;
-        font-weight: bold;
-    }
-
-    .button:hover {
-        transform: scale(1.05);
-    }
-
-    .ongoing {
-        background-color: #f6e05e; /* Set your desired color for Ongoing */
-    }
-
-    .incomplete {
-        background-color: #FFB6C1; /* Set your desired color for Incomplete */
-    }
-
-    .completed {
-        background-color: #4caf50; /* Set your desired color for Completed */
-    }
-
-    .refer-to-other-technicians {
-        background-color: #ffcccb; /* Set your desired color for "Refer to Other Technicians" */
-        /* Add any other styles as needed */
-    }
-
-    .search-button {
-        background-color: green;
-        color: white;
-        border: none;
-        padding: 10px 20px;
-        border-radius: 8px;
-        font-size: 16px;
-        cursor: pointer;
-        transition: background-color 0.3s;
-    }
-
-    .search-button:hover {
-        background-color: darkgreen;
-    }
-
-    /* Styling for the clear button */
-    .clear-button {
-        background-color: red;
-        color: white;
-        border: none;
-        padding: 10px 20px;
-        border-radius: 8px;
-        font-size: 16px;
-        cursor: pointer;
-        transition: background-color 0.3s;
-        text-decoration: none;
-        display: inline-block;
-        font-weight: bold;
-    }
-
-    .clear-button:hover {
-        background-color: darkred;
-    }
-
-    input[type="text"] {
-        font-weight: bold;
-        /* Add any additional styles you want for the input boxes */
-    }
-
-    h1 {
-        font-weight: bold;
-        text-align: center;
-        font-size: 30px;
-        font-family: "Century Gothic";
-        color: white;
-    }
-</style>

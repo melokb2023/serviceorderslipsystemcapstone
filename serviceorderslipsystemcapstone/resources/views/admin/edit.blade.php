@@ -134,7 +134,6 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8" style="background-color: #2196f3; border: 3px solid black">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg" style="background-color: #2196f3; text-align: center">
                 <div class="p-6 text-gray-900 dark:text-gray-100" style="background-color: #2196f3; font-family: 'Century Gothic', sans-serif; font-weight: bold;">
-                    <h6>Errors Encountered</h6>
                     @if($errors)
                         <ul>
                             @foreach($errors->all() as $error)
@@ -200,9 +199,9 @@
                                     <br>
                                     <label for="Service Progress">Service Progress</label>
                                     <select id="serviceProgress" name="xserviceprogress">
-    <option value="Ongoing" <?php if($serviceinfo->serviceprogress == 'Ongoing') echo 'selected'; ?>>Ongoing</option>
-    <option value="Refer to Other Technicians or Other Shop" <?php if($serviceinfo->serviceprogress == 'Refer to Other Technicians or Other Shop') echo 'selected'; ?>>Refer to Other Technicians or Other Shop</option>
-    <option value="Completed" <?php if($serviceinfo->serviceprogress == 'Completed') echo 'selected'; ?>>Completed</option>
+    <option value="Completed" <?php if($serviceinfo->serviceprogress == 'Completed') echo 'selected'; ?>>Completed</option>    
+    <option value="Ongoing" <?php if($serviceinfo->serviceprogress == 'Ongoing') echo 'selected'; ?>>Ongoing</option>  
+    <option value="Refer to Other Technicians or Shop" <?php if($serviceinfo->serviceprogress == 'Refer to Other Technicians or Shop') echo 'selected'; ?>>Refer to Other Technicians or Shop</option>
 </select>
                                 </div>
                             </div>
@@ -215,7 +214,7 @@
                             <!-- Row group for Service Remarks -->
                             <div class="form-row">
                                 <div class="form-group">
-                                    <label for="Service Remarks">Service Remarks</label>
+                                    <label for="Service Remarks">Service Report</label>
                                     <input class="textexpand2" type="text" name="xserviceremarks" value="{{$serviceinfo->serviceremarks}}"/>
                                 </div>
                             </div>

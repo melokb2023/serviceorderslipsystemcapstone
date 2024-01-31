@@ -67,7 +67,7 @@ class ServiceController extends Controller
         if ($request->filled('serviceprogress_filter')) {
             $filterValue = $request->input('serviceprogress_filter');
         
-            if ($filterValue === 'Ongoing' || $filterValue === 'Refer to Other Technicians or Other Shop'  || $filterValue === 'Completed') {
+            if ($filterValue === 'Ongoing' || $filterValue === 'Refer to Other Technicians or Shop'  || $filterValue === 'Completed') {
                 $query->where('servicedata.serviceprogress', $filterValue);
             }
         }

@@ -109,8 +109,6 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100" style="background-color:#2196f3;font-family: 'Century Gothic', sans-serif; font-weight: bold;">
-
-                    <h6 style="font-family: Century Gothic; color:white">Errors Encountered</h6>
                     @if($errors)
                         <ul>
                             @foreach($errors->all() as $error)
@@ -136,8 +134,12 @@
                                 <div>
                                 <select name="xworkprogress" class="form-control">
     <option value="Ongoing" <?php if($serviceinfo->workprogress == 'Ongoing') echo 'selected'; ?>>Ongoing</option>
-    <option value="Unable to Complete" <?php if($serviceinfo->workprogress == 'Unable to Complete') echo 'selected'; ?>>Incomplete</option>
     <option value="Completed" <?php if($serviceinfo->workprogress == 'Completed') echo 'selected'; ?>>Completed</option>
+    <option value="Assigned" <?php if($serviceinfo->workprogress == 'Assigned') echo 'selected'; ?>>Assigned</option>
+    <option value="Diagnosis" <?php if($serviceinfo->workprogress == 'Diagnosis') echo 'selected'; ?>>Diagnosis</option>
+    <option value="Under Repair" <?php if($serviceinfo->workprogress == 'Under Repair') echo 'selected'; ?>>Under Repair</option>
+    <option value="Waiting for Parts" <?php if($serviceinfo->workprogress == 'Waiting for Parts') echo 'selected'; ?>>Waiting for Parts</option>
+    <option value="Ready for Pickup" <?php if($serviceinfo->workprogress == 'Ready for Pickup') echo 'selected'; ?>>Ready for Pickup</option>
 </select>
                                 </div>
                             </div>

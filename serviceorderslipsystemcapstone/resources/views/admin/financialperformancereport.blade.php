@@ -24,7 +24,6 @@
         .container {
             max-width: 800px;
             margin: 0 auto;
-            border: 3px solid black;
             padding: 20px;
             box-sizing: border-box;
             border-radius: 10px;
@@ -34,7 +33,6 @@
 
         .chart-container {
             background-color: #e9e9e9;
-            border: 3px solid black;
             text-align: center;
             padding: 20px;
             margin-top: 20px;
