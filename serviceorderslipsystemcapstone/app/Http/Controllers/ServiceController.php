@@ -107,7 +107,7 @@ class ServiceController extends Controller
             ->whereYear('customerappointment.dateandtime', $year);
     }
 
-    $customerappointment = $query->get();
+   $customerappointment = $query->orderBy('customerappointment.customerappointmentnumber', 'desc')->get();
 
     return view('admin.customerdata', compact('customerappointment', 'month', 'year'));
 }
@@ -584,6 +584,10 @@ public function getAvailableStaffNumbers()
     $customerAppointmentsCount = CustomerAppointment::count();
     $serviceDataCount = Service::count();
     $ratingsCount = Rating::count();
+    $serviceCount = Service::count();
+    $ongoingCount = Service::where('serviceprogress', 'Ongoing')->count();
+    $completedCount = Service::where('serviceprogress', 'Completed')->count();
+    $referCount = Service::where('serviceprogress', 'Refer to Other Technicians or Shop')->count();
     
    
     
@@ -604,7 +608,7 @@ public function getAvailableStaffNumbers()
         $data[$monthName] = $count;
     }
 
-    return view('admin.admindashboard', compact('typesOfServicesCount', 'customerAppointmentsCount', 'serviceDataCount', 'ratingsCount','data'));
+    return view('admin.admindashboard', compact('typesOfServicesCount', 'customerAppointmentsCount', 'serviceDataCount', 'ratingsCount','data','serviceCount', 'ongoingCount', 'completedCount', 'referCount'));
 }
 
 public function LineChart2()

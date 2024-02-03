@@ -12,67 +12,146 @@
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg" >
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     <style>
-                        table, tr {
-                            font-family: "Century Gothic";
-                            border-collapse: collapse;
-                            width: 100%;
-                            font-weight: bold;
+                      body {
+                            font-family: 'Helvetica Neue', Helvetica, Arial;
+                            font-size: 14px;
+                            line-height: 20px;
+                            font-weight: 400;
+                            color: #3b3b3b;
+                            -webkit-font-smoothing: antialiased;
+                            font-smoothing: antialiased;
+                            background: #2b2b2b;
                         }
 
-                        td {
-                            font-family: "Century Gothic";
+                        @media screen and (max-width: 580px) {
+                            body {
+                                font-size: 16px;
+                                line-height: 22px;
+                            }
                         }
 
-                        th {
-                            font-family: "Century Gothic";
-                            background-color: white;
+                        .wrapper {
+                            margin: 0 auto;
+                            width:100%;
+                            text-align: center; /* Center align content */
                         }
 
-                        h6 {
-                            font-weight: bold;
-                            text-align: center;
-                            font-size: 30px;
-                            font-family: "Century Gothic";
-                            color: black;
+                        .table {
+                            margin: 0 auto; /* Center align table */
+                            width: 100%; /* Set table width to 100% */
+                            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+                            display: table;
                         }
 
-                        .button {
-                            border: none;
-                            color: white;
-                            text-decoration: none;
-                            display: inline-block;
-                            padding: 15px 32px;
-                            border-radius: 8px;
-                            font-size: 16px;
-                            cursor: pointer;
-                            transition: transform 0.2s ease-in-out;
-                            background-color: green;
-                            font-weight: bold;
-                            align-items: center;
+                        @media screen and (max-width: 580px) {
+                            .table {
+                                display: block;
+                            }
                         }
 
-                        .button:hover {
-                            transform: scale(1.05);
+                        .row {
+                            display: table-row;
+                            background: #f6f6f6;
                         }
 
-                        .no-records {
-                            font-family: "Century Gothic";
-                            font-size: 18px;
-                            text-align: center;
-                            color: red;
-                            margin-top: 20px;
+                        .row:nth-of-type(odd) {
+                            background: #e9e9e9;
                         }
-                        .ongoing { background-color: yellow; }
-                        .incomplete {
-    background-color: #FFB6C1; /* Light Red */
+
+                        .row.header {
+                            font-weight: 900;
+                            color: #ffffff;
+                            background: #2980b9;
+                        }
+
+                        .row.green {
+                            background: #27ae60;
+                        }
+
+                        .row.blue {
+                            background: #2980b9;
+                        }
+
+                        @media screen and (max-width: 580px) {
+                            .row {
+                                padding: 14px 0 7px;
+                                display: block;
+                            }
+
+                            .row.header {
+                                padding: 0;
+                                height: 6px;
+                                
+                            }
+
+                            .row.header .cell {
+                                display: none;
+                            }
+
+                            .cell {
+                                margin-bottom: 10px;
+                            }
+
+                            .cell:before {
+                                margin-bottom: 3px;
+                                content: attr(data-title);
+                                min-width: 98px;
+                                font-size: 10px;
+                                line-height: 10px;
+                                font-weight: bold;
+                                text-transform: uppercase;
+                                color: #969696;
+                                display: block;
+                            }
+                        }
+                        .icon-container {
+    margin-right: 50px; /* Adjust margin as needed */
 }
-                        .completed { background-color: #90EE90; }
+.icon-label {
+    display: block;
+    margin-top: 10px; /* Add space between icon and label */
+    font-size: 12px;
+    color: #888;
+}
+
+                        .cell {
+                            padding: 6px 12px;
+                            display: table-cell;
+                        }
+
+                        @media screen and (max-width: 580px) {
+                            .cell {
+                                padding: 2px 16px;
+                                display: block;
+                            }
+                        }
+                        button{
+                            align-items:center;
+                        }
+                        .tooltip {
+    position: relative;
+    display: inline-block;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 100px;
+    background-color: black;
+    color: white;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px;
+    position: absolute;
+    z-index: 1;
+    bottom: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+}
                     </style>
-
-                    <h6>List of Works</h6>
-                    <br>
-                    <br>
-
                     <div class="form-group" style="display: flex; gap: 10px;">
                     <!-- Filter Form -->
                     <form method="get" action="{{ route('staffdatabase') }}" class="flex items-center justify-center space-x-4 mb-8">
@@ -93,36 +172,30 @@
  </div>
                     <!-- Display Works Table or No Records Found Message -->
                     @if($staffdatabase !== null && $staffdatabase->count() > 0)
-                        <table style="text-align:center">
-                            <thead>
-                                <tr>
-                            <th>Work Number</th>
-                            <th>Service Number</th>
-                            <th>Staff Name</th>
-                            <th>Customer Name</th>
-
-                            <th>Customer Password</th>
-                            <th>Work Started</th>
-                            <th>Actions Taken</th>
-                            <th>Work Progress</th>
-                            <th>Options</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach($staffdatabase as $staffRecord)
-                                    <tr style="text-align:center">
-                                        <td>{{ $staffRecord->worknumber }}</td>
-                                        <td>{{ $staffRecord->serviceno }}</td>
-                                        <td>{{ $staffRecord->staffname }}</td>
-                                        <td>{{ $staffRecord->customername }}</td>
-                                        <td>{{ str_repeat('*', strlen($staffRecord->customerpassword)) }}</td>
-                                        <td>{{ date('F d, Y h:i A', strtotime($staffRecord->workstarted)) }}</td>
-                                        <td>{{ $staffRecord->actionstaken }}</td>
-                                        <td class="{{ $staffRecord->workprogress === 'Ongoing' ? 'ongoing' : ($staffRecord->workprogress === 'Unable to Complete' ? 'incomplete' : 'completed') }}">{{ $staffRecord->workprogress }}</td>
-                                        <td>
+                    <div class="table">
+                            <div class="row header">
+                            <div class ="cell">Work Number</div>
+                            <div class ="cell">Service Number</div>
+                            <div class ="cell">Customer Name</div>
+                            <div class ="cell">Customer Password</div>
+                            <div class ="cell">Work Started</div>
+                            <div class ="cell">Actions Taken</div>
+                            <div class ="cell">Work Progress</div>
+                            <div class ="cell">Options</div>
+                    </div>    
+                    @foreach($staffdatabase as $staffRecord)
+                            <div class = "row">
+                                        <div class = "cell">{{ $staffRecord->worknumber }}</div>
+                                        <div class = "cell">{{ $staffRecord->serviceno }}</div>
+                                        <div class = "cell">{{ $staffRecord->customername }}</div>
+                                        <div class = "cell">{{ str_repeat('*', strlen($staffRecord->customerpassword)) }}</div>
+                                        <div class = "cell">{{ date('F d, Y h:i A', strtotime($staffRecord->workstarted)) }}</div>
+                                        <div class = "cell">{{ $staffRecord->actionstaken }}</div>
+                                        <div class="{{ $staffRecord->workprogress === 'Ongoing' ? 'ongoing' : ($staffRecord->workprogress === 'Unable to Complete' ? 'incomplete' : 'completed') }}">{{ $staffRecord->workprogress }}</div>
+                                        <div class = "cell">
                                         <div class="grid grid-cols-2 gap-2">
     <!-- First Row -->
-    <div>
+    <div class = "cell">
     @if ($staffRecord->workstarted !== null && $staffRecord->worknumber !== null)
         <a style="background-color: #f6e05e; width: 1.5rem; height: 1.5rem; line-height: 1.5rem; padding: 0.3rem; margin: 0.1rem; display: inline-flex; align-items: center; justify-content: center;"
            class="mt-4 text-black font-bold rounded inline-block"
@@ -133,7 +206,7 @@
     @endif
     </div>
 
-    <div>
+    <div class = "cell">
     @if ($staffRecord->workstarted !== null && $staffRecord->worknumber !== null)
         <a style="background-color: blue; width: 1.5rem; height: 1.5rem; line-height: 1.5rem; padding: 0.3rem; margin: 0.1rem; display: inline-flex; align-items: center; justify-content: center;"
            class="mt-4 text-white font-bold rounded inline-block"
@@ -157,12 +230,10 @@
     </div>
         </div>
     </div>
-</td>
 
-                                    </tr>
+</div>
                                 @endforeach
-                            </tbody>
-                        </table>
+                        
                     @else
                     <p class="no-records text-black font-bold" style="color:black">No records found.</p>
                     @endif

@@ -2,9 +2,9 @@
 
 <x-app-layout>
     <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8" style="background-color: #2196f3; border: 3px solid black;">
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg" style="background-color: #2196f3; text-align: center;">
-                <div class="p-6 text-gray-900 dark:text-gray-100" style="background-color: #2196f3;">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8" style="background-color: #2980b9;">
+            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg" style="background-color: #2980b9; text-align: center;">
+                <div class="p-6 text-gray-900 dark:text-gray-100" style="background-color: #2980b9;">
 
                     <style>
                         * {
@@ -68,6 +68,16 @@
                         label{
                             color:white;
                         }
+                        .user-card {
+        width: 200px;
+        height: 50px;
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        padding: 10px;
+        margin: 10px;
+        color: #333;
+    }
                     </style>
 
                     

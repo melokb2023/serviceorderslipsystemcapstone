@@ -26,7 +26,7 @@
     }
 
     .card {
-        background-color: #cbd6e4;
+        background-color: white;
         border: 1px solid black;
         border-radius: 8px;
         margin: 20px;
@@ -39,7 +39,7 @@
     }
 
     .card h2 {
-        color: #2196f3;
+        color: #2980b9;
         font-size: 24px;
         font-weight: bold;
         margin-bottom: 10px;
@@ -80,9 +80,8 @@
 
     <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg"
          style="background-color: #d70021; text-align: center; height: auto; width: 90%; max-width: 1200px; border: 3px solid black;">
-        <div class="p-6 text-gray-900 dark:text-gray-100" style="background-color: #2196f3;">
+        <div class="p-6 text-gray-900 dark:text-gray-100" style="background-color: #2980b9;">
 
-            <h1>Rating Data</h1>
 
             @foreach($customerrating as $customer)
                 <div class="card">
@@ -90,10 +89,9 @@
                     <p>Reviewer Name: {{ $customer->customername }}</p>
                     <p>Review: {{ $customer->review }}</p>
                     <p>Rating: {{ $customer->rating }}</p>
-                    <br>
                 </div>
             @endforeach
-
+            <br>
             <!-- Add any additional styling or elements as needed -->
             <a class="button" href="{{ route('customerrating') }}">
                 BACK

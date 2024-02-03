@@ -1,139 +1,144 @@
-@include('layouts.adminnavigation')
 <x-app-layout>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-mBEJ3L0zUkbpDhw1XOsTf3D7y8v3lZ9R08PcL1vND5Ee2j3R6DgNr0rNAZKz55I0vxBdSc5cTD5tRzNlOZ0riQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <style>
-        /* Your existing styles */
+    @include('layouts.adminnavigation')
 
-        /* Add the following styles for the row group */
-        .form-row-group {
-            display: flex;
-            justify-content: space-between;
-        }
+    <div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8" style="background-color: #2980b9; border: 3px solid black">
+            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg" style="background-color: #2980b9; text-align: center">
+                <div class="p-6 text-gray-900 dark:text-gray-100" style="background-color: #2980b9; font-family: 'Century Gothic', sans-serif; font-weight: bold;">
+                    <style>
+                        /* Your existing styles */
 
-        .form-row-group .form-group {
-            width: 48%;
-        }
+                        /* Add the following styles for the row group */
+                        .form-row-group {
+                            display: flex;
+                            justify-content: space-between;
+                        }
 
-        body {
-            font-family: 'Century Gothic', sans-serif;
-            font-weight: bold;
-            font-size: 16px;
-            color: white;
-            background-color: #2196f3;
-        }
+                        .form-row-group .form-group {
+                            width: 48%;
+                        }
 
-        label {
-            display: block;
-            text-align: left;
-            margin-bottom: 8px;
-            font-size: 16px;
-            color:white;
-        }
+                        body {
+                            font-family: 'Century Gothic', sans-serif;
+                            font-weight: bold;
+                            font-size: 16px;
+                            color: white;
+                            background-color: #2196f3;
+                        }
 
-        select,
-        textarea,
-        input[type=datetime-local],
-        input[type=email],
-        input[type=password],
-        input[type=checkbox] {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box;
-            margin-top: 6px;
-            margin-bottom: 16px;
-            resize: vertical;
-            font-size: 14px;
-        }
+                        label {
+                            display: block;
+                            text-align: left;
+                            margin-bottom: 8px;
+                            font-size: 16px;
+                            color:white;
+                        }
 
-        .textexpand {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box;
-            margin-top: 6px;
-            margin-bottom: 16px;
-            resize: vertical;
-            font-size: 14px;
-            height: 120%;
-        }
+                        select,
+                        textarea,
+                        input[type=datetime-local],
+                        input[type=email],
+                        input[type=password],
+                        input[type=checkbox] {
+                            width: 100%;
+                            padding: 10px;
+                            border: 1px solid #ccc;
+                            border-radius: 4px;
+                            box-sizing: border-box;
+                            margin-top: 6px;
+                            margin-bottom: 16px;
+                            resize: vertical;
+                            font-size: 14px;
+                        }
 
-        .textexpand2 {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box;
-            margin-top: 6px;
-            margin-bottom: 16px;
-            resize: vertical;
-            font-size: 14px;
-        }
+                        .textexpand {
+                            width: 100%;
+                            padding: 10px;
+                            border: 1px solid #ccc;
+                            border-radius: 4px;
+                            box-sizing: border-box;
+                            margin-top: 6px;
+                            margin-bottom: 16px;
+                            resize: vertical;
+                            font-size: 14px;
+                            height: 120%;
+                        }
 
-        button[type=submit] {
-            width: 100%;
-            background-color: #04AA6D;
-            color: white;
-            padding: 12px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 16px;
-        }
+                        .textexpand2 {
+                            width: 100%;
+                            padding: 10px;
+                            border: 1px solid #ccc;
+                            border-radius: 4px;
+                            box-sizing: border-box;
+                            margin-top: 6px;
+                            margin-bottom: 16px;
+                            resize: vertical;
+                            font-size: 14px;
+                        }
 
-        button[type=submit]:hover {
-            background-color: #45a049;
-        }
+                        button[type=submit] {
+                            width: 100%;
+                            background-color: #04AA6D;
+                            color: white;
+                            padding: 12px;
+                            border: none;
+                            border-radius: 4px;
+                            cursor: pointer;
+                            font-size: 16px;
+                        }
 
-        .container {
-            border-radius: 5px;
-            background-color: #f2f2f2;
-            padding: 20px;
-            margin-top: 20px;
-        }
+                        button[type=submit]:hover {
+                            background-color: #45a049;
+                        }
 
-        .form-row {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-        }
+                        .container {
+                            border-radius: 5px;
+                            background-color: #f2f2f2;
+                            padding: 20px;
+                            margin-top: 20px;
+                        }
 
-        .form-group {
-            width: 48%;
-        }
-        .password-input-container {
-    position: relative;
+                        .form-row {
+                            display: flex;
+                            flex-wrap: wrap;
+                            justify-content: space-between;
+                        }
+
+                        .form-group {
+                            width: 48%;
+                        }
+                        .password-input-container {
+                            position: relative;
+                        }
+
+                        .password-input {
+                            padding-right: 30px; /* Adjust the padding to make room for the icon */
+                        }
+
+                        .password-toggle-btn {
+                            position: absolute;
+                            top: 50%;
+                            right: 10px; /* Adjust the right spacing as needed */
+                            transform: translateY(-50%);
+                            cursor: pointer;
+                            border: none;
+                            background: none;
+                            font-size: 20px;
+                            color: #888; /* Adjust the color as needed */
+                        }
+
+                        @media only screen and (max-width: 600px) {
+                            body {
+                                font-size: 14px;
+                            }
+                        }
+                        #typeofservice {
+    pointer-events: none; /* Disable pointer events */
+    background-color: #f2f2f2; /* Add a background color to indicate readonly */
+    color: #888; /* Adjust the color to make it appear disabled */
 }
+                    </style>
 
-.password-input {
-    padding-right: 30px; /* Adjust the padding to make room for the icon */
-}
-
-.password-toggle-btn {
-    position: absolute;
-    top: 50%;
-    right: 10px; /* Adjust the right spacing as needed */
-    transform: translateY(-50%);
-    cursor: pointer;
-    border: none;
-    background: none;
-    font-size: 20px;
-    color: #888; /* Adjust the color as needed */
-}
-
-        @media only screen and (max-width: 600px) {
-            body {
-                font-size: 14px;
-            }
-        }
-    </style>
-
-<div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8" style="background-color: #2196f3; border: 3px solid black">
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg" style="background-color: #2196f3; text-align: center">
-                <div class="p-6 text-gray-900 dark:text-gray-100" style="background-color: #2196f3; font-family: 'Century Gothic', sans-serif; font-weight: bold;">
                     @if($errors)
                         <ul>
                             @foreach($errors->all() as $error)
@@ -151,11 +156,11 @@
                             <div class="form-row-group">
                                 <div class="form-group">
                                     <label for="List of Problems">List of Problems</label>
-                                    <input class="textexpand2" type="text" name="xlistofproblems" value="{{$serviceinfo->listofproblems}}"/>
+                                    <input class="textexpand2" type="text" name="xlistofproblems" value="{{$serviceinfo->listofproblems}}" readonly />
                                 </div>
-                            <div class="form-group">
+                                <div class="form-group">
                                     <label for="Type Of Service">Type Of Service</label>
-                                    <select name="xtypeofservice">
+                                    <select id="typeofservice" name="xtypeofservice" readonly>
     <option value="Reformatting" <?php if($serviceinfo->typeofservice == 'Reformatting') echo 'selected'; ?>>Reformatting</option>
     <option value="Replacement" <?php if($serviceinfo->typeofservice == 'Replacement') echo 'selected'; ?>>Replacement</option>
     <option value="Virus Removal" <?php if($serviceinfo->typeofservice == 'Virus Removal') echo 'selected'; ?>>Virus Removal</option>
@@ -172,17 +177,16 @@
 
                             <!-- Row group for Customer Password and Defective Units -->
                             <div class="form-row-group">
-                            <div class="form-group password-strength">
-    <label for="Customer Password">Customer Password</label>
-    <div class="password-input-container">
-        <input class="textexpand2 password-input" type="password" name="xcustomerpassword" id="passwordInput" value="{{$serviceinfo->customerpassword}}" />
-        <button type="button" id="togglePassword" class="password-toggle-btn">&#x1F441;</button>
-    </div>
-</div>
-
+                                <div class="form-group password-strength">
+                                    <label for="Customer Password">Customer Password</label>
+                                    <div class="password-input-container">
+                                        <input class="textexpand2 password-input" type="password" name="xcustomerpassword" id="passwordInput" value="{{$serviceinfo->customerpassword}}" readonly />
+                                        <button type="button" id="togglePassword" class="password-toggle-btn">&#x1F441;</button>
+                                    </div>
+                                </div>
                                 <div class="form-group">
                                     <label for="Defective Units">Defective Units</label>
-                                    <input class="textexpand" type="text" name="xdefectiveunits" value="{{ $serviceinfo->defectiveunits }}" />
+                                    <input class="textexpand" type="text" name="xdefectiveunits" value="{{ $serviceinfo->defectiveunits }}" readonly />
                                 </div>
                             </div>
 
@@ -190,32 +194,31 @@
                             <div class="form-row-group">
                                 <div class="form-group">
                                     <label for="Actions Required">Actions Required</label>
-                                    <input class="textexpand2" type="text" name="xactionsrequired" value="{{$serviceinfo->actionsrequired }}" />
+                                    <input class="textexpand2" type="text" name="xactionsrequired" value="{{$serviceinfo->actionsrequired }}" readonly />
                                 </div>
-
                                 <div class="form-group">
                                     <br>
                                     <br>
                                     <br>
                                     <label for="Service Progress">Service Progress</label>
                                     <select id="serviceProgress" name="xserviceprogress">
-    <option value="Completed" <?php if($serviceinfo->serviceprogress == 'Completed') echo 'selected'; ?>>Completed</option>    
-    <option value="Ongoing" <?php if($serviceinfo->serviceprogress == 'Ongoing') echo 'selected'; ?>>Ongoing</option>  
-    <option value="Refer to Other Technicians or Shop" <?php if($serviceinfo->serviceprogress == 'Refer to Other Technicians or Shop') echo 'selected'; ?>>Refer to Other Technicians or Shop</option>
-</select>
+                                        <option value="Completed" <?php if($serviceinfo->serviceprogress == 'Completed') echo 'selected'; ?>>Completed</option>
+                                        <option value="Ongoing" <?php if($serviceinfo->serviceprogress == 'Ongoing') echo 'selected'; ?>>Ongoing</option>
+                                        <option value="Refer to Other Technicians or Shop" <?php if($serviceinfo->serviceprogress == 'Refer to Other Technicians or Shop') echo 'selected'; ?>>Refer to Other Technicians or Shop</option>
+                                    </select>
                                 </div>
                             </div>
 
                             <div class="form-group" style="text-align:center; display: none;" id="serviceEndGroup">
-    <label for="serviceend">Service End Date</label>
-    <input type="datetime-local" name="xserviceend" value="{{$serviceinfo->serviceend}}" required>
-</div>
+                                <label for="serviceend">Service End Date</label>
+                                <input type="datetime-local" name="xserviceend" value="{{$serviceinfo->serviceend}}" required readonly>
+                            </div>
 
                             <!-- Row group for Service Remarks -->
                             <div class="form-row">
                                 <div class="form-group">
                                     <label for="Service Remarks">Service Report</label>
-                                    <input class="textexpand2" type="text" name="xserviceremarks" value="{{$serviceinfo->serviceremarks}}"/>
+                                    <input class="textexpand2" type="text" name="xserviceremarks" value="{{$serviceinfo->serviceremarks}}" readonly />
                                 </div>
                             </div>
 
@@ -225,46 +228,44 @@
                 </div>
             </div>
         </div>
-        <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const serviceProgressSelect = document.getElementById('serviceProgress');
-        const serviceEndGroup = document.getElementById('serviceEndGroup');
+    </div>
 
-        serviceProgressSelect.addEventListener('change', function () {
-            if (serviceProgressSelect.value === 'Completed') {
-                serviceEndGroup.style.display = 'block';
-            } else {
-                serviceEndGroup.style.display = 'none';
-            }
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const serviceProgressSelect = document.getElementById('serviceProgress');
+            const serviceEndGroup = document.getElementById('serviceEndGroup');
+
+            serviceProgressSelect.addEventListener('change', function () {
+                if (serviceProgressSelect.value === 'Completed') {
+                    serviceEndGroup.style.display = 'block';
+                } else {
+                    serviceEndGroup.style.display = 'none';
+                }
+            });
+
+            serviceProgressSelect.dispatchEvent(new Event('change'));
         });
 
-        serviceProgressSelect.dispatchEvent(new Event('change'));
-    });
-</script>
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const passwordInput = document.getElementById('passwordInput');
-        const togglePasswordButton = document.getElementById('togglePassword');
+        document.addEventListener('DOMContentLoaded', function () {
+            const passwordInput = document.getElementById('passwordInput');
+            const togglePasswordButton = document.getElementById('togglePassword');
 
-        togglePasswordButton.addEventListener('click', function () {
-            const type = passwordInput.type === 'password' ? 'text' : 'password';
-            passwordInput.type = type;
-            togglePasswordButton.innerHTML = type === 'password' ? '&#x1F441;' : '&#x1F440;';
+            togglePasswordButton.addEventListener('click', function () {
+                const type = passwordInput.type === 'password' ? 'text' : 'password';
+                passwordInput.type = type;
+                togglePasswordButton.innerHTML = type === 'password' ? '&#x1F441;' : '&#x1F440;';
+            });
         });
-    });
-</script>
 
-<script>
         document.addEventListener('DOMContentLoaded', function () {
             const submitButton = document.getElementById('submitBtn');
             const updateForm = document.getElementById('updateForm');
 
             submitButton.addEventListener('click', function () {
-            submitButton.disabled = true;
-            submitButton.style.opacity = '0.5'; // Set the opacity to a value between 0 (invisible) and 1 (fully visible)
-            updateForm.submit();
+                submitButton.disabled = true;
+                submitButton.style.opacity = '0.5'; // Set the opacity to a value between 0 (invisible) and 1 (fully visible)
+                updateForm.submit();
+            });
         });
-    });
     </script>
-    </div>
 </x-app-layout>

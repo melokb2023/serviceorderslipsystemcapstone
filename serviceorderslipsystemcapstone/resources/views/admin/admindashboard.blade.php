@@ -94,6 +94,18 @@
         <!-- Chart Section -->
         <div style="background-color: #e9e9e9;">
         <h2 class="text-2xl font-bold mb-4 text-center" style="color: black;">Service Performance Chart</h2>
+        <h2 class="text-2xl font-bold mb-4 text-center" style="color: black;">
+                            {{ $serviceCount }} Total Number of Services
+                        </h2>
+                        <h2 class="text-2xl font-bold mb-4 text-center" style="color: black;">
+                            {{ $ongoingCount }} Ongoing Services
+                        </h2>
+                        <h2 class="text-2xl font-bold mb-4 text-center" style="color: black;">
+                            {{ $completedCount }} Completed Services
+                        </h2>
+                        <h2 class="text-2xl font-bold mb-4 text-center" style="color: black;">
+                            {{ $referCount }} Refer to Technician Services
+                        </h2>
 
             <canvas id="servicePerformanceChart"></canvas>
         </div>

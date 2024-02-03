@@ -78,14 +78,16 @@
 
         // Only render the chart if new data is available
         if (labels.length > 0) {
+            var backgroundColors = ['#ff8c5a', '#ffb234', '#ffd934', '#add633', '#a0c15a'];
+
             window.myBarChart = new Chart(ctx, {
                 type: 'bar',
                 data: {
                     labels: labels,
                     datasets: [{
-                        label: 'Count',
+                        label: 'Rating',
                         data: values,
-                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                        backgroundColor: backgroundColors,
                         borderColor: 'rgba(75, 192, 192, 1)',
                         borderWidth: 1
                     }]
@@ -97,6 +99,28 @@
                                 precision: 0
                             }
                         }
+                    },
+                    plugins: {
+                        legend: {
+                            display: true,
+                            labels: {
+                                generateLabels: function (chart) {
+                                    return labels.map(function (label, index) {
+                                        return {
+                                            text: label,
+                                            fillStyle: backgroundColors[index],
+                                            strokeStyle: backgroundColors[index],
+                                            lineWidth: 2,
+                                            hidden: false,
+                                            index: index
+                                        };
+                                    });
+                                }
+                            }
+                        },
+                        title: {
+                            display: false
+                        }
                     }
                 }
             });
@@ -107,6 +131,7 @@
         }
     }
 </script>
+
 
         </div>
     </div>

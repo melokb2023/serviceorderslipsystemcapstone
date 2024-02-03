@@ -30,6 +30,17 @@
 
     }
 
+    .user-card {
+        width: 200px;
+        height: 50px;
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        padding: 10px;
+        margin: 10px;
+        color: #333;
+    }
+
     .top-nav-link:hover {
         border-color: #fff;
         background-color: rgba(255, 255, 255, 0.2);
@@ -136,6 +147,10 @@
 
                 <!-- Top Navigation Links -->
                 <div class="top-nav flex">
+                <div class="user-card" style="font-size: 14px; padding: 10px; height: 30px; width: auto;">
+                <span>{{ Auth::user()->name }}</span>
+    <!-- Add any additional user information here -->
+</div>
                 <a class="top-nav-link @if(request()->routeIs('admindashboard')) active @endif" href="{{ route('admindashboard') }}" @if(request()->routeIs('admindashboard')) style="pointer-events: none;" @endif>
                 <i class="fa fa-tachometer"></i>{{ __('DASHBOARD') }}
 </a>

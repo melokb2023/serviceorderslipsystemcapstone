@@ -35,7 +35,7 @@ class RatingsController extends Controller
         'customer.name as customername',
         'staff.name as staffname'
     )
-    ->orderBy('customerrating.ratingno', 'asc');
+    ->orderBy('customerrating.ratingno', 'desc');
 
     // Check if there is a filter for Customer Name
     if ($request->filled('customer_name_filter')) {
@@ -74,18 +74,13 @@ $details = [
     'body' => 'You have a feedback!',
 ];
 
-$customerEmailDetails = [
-    'title' => 'Thank You for Your Feedback',
-    'body' => 'Thank you for providing feedback on our service. Your opinion is valuable to us!',
-];
 
 // Send thank you email to the customer
 
 
 // Send email to a recipient (replace 'recipient@example.com' with the actual recipient email)
 Mail::to('kyle.melo@lccdo.edu.ph')->send(new MyMail($details));
-Mail::to(auth()->user()->email)->send(new MyMail($customerEmailDetails));
-session()->flash('success_message', 'Rating Has Been Saved');
+session()->flash('success_message', 'Thank you for providing feedback on our service. Your opinion is valuable to us!');
 $logs = new Logs;
 $logs->userid = Auth::id(); 
 $logs->description = "Accessed the Rating Menu. Rated Service No.: {$request->xserviceno}, Staff Performance Score: {$request->xstaffperformance}, Rating Score: {$request->xrating} by {$customerrating->reviewername}";

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Rating;
+use App\Models\Service;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Auth;
 use App\Mail\MyMail;
@@ -97,7 +98,7 @@ public function CustomerSpecificAppointment(Request $request)
         }
 
         // Get the filtered appointments
-        $customerappointments = $query->get();
+        $customerappointments = $query->orderBy('created_at', 'desc')->get();
 
         // Pass the appointments and appointment numbers to the view
         return view('customer.customerdashboard', compact('customerappointments', 'appointmentNumbers'));

@@ -14,7 +14,7 @@
         }
 
         .top-nav {
-            background-color: #2196f3;
+            background-color: #2980b9;
             font-weight: bold;
             overflow: hidden;
             display: flex;
@@ -41,31 +41,48 @@
             background-color: rgba(255, 255, 255, 0.2);
             border-radius: 5px;
         }
+
+        .user-card {
+        width: 200px;
+        height: 50px;
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        padding: 10px;
+        margin: 10px;
+        color: #333;
+    }
     </style>
 </head>
 
 <body>
 
     <!-- Primary Navigation Menu -->
-    <nav x-data="{ open: false }" class="bg-red-500 border-b border-gray-50" style="background-color:#2196f3">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 " style="background-color:#2196f3">
-            <div class="flex justify-between h-16" style="background-color:#2196f3">
-           
+    <nav x-data="{ open: false }" class="bg-red-500 border-b border-gray-50" style="background-color:#2980b9">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 " style="background-color:#2980b9">
+            <div class="flex justify-between h-16" style="background-color:#2980b9">
 
+          
                 <!-- Top Navigation Links -->
                 <div class="top-nav">
-                
-                <a class="top-nav-link" href="{{ route('staffdashboard') }}" :active="request()->routeIs('staffdashboard')">
-                <i class="fa fa-database"></i>{{ __('DASHBOARD') }}
-        </a> 
-                 <a class="top-nav-link"  href="{{ route('staffdatabase') }}" :active="request()->routeIs('staffdatabase')">
-                 <i class="fa fa-database"></i>{{ __('STAFF WORK') }}
+                <div class="user-card" style="font-size: 14px; padding: 10px; height: 30px; width: auto;">
+                <span>{{ Auth::user()->name }}</span>
+    <!-- Add any additional user information here -->
+</div>
+<a class="top-nav-link" href="{{ route('staffdashboard') }}" :active="request()->routeIs('staffdashboard')">
+    <i class="fa fa-home"></i>{{ __('DASHBOARD') }}
 </a>
-                 <a class="top-nav-link"  href="{{ route('stafflogs') }}" :active="request()->routeIs('stafflogs')">
-                 <i class="fa fa-bar-chart"></i>   {{ __('LOGS') }}
-                 </a>
+
+<a class="top-nav-link" href="{{ route('staffdatabase') }}" :active="request()->routeIs('staffdatabase')">
+    <i class="fa fa-list"></i>{{ __('STAFF WORK') }}
+</a>
+
+<a class="top-nav-link" href="{{ route('stafflogs') }}" :active="request()->routeIs('stafflogs')">
+    <i class="fa fa-history"></i>{{ __('LOGS') }}
+</a>
+                 
                 </div>
-                 <div class="hidden sm:flex sm:items-center sm:ml-6" style="background-color: #2196f3;">
+                 <div class="hidden sm:flex sm:items-center sm:ml-6" style="background-color: #2980b9;">
     <!-- Teams Dropdown -->
     @if (Laravel\Jetstream\Jetstream::hasTeamFeatures())
         <div class="ml-3 relative">
@@ -133,3 +150,4 @@
 </body>
 </nav>
 
+</html>

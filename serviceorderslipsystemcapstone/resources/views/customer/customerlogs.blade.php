@@ -1,33 +1,167 @@
-@include('layouts.customernavigation')
 <x-app-layout>
+
+    @include('layouts.customernavigation')
+
     <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8" >
+        <div class="max-w-8xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
+                    <!-- Filter Form -->
+                    <div style="text-align: center;">
+                    <form id="filterForm" method="get" action="{{ route('customerlogs') }}" class="flex items-center justify-center space-x-4">
+                        @csrf
+                        <label for="month" class="text-sm font-semibold">Select Month:</label>
+                        <select name="month" id="month" class="border border-gray-300 rounded px-2 py-2">
+                            @for ($i = 1; $i <= 12; $i++)
+                                <option value="{{ $i }}" @if ($i == $selectedMonth) selected @endif>{{ date('F', mktime(0, 0, 0, $i, 1)) }}</option>
+                            @endfor
+                        </select>
 
-                    <style>
-                        /* Your existing styles */
+                        <label for="year" class="text-sm font-semibold">Select Year:</label>
+                        <select name="year" id="year" class="border border-gray-300 rounded px-2 py-2">
+                            @php
+                                $currentYear = date('Y');
+                            @endphp
+                            @for ($i = 2000; $i <= 2099; $i++)
+                                <option value="{{ $i }}" @if ($i == $selectedYear) selected @endif>{{ $i }}</option>
+                            @endfor
+                        </select>
+                    </form>
+                    <!-- End Filter Form -->
 
-                        table th {
-        background-color: black;
-        color: white;
-        border: 3px solid black;
-    }
+                    <div class="wrapper" id="customerLogsContainer">
+                        <div class="table" id="customerLogs">
+                            <div class="row header">
+                            <div class="user-id-cell">User ID</div>
+                                    <div class="cell name-cell"> Name</div> <!-- Adjusted width for Name cell -->
+                                    <div class="cell type-cell"> User Type </div>
+                                    <div class="cell description-cell"> Description </div> <!-- Adjusted width for Description cell -->
+                                    <div class="cell"> Action Date and Time </div>
+                            </div>
+                            @foreach($logs as $customer)
+                            <div class="row">
+                            <div class="user-id-cell">{{ $customer->userid }}</div>
+                            <div class = "cell name-cell">{{ $customer->name}}</div>
+                            <div class="cell type-cell">{{ $customer->usertype}}</div>
+                            <div class = "cell description-cell">{{ $customer->description}}</div>
+                            <div class = "cell">{{ date('F d, Y h:i:s A', strtotime($customer->actiondatetime)) }}</div>
+                            </div>
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-    table,
-    tr {
-        font-family: "Century ";
-        width: 100%; /* Extend table width */
-        font-weight: bold;
-        background-color: white;
-    }
+    <!-- Add JavaScript to trigger form submission on dropdown change -->
+    <script>
+        document.getElementById('month').addEventListener('change', function() {
+            document.getElementById('filterForm').submit();
+        });
 
-    td {
-        font-family: "Arial";
-        background-color: white;
-        padding: 8px; /* Adjust cell padding */
-        border: 3px solid black; /* Keep the black border for cells */
-    }
+        document.getElementById('year').addEventListener('change', function() {
+            document.getElementById('filterForm').submit();
+        });
+    </script>
+
+<style>
+                        body {
+                            font-family: 'Helvetica Neue', Helvetica, Arial;
+                            font-size: 14px;
+                            line-height: 20px;
+                            font-weight: 400;
+                            color: #3b3b3b;
+                            -webkit-font-smoothing: antialiased;
+                            background: #2b2b2b;
+                        }
+
+                        @media screen and (max-width: 580px) {
+                            body {
+                                font-size: 16px;
+                                line-height: 22px;
+                            }
+                        }
+
+                        .wrapper {
+                            margin: 0 auto;
+                            padding: 22px;
+                            max-width: 100%;
+                        }
+
+                        .table {
+                            margin: 0 auto;
+                            width: 100%; /* Adjusted to fill the available space */
+                            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+                            display: table;
+                        }
+
+                        /* Rest of your styles */
+                        .row {
+                            display: table-row;
+                            background: #f6f6f6;
+                        }
+
+                        .row:nth-of-type(odd) {
+                            background: #e9e9e9;
+                        }
+
+                        .row.header {
+                            font-weight: 900;
+                            color: #ffffff;
+                            background: #2980b9;
+                        }
+
+                        .user-id-cell {
+                            width: 10%; /* Adjusted width for User ID cell */
+                        }
+
+                        .cell {
+                            padding: 6px 12px;
+                            display: table-cell;
+                            white-space: nowrap;
+                            overflow: hidden;
+                            text-overflow: ellipsis;
+                        }
+
+                        /* Adjusted widths for Name and Type cells */
+                        .name-cell {
+                            width: 20%;
+                        }
+
+                        .type-cell {
+                            width: 20%; /* Adjusted width for User Type cell */
+                        }
+
+                        .description-cell {
+                            width: 40%; /* Adjusted width for Description cell */
+                        }
+
+                        @media screen and (max-width: 580px) {
+                            .cell {
+                                padding: 2px 16px;
+                                display: block;
+                            }
+                        }
+
+                        .button {
+                            border: none;
+                            color: white;
+                            text-decoration: none;
+                            display: inline-block;
+                            padding: 15px 32px;
+                            border-radius: 8px;
+                            font-size: 16px;
+                            cursor: pointer;
+                            transition: transform 0.2s ease-in-out;
+                            background-color: green;
+                            font-weight: bold;
+                        }
+
+                        .button:hover {
+                            transform: scale(1.05);
+                        }
+
                         h6 {
                             font-weight: bold;
                             text-align: center;
@@ -45,94 +179,4 @@
                             font-weight: bold;
                         }
                     </style>
-
-                    <div style="text-align: center;">
-                        <h6>Your Logs</h6>
-                        <br>
-                        <br>
-
-                        <!-- Filter Form -->
-                        <form id="filterForm" method="get" action="{{ route('customerlogs') }}" class="flex items-center justify-center space-x-4">
-                            @csrf
-                            <label for="month" class="text-sm font-semibold">Select Month:</label>
-                            <select name="month" id="month" class="border border-gray-300 rounded px-2 py-2">
-                                @for ($i = 1; $i <= 12; $i++)
-                                    <option value="{{ $i }}" @if ($i == $selectedMonth) selected @endif>{{ date('F', mktime(0, 0, 0, $i, 1)) }}</option>
-                                @endfor
-                            </select>
-
-                            <label for="year" class="text-sm font-semibold">Select Year:</label>
-                            <select name="year" id="year" class="border border-gray-300 rounded px-2 py-2">
-                                 @php
-            $currentYear = date('Y');
-        @endphp
-        @for ($i = 2000; $i <= 2099; $i++)
-            <option value="{{ $i }}" @if ($i == $selectedYear) selected @endif>{{ $i }}</option>
-        @endfor
-                            </select>
-                        </form>
-                        <!-- End Filter Form -->
-
-                        <br>
-                        <br>
-
-                        <div id="customerLogsContainer">
-                            @if(count($logs) > 0)
-                                <table id="customerLogs" style="border: 1px solid black; margin: auto;">
-                                    <tr>
-                                        <th>User ID</th>
-                                        <th>Name</th>
-                                        <th>User Type</th>
-                                        <th>Description</th>
-                                        <th>Action Date and Time</th>
-                                    </tr>
-
-                                    <tbody>
-                                        @foreach($logs as $customer)
-                                            <tr>
-                                                <td>{{ $customer->userid }}</td>
-                                                <td>{{ $customer->name}}</td>
-                                                <td>{{ $customer->usertype}}</td>
-                                                <td>{{ $customer->description}}</td>
-                                                <td>{{ date('F d, Y h:i A', strtotime($customer->actiondatetime)) }}</td>
-                                            </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table>
-                            @else
-                                <p>No records found.</p>
-                            @endif
-                        </div>
-
-                        <br>
-                        <br>
-                        <br>
-                        <br>
-                        <br>
-                        <br>
-                        <br>
-                        <br>
-                        <br>
-                        <br>
-                        <br>
-                        <br>
-                        <br>
-                        <br>
-                        <!-- Additional space if needed -->
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Add JavaScript to trigger form submission on dropdown change -->
-    <script>
-        document.getElementById('month').addEventListener('change', function() {
-            document.getElementById('filterForm').submit();
-        });
-
-        document.getElementById('year').addEventListener('change', function() {
-            document.getElementById('filterForm').submit();
-        });
-    </script>
 </x-app-layout>

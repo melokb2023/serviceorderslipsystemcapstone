@@ -167,7 +167,8 @@
     <input type="text" id="customer_name_filter" name="customer_name_filter" style="font-weight: bold; height: 50px;" value="{{ request('customer_name_filter') }}" placeholder="Enter Reviewer Name">
     <button type="button" class="button-green" onclick="applyFilter()">Search</button>
 </form>
-
+<br>
+<br>
 @if(count($customerrating) > 0)
     <div class="scrollable-container">
         <div class="table">

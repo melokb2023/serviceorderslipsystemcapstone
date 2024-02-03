@@ -1,3 +1,11 @@
+@if(session('success_message'))
+                        <div class="text-center mb-4">
+                            <script>
+                                // Replace this with your preferred pop-up library or implementation
+                                alert("{{ session('success_message') }}");
+                            </script>
+                        </div>
+                    @endif
 @include('layouts.customernavigation')
 
 <x-app-layout style="background-image: url('/service/serviceorderslipsystemcapstone/serviceorderslipsystemcapstone/Dark_Vector.jpg'); background-size: cover;">

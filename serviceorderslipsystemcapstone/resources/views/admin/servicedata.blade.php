@@ -1,17 +1,19 @@
+
 @include('layouts.adminnavigation')
-<x-app-layout style="background-color:#2b2b2b;">
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900 dark:text-gray-100">
-                    @if(session('success_message'))
-                        <div class="text-center mb-4">
+@if(session('success_message'))
+                        <div >
                             <script>
                                 // Replace this with your preferred pop-up library or implementation
                                 alert("{{ session('success_message') }}");
                             </script>
                         </div>
                     @endif
+<x-app-layout style="background-color:#2b2b2b;">
+    <div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6 text-gray-900 dark:text-gray-100">
+                 
                     <style>
                         body {
                             font-family: 'Helvetica Neue', Helvetica, Arial;
@@ -20,7 +22,6 @@
                             font-weight: 400;
                             color: #3b3b3b;
                             -webkit-font-smoothing: antialiased;
-                            font-smoothing: antialiased;
                             background: #2b2b2b;
                         }
 
@@ -167,11 +168,11 @@
                                 <!-- Adjust the height as needed -->
 
                                 <label for="typeofservice_filter">Type of Service:</label>
-                                <select name="typeofservice_filter" style="font-weight:bold; height: 50px;">
+                                <select name="typeofservice_filter" style="height: 50px;">
                                     <!-- Adjust the height as needed -->
                                     <option value="">All</option>
                                     @foreach($typesOfService as $typeOfService)
-                                        <option style="font-weight:bold" value="{{ $typeOfService }}"
+                                        <option value="{{ $typeOfService }}"
                                                 {{ request('typeofservice_filter') == $typeOfService ? 'selected' : '' }}>
                                             {{ $typeOfService }}
                                         </option>
@@ -179,16 +180,16 @@
                                 </select>
 
                                 <label for="serviceprogress_filter">Service Progress:</label>
-                                <select name="serviceprogress_filter" style="font-weight:bold; height: 50px;width:100px;">
+                                <select name="serviceprogress_filter" style="height: 50px;width:100px;">
                                     <!-- Adjust the height as needed -->
                                     <option value="">All</option>
-                                    <option style="font-weight:bold" value="Ongoing"
+                                    <option  value="Ongoing"
                                             {{ request('serviceprogress_filter') == 'Ongoing' ? 'selected' : '' }}>Ongoing
                                     </option>
-                                    <option style="font-weight:bold" value="Refer to Other Technicians or Shop"
+                                    <option  value="Refer to Other Technicians or Shop"
                                             {{ request('serviceprogress_filter') == 'Refer to Other Technicians or Shop' ? 'selected' : '' }}>Refer to Other Technicians or Shop
                                     </option>
-                                    <option style="font-weight:bold" value="Completed"
+                                    <option  value="Completed"
                                             {{ request('serviceprogress_filter') == 'Completed' ? 'selected' : '' }}>Completed
                                     </option>
                                 </select>
