@@ -235,40 +235,36 @@
                                     <div class="cell">{{ date('F d, Y h:i A', strtotime($serviceinfo->dateandtime)) }}</div>
                                     <div class="cell">{{ date('F d, Y h:i A', strtotime($serviceinfo->servicestarted)) }}</div>
                                     <div class="cell">{{ date('F d, Y h:i A', strtotime($serviceinfo->serviceend)) }}</div>
-                                    <div class="cell">
-                                    <div class="grid grid-cols-2 gap-4"> <!-- Adjust the gap size as needed -->
-    <div class="icon-container">
-        <a href="{{ route('service-show', ['serno' => $serviceinfo->serviceno]) }}"
-           class="bg-yellow-400 text-black font-bold p-1 rounded hover:bg-yellow-500 h-8 w-8 flex items-center justify-center text-base"
-           title="View">👁</a>
-        <span class="icon-label">View</span>
-    </div>
-    <div class="icon-container">
-        <a href="{{ route('service-edit', ['serno' => $serviceinfo->serviceno]) }}"
-           class="bg-blue-500 text-black font-bold p-1 rounded hover:bg-blue-600 h-8 w-8 flex items-center justify-center text-base"
-           title="Edit">✏</a>
-        <span class="icon-label">Edit</span>
-    </div>
-    <div class="icon-container">
-        <a href="{{ route('service-editstaff', ['serno' => $serviceinfo->serviceno]) }}"
-           class="bg-green-300 text-black font-bold p-1 rounded hover:bg-green-400 h-8 w-8 flex items-center justify-center text-decoration-none border border-blue-500 rounded-md text-base"
-           title="Change Staff">👥</a>
-        <span class="icon-label">Staff</span>
-    </div>
-    <div class="icon-container">
-        <form method="POST"
-              action="{{ route('service-delete', ['serno' => $serviceinfo->serviceno ]) }}"
-              onsubmit="return confirm('Are you sure you want to delete this record?')">
-            @csrf
-            @method('delete')
-            <button class="bg-red-500 text-black font-bold p-1 rounded hover:bg-red-600 h-8 w-8 flex items-center justify-center text-base"
-                    type="submit"
-                    title="Delete">🗑</button>
-            <span class="icon-label">Delete</span>
-        </form>
+                                    <div class="cell" style="width: 120px;">
+    <div class="grid grid-cols-2 gap-4" style="width: 120px;"> <!-- Adjust the gap size as needed -->
+        <div class="icon-container">
+            <a href="{{ route('service-show', ['serno' => $serviceinfo->serviceno]) }}"
+               class="bg-yellow-400 text-black font-bold p-1 rounded hover:bg-yellow-500 h-8 w-8 flex items-center justify-center text-lg" title="View">👁</a>
+            <span class="icon-label">View</span>
+        </div>
+        <div class="icon-container">
+            <a href="{{ route('service-edit', ['serno' => $serviceinfo->serviceno]) }}"
+               class="bg-blue-500 text-black font-bold p-1 rounded hover:bg-blue-600 h-8 w-8 flex items-center justify-center text-lg" title="Edit">✏</a>
+            <span class="icon-label">Edit</span>
+        </div>
+        <div class="icon-container">
+            <a href="{{ route('service-editstaff', ['serno' => $serviceinfo->serviceno]) }}"
+               class="bg-green-300 text-black font-bold p-1 rounded hover:bg-green-400 h-8 w-8 flex items-center justify-center text-lg" title="Change Staff">👥</a>
+            <span class="icon-label">Staff</span>
+        </div>
+        <div class="icon-container">
+            <form method="POST"
+                  action="{{ route('service-delete', ['serno' => $serviceinfo->serviceno ]) }}"
+                  onsubmit="return confirm('Are you sure you want to delete this record?')">
+                @csrf
+                @method('delete')
+                <button class="bg-red-500 text-black font-bold p-1 rounded hover:bg-red-600 h-8 w-8 flex items-center justify-center text-lg" type="submit" title="Delete">🗑</button>
+                <span class="icon-label">Delete</span>
+            </form>
+        </div>
     </div>
 </div>
-                                    </div>
+
                                 </div>
                             @empty
                                 <div class="row">
@@ -276,6 +272,8 @@
                                 </div>
                             @endforelse
                         </div>
+                        <br>
+                        <br>
                         <div style="text-align: center;">
                             <a class="button" href="{{ route('add-service') }}">START SERVICE</a>
                         </div>

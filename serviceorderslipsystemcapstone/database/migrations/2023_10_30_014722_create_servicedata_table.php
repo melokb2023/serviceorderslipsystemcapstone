@@ -17,7 +17,7 @@ return new class extends Migration
             $table->unsignedBigInteger('staffnumber');
             $table->string('typeofservice',100);
             $table->string('listofproblems',100);
-            $table->string('customerpassword',100);
+            $table->string('customerpassword',100)->nullable();
             $table->string('defectiveunits',100);
             $table->string('actionsrequired',100);
             $table->string('workprogress',100);

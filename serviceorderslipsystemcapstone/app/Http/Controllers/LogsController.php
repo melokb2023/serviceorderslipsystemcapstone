@@ -32,7 +32,7 @@ class LogsController extends Controller
         }
     
         $query->orderBy('logs.id', 'asc'); 
-        $servicedata = $query->get();
+        $servicedata = $query->paginate(10); 
     
         return view('admin.adminlogs', compact('servicedata', 'month', 'year'));
     }
@@ -57,7 +57,7 @@ class LogsController extends Controller
             'users.name',
             'users.usertype'
         )
-        ->get();
+        ->paginate(10);
 
         // Pass the logs to the view along with month and year
         return view('staff.stafflogs', compact('logs', 'month', 'year'));
@@ -88,7 +88,7 @@ public function CustomerLogs(Request $request)
             'users.name',
             'users.usertype'
         )
-        ->get();
+        ->paginate(10);
 
         // Pass the logs to the view along with month and year
         return view('customer.customerlogs', compact('logs', 'selectedMonth', 'selectedYear'));

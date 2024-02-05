@@ -1,10 +1,48 @@
 @include('layouts.staffnavigation')
+
 <x-app-layout>
     <div class="py-12">
         <div class="max-w-8xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     <style>
+                        /* Your existing styles */
+
+                        /* Pagination button styles */
+                        .pagination {
+                            margin-top: 20px;
+                            display: flex;
+                            justify-content: center;
+                        }
+
+                        .pagination a {
+                            padding: 8px 16px;
+                            margin: 0 5px;
+                            border: 1px solid #ccc;
+                            border-radius: 5px;
+                            text-decoration: none;
+                            color: #333;
+                        }
+
+                        /* Prev button style */
+                        .pagination a.prev {
+        background-color: blue;
+        color:white; /* Adjust this to your desired shade of blue */
+    }
+
+    /* Next button style */
+    .pagination a.next {
+        background-color: darkgreen;
+        color:white; /* Adjust this to your desired shade of green */
+    }
+
+    .pagination a.active {
+        background-color: #007bff;
+        color: #fff;
+        border-color: #007bff;
+    }
+
+                        /* Your existing styles */
                         body {
                             font-family: 'Helvetica Neue', Helvetica, Arial;
                             font-size: 14px;
@@ -118,6 +156,7 @@
                             font-weight: bold;
                         }
                     </style>
+
                     <div style="text-align: center;">
                         <!-- Filter Form -->
                         <form id="filterForm" method="get" action="{{ route('stafflogs') }}" class="flex items-center justify-center space-x-4">
@@ -159,10 +198,18 @@
                                 @endforeach
                             </div>
                         </div>
-                        <br>
-                        <br>
-                        <br>
-                        <!-- Additional space if needed -->
+                         <!-- Pagination links -->
+                        @if($logs->count() > 0)
+                            <div class="pagination">
+                                @if($logs->currentPage() > 1)
+                                    <a href="{{ $logs->previousPageUrl() }}" class="button prev">Prev</a>
+                                @endif
+
+                                @if($logs->nextPageUrl())
+                                    <a href="{{ $logs->nextPageUrl() }}" class="button next">Next</a>
+                                @endif
+                            </div>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -172,11 +219,11 @@
     <!-- Add JavaScript to trigger form submission on dropdown change -->
     <script>
         document.getElementById('month').addEventListener('change', function() {
-            document.getElementById('staffLogs').submit();
+            document.getElementById('filterForm').submit();
         });
 
         document.getElementById('year').addEventListener('change', function() {
-            document.getElementById('staffLogs').submit();
+            document.getElementById('filterForm').submit();
         });
     </script>
 </x-app-layout>

@@ -236,6 +236,7 @@ public function store(Request $request, $id)
 
     public function countWork()
     {
+        // Logging the access to the Staff Dashboard
         $logs = new Logs;
         $logs->userid = Auth::id(); 
         $logs->description = "Accesses the Staff Dashboard";
@@ -244,55 +245,53 @@ public function store(Request $request, $id)
        
         // Assuming you have a StaffDatabase model
         $user = Auth::user();
-
+    
+        // Count of all works assigned to the staff
         $staffDatabaseCount = Service::whereHas('staff.user', function ($query) use ($user) {
             $query->where('id', $user->id);
         })->count();
-        
+    
+        // Count of ongoing works assigned to the staff
         $ongoingWorksCount = Service::whereHas('staff.user', function ($query) use ($user) {
             $query->where('id', $user->id);
         })->where('workprogress', 'Ongoing')->count();
         
+        // Count of completed works assigned to the staff
         $completedWorksCount = Service::whereHas('staff.user', function ($query) use ($user) {
             $query->where('id', $user->id);
         })->where('workprogress', 'Completed')->count();
-
+    
+        // Count of works for each month (ongoing and completed)
+        $data = [];
+        $months = [
+            '01' => 'January', '02' => 'February', '03' => 'March', '04' => 'April',
+            '05' => 'May', '06' => 'June', '07' => 'July', '08' => 'August',
+            '09' => 'September', '10' => 'October', '11' => 'November', '12' => 'December'
+        ];
         
-    
-        $currentMonth = now()->format('m'); // Assuming you have Carbon installed for the now() function
-    
-        // Define an array of months for counting
-        $months = [
-            '01' => 'January', '02' => 'February', '03' => 'March', '04' => 'April',
-            '05' => 'May', '06' => 'June', '07' => 'July', '08' => 'August',
-            '09' => 'September', '10' => 'October', '11' => 'November', '12' => 'December'
-        ];
-    
-        $data = [];
-    
-        $months = [
-            '01' => 'January', '02' => 'February', '03' => 'March', '04' => 'April',
-            '05' => 'May', '06' => 'June', '07' => 'July', '08' => 'August',
-            '09' => 'September', '10' => 'October', '11' => 'November', '12' => 'December'
-        ];
-    
-        $data = [];
-    
         foreach ($months as $monthNumber => $monthName) {
-            // Count the number of works for each month for the authenticated user
-            $count = DB::table('servicedata')
-                ->join('stafflist', 'servicedata.staffnumber', '=', 'stafflist.staffnumber') // Adjust the join condition based on your actual foreign key relationship
-                ->join('staffwork', 'servicedata.serviceno', '=', 'staffwork.serviceno')
-                ->where('stafflist.id', $user->id) // Assuming 'id' is the user ID in stafflist, adjust accordingly
-                ->whereMonth('staffwork.workstarted', $monthNumber)
-                ->count();
-        
-            $data[$monthName] = $count;
+            // Count ongoing works for each month
+            $ongoingCount = Service::whereHas('staff.user', function ($query) use ($user) {
+                $query->where('id', $user->id);
+            })->where('workprogress', 'Ongoing')
+              ->whereMonth('created_at', $monthNumber)
+              ->count();
+    
+            // Count completed works for each month
+            $completedCount = Service::whereHas('staff.user', function ($query) use ($user) {
+                $query->where('id', $user->id);
+            })->where('workprogress', 'Completed')
+              ->whereMonth('created_at', $monthNumber)
+              ->count();
+    
+            $data[$monthName] = [
+                'Ongoing' => $ongoingCount,
+                'Completed' => $completedCount,
+            ];
         }
     
         return view('staff.staffdashboard', compact('staffDatabaseCount', 'data', 'ongoingWorksCount', 'completedWorksCount'));
     }
-
 public function getAvailableServiceNumbers()
 {
     // Get the authenticated user's ID

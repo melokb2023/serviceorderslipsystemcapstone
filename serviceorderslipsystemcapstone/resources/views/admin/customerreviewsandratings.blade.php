@@ -242,12 +242,12 @@
                             @endif
                         </div>
                         <div class="cell">
-                            <a style="background-color: #f6e05e; height: 0.20rem;"
-                                class="mt-4 text-black font-bold py-2 px-4 rounded mr-4"
-                                href="{{ route('customerrating-show', ['cr' => $customer->ratingno]) }}"
-                                title="View">
-                                👁
-                            </a>
+                        <a style="background-color: #f6e05e; height: 2rem; width: 2rem; display: flex; justify-content: center; align-items: center; border-radius: 50%;"
+    class="mt-4 text-black font-bold rounded"
+    href="{{ route('customerrating-show', ['cr' => $customer->ratingno]) }}"
+    title="View">
+    👁
+</a>
                         </div>
                     </div>
                 @endforeach

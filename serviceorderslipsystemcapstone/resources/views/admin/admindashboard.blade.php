@@ -94,19 +94,6 @@
         <!-- Chart Section -->
         <div style="background-color: #e9e9e9;">
         <h2 class="text-2xl font-bold mb-4 text-center" style="color: black;">Service Performance Chart</h2>
-        <h2 class="text-2xl font-bold mb-4 text-center" style="color: black;">
-                            {{ $serviceCount }} Total Number of Services
-                        </h2>
-                        <h2 class="text-2xl font-bold mb-4 text-center" style="color: black;">
-                            {{ $ongoingCount }} Ongoing Services
-                        </h2>
-                        <h2 class="text-2xl font-bold mb-4 text-center" style="color: black;">
-                            {{ $completedCount }} Completed Services
-                        </h2>
-                        <h2 class="text-2xl font-bold mb-4 text-center" style="color: black;">
-                            {{ $referCount }} Refer to Technician Services
-                        </h2>
-
             <canvas id="servicePerformanceChart"></canvas>
         </div>
         <br>
@@ -115,37 +102,58 @@
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        var ctx = document.getElementById('servicePerformanceChart').getContext('2d');
-        // Manually encode the PHP data into JSON format
-        var rawData = '{!! json_encode($data, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP | JSON_UNESCAPED_UNICODE | JSON_NUMERIC_CHECK) !!}';
-        var data = JSON.parse(rawData);
-        var labels = Object.keys(data);
-        var values = Object.values(data);
-        var myBarChart = new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: labels,
-                datasets: [{
-                    label: 'Count',
-                    data: values,
-                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+document.addEventListener('DOMContentLoaded', function () {
+    var ctx = document.getElementById('servicePerformanceChart').getContext('2d');
+    // Manually encode the PHP data into JSON format
+    var rawData = '{!! json_encode($data, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP | JSON_UNESCAPED_UNICODE | JSON_NUMERIC_CHECK) !!}';
+    var data = JSON.parse(rawData);
+    var labels = Object.keys(data);
+    
+    var myBarChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: labels,
+            datasets: [
+                {
+                    label: 'Ongoing',
+                    data: labels.map(function(month) { return data[month]['Ongoing']; }),
+                    backgroundColor: 'rgba(255, 206, 86, 0.5)',
+                    borderColor: 'rgba(255, 206, 86, 1)',
+                    borderWidth: 1
+                },
+                {
+                    label: 'Completed',
+                    data: labels.map(function(month) { return data[month]['Completed']; }),
+                    backgroundColor: 'rgba(75, 192, 192, 0.5)',
                     borderColor: 'rgba(75, 192, 192, 1)',
                     borderWidth: 1
-                }]
-            },
-            options: {
-                scales: {
-                    y: {
-                        ticks: {
-                            precision: 0
-                        }
+                },
+                {
+                    label: 'Refer to Other Technicians or Shop',
+                    data: labels.map(function(month) { return data[month]['Refer to Other Technicians or Shop']; }),
+                    backgroundColor: 'rgba(255, 99, 132, 0.5)',
+                    borderColor: 'rgba(255, 99, 132, 1)',
+                    borderWidth: 1
+                }
+            ]
+        },
+        options: {
+            scales: {
+                y: {
+                    stacked: true,
+                    ticks: {
+                        precision: 0
                     }
+                },
+                x: {
+                    stacked: true
                 }
             }
-        });
+        }
     });
+});
 </script>
+
 <script>
         // Count and update the total number of service types
         document.getElementById('totalServiceTypes').innerText = document.getElementById('serviceList').childElementCount + ' Total Number of Service Types';

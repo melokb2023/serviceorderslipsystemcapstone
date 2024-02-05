@@ -1,8 +1,10 @@
-<x-guest-layout>
-    <x-slot name="logo">
-        <!-- You can add a logo here if needed -->
-    </x-slot>
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <!-- Your CSS styles -->
     <style>
         /* Your CSS styles */
         * {
@@ -133,63 +135,72 @@
             text-decoration: underline;
         }
     </style>
+</head>
+<body>
+    <x-guest-layout>
+        <x-slot name="logo">
+            <!-- You can add a logo here if needed -->
+        </x-slot>
 
-    <div class="center">
-        <h1>Register</h1>
-        <form method="POST" action="{{ route('register') }}">
-            @csrf
-            <div class="txt_field">
-                <x-input id="name" type="text" name="name" :value="old('name')" required autofocus />
-                <span></span>
-                <label>Name</label>
+        <div class="center">
+            <h1>Register</h1>
+            <form method="POST" action="{{ route('register') }}">
+                @csrf
+                <!-- Your form fields -->
+                <div class="txt_field">
+                    <x-input id="name" type="text" name="name" :value="old('name')" required autofocus />
+                    <span></span>
+                    <label>Name</label>
+                </div>
+                @php
+                    $isAdminExists = \App\Models\User::where('usertype', 'admin')->exists();
+                @endphp
+                <!-- Add the usertype field dynamically -->
+                <div class="txt_field">
+                    <select id="usertype" name="usertype" required>
+                        <option value="staff" {{ old('usertype') === 'staff' ? 'selected' : '' }}>Staff</option>
+                        <option value="customer" {{ old('usertype') === 'customer' ? 'selected' : '' }}>Customer</option>
+                        @if (!$isAdminExists)
+                            <option value="admin" {{ old('usertype') === 'admin' ? 'selected' : '' }}>Admin</option>
+                        @endif
+                    </select>
+                    <span></span>
+                    <label>User Type</label>
+                </div>
+                <div class="txt_field">
+                    <x-input id="email" type="email" name="email" :value="old('email')" required />
+                    <span></span>
+                    <label>Email</label>
+                </div>
+                <div class="txt_field">
+                    <x-input id="phone" type="tel" name="phone" :value="old('phone')" required />
+                    <span></span>
+                    <label>Phone</label>
+                </div>
+                <div class="txt_field">
+                    <x-input id="address" type="text" name="address" :value="old('address')" required />
+                    <span></span>
+                    <label>Address</label>
+                </div>
+                <div class="txt_field">
+                    <x-input id="password" type="password" name="password" required autocomplete="new-password" />
+                    <span></span>
+                    <label>Password</label>
+                    <i id="password-eye" class="fa fa-eye pass-toggle" onclick="togglePassword('password', 'password-eye')"></i>
+                </div>
+                <div class="txt_field">
+                    <x-input id="password_confirmation" type="password" name="password_confirmation" required autocomplete="new-password" />
+                    <span></span>
+                    <label>Confirm Password</label>
+                    <i id="confirm-password-eye" class="fa fa-eye pass-toggle" onclick="togglePassword('password_confirmation', 'confirm-password-eye')"></i>
+                </div>
+                <input type="submit" value="Register" class="custom-login-button">
+            </form>
+            <div class="signup_link">
+                <span>Already have an account? </span>
+                <a href="{{ route('login') }}">Login</a>
             </div>
-            @php
-                $isAdminExists = \App\Models\User::where('usertype', 'admin')->exists();
-            @endphp
-            <!-- Add the usertype field dynamically -->
-            <div class="txt_field">
-                <select id="usertype" name="usertype" required>
-                    <option value="staff" {{ old('usertype') === 'staff' ? 'selected' : '' }}>Staff</option>
-                    <option value="customer" {{ old('usertype') === 'customer' ? 'selected' : '' }}>Customer</option>
-                    @if (!$isAdminExists)
-                        <option value="admin" {{ old('usertype') === 'admin' ? 'selected' : '' }}>Admin</option>
-                    @endif
-                </select>
-                <span></span>
-                <label>User Type</label>
-            </div>
-            <div class="txt_field">
-                <x-input id="email" type="email" name="email" :value="old('email')" required />
-                <span></span>
-                <label>Email</label>
-            </div>
-            <div class="txt_field">
-                <x-input id="phone" type="tel" name="phone" :value="old('phone')" required />
-                <span></span>
-                <label>Phone</label>
-            </div>
-            <div class="txt_field">
-                <x-input id="address" type="text" name="address" :value="old('address')" required />
-                <span></span>
-                <label>Address</label>
-            </div>
-      <div class="txt_field">
-    <x-input id="password" type="password" name="password" required autocomplete="new-password" />
-    <span></span>
-    <label>Password</label>
-    <i id="password-eye" class="fa fa-eye pass-toggle" onclick="togglePassword('password', 'password-eye')"></i>
-</div>
-<div class="txt_field">
-    <x-input id="password_confirmation" type="password" name="password_confirmation" required autocomplete="new-password" />
-    <span></span>
-    <label>Confirm Password</label>
-    <i id="confirm-password-eye" class="fa fa-eye pass-toggle" onclick="togglePassword('password_confirmation', 'confirm-password-eye')"></i>
-</div>
-            <input type="submit" value="Register" class="custom-login-button">
-        </form>
-        <div class="signup_link">
-            <span>Already have an account? </span>
-            <a href="{{ route('login') }}">Login</a>
         </div>
-    </div>
-</x-guest-layout>
+    </x-guest-layout>
+</body>
+</html>

@@ -1,6 +1,6 @@
-@include('layouts.adminnavigation')
-
 <x-app-layout>
+
+    @include('layouts.adminnavigation')
 
     <div class="py-12">
         <div class="max-w-8xl mx-auto sm:px-6 lg:px-8">
@@ -89,7 +89,6 @@
                             font-size: 16px;
                             cursor: pointer;
                             transition: transform 0.2s ease-in-out;
-                            background-color: green;
                             font-weight: bold;
                         }
 
@@ -113,6 +112,41 @@
                             color: black;
                             font-weight: bold;
                         }
+
+                        /* Pagination styles */
+                        .pagination {
+                            margin-top: 20px;
+                            display: flex;
+                            justify-content: center;
+                        }
+
+                        .pagination a {
+                            padding: 8px 16px;
+                            margin: 0 5px;
+                            border: 1px solid #ccc;
+                            border-radius: 5px;
+                            text-decoration: none;
+                            color: #333;
+                        }
+
+                        /* Prev button style */
+                        .pagination a.prev {
+                            background-color: blue;
+                            color: white; /* Adjust this to your desired shade of blue */
+                        }
+
+                        /* Next button style */
+                        .pagination a.next {
+                            background-color: darkgreen;
+                            color: white; /* Adjust this to your desired shade of green */
+                        }
+
+                        .pagination a.active {
+                            background-color: #007bff;
+                            color: #fff;
+                            border-color: #007bff;
+                        }
+
                     </style>
 
                     <div style="text-align: center;">
@@ -158,6 +192,18 @@
                                     @endforeach
                                 </div>
                             </div>
+
+                            <!-- Pagination links -->
+                            <div class="pagination">
+                                @if($servicedata->currentPage() > 1)
+                                    <a href="{{ $servicedata->previousPageUrl() }}" class="button prev">Prev</a>
+                                @endif
+
+                                @if($servicedata->nextPageUrl())
+                                    <a href="{{ $servicedata->nextPageUrl() }}" class="button next">Next</a>
+                                @endif
+                            </div>
+
                         @else
                             <p>No records found.</p>
                         @endif

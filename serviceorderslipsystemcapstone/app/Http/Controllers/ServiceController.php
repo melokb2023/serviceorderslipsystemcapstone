@@ -575,12 +575,12 @@ public function getAvailableStaffNumbers()
     public function countAll()
 {
     $logs = new Logs;
-                $logs->userid = Auth::id(); 
-                $logs->description = "Accessed the Admin Dashobard";
-                $logs->actiondatetime = now();
-                $logs->save();
-                $typesOfServicesCount = Service::distinct('typeofservice')->count();
-
+    $logs->userid = Auth::id(); 
+    $logs->description = "Accessed the Admin Dashboard";
+    $logs->actiondatetime = now();
+    $logs->save();
+    
+    $typesOfServicesCount = Service::distinct('typeofservice')->count();
     $customerAppointmentsCount = CustomerAppointment::count();
     $serviceDataCount = Service::count();
     $ratingsCount = Rating::count();
@@ -588,8 +588,6 @@ public function getAvailableStaffNumbers()
     $ongoingCount = Service::where('serviceprogress', 'Ongoing')->count();
     $completedCount = Service::where('serviceprogress', 'Completed')->count();
     $referCount = Service::where('serviceprogress', 'Refer to Other Technicians or Shop')->count();
-    
-   
     
     $months = [
         '01' => 'January', '02' => 'February', '03' => 'March', '04' => 'April',
@@ -600,16 +598,30 @@ public function getAvailableStaffNumbers()
     $data = [];
 
     foreach ($months as $monthNumber => $monthName) {
-        // Count the number of job orders for each month
-        $count = DB::table('servicedata')
+        // Count the number of job orders for each service progress status for each month
+        $ongoingCount = Service::where('serviceprogress', 'Ongoing')
             ->whereMonth('created_at', $monthNumber)
             ->count();
 
-        $data[$monthName] = $count;
+        $completedCount = Service::where('serviceprogress', 'Completed')
+            ->whereMonth('created_at', $monthNumber)
+            ->count();
+
+        $referCount = Service::where('serviceprogress', 'Refer to Other Technicians or Shop')
+            ->whereMonth('created_at', $monthNumber)
+            ->count();
+
+        // Store the counts for each service progress status in the data array
+        $data[$monthName] = [
+            'Ongoing' => $ongoingCount,
+            'Completed' => $completedCount,
+            'Refer to Other Technicians or Shop' => $referCount
+        ];
     }
 
-    return view('admin.admindashboard', compact('typesOfServicesCount', 'customerAppointmentsCount', 'serviceDataCount', 'ratingsCount','data','serviceCount', 'ongoingCount', 'completedCount', 'referCount'));
+    return view('admin.admindashboard', compact('typesOfServicesCount', 'customerAppointmentsCount', 'serviceDataCount', 'ratingsCount', 'data', 'serviceCount', 'ongoingCount', 'completedCount', 'referCount'));
 }
+
 
 public function LineChart2()
 {

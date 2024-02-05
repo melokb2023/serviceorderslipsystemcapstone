@@ -8,46 +8,60 @@
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     <!-- Filter Form -->
                     <div style="text-align: center;">
-                    <form id="filterForm" method="get" action="{{ route('customerlogs') }}" class="flex items-center justify-center space-x-4">
-                        @csrf
-                        <label for="month" class="text-sm font-semibold">Select Month:</label>
-                        <select name="month" id="month" class="border border-gray-300 rounded px-2 py-2">
-                            @for ($i = 1; $i <= 12; $i++)
-                                <option value="{{ $i }}" @if ($i == $selectedMonth) selected @endif>{{ date('F', mktime(0, 0, 0, $i, 1)) }}</option>
-                            @endfor
-                        </select>
+                        <form id="filterForm" method="get" action="{{ route('customerlogs') }}" class="flex items-center justify-center space-x-4">
+                            @csrf
+                            <label for="month" class="text-sm font-semibold">Select Month:</label>
+                            <select name="month" id="month" class="border border-gray-300 rounded px-2 py-2">
+                                @for ($i = 1; $i <= 12; $i++)
+                                    <option value="{{ $i }}" @if ($i == $selectedMonth) selected @endif>{{ date('F', mktime(0, 0, 0, $i, 1)) }}</option>
+                                @endfor
+                            </select>
 
-                        <label for="year" class="text-sm font-semibold">Select Year:</label>
-                        <select name="year" id="year" class="border border-gray-300 rounded px-2 py-2">
-                            @php
-                                $currentYear = date('Y');
-                            @endphp
-                            @for ($i = 2000; $i <= 2099; $i++)
-                                <option value="{{ $i }}" @if ($i == $selectedYear) selected @endif>{{ $i }}</option>
-                            @endfor
-                        </select>
-                    </form>
-                    <!-- End Filter Form -->
+                            <label for="year" class="text-sm font-semibold">Select Year:</label>
+                            <select name="year" id="year" class="border border-gray-300 rounded px-2 py-2">
+                                @php
+                                    $currentYear = date('Y');
+                                @endphp
+                                @for ($i = 2000; $i <= 2099; $i++)
+                                    <option value="{{ $i }}" @if ($i == $selectedYear) selected @endif>{{ $i }}</option>
+                                @endfor
+                            </select>
+                        </form>
+                        <!-- End Filter Form -->
 
-                    <div class="wrapper" id="customerLogsContainer">
-                        <div class="table" id="customerLogs">
-                            <div class="row header">
-                            <div class="user-id-cell">User ID</div>
-                                    <div class="cell name-cell"> Name</div> <!-- Adjusted width for Name cell -->
-                                    <div class="cell type-cell"> User Type </div>
-                                    <div class="cell description-cell"> Description </div> <!-- Adjusted width for Description cell -->
-                                    <div class="cell"> Action Date and Time </div>
+                        <div class="wrapper" id="customerLogsContainer">
+                            <div class="table" id="customerLogs">
+                                <div class="row header">
+                                    <div class="user-id-cell">User ID</div>
+                                    <div class="cell name-cell">Name</div> <!-- Adjusted width for Name cell -->
+                                    <div class="cell type-cell">User Type</div>
+                                    <div class="cell description-cell">Description</div> <!-- Adjusted width for Description cell -->
+                                    <div class="cell">Action Date and Time</div>
+                                </div>
+                                @foreach($logs as $customer)
+                                    <div class="row">
+                                        <div class="user-id-cell">{{ $customer->userid }}</div>
+                                        <div class="cell name-cell">{{ $customer->name}}</div>
+                                        <div class="cell type-cell">{{ $customer->usertype}}</div>
+                                        <div class="cell description-cell">{{ $customer->description}}</div>
+                                        <div class="cell">{{ date('F d, Y h:i:s A', strtotime($customer->actiondatetime)) }}</div>
+                                    </div>
+                                @endforeach
                             </div>
-                            @foreach($logs as $customer)
-                            <div class="row">
-                            <div class="user-id-cell">{{ $customer->userid }}</div>
-                            <div class = "cell name-cell">{{ $customer->name}}</div>
-                            <div class="cell type-cell">{{ $customer->usertype}}</div>
-                            <div class = "cell description-cell">{{ $customer->description}}</div>
-                            <div class = "cell">{{ date('F d, Y h:i:s A', strtotime($customer->actiondatetime)) }}</div>
-                            </div>
-                            @endforeach
                         </div>
+
+                        <!-- Pagination -->
+                        <div class="pagination">
+                            @if($logs->previousPageUrl())
+                                <a href="{{ $logs->previousPageUrl() }}" class="button prev">Prev</a>
+                            @endif
+
+                            @if($logs->nextPageUrl())
+                                <a href="{{ $logs->nextPageUrl() }}" class="button next">Next</a>
+                            @endif
+                        </div>
+                        <!-- End Pagination -->
+
                     </div>
                 </div>
             </div>
@@ -65,8 +79,9 @@
         });
     </script>
 
-<style>
-                        body {
+    <style>
+           /* Your existing styles */
+           body {
                             font-family: 'Helvetica Neue', Helvetica, Arial;
                             font-size: 14px;
                             line-height: 20px;
@@ -87,6 +102,7 @@
                             margin: 0 auto;
                             padding: 22px;
                             max-width: 100%;
+                            overflow-x: auto;
                         }
 
                         .table {
@@ -112,10 +128,6 @@
                             background: #2980b9;
                         }
 
-                        .user-id-cell {
-                            width: 10%; /* Adjusted width for User ID cell */
-                        }
-
                         .cell {
                             padding: 6px 12px;
                             display: table-cell;
@@ -124,17 +136,13 @@
                             text-overflow: ellipsis;
                         }
 
-                        /* Adjusted widths for Name and Type cells */
+                        /* Adjusted widths for Name and Description cells */
                         .name-cell {
                             width: 20%;
                         }
 
-                        .type-cell {
-                            width: 20%; /* Adjusted width for User Type cell */
-                        }
-
                         .description-cell {
-                            width: 40%; /* Adjusted width for Description cell */
+                            width: 40%;
                         }
 
                         @media screen and (max-width: 580px) {
@@ -178,5 +186,39 @@
                             color: black;
                             font-weight: bold;
                         }
-                    </style>
+
+                        /* Pagination styles */
+                        .pagination {
+                            margin-top: 20px;
+                            display: flex;
+                            justify-content: center;
+                        }
+
+                        .pagination a {
+        padding: 8px 16px;
+        margin: 0 5px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        text-decoration: none;
+        color: #333;
+    }
+
+    /* Prev button style */
+    .pagination a.prev {
+        background-color: blue;
+        color:white; /* Adjust this to your desired shade of blue */
+    }
+
+    /* Next button style */
+    .pagination a.next {
+        background-color: darkgreen;
+        color:white; /* Adjust this to your desired shade of green */
+    }
+
+    .pagination a.active {
+        background-color: #007bff;
+        color: #fff;
+        border-color: #007bff;
+    }
+    </style>
 </x-app-layout>
