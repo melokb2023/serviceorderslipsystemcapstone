@@ -54,7 +54,7 @@ class StaffDatabaseController extends Controller
             'staffwork.workstarted',
             'servicedata.workprogress as workprogress' // Update this line
         )
-        ->where('staff.id', '=', Auth::user()->id);
+        ->where('staff.id', '=', Auth::user()->id) ->orderBy('staffwork.worknumber', 'desc');
             
 
         // Rest of your code...
@@ -171,6 +171,11 @@ public function store(Request $request, $id)
         ->update([
             'actionstaken' => $request->xactionstaken,
         ]);
+    Service::where('serviceno', $id)
+        ->update([
+            'serviceremarks' => $request->xactionstaken, // Assuming you want to update serviceremarks with actions taken
+        ]);
+
 
     // Retrieve the corresponding CustomerAppointment record
     $customerappointment = CustomerAppointment::where('customerappointmentnumber', $id)->first();

@@ -212,16 +212,16 @@
 
                             <div class="form-group" style="text-align:center; display: none;" id="serviceEndGroup">
                                 <label for="serviceend">Service End Date</label>
-                                <input type="datetime-local" name="xserviceend" value="{{$serviceinfo->serviceend}}" required readonly>
+                                <input type="datetime-local" name="xserviceend" value="{{$serviceinfo->serviceend}}" required>
                             </div>
 
                             <!-- Row group for Service Remarks -->
                             <div class="form-row">
-                                <div class="form-group">
-                                    <label for="Service Remarks">Service Report</label>
-                                    <input class="textexpand2" type="text" name="xserviceremarks" value="{{$serviceinfo->serviceremarks}}" readonly />
-                                </div>
-                            </div>
+    <div class="form-group">
+        <label for="Service Remarks">Service Report</label>
+        <input class="textexpand2" type="text" name="xserviceremarks" value="{{ $serviceinfo->serviceremarks }}" readonly />
+    </div>
+</div>
 
                             <button type="submit" id="submitBtn"  style="text-align:center;background-color:green">Update Info</button>
                         </form>

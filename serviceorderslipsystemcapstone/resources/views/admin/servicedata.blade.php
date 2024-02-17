@@ -211,7 +211,7 @@
                                 <div class="cell">Customer Name</div>
                                 <div class="cell">Work Progress</div>
                                 <div class="cell">Service Progress</div>
-                                <div class="cell">Service Remarks</div>
+                                <div class="cell">Service Report</div>
                                 <div class="cell">Date and Time</div>
                                 <div class="cell">Service Started</div>
                                 <div class="cell">Service End Date</div>

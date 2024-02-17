@@ -26,7 +26,10 @@
     height: auto; /* Set the height to auto to allow it to expand based on content */
     width: 100%; /* Set the width to 100% to extend the length of the navigation bar */
         }
-
+        .nav-container {
+    display: flex;
+    align-items: center;
+}
         .top-nav-link {
             text-decoration: none;
             color:white;
@@ -43,15 +46,16 @@
         }
 
         .user-card {
-        width: 200px;
-        height: 50px;
-        background-color: #fff;
-        border-radius: 10px;
-        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-        padding: 10px;
-        margin: 10px;
-        color: #333;
-    }
+    display: flex;
+    align-items: center; /* Center vertically */
+    justify-content: center; /* Center horizontally */
+    font-size: 14px;
+    padding: 10px;
+    height: 30px; /* Set the desired height */
+    width: auto; /* Let the width adjust to the content */
+    background-color: white; /* Set background color to white */
+    color: black; /* Set text color to black */
+}
     </style>
 </head>
 
@@ -65,20 +69,20 @@
           
                 <!-- Top Navigation Links -->
                 <div class="top-nav">
-                <div class="user-card" style="font-size: 14px; padding: 10px; height: 30px; width: auto;">
+                <div class="user-card">
                 <span>{{ Auth::user()->name }}</span>
     <!-- Add any additional user information here -->
 </div>
 <a class="top-nav-link" href="{{ route('staffdashboard') }}" :active="request()->routeIs('staffdashboard')">
-    <i class="fa fa-home"></i>{{ __('DASHBOARD') }}
+    <i class="fa fa-home" style="margin-right: 5px;"></i>{{ __('DASHBOARD') }}
 </a>
 
 <a class="top-nav-link" href="{{ route('staffdatabase') }}" :active="request()->routeIs('staffdatabase')">
-    <i class="fa fa-list"></i>{{ __('STAFF WORK') }}
+    <i class="fa fa-list" style="margin-right: 5px;"></i>{{ __('STAFF WORK') }}
 </a>
 
 <a class="top-nav-link" href="{{ route('stafflogs') }}" :active="request()->routeIs('stafflogs')">
-    <i class="fa fa-history"></i>{{ __('LOGS') }}
+    <i class="fa fa-history" style="margin-right: 5px;"></i>{{ __('LOGS') }}
 </a>
                  
                 </div>

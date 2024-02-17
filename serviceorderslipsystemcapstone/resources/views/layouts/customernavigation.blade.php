@@ -41,16 +41,18 @@
     background-color: rgba(255, 255, 255, 0.2);
     border-radius: 5px;
 }
+
 .user-card {
-        width: 200px;
-        height: 50px;
-        background-color: #fff;
-        border-radius: 10px;
-        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-        padding: 10px;
-        margin: 10px;
-        color: #333;
-    }
+    display: flex;
+    align-items: center; /* Center vertically */
+    justify-content: center; /* Center horizontally */
+    font-size: 14px;
+    padding: 10px;
+    height: 30px; /* Set the desired height */
+    width: auto; /* Let the width adjust to the content */
+    background-color: white; /* Set background color to white */
+    color: black; /* Set text color to black */
+}
     </style>
 </head>
 

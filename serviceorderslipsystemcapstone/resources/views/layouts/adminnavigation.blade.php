@@ -13,10 +13,17 @@
 }
 
 .top-nav {
-        overflow-x: auto; /* Enable horizontal scrolling */
-      /* Prevent line breaks */
-        font-weight:bold;
-    }
+            font-weight: bold;
+            overflow: hidden;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            transition: all 0.3s ease;
+            color:white;
+            padding: 20px; /* Adjust the padding to increase the size of the navigation bar */
+    height: auto; /* Set the height to auto to allow it to expand based on content */
+    width: 100%; /* Set the width to 100% to extend the length of the navigation bar */
+        }
     .active {
     opacity: 0.6; /* Adjust the opacity value as needed */
 }
@@ -30,17 +37,15 @@
 
     }
 
-    .user-card {
-        width: 200px;
-        height: 50px;
-        background-color: #fff;
-        border-radius: 10px;
-        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-        padding: 10px;
-        margin: 10px;
-        color: #333;
-    }
-
+   .user-card {
+    font-size: 14px;
+    padding: 10px;
+    height: 30px;
+    width: auto;
+    background-color: white;
+    color: black;
+    margin-right: 20px; /* Adjust the right margin to create distance */
+}
     .top-nav-link:hover {
         border-color: #fff;
         background-color: rgba(255, 255, 255, 0.2);
