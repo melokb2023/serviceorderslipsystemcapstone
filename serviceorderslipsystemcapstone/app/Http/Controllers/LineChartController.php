@@ -120,6 +120,8 @@ class LineChartController extends Controller
 
     }
 
+
+
     public function BarChart2($selectedStaff = null)
     {
         // Get all unique staff names from the database
@@ -132,7 +134,7 @@ class LineChartController extends Controller
     
         // Fetch data for each staff and build an array for the chart
         $chartData = [];
-    
+        
         foreach ($staffNames as $staffName) {
             $data = [];
     
@@ -144,11 +146,12 @@ class LineChartController extends Controller
     
                     foreach ($scores as $score) {
                         // Use relationships and correct column names
-                        $count = Rating::whereHas('service.staff.user', function ($query) use ($staffName, $year, $month, $score) {
-                            $query->where('name', $staffName)
-                                ->whereYear('created_at', $year)
-                                ->whereMonth('created_at', $month);
-                        })->where('staffperformance', $score);
+                        $count = Rating::whereHas('service.staff.user', function ($query) use ($staffName) {
+                            $query->where('name', $staffName);
+                        })
+                        ->where('staffperformance', $score)
+                        ->whereYear('created_at', $year)
+                        ->whereMonth('created_at', $month);
     
                         // Check if a specific staff member is selected
                         if ($selectedStaff !== null) {
@@ -177,6 +180,7 @@ class LineChartController extends Controller
     
         return view('admin.ratinggraphstaff', compact('chartData', 'staffNames'));
     }
+}    
     
 
-}
+

@@ -202,6 +202,7 @@ button[type=submit]:hover {
                              <div class="form-group">
                                 <label for="customer-password">Customer Password</label>
                                 <input type="password" name="xcustomerpassword" value="{{ old('xcustomerpassword') }}" required/>
+                                <small style = "color:white">If you have a password, please kindly indicate it here so that we can start the process of service.</small>
                             </div>
                         </div>
                           <div class="form-row">
@@ -222,7 +223,11 @@ button[type=submit]:hover {
                             <label for="servicestarted">Service Started</label>
                             <input type="datetime-local" name="xservicestarted"  value="{{old('xservicestarted')}}" required>
                         </div>
-                       
+                        <p style="display: flex; align-items: left;color:white;">PRIVACY NOTICE</p>
+                        <div class="form-group" style="display: flex; align-items: center;">
+    <input type="checkbox" id="confidentialityCheckbox" name="confidentialityCheckbox" style="margin-right: 5px; width: 20px; height: 20px;">
+    <label for="confidentiality" style="margin-bottom: 0;">We from CompuSource make sure that all of the personal information you have provided are secured and confidential. With your consent, we collect the necessary personal information with the intent to fulfill its purpose.</label>
+</div>
 
                        
                         <button type="submit" id="submitBtn" style="width: 100%; background-color: #04AA6D; color: white; padding: 12px; border: none; border-radius: 4px; cursor: pointer; font-size: 16px; text-align: center;">Submit Info</button>
@@ -236,6 +241,24 @@ button[type=submit]:hover {
     document.addEventListener('DOMContentLoaded', function () {
         const submitButton = document.getElementById('submitBtn');
         const serviceForm = document.getElementById('serviceForm');
+        const confidentialityCheckbox = document.getElementById('confidentialityCheckbox');
+        function updateButtonStyle() {
+            if (confidentialityCheckbox.checked) {
+                submitButton.disabled = false;
+                submitButton.style.opacity = '1'; // Fully visible
+            } else {
+                submitButton.disabled = true;
+                submitButton.style.opacity = '0.5'; // Dimmed
+            }
+        }
+        
+        // Call the function initially to set button style
+        updateButtonStyle();
+        
+        confidentialityCheckbox.addEventListener('change', function () {
+            updateButtonStyle(); // Update button style on checkbox change
+        });
+
 
         submitButton.addEventListener('click', function () {
             // Check for duplicate data here if needed

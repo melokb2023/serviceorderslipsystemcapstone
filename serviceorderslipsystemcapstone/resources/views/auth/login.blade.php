@@ -129,6 +129,18 @@
 <body>
 <div class="center">
     <h1>Login</h1>
+    @if (session('status'))
+                <div class="mb-4 font-medium text-sm text-green-600">
+                    {{ session('status') }}
+                </div>
+            @endif
+            @if(session('success_message'))
+                <div>
+                    <script>
+                        alert("{{ session('success_message') }}");
+                    </script>
+                </div>
+            @endif
     @error('email')
         <div class="error-message">
             @if($message == 'These credentials do not match our records.')

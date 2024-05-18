@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
 
+
 class Rating extends Model
 {
     use HasFactory;
@@ -28,4 +29,8 @@ class Rating extends Model
     {
         return $this->belongsTo(Service::class, 'serviceno', 'serviceno');
     }
+    public function staff()
+{
+    return $this->belongsTo(Staff::class, 'staffnumber', 'staffnumber');
+}
 }

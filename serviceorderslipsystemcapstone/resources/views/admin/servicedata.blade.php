@@ -1,20 +1,19 @@
-
 @include('layouts.adminnavigation')
 @if(session('success_message'))
-                        <div >
-                            <script>
-                                // Replace this with your preferred pop-up library or implementation
-                                alert("{{ session('success_message') }}");
-                            </script>
-                        </div>
-                    @endif
+    <div>
+        <script>
+            // Replace this with your preferred pop-up library or implementation
+            alert("{{ session('success_message') }}");
+        </script>
+    </div>
+@endif
 <x-app-layout style="background-color:#2b2b2b;">
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
-                 
                     <style>
+                        /* Your existing CSS code here */
                         body {
                             font-family: 'Helvetica Neue', Helvetica, Arial;
                             font-size: 14px;
@@ -34,21 +33,15 @@
 
                         .wrapper {
                             margin: 0 auto;
-                            width:100%;
-                            text-align: center; /* Center align content */
+                            width: 100%;
+                            text-align: center;
                         }
 
                         .table {
-                            margin: 0 auto; /* Center align table */
-                            width: 100%; /* Set table width to 100% */
+                            margin: 0 auto;
+                            width: 100%;
                             box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
                             display: table;
-                        }
-
-                        @media screen and (max-width: 580px) {
-                            .table {
-                                display: block;
-                            }
                         }
 
                         .row {
@@ -66,56 +59,6 @@
                             background: #2980b9;
                         }
 
-                        .row.green {
-                            background: #27ae60;
-                        }
-
-                        .row.blue {
-                            background: #2980b9;
-                        }
-
-                        @media screen and (max-width: 580px) {
-                            .row {
-                                padding: 14px 0 7px;
-                                display: block;
-                            }
-
-                            .row.header {
-                                padding: 0;
-                                height: 6px;
-                                
-                            }
-
-                            .row.header .cell {
-                                display: none;
-                            }
-
-                            .cell {
-                                margin-bottom: 10px;
-                            }
-
-                            .cell:before {
-                                margin-bottom: 3px;
-                                content: attr(data-title);
-                                min-width: 98px;
-                                font-size: 10px;
-                                line-height: 10px;
-                                font-weight: bold;
-                                text-transform: uppercase;
-                                color: #969696;
-                                display: block;
-                            }
-                        }
-                        .icon-container {
-    margin-right: 50px; /* Adjust margin as needed */
-}
-.icon-label {
-    display: block;
-    margin-top: 10px; /* Add space between icon and label */
-    font-size: 12px;
-    color: #888;
-}
-
                         .cell {
                             padding: 6px 12px;
                             display: table-cell;
@@ -127,32 +70,17 @@
                                 display: block;
                             }
                         }
-                        button{
-                            align-items:center;
+
+                        .icon-container {
+                            margin-right: 50px;
                         }
-                        .tooltip {
-    position: relative;
-    display: inline-block;
-}
 
-.tooltip .tooltiptext {
-    visibility: hidden;
-    width: 100px;
-    background-color: black;
-    color: white;
-    text-align: center;
-    border-radius: 6px;
-    padding: 5px;
-    position: absolute;
-    z-index: 1;
-    bottom: -20px;
-    left: 50%;
-    transform: translateX(-50%);
-}
-
-.tooltip:hover .tooltiptext {
-    visibility: visible;
-}
+                        .icon-label {
+                            display: block;
+                            margin-top: 10px;
+                            font-size: 12px;
+                            color: #888;
+                        }
                     </style>
                     <div class="wrapper">
                         <div class="form-group" style="display: flex; gap: 10px;">
@@ -194,13 +122,9 @@
                                     </option>
                                 </select>
                                 <div style="display: flex; gap: 10px;">
-    <button type="submit" class="search-button" style="height: 50px; display: inline-block;">Search</button>
-    <a href="{{ route('servicedata') }}" class="clear-button" style="height: 50px; display: inline-block; margin-top: 15px;">Clear</a>
-</div>
-
-
-
-
+                                    <button type="submit" class="search-button" style="height: 50px; display: inline-block;">Search</button>
+                                    <a href="{{ route('servicedata') }}" class="clear-button" style="height: 50px; display: inline-block; margin-top: 15px;">Clear</a>
+                                </div>
                             </form>
                         </div>
                         <div class="table">
@@ -224,51 +148,50 @@
                                     <div class="cell">{{ $serviceinfo->staffname }}</div>
                                     <div class="cell">{{ $serviceinfo->customername }}</div>
                                     <div class="cell @if($serviceinfo->workprogress == 'Ongoing') ongoing
-                                    @elseif($serviceinfo->workprogress == 'Unable to Complete') incomplete
-                                    @elseif($serviceinfo->workprogress == 'Completed') completed
-                                    @endif">{{ $serviceinfo->workprogress }}</div>
+                                            @elseif($serviceinfo->workprogress == 'Unable to Complete') incomplete
+                                            @elseif($serviceinfo->workprogress == 'Completed') completed
+                                        @endif">{{ $serviceinfo->workprogress }}</div>
                                     <div class="cell @if($serviceinfo->serviceprogress == 'Ongoing') ongoing
-                                    @elseif($serviceinfo->serviceprogress == 'Refer to Other Technicians or Other Shop') refer-to-other-technicians
-                                    @elseif($serviceinfo->serviceprogress == 'Completed') completed
-                                    @endif">{{ $serviceinfo->serviceprogress }}</div>
+                                            @elseif($serviceinfo->serviceprogress == 'Refer to Other Technicians or Other Shop') refer-to-other-technicians
+                                            @elseif($serviceinfo->serviceprogress == 'Completed') completed
+                                        @endif">{{ $serviceinfo->serviceprogress }}</div>
                                     <div class="cell">{{ $serviceinfo->serviceremarks }}</div>
                                     <div class="cell">{{ date('F d, Y h:i A', strtotime($serviceinfo->dateandtime)) }}</div>
                                     <div class="cell">{{ date('F d, Y h:i A', strtotime($serviceinfo->servicestarted)) }}</div>
                                     <div class="cell">{{ date('F d, Y h:i A', strtotime($serviceinfo->serviceend)) }}</div>
                                     <div class="cell" style="width: 120px;">
-    <div class="grid grid-cols-2 gap-4" style="width: 120px;"> <!-- Adjust the gap size as needed -->
-        <div class="icon-container">
-            <a href="{{ route('service-show', ['serno' => $serviceinfo->serviceno]) }}"
-               class="bg-yellow-400 text-black font-bold p-1 rounded hover:bg-yellow-500 h-8 w-8 flex items-center justify-center text-lg" title="View">👁</a>
-            <span class="icon-label">View</span>
-        </div>
-        <div class="icon-container">
-            <a href="{{ route('service-edit', ['serno' => $serviceinfo->serviceno]) }}"
-               class="bg-blue-500 text-black font-bold p-1 rounded hover:bg-blue-600 h-8 w-8 flex items-center justify-center text-lg" title="Edit">✏</a>
-            <span class="icon-label">Edit</span>
-        </div>
-        <div class="icon-container">
-            <a href="{{ route('service-editstaff', ['serno' => $serviceinfo->serviceno]) }}"
-               class="bg-green-300 text-black font-bold p-1 rounded hover:bg-green-400 h-8 w-8 flex items-center justify-center text-lg" title="Change Staff">👥</a>
-            <span class="icon-label">Staff</span>
-        </div>
-        <div class="icon-container">
-            <form method="POST"
-                  action="{{ route('service-delete', ['serno' => $serviceinfo->serviceno ]) }}"
-                  onsubmit="return confirm('Are you sure you want to delete this record?')">
-                @csrf
-                @method('delete')
-                <button class="bg-red-500 text-black font-bold p-1 rounded hover:bg-red-600 h-8 w-8 flex items-center justify-center text-lg" type="submit" title="Delete">🗑</button>
-                <span class="icon-label">Delete</span>
-            </form>
-        </div>
-    </div>
-</div>
-
+                                        <div class="grid grid-cols-2 gap-4" style="width: 120px;"> <!-- Adjust the gap size as needed -->
+                                            <div class="icon-container">
+                                                <a href="{{ route('service-show', ['serno' => $serviceinfo->serviceno]) }}"
+                                                   class="bg-yellow-400 text-black font-bold p-1 rounded hover:bg-yellow-500 h-8 w-8 flex items-center justify-center text-lg" title="View">👁</a>
+                                                <span class="icon-label">View</span>
+                                            </div>
+                                            <div class="icon-container">
+                                                <a href="{{ route('service-edit', ['serno' => $serviceinfo->serviceno]) }}"
+                                                   class="bg-blue-500 text-black font-bold p-1 rounded hover:bg-blue-600 h-8 w-8 flex items-center justify-center text-lg" title="Edit">✏</a>
+                                                <span class="icon-label">Edit</span>
+                                            </div>
+                                            <div class="icon-container">
+                                                <a href="{{ route('service-editstaff', ['serno' => $serviceinfo->serviceno]) }}"
+                                                   class="bg-green-300 text-black font-bold p-1 rounded hover:bg-green-400 h-8 w-8 flex items-center justify-center text-lg" title="Change Staff">👥</a>
+                                                <span class="icon-label">Staff</span>
+                                            </div>
+                                            <div class="icon-container">
+                                                <form method="POST"
+                                                      action="{{ route('service-delete', ['serno' => $serviceinfo->serviceno ]) }}"
+                                                      onsubmit="return confirm('Are you sure you want to delete this record?')">
+                                                    @csrf
+                                                    @method('delete')
+                                                    <button class="bg-red-500 text-black font-bold p-1 rounded hover:bg-red-600 h-8 w-8 flex items-center justify-center text-lg" type="submit" title="Delete">🗑</button>
+                                                    <span class="icon-label">Delete</span>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             @empty
                                 <div class="row">
-                                    <div class="cell" colspan="15">No records found.</div>
+                                    <div class="cell" colspan="11">No records found.</div>
                                 </div>
                             @endforelse
                         </div>

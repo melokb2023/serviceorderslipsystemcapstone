@@ -213,7 +213,98 @@ public function store(Request $request, $id)
 
         // Flash a session message
         session()->flash('success_message', 'Work Progress Updated: Completed');
-    } else {
+    }
+    elseif ($request->xworkprogress == 'Assigned') {
+        // If the work progress is set to 'Completed', send an email notification
+        $details = [
+            'title' => 'Work Completion Notification',
+            'body' => 'The work with ID ' . $id . ' is assigned. Stay tuned for more details',
+        ];
+
+        // Send email to the customer
+        Mail::to('melokylebryant4@gmail.com')->send(new MyMail($details));
+        $logs = new Logs;
+        $logs->userid = Auth::id(); 
+        $logs->description = "Sets Work Progress to Assigned";
+        $logs->actiondatetime = now();
+        $logs->save();
+
+        // Flash a session message
+        session()->flash('success_message', 'Work Progress Updated: Assigned');
+    }
+    elseif ($request->xworkprogress == 'Diagnosis') {
+        // If the work progress is set to 'Completed', send an email notification
+        $details = [
+            'title' => 'Work Completion Notification',
+            'body' => 'The work with ID ' . $id . ' is diagnosed. The process will end soon.',
+        ];
+
+        // Send email to the customer
+        Mail::to('melokylebryant4@gmail.com')->send(new MyMail($details));
+        $logs = new Logs;
+        $logs->userid = Auth::id(); 
+        $logs->description = "Sets Work Progress to Diagnosis";
+        $logs->actiondatetime = now();
+        $logs->save();
+
+        // Flash a session message
+        session()->flash('success_message', 'Work Progress Updated: Diagnosis');
+    }
+    elseif ($request->xworkprogress == 'Under Repair') {
+        // If the work progress is set to 'Completed', send an email notification
+        $details = [
+            'title' => 'Work Completion Notification',
+            'body' => 'The work with ID ' . $id . ' is under repair. It will take a while to finish it.',
+        ];
+
+        // Send email to the customer
+        Mail::to('melokylebryant4@gmail.com')->send(new MyMail($details));
+        $logs = new Logs;
+        $logs->userid = Auth::id(); 
+        $logs->description = "Sets Work Progress to Under Repair";
+        $logs->actiondatetime = now();
+        $logs->save();
+
+        // Flash a session message
+        session()->flash('success_message', 'Work Progress Updated: Under Repair');
+    }
+    elseif ($request->xworkprogress == 'Waiting for Parts') {
+        // If the work progress is set to 'Completed', send an email notification
+        $details = [
+            'title' => 'Work Completion Notification',
+            'body' => 'The work with ID ' . $id . ' is waiting for parts. Standby for further progress of the service.',
+        ];
+
+        // Send email to the customer
+        Mail::to('melokylebryant4@gmail.com')->send(new MyMail($details));
+        $logs = new Logs;
+        $logs->userid = Auth::id(); 
+        $logs->description = "Sets Work Progress to Waiting for Parts";
+        $logs->actiondatetime = now();
+        $logs->save();
+
+        // Flash a session message
+        session()->flash('success_message', 'Work Progress Updated: Waiting for Parts');
+    } 
+    elseif ($request->xworkprogress == 'Ready for Pickup') {
+        // If the work progress is set to 'Completed', send an email notification
+        $details = [
+            'title' => 'Work Completion Notification',
+            'body' => 'The work with ID ' . $id . ' has the parts. The products will be ready for pickup.',
+        ];
+
+        // Send email to the customer
+        Mail::to('melokylebryant4@gmail.com')->send(new MyMail($details));
+        $logs = new Logs;
+        $logs->userid = Auth::id(); 
+        $logs->description = "Sets Work Progress to Ready for Pickup";
+        $logs->actiondatetime = now();
+        $logs->save();
+
+        // Flash a session message
+        session()->flash('success_message', 'Work Progress Updated: Ready for Pickup');
+    }    
+    else {
         session()->flash('success_message', 'Work Progress Updated');
     }
 

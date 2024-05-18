@@ -53,102 +53,133 @@
     background-color: white; /* Set background color to white */
     color: black; /* Set text color to black */
 }
+
+.hamburger {
+    display: none;
+    cursor: pointer;
+}
+
+.hamburger-dropdown {
+    display: none;
+    position: absolute;
+    top: 60px; /* Adjust this value as per your design */
+    right: 20px;
+    background-color: #2980b9;
+    padding: 10px;
+    border-radius: 5px;
+    z-index: 999;
+}
+
+.hamburger-dropdown a {
+    display: block;
+    color: white;
+    text-decoration: none;
+    margin-bottom: 5px;
+}
+
+@media screen and (max-width: 768px) {
+    .top-nav {
+        display: none;
+    }
+
+    .hamburger {
+        display: block;
+        position: absolute;
+        top: 18px; /* Adjust this value to vertically center the icon */
+        right: 20px;
+        z-index: 1000;
+    }
+
+    .hamburger-dropdown {
+        display: none;
+    }
+}
+
+@media screen and (min-width: 769px) {
+    .hamburger-dropdown {
+        display: none;
+    }
+}
     </style>
 </head>
 
 <body>
 
     <!-- Primary Navigation Menu -->
-    <nav x-data="{ open: false }" class="bg-red-500 border-b border-gray-50" style="background-color:#2980b9">
+    <nav class="bg-red-500 border-b border-gray-50" style="background-color:#2980b9">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 " style="background-color:#2980b9">
             <div class="flex justify-between h-16" style="background-color:#2980b9">
-         
-
-  <!-- Top Navigation Links -->
-  <div class="top-nav">
-       <div class="user-card" style="font-size: 14px; padding: 10px; height: 30px; width: auto;">
-                <span>{{ Auth::user()->name }}</span>
-    <!-- Add any additional user information here -->
-</div>
-  <a class="top-nav-link" href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
-    <i class="fa fa-tachometer"></i> {{ __('DASHBOARD') }}
-</a>
-<a class="top-nav-link" href="{{ route('customerdashboard') }}" :active="request()->routeIs('customerdashboard')">
-    <i class="fa fa-calendar"></i> {{ __('MY APPOINTMENTS') }}
-</a>
-<a class="top-nav-link" href="{{ route('add-appointment') }}" :active="request()->routeIs('add-appointment')">
-<i class="fa fa-plus-circle"></i> {{ __('START APPOINTMENT') }}
-</a>
-<a class="top-nav-link" href="{{ route('add-customerrating') }}" :active="request()->routeIs('add-customerrating')">
-    <i class="fa fa-star"></i> {{ __('RATE THE SERVICE') }}
-</a>
-<a class="top-nav-link" href="{{ route('customerlogs') }}" :active="request()->routeIs('customerlogs')">
-    <i class="fa fa-history"></i> {{ __('LOGS') }}
-</a>              
+                <!-- Hamburger icon -->
+                <div class="hamburger" onclick="toggleDropdown()">
+                    <i class="fa fa-bars fa-2x" style="color: white;"></i>
                 </div>
-                <div class="hidden sm:flex sm:items-center sm:ml-6" style="background-color: #2980b9;">
-    <!-- Teams Dropdown -->
-    @if (Laravel\Jetstream\Jetstream::hasTeamFeatures())
-        <div class="ml-3 relative">
-            <x-dropdown align="right" width="60">
-                <x-slot name="trigger">
-                    <button type="button" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-800 transition ease-in-out duration-150">
-                        {{ Auth::user()->currentTeam->name }}
-                        <svg class="ml-2 -mr-0.5 h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 15L12 18.75 15.75 15m-7.5-6L12 5.25 15.75 9" />
-                        </svg>
-                    </button>
-                </x-slot>
-
-                <x-slot name="content">
-                    <div class="w-60">
-                        <!-- Team Management -->
-                        <div class="block px-4 py-2 text-sm text-gray-600">
-                            {{ __('Manage Team') }}
-                        </div>
-
-                        <!-- Team Settings -->
-                        <x-dropdown-link href="{{ route('teams.show', Auth::user()->currentTeam->id) }}">
-                            {{ __('Team Settings') }}
-                        </x-dropdown-link>
-
-                        @can('create', Laravel\Jetstream\Jetstream::newTeamModel())
-                            <x-dropdown-link href="{{ route('teams.create') }}">
-                                {{ __('Create New Team') }}
-                            </x-dropdown-link>
-                        @endcan
-
-                        <!-- Team Switcher -->
-                        @if (Auth::user()->allTeams()->count() > 1)
-                            <div class="border-t border-gray-200"></div>
-
-                            <div class="block px-4 py-2 text-sm text-gray-600">
-                                {{ __('Switch Teams') }}
-                            </div>
-
-                            @foreach (Auth::user()->allTeams() as $team)
-                                <x-switchable-team :team="$team" />
-                            @endforeach
-                        @endif
+                <!-- Top Navigation Links -->
+                <div class="top-nav">
+                    <div class="user-card" style="font-size: 14px; padding: 10px; height: 30px; width: auto;">
+                        <span>{{ Auth::user()->name }}</span>
                     </div>
-                </x-slot>
-            </x-dropdown>
+                    <a class="top-nav-link" href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
+                        <i class="fa fa-tachometer"></i> {{ __('DASHBOARD') }}
+                    </a>
+                    <a class="top-nav-link" href="{{ route('customerdashboard') }}" :active="request()->routeIs('customerdashboard')">
+                        <i class="fa fa-calendar"></i> {{ __('MY APPOINTMENTS') }}
+                    </a>
+                    <a class="top-nav-link" href="{{ route('add-appointment') }}" :active="request()->routeIs('add-appointment')">
+                        <i class="fa fa-plus-circle"></i> {{ __('START APPOINTMENT') }}
+                    </a>
+                    <a class="top-nav-link" href="{{ route('add-customerrating') }}" :active="request()->routeIs('add-customerrating')">
+                        <i class="fa fa-star"></i> {{ __('RATE THE SERVICE') }}
+                    </a>
+                    <a class="top-nav-link" href="{{ route('customerlogs') }}" :active="request()->routeIs('customerlogs')">
+                        <i class="fa fa-history"></i> {{ __('LOGS') }}
+                    </a>
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <button type="submit" style="white-space: nowrap; background-color: #d70021; color: white; border: none; border-radius: 10px; padding: 6px 12px; font-size: 12px;">
+                            <i class="fa fa-sign-out"></i> {{ __('Log Out') }}
+                        </button>
+                    </form>
+                </div>
+                <!-- Hamburger Dropdown Links -->
+                <div class="hamburger-dropdown" id="hamburgerDropdown">
+                    <a href="{{ route('dashboard') }}"><i class="fa fa-tachometer"></i> DASHBOARD</a>
+                    <a href="{{ route('customerdashboard') }}"><i class="fa fa-calendar"></i> MY APPOINTMENTS</a>
+                    <a href="{{ route('add-appointment') }}"><i class="fa fa-plus-circle"></i> START APPOINTMENT</a>
+                    <a href="{{ route('add-customerrating') }}"><i class="fa fa-star"></i> RATE THE SERVICE</a>
+                    <a href="{{ route('customerlogs') }}"><i class="fa fa-history"></i> LOGS</a>
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <button type="submit" style="white-space: nowrap; background-color: #d70021; color: white; border: none; border-radius: 10px; padding: 6px 12px; font-size: 12px;">
+                            <i class="fa fa-sign-out"></i> {{ __('Log Out') }}
+                        </button>
+                    </form>
+                </div>
+            </div>
         </div>
-    @endif
+    </nav>
 
-    <!-- Settings Dropdown -->
-    <div class="hidden sm:flex sm:items-center sm:ml-6" style="background-color: #2980b9;">
-    <!-- Other navigation links -->
-    
-    <!-- Log Out button -->
-    <form method="POST" action="{{ route('logout') }}">
-        @csrf
-        <button type="submit" style="white-space: nowrap; background-color: #d70021; color: white; border: none; border-radius: 10px; padding: 6px 12px; font-size: 12px;">
-            <i class="fa fa-sign-out"></i> {{ __('Log Out') }}
-        </button>
-    </form>
-</div>
-            </div>   
+    <!-- Your existing JavaScript code, if any -->
+    <script>
+        function toggleDropdown() {
+            var dropdown = document.getElementById("hamburgerDropdown");
+            if (dropdown.style.display === "none" || dropdown.style.display === "") {
+                dropdown.style.display = "block";
+            } else {
+                dropdown.style.display = "none";
+            }
+        }
+        window.addEventListener("resize", function() {
+            var hamburger = document.querySelector(".hamburger");
+            var hamburgerDropdown = document.querySelector(".hamburger-dropdown");
+            if (window.innerWidth > 768) {
+                hamburger.style.display = "none";
+                hamburgerDropdown.style.display = "none";
+            } else {
+                hamburger.style.display = "block";
+            }
+        });
+    </script>
+
 </body>
-</nav>
 
+</html>

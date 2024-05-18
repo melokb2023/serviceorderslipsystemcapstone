@@ -355,7 +355,7 @@ return redirect()->route('servicedata');
                 'body' => "Dear {$customerUser->name},\n\n"
                     . "Thank you for placing a service with Compu Source Computer Center. "
                     . "We appreciate the trust you have placed in us and aim to provide you with the highest quality of service. "
-                    . "If you have any questions or need further assistance, please do not hesitate to contact our customer service team at [customer service email address] or [customer service phone number]. "
+                    . "If you have any questions or need further assistance, please do not hesitate to contact our customer service team. "
                     . "Thank you for choosing Compu Source Computer Center.\n\n"
                     . "We value your business and look forward to serving you again.\n\n"
                     . "Warm regards,\n\n"

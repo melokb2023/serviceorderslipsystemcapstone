@@ -34,50 +34,40 @@
 
                         .table {
                             margin: 0 auto;
-                            width: 100%; /* Adjusted to fill the available space */
                             box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
-                            display: table;
+                            display: flex;
+                            flex-direction: column;
+                            min-width: 100%;
+                            overflow-x: auto; /* Enable horizontal scroll for small screens */
                         }
 
-                        /* Rest of your styles */
                         .row {
-                            display: table-row;
-                            background: #f6f6f6;
-                        }
-
-                        .row:nth-of-type(odd) {
-                            background: #e9e9e9;
-                        }
-
-                        .row.header {
-                            font-weight: 900;
-                            color: #ffffff;
-                            background: #2980b9;
+                            display: flex;
+                            flex-wrap: wrap; /* Wrap cells to the next line if necessary */
+                            border-bottom: 1px solid #ddd;
+        
                         }
 
                         .cell {
-                            padding: 6px 12px;
-                            display: table-cell;
+                            padding: 10px;
+                            flex: 1 1 0; /* Equal width, allow shrinking, don't grow */
                             white-space: nowrap;
                             overflow: hidden;
                             text-overflow: ellipsis;
                         }
-
-                        /* Adjusted widths for Name and Description cells */
-                        .name-cell {
-                            width: 20%;
+                        .header{
+                            background-color: #2980b9;
                         }
 
-                        .description-cell {
-                            width: 40%;
+                        .cell:nth-child(1) {
+                            flex-basis: 10%; /* Adjust the width of the first column */
                         }
 
-                        @media screen and (max-width: 580px) {
-                            .cell {
-                                padding: 2px 16px;
-                                display: block;
-                            }
+                        .cell:nth-child(2) {
+                            flex-basis: 20%; /* Adjust the width of the second column */
                         }
+
+                        /* Adjust the widths of other columns as needed */
 
                         .button {
                             border: none;
@@ -175,18 +165,18 @@
                             <div class="wrapper" id="staffLogsContainer">
                                 <div class="table" id="staffLogs">
                                     <div class="row header">
-                                        <div class="cell"> User ID</div>
-                                        <div class="cell name-cell"> Name</div>
-                                        <div class="cell"> User Type </div>
-                                        <div class="cell description-cell"> Description </div>
-                                        <div class="cell"> Action Date and Time </div>
+                                        <div class="cell" style="color:white"> User ID</div>
+                                        <div class="cell" style="color:white"> Name</div>
+                                        <div class="cell" style="color:white"> User Type </div>
+                                        <div class="cell" style="color:white"> Description </div>
+                                        <div class="cell" style="color:white"> Action Date and Time </div>
                                     </div>
                                     @foreach($servicedata as $log)
                                         <div class="row">
                                             <div class="cell">{{ $log->userid }}</div>
-                                            <div class="cell name-cell">{{ $log->name}}</div>
+                                            <div class="cell">{{ $log->name}}</div>
                                             <div class="cell">{{ $log->usertype}}</div>
-                                            <div class="cell description-cell">{{ $log->description}}</div>
+                                            <div class="cell">{{ $log->description}}</div>
                                             <div class="cell">{{ date('F d, Y h:i:s A', strtotime($log->actiondatetime)) }}</div>
                                         </div>
                                     @endforeach

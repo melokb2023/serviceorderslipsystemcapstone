@@ -26,7 +26,7 @@ use App\Models\Logs;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+   return redirect()->route('login');
 });
 
 Route::get('/landingpagehome', function () {
