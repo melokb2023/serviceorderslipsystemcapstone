@@ -202,7 +202,7 @@ button[type=submit]:hover {
                              <div class="form-group">
                                 <label for="customer-password">Customer Password</label>
                                 <input type="password" name="xcustomerpassword" value="{{ old('xcustomerpassword') }}" required/>
-                                <small style = "color:white">If you have a password, please kindly indicate it here so that we can start the process of service.</small>
+                                <small style = "color:white">If you have a password, kindly indicate it here so that we can start the process of service.</small>
                             </div>
                         </div>
                           <div class="form-row">

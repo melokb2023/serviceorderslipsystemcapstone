@@ -200,7 +200,7 @@ public function store(Request $request, $id)
         // If the work progress is set to 'Completed', send an email notification
         $details = [
             'title' => 'Work Completion Notification',
-            'body' => 'The work with ID ' . $id . ' is marked as completed. The admin will be notified of this.',
+            'body' => 'The work with ID ' . $id . ' is marked as completed. We are awaiting your update of the service progress to be completed.',
         ];
 
         // Send email to the customer
